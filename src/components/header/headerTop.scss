@@ -1,0 +1,114 @@
+.header-top {
+  min-height: 50px;
+  display: flex;
+  .menu-top {
+    min-width: 50%;
+    background-color: #0066b3;
+    display: flex;
+    
+    .menu-top-left {
+      height: 50px;
+      flex-grow: 1;
+    }
+    .menu-top-limit {
+      justify-content: flex-start;
+      display: flex;
+      width: 583px;
+      
+      a {
+        color: #ffffff;
+        line-height: 50px;
+        padding: 0 10px;
+        &:hover {
+          color: #333333;
+        }
+      }
+      .col-separator {
+        width: 2px;
+        height: 15px;
+        background-color: #7691a9;
+        margin: auto 0;
+      }
+    }
+  }
+  .register-top {
+    flex-grow: 1;
+    background-color: #75c4f0;
+    color: #333333;
+    
+    .register-top-limit {
+      max-width: 583px;
+      height: 50px;
+      display: flex;
+      justify-content: flex-end;
+      span {
+        line-height: 50px;
+        font-size: 12px;
+        a {
+          color: #d71921;
+          cursor: text;
+          &:hover {
+            color: #d71921;
+          }
+        }
+      }
+      .btn {
+        min-width: 121px;
+        height: 30px;
+        border-radius: 18px;
+        font-size: 14px;
+        line-height: 10px;
+        margin-left: 14px;
+        margin-top: 10px;
+
+        i {
+          font-size: 12px;
+          margin: 0 5px;
+        }
+      }
+      .btn-register {
+        background-color: #005197;
+        color: #ffffff;
+        &:hover {
+          background-color:#0066b3;
+        }
+      }
+      .btn-login {
+        background-color: transparent;
+        &:hover {
+          background-color:#0066b3;
+        }
+      }
+    }
+  }
+}
+@media (max-width: 1160px) {
+  #guide-register-text {
+    display: none;
+  }
+}
+@media (max-width: 767px) {
+  .header-top {
+    display: block;
+    .menu-top {
+      padding-left: 20px;
+      flex-direction: column;
+      .menu-top-left {
+        display: none;
+      }
+      .col-separator {
+        display: none;
+      }
+      a {
+        padding: 0;
+        line-height: 30px;
+      }
+    }
+    .register-top {
+      .register-top-limit {
+        max-width: 100%;
+        justify-content: center;
+      }
+    }
+  }
+}

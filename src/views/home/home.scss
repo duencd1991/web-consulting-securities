@@ -1,0 +1,200 @@
+.home-page {
+  .home-slider-menu {
+    max-width: 1166px;
+    margin: 0 auto;
+    width: 100%;
+    min-height: 430px;
+    padding: 30px 0;
+    display: flex;
+    justify-content: space-between;
+    .home-slider {
+      width: 770px;
+      .carousel-caption {
+        top: 36px;
+        left: 40px;
+        text-align: left;
+        .banner-title {
+          font-size: 29px;
+          font-weight: bold;
+        }
+        .banner-detail {
+          background-color: #1c82bf;
+          border-radius: 20px;
+          color: #fff;
+        }
+        ul {
+          margin: 0;
+          padding: 20px;
+          list-style: none;
+        }
+      }
+    }
+    .home-menu {
+      width: 370px;
+      background-color: #c2261c;
+
+      .home-menu-item {
+        height: 50px;
+        width: 100%;
+        opacity: 0.7;
+        background-color: #c2261c;
+        cursor: pointer;
+        font-family: OpenSans;
+        font-size: 18px;
+        color: #ffffff;
+        padding-left: 17px;
+        line-height: 50px;
+        position: relative;
+        &:hover {
+          opacity: 1;
+          background-color: #b0261c;
+        }
+        &.active {
+          opacity: 1;
+          background-color: #b0261c;
+          height: 220px;
+        }
+        i {
+          position: absolute;
+          right: 24px;
+          top: 15px;
+        }
+        .sub-menu-show {
+          margin-left: -17px;
+          height: 170px;
+          background-color: blueviolet;
+        }
+        .sub-menu-hiden {
+          height: 0;
+          overflow: hidden;
+        }
+      }
+    }
+  }
+  .box-news {
+      height: 337px;
+      width: 100%;
+      padding: 30px 0;
+      background: url(../../assets/img/bg_news.jpg); 
+      background-repeat: no-repeat;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+      .box-width-limit {
+        display: flex;
+        justify-content: space-between;
+        height: 100%;
+        max-width: 1166px;
+        margin: 0 auto;
+        .box-new-item {
+          width: 370px;
+          height: 100%;
+          background-color: #ffffff;
+          padding: 10px;
+          display: flex;
+          flex-direction: column;
+          .title {
+            font-size: 16px;
+            .header {
+              font-family: 'OpenSans';
+            }
+            .normal {
+              font-family: 'OpenSans-Bold';
+            }
+          }
+          hr {
+            height: 2px;
+            width: 71px;
+            margin: 0 0 20px 0;
+            background-color: #666b6e;
+          }
+          .box-new-contents {
+            overflow-y: scroll;
+
+            .new-content {
+            display: flex;
+            margin-bottom: 15px;
+            .new-content-img {
+              height: 56px;
+              width: 100px;
+            }
+            .new-content-text {
+              padding-left: 14px;
+              font-size: 14px;
+              font-family: Arial;
+              color: #005197;
+              &:hover {
+                text-decoration: underline;
+              }
+            }
+          }
+          }
+          .box-files {
+            overflow-y: scroll;
+            .file-contents {
+              margin: 5px 0;
+              width: 330px;
+              height: 25px;
+              text-overflow: ellipsis;
+              overflow: hidden;
+              white-space: nowrap;
+              .file-content-text {
+                font-size: 14px;
+                color: #111111;
+                margin-left: 12px;
+                &:hover {
+                  text-decoration: underline;
+                }
+              }
+            }
+          }
+          
+        }
+      }
+    }
+}
+@media (max-width: 1150px) {
+  .box-news {
+    .box-width-limit {
+      justify-content: space-around !important;
+    }
+  }
+  #box-new {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .home-page {
+    .home-slider-menu {
+      flex-direction: column;
+      .home-slider {
+        width: 100%;
+      }
+      .home-menu {
+        width: 100%;
+      }
+    }
+    .box-news {
+      height: auto;
+      #box-new {
+        display: block;
+      }
+      .box-width-limit {
+        flex-direction: column;
+        .box-new-item {
+          width: 100%;
+          height: 250px;
+          margin-bottom: 20px;
+          .box-files {
+            .file-contents {
+              width: 100%;
+            }
+          }
+        }
+      }
+    }
+    
+  }
+}

@@ -1,0 +1,16 @@
+.content-body {
+  background-color: #ffffff;
+  flex-grow: 1;
+}
+.bodyClick {
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    opacity: 0;
+    top: 0;
+    left: auto;
+    right: 250px;
+    content: "";
+    z-index: 9999;
+    overflow-x: hidden;
+  }

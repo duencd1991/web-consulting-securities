@@ -1,0 +1,100 @@
+.body-click {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10;
+}
+.navbar {
+  background-color: #ffffff !important;
+  .container {
+    max-width: 1166px;
+    padding: 0;
+    .dropdown-menu {
+      background-color: #ffffff;
+      .dropdown-item {
+        color: #333333;
+        &:hover {
+          background-color: #ffffff;
+          color: #000000;
+        }
+      }
+      .dropdown-divider {
+        border-top: 1px solid rgba(0,0,0,.15);
+      }
+    }
+    .nav-item {
+      .nav-link {
+        color: #333333 !important;
+        font-size: 14px;
+      }
+      &.active {
+        .nav-link {
+          color: #111111 !important;
+        }
+      }
+    }
+    .form-inline {
+      position: relative;
+      margin-left: 20px;
+
+      .search-bar {
+        width: 0;
+        padding: 0;
+        border: none;
+        border-radius: 0;
+        overflow: hidden;
+        position: absolute;
+        right: 40px;
+        -webkit-transition: width 0.5s;
+        -moz-transition: width 0.5s;
+        transition: width 0.5s;
+        z-index: 100;
+        &.show {
+          width: 600px;
+          padding: 0 20px;
+          -webkit-transition: width 0.5s;
+          -moz-transition: width 0.5s;
+          transition: width 0.5s;
+          border: 1px solid #000000;
+          box-shadow: none;
+        }
+      }    
+      .btn-search {
+        margin: 10px 0;
+        cursor: pointer;
+      }
+    }
+  }
+}
+@media (max-width: 991px) {
+  .form-inline {
+    position: relative;
+    margin: 0 !important;
+    .search-bar {
+      width: 0;
+      padding: 0;
+      border: none;
+      border-radius: 0;
+      overflow: hidden;
+      position: absolute;
+      left: 40px;
+      -webkit-transition: width 0.5s;
+      -moz-transition: width 0.5s;
+      transition: width 0.5s;
+      z-index: 100;
+      &.show {
+        width: 80vw !important;
+        padding: 0 20px;
+        -webkit-transition: width 0.5s;
+        -moz-transition: width 0.5s;
+        transition: width 0.5s;
+        border: 1px solid #000000;
+        box-shadow: none;
+      }
+    }
+    .btn-search {
+      margin: 10px 0;
+      cursor: pointer;
+    }
+  }
+}
