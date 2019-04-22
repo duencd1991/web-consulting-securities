@@ -23,6 +23,8 @@ export default class Header extends Component {
     const {
       showSearchBar
     } = this.state;
+    const urlPage = window.location.pathname.toLowerCase();
+
     return (
       <React.Fragment>
         <HeaderTop />
@@ -31,7 +33,7 @@ export default class Header extends Component {
         }
         <nav className="navbar navbar-expand-lg navbar-light bg-light static-top">
           <div className="container">
-            <a className="navbar-brand" href="#">
+            <a className="navbar-brand" href="/">
                   <img src={logo} alt=""/>
                 </a>
             <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,13 +41,15 @@ export default class Header extends Component {
                 </button>
             <div className="collapse navbar-collapse" id="navbarResponsive">
               <ul className="navbar-nav ml-auto">
-                <li className="nav-item active">
-                  <a className="nav-link" href="#">TRANG CHỦ</a>
+                <li className={urlPage === '/' ? "nav-item active" : "nav-item"}>
+                  <a className="nav-link" href="/">TRANG CHỦ</a>
                 </li>
-                <li className="nav-item dropdown">
-                  <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <li className={urlPage === '/register-account' || urlPage === '/trading-instruction'
+                  || urlPage === '/training-service' || urlPage === '/consulting' ?
+                    "nav-item dropdown active" : "nav-item dropdown"}>
+                  <div className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     DỊCH VỤ
-                  </a>
+                  </div>
                   <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a className="dropdown-item" href="/register-account">Mở tài khoản</a>
                     <div className="dropdown-divider"></div>
@@ -56,32 +60,26 @@ export default class Header extends Component {
                     <a className="dropdown-item" href="/consulting">Dịch vụ tư vấn</a>
                   </div>
                 </li>
-                <li className="nav-item dropdown">
-                  <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <li className={urlPage === '/consulting-securities' ? "nav-item dropdown active": "nav-item dropdown" }>
+                  <div className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     SẢN PHẨM
-                  </a>
+                  </div>
                   <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a className="dropdown-item" href="#">Tư vấn chứng khoán phái sinh</a>
+                    <a className="dropdown-item" href="/consulting-securities">Tư vấn chứng khoán phái sinh</a>
                   </div>
                 </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">BÁO CÁO</a>
+                <li className={urlPage === '/report' ? "nav-item active" : "nav-item"}>
+                  <a className="nav-link" href="/report">BÁO CÁO</a>
                 </li>
-                <li className="nav-item">
-                  <a className="nav-link" href="#">KIẾN THỨC</a>
+                <li className={urlPage === '/news' ? "nav-item active" : "nav-item"}>
+                  <a className="nav-link" href="/news">KIẾN THỨC</a>
                 </li>
-                <li className="nav-item dropdown">
-                  <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    VỀ CHÚNG TÔI
-                  </a>
-                  <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a className="dropdown-item" href="#">Giới thiệu</a>
-                    <a className="dropdown-item" href="#">Liên hệ</a>
-                  </div>
+                <li className={urlPage === '/introduce' || urlPage === '/contacts' ? "nav-item dropdown active" : "nav-item dropdown"}>
+                  <a className="nav-link" href="/about-us">VỀ CHÚNG TÔI</a>
                 </li>
               </ul>
               <form className="form-inline my-2 my-lg-0">
-                <input autofocus className={showSearchBar ? "form-control mr-sm-2 search-bar show" : "form-control mr-sm-2 search-bar"}
+                <input autoFocus className={showSearchBar ? "form-control mr-sm-2 search-bar show" : "form-control mr-sm-2 search-bar"}
                   type="search" placeholder="Tìm kiếm" aria-label="Search" />
                 <img className='btn-search' alt='icon-search' onClick={()=>this.onClickSearchBar(!showSearchBar)} src={ icSearch } />
               </form>

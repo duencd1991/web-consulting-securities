@@ -166,7 +166,6 @@ class Home extends Component {
   }
   
   render() {
-    const { t } = this.props;
     const {
       selectedMenu,
       index,
@@ -235,7 +234,7 @@ class Home extends Component {
                     listNew.map((item, index) => {
                       return <div className='new-content'>
                         <img className='new-content-img' alt={`news-${index}`} src={item.img}/>
-                        <a href="#" className='new-content-text'>{item.title}</a>
+                        <a href={`/new-${index}`} className='new-content-text'>{item.title}</a>
                       </div>
                     })
                   }
@@ -252,7 +251,7 @@ class Home extends Component {
                     listReport.map((item, index) => {
                       return <div className='file-contents'>
                         <img alt={`report-${index}`} src={icFile}/>
-                        <a href='#' className='file-content-text'>{item.title}</a>
+                        <a href={`/report-${index}`} className='file-content-text'>{item.title}</a>
                       </div>
                     })
                   }
@@ -268,8 +267,8 @@ class Home extends Component {
                   {
                     listGuide.map((item, index) => {
                       return <div className='file-contents'>
-                        <img alt={`report-${index}`} src={icFile}/>
-                        <a href='#' className='file-content-text'>{item.title}</a>
+                        <img alt={`file-${index}`} src={icFile}/>
+                        <a href={`/file-${index}`} className='file-content-text'>{item.title}</a>
                       </div>
                     })
                   }

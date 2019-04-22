@@ -14,51 +14,50 @@ class Footer extends Component {
             <div className='footer-item'>
               <div className='item-header'>ĐÀO TẠO CHỨNG KHOÁN</div>
               <hr />
-              <a href="#" className='item-content'>Các khóa học</a>
-              <a href="#" className='item-content'>Chuẩn bị khai giảng</a>
-              <a href="#" className='item-content'>Đăng ký</a>
+              <a href="/cac-khoa-hoc" className='item-content'>Các khóa học</a>
+              <a href="/chuan-bi-khai-giang" className='item-content'>Chuẩn bị khai giảng</a>
+              <a href="/dang-ky" className='item-content'>Đăng ký</a>
             </div>
             <div className='footer-item'>
               <div className='item-header'>TƯ VẤN ĐẦU TƯ</div>
               <hr />
-              <a href="#" className='item-content'>Đội ngũ chuyên gia</a>
-              <a href="#" className='item-content'>Gói tư vấn</a>
-              <a href="#" className='item-content'>Đăng ký</a>
+              <a href="/doi-ngu-chuyen-gia" className='item-content'>Đội ngũ chuyên gia</a>
+              <a href="/goi-tu-van" className='item-content'>Gói tư vấn</a>
+              <a href="/dang-ky" className='item-content'>Đăng ký</a>
             </div>
             <div className='footer-item'>
               <div className='item-header'>HƯỚNG DẪN TỰ GIAO DỊCH</div>
               <hr />
-              <a href="#" className='item-content'>MBS Cổ phiếu</a>
-              <a href="#" className='item-content'>MBS Phái sinh - HĐTL</a>
-              <a href="#" className='item-content'>MBS Chứng quyền có bảo đảm</a>
+              <a href="/mbs-co-phieu" className='item-content'>MBS Cổ phiếu</a>
+              <a href="/mbs-phai-sinh" className='item-content'>MBS Phái sinh - HĐTL</a>
+              <a href="/mbs-chung-quyen" className='item-content'>MBS Chứng quyền có bảo đảm</a>
             </div>
             <div className='footer-item'>
               <div className='item-header'>HỖ TRỢ</div>
               <hr />
-              <a href="#" className='item-content'>Hotline 1900 9088</a>
-              <a href="#" className='item-content'>FAQs</a>
-              <a href="#" className='item-content'>Yêu cầu chuyển đổi</a>
-              <a href="#" className='item-content'>Loại hình phục vụ</a>
-              <a href="#" className='item-content'></a>
+              <a href="/hot-line" className='item-content'>Hotline 1900 9088</a>
+              <a href="/faqs" className='item-content'>FAQs</a>
+              <a href="/yeu-cau-chuyen-doi" className='item-content'>Yêu cầu chuyển đổi</a>
+              <a href="/loai-hinh-phuc-vu" className='item-content'>Loại hình phục vụ</a>
             </div>
             <div className='footer-item'>
               <div className='item-header'>VỀ MBS</div>
               <hr />
-              <a href="#" className='item-content'>Giới thiệu</a>
-              <a href="#" className='item-content'>Tuyển dụng</a>
-              <a href="#" className='item-content'>Điều khoản sử dụng</a>
-              <a href="#" className='item-content'>Liên hệ</a>
+              <a href="/gioi-thieu" className='item-content'>Giới thiệu</a>
+              <a href="/tuyen-dung" className='item-content'>Tuyển dụng</a>
+              <a href="/dieu-khoan-su-dung" className='item-content'>Điều khoản sử dụng</a>
+              <a href="/lien-he" className='item-content'>Liên hệ</a>
             </div>
             <div className='footer-item'>
               <div className='item-header'>SOCIAL MEDIA</div>
               <hr />
-              <a href="#" className='item-icon'>
+              <a href="https://facebook.com.vn" className='item-icon'>
                 <img src={icFb} alt="facebook"/>
               </a>
-              <a href="#" className='item-icon'>
+              <a href="/skype" className='item-icon'>
                 <img src={icSkype} alt="skype"/>
               </a>
-              <a href="#" className='item-icon'>
+              <a href="https://youtube.com.vn" className='item-icon'>
                 <img src={icYoutube} alt="youtube"/>
               </a>
             </div>

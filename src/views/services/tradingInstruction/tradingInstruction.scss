@@ -1,0 +1,141 @@
+.trading-instruction-page {
+  max-width: 1166px;
+  margin: auto;
+  .banner {
+    position: relative;
+    margin-bottom: 30px;
+    img {
+      width: 100%;
+    }
+    .title {
+      font-family: 'OpenSans-Bold';
+      font-size: 50px;
+      color: #ffffff;
+      text-align: center;
+      line-height: 64px;
+      position: absolute;
+      top: 60px;
+      width: 100%;
+    }
+    .sub-title {
+      font-family: 'OpenSans';
+      font-size: 46px;
+      color: #ffffff;
+      text-align: center;
+      line-height: 64px;
+      color: #59e6ff;
+      position: absolute;
+      top: 130px;
+      width: 100%;
+    }
+  }
+  .guide-menu {
+    margin-left: 98px;
+    .title {
+      font-size: 24px;
+      color: #125491;
+      font-family: Arial;
+    }
+    hr {
+      background-color: #125491;
+      width: 71px;
+      height: 2px;
+      margin: 5px 0 27px 0;
+    }
+    .list-menu-box {
+      max-width: 770px;
+      padding: 20px;
+      background-color: #f7f7f7;
+      .menu-item-box {
+        list-style: none;
+        height: 50px;
+        overflow: hidden;
+        position: relative;
+        -webkit-transition: height 0.5s;
+        -moz-transition: height 0.5s;
+        transition: height 0.5s;
+        .arrow {
+          color: #333333;
+          position: absolute;
+          right: 10px;
+          top: 15px;
+        }
+        &.active {
+          height: auto;
+          -webkit-transition: height 0.5s;
+          -moz-transition: height 0.5s;
+          transition: height 0.5s;
+          .arrow {
+            color: #ffffff;
+          }
+        }
+        li {
+          padding-left: 16px;
+          color: #125491;
+          font-size: 15px;
+          font-family: Arial;
+          line-height: 36px;
+          cursor: pointer;
+          i {
+            color: #666666;
+            margin-right: 5px;
+            font-size: 12px;
+            line-height: 36px;
+          }
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+        .menu-catalog {
+          height: 50px;
+          line-height: 50px;
+          padding: 0 17px;
+          font-weight: bold;
+          font-size: 16px;
+          box-shadow: 0px 1px 0 0 #e3e3e3;
+          background: #ffffff;
+          cursor: pointer;
+          margin-bottom: 20px;
+          color: #333333;
+          &:hover {
+            text-decoration: none;
+          }
+          &.active {
+            color: #ffffff;
+            background-color: #125491;
+          }
+        }
+      }
+    }
+  }
+  .top-guide {
+    .title {
+      background-color: #dce0e4;
+      max-width: 370px;
+      height: 50px;
+      line-height: 50px;
+      font-family: Arial;
+      font-weight: bold;
+      font-size: 16px;
+      text-align: center;
+    }
+    .box-top-guide {
+      list-style: none;
+      padding: 0 20px;
+      i {
+        font-size: 12px;
+        line-height: 36px;
+        margin-right: 5px;
+      }
+      li {
+        font-size: 14px;
+        color: #333333;
+        line-height: 36px;
+        &:hover {
+          text-decoration: underline;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

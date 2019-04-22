@@ -1,0 +1,170 @@
+.consulting-page {
+  .banner-layout {
+    height: 450px;
+    background-color: cadetblue;
+    padding-top: 36px;
+    position: relative;
+    background: url('../../../assets//img//ic-banner-consulting.png');
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+
+    .title {
+      font-size: 30px;
+      font-family: OpenSans;
+      text-align: center;
+      color: #ffffff;
+      margin-bottom: 34px;
+    }
+    .sub-title {
+      font-family: OpenSans-Light;
+      font-size: 17px;
+      color: #e8e8e8;
+      text-align: center;
+      max-width: 634px;
+      margin: auto;
+    }
+    .price-consulting {
+      font-size: 24px;
+      font-family: OpenSans-Light;
+      color: #e8e8e8;
+      line-height: 40px;
+      text-align: center;
+      margin: 21px auto 31px auto;
+    }
+    .btn-register {
+      border: solid 1px #f2f2f2;
+      background-color: transparent;
+      color: #e8e8e8;
+      font-size: 15px;
+      font-family: Arial;
+      border-radius: 20px;
+      min-width: 127px;
+      text-align: center;
+      -webkit-transform: translateX(-50%);
+      transform: translateX(-50%);
+      left: 50%;
+      position: absolute;
+      line-height: 40px;
+      padding: 0;
+      height: 40px;
+      &:hover {
+        background-color: #75c4f0;
+        color: #000000;
+      }
+    }
+    .btn-arrow-down {
+      height: 103px;
+      width: 50px;
+      position: absolute;
+      bottom: 0;
+      transform: translateX(-50%);
+      left: 50%;
+      background: url('../../../assets/img/ic_arrow.png');
+      background-repeat: no-repeat;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+      cursor: pointer;
+    }
+  }
+  .slogan-layout {
+    max-width: 1166px;
+    padding: 43px 0 56px 0;
+    margin: auto;
+    .title {
+      font-size: 26px;
+      line-height: 22px;
+      font-family: Arial;
+      color: #333333;
+      text-align: center;
+      font-weight: bold;
+    }
+    hr {
+      background-color: #29323c;
+      height: 2px;
+      width: 40px;
+      margin: 21px auto 29px auto;
+    }
+    .slogan-detail {
+      font-size: 16px;
+      font-family: Arial;
+      line-height: 26px;
+      color: #333333;
+      text-align: center;
+    }
+  }
+  .investor-layout {
+    padding: 50px 0 56px 0;
+    background-color: #f1f1f1;
+    .investor-title {
+      color: #333333;
+      font-size: 26px;
+      line-height: 22px;
+      font-family: Arial;
+      font-weight: bold;
+      margin: auto;
+      text-align: center;
+    }
+    hr {
+      background-color: #29323c;
+      height: 2px;
+      width: 40px;
+      margin: 21px auto 29px auto;
+    }
+    .list-investor {
+      max-width: 1166px;
+      margin: auto;
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-around;
+    }
+  }
+  .review-layout {
+    padding: 50px 0;
+    max-width: 850px;
+    margin: auto;
+    .review-title {
+      color: #333333;
+      font-size: 26px;
+      line-height: 22px;
+      font-family: Arial;
+      font-weight: bold;
+      margin: auto;
+      text-align: center;
+    }
+    hr {
+      background-color: #29323c;
+      height: 2px;
+      width: 40px;
+      margin: 21px auto 29px auto;
+    }
+  }
+  .experts-layout {
+    min-height: 700px;
+    padding-top: 63px;
+    background: url('../../../assets/img/expert-bg.png');
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    .expert-title {
+      font-size: 26px;
+      line-height: 22px;
+      text-align: center;
+      color: #ffffff;
+      font-weight: bold;
+    }
+    hr {
+      background-color: #29323c;
+      height: 2px;
+      width: 40px;
+      margin: 21px auto 29px auto;
+    }
+    
+  }
+}

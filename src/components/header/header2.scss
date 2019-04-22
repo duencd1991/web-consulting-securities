@@ -28,8 +28,9 @@
         font-size: 14px;
       }
       &.active {
+        background-color: #005197;
         .nav-link {
-          color: #111111 !important;
+          color: #ffffff !important;
         }
       }
     }
@@ -39,6 +40,7 @@
 
       .search-bar {
         width: 0;
+        height: 40px;
         padding: 0;
         border: none;
         border-radius: 0;
@@ -90,6 +92,7 @@
         transition: width 0.5s;
         border: 1px solid #000000;
         box-shadow: none;
+        transition-duration: 1s;
       }
     }
     .btn-search {

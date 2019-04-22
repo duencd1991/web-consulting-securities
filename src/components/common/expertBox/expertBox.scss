@@ -1,0 +1,48 @@
+.expert-box {
+  max-width: 1166px;
+  margin: auto;
+  font-family: Arial;
+  .expert-specialized {
+    font-size: 26px;
+    line-height: 30px;
+    text-align: center;
+    color: #ffffff;
+    margin-bottom: 50px;
+  }
+  .group-experts {
+    display: flex;
+    justify-content: space-evenly;
+    min-height: 440px;
+    .expert-detail {
+      width: 220px;
+      margin-right: 20px;
+      img {
+        width: 220px;
+        height: 229px;
+      }
+      .expert-info {
+        padding: 19px 15px 31px 15px;
+        border: 1px solid #4aa3cc;
+        .name {
+          font-size: 14px;
+          text-align: center;
+          color: #ffffff;
+          font-weight: bold;
+        }
+        .title {
+          font-size: 13px;
+          color: rgba(250,250,250,0.7);
+          text-align: center;
+          margin: 8px auto 12px auto;
+        }
+        .detail {
+          font-size: 14px;
+          text-align: center;
+          color: rgba(250,250,250,0.7);
+        }
+      }
+      
+    }
+  }
+  
+}
