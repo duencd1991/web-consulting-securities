@@ -1,0 +1,49 @@
+.training-service-page {
+  .banner {
+    width: 100%;
+    max-width: 1166px;
+    height: 450px;
+  }
+  .course-box {
+    max-width: 1166px;
+    margin: auto;
+    padding: 45px 0 62px 0;
+    background-color: #ececec;
+
+    .title {
+      font-size: 26px;
+      font-family: Arial;
+      font-weight: bold;
+      line-height: 22px;
+      color: #333333;
+      text-align: center;
+    }
+    hr {
+      height: 2px;
+      width: 41px;
+      margin: 21px auto 34px auto;
+      background-color: #29323c;
+    }
+    .list-course-box {
+      .select-course-type {
+        display: flex;
+        .type-course {
+          width: 192px;
+          height: 73px;
+          background-color: #ffffff;
+          color: #333333;
+          font-size: 15px;
+          font-family: Arial;
+          font-weight: bold;
+          text-align: center;
+          line-height: 73px;
+          cursor: pointer;
+          &.active {
+            background-color: #666666;
+            color: #ffffff;
+          }
+        }
+      }
+    }
+  }
+}
