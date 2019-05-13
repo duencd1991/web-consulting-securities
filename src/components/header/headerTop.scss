@@ -1,46 +1,35 @@
 .header-top {
   min-height: 50px;
   display: flex;
-  .menu-top {
-    min-width: 50%;
-    background-color: #0066b3;
-    display: flex;
-    
-    .menu-top-left {
-      height: 50px;
-      flex-grow: 1;
-    }
-    .menu-top-limit {
+  width: 100%;
+  max-width: 1170px;
+  margin: auto;
+  background-color: #ffffff;
+  justify-content: space-between;
+  .menu-top-limit {
       justify-content: flex-start;
       display: flex;
-      width: 583px;
-      
+      padding-left: 20px;
+      min-width: 410px;
       a {
-        color: #ffffff;
+        color: #333333;
         line-height: 50px;
-        padding: 0 10px;
         &:hover {
-          color: #333333;
+          text-decoration: underline;
         }
       }
       .col-separator {
         width: 2px;
         height: 15px;
         background-color: #7691a9;
-        margin: auto 0;
+        margin: auto 020px;
       }
-    }
   }
-  .register-top {
-    flex-grow: 1;
-    background-color: #75c4f0;
-    color: #333333;
-    
-    .register-top-limit {
-      max-width: 583px;
+  .register-top-limit {
       height: 50px;
       display: flex;
       justify-content: flex-end;
+      min-width: 572px;
       span {
         line-height: 50px;
         font-size: 12px;
@@ -80,36 +69,40 @@
           color: #ffffff;
         }
       }
-    }
   }
 }
-@media (max-width: 1160px) {
-  #guide-register-text {
-    display: none;
-  }
-}
-@media (max-width: 767px) {
+@media (max-width: 793px) {
   .header-top {
-    display: block;
-    .menu-top {
-      padding-left: 20px;
-      flex-direction: column;
-      .menu-top-left {
-        display: none;
-      }
-      .col-separator {
-        display: none;
-      }
-      a {
-        padding: 0;
-        line-height: 30px;
-      }
-    }
-    .register-top {
-      .register-top-limit {
-        max-width: 100%;
-        justify-content: center;
-      }
-    }
+    display: inline-table;
   }
 }
+// @media (max-width: 1160px) {
+//   #guide-register-text {
+//     display: none;
+//   }
+// }
+// @media (max-width: 767px) {
+//   .header-top {
+//     display: block;
+//     .menu-top {
+//       padding-left: 20px;
+//       flex-direction: column;
+//       .menu-top-left {
+//         display: none;
+//       }
+//       .col-separator {
+//         display: none;
+//       }
+//       a {
+//         padding: 0;
+//         line-height: 30px;
+//       }
+//     }
+//     .register-top {
+//       .register-top-limit {
+//         max-width: 100%;
+//         justify-content: center;
+//       }
+//     }
+//   }
+// }

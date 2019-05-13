@@ -109,8 +109,8 @@ class TrainingService extends Component {
             <hr />
             <div className='list-course-box'>
               <div className='select-course-type'>
-                <div className='type-course active' onClick={() => this.onChangeSelectCourse('Online')} >Khóa học Online</div>
-                <div className='type-course' onClick={() => this.onChangeSelectCourse('Offline')} >Khóa học Offline</div>
+                <div className={this.state.selectedCourse === 'Online' ? 'type-course active' : 'type-course'} onClick={() => this.onChangeSelectCourse('Online')} >Khóa học Online</div>
+                <div className={this.state.selectedCourse === 'Offline' ? 'type-course active' : 'type-course'} onClick={() => this.onChangeSelectCourse('Offline')} >Khóa học Offline</div>
               </div>
               {
                 this.state.selectedCourse === "Online" ? <div className='list-course'>
