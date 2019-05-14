@@ -31,7 +31,7 @@ export default class Header extends Component {
         {
           showSearchBar && <div className='body-click' onClick={ () => this.onClickSearchBar(false) }></div>
         }
-        <nav className="navbar navbar-expand-lg navbar-light bg-light static-top">
+        <nav className="navbar navbar-expand-lg navbar-dark bg-light static-top">
           <div className="container">
             <a className="navbar-brand" href="/">
                   <img src={logo} alt=""/>
@@ -52,11 +52,11 @@ export default class Header extends Component {
                   </div>
                   <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                     <a className="dropdown-item" href="/register-account">Mở tài khoản</a>
-                    <div className="dropdown-divider"></div>
+                    
                     <a className="dropdown-item" href="/trading-instruction">Hướng dẫn giao dịch</a>
-                    <div className="dropdown-divider"></div>
+                    
                     <a className="dropdown-item" href="/training-service">Dịch vụ đào tạo</a>
-                    <div className="dropdown-divider"></div>
+                    
                     <a className="dropdown-item" href="/consulting">Dịch vụ tư vấn</a>
                   </div>
                 </li>
@@ -74,7 +74,7 @@ export default class Header extends Component {
                 <li className={urlPage === '/news' ? "nav-item active" : "nav-item"}>
                   <a className="nav-link" href="/news">KIẾN THỨC</a>
                 </li>
-                <li className={urlPage === '/introduce' || urlPage === '/contacts' ? "nav-item dropdown active" : "nav-item dropdown"}>
+                <li className={urlPage === '/about-us' ? "nav-item dropdown active" : "nav-item dropdown"}>
                   <a className="nav-link" href="/about-us">VỀ CHÚNG TÔI</a>
                 </li>
               </ul>

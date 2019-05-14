@@ -12,41 +12,41 @@ class Footer extends Component {
         <div className='footer-box'>
           <div className='footer'>
             <div className='footer-item'>
+              <div className='item-header'>TƯ VẤN PHÁI SINH</div>
+              <hr />
+              <a href="/cac-khoa-hoc" className='item-content'>Robo advisor</a>
+              <a href="/chuan-bi-khai-giang" className='item-content'>Tư vấn trực tuyến</a>
+              <a href="/dang-ky" className='item-content'>Đội ngũ chuyên gia</a>
+            </div>
+            <div className='footer-item'>
               <div className='item-header'>ĐÀO TẠO CHỨNG KHOÁN</div>
               <hr />
-              <a href="/cac-khoa-hoc" className='item-content'>Các khóa học</a>
-              <a href="/chuan-bi-khai-giang" className='item-content'>Chuẩn bị khai giảng</a>
-              <a href="/dang-ky" className='item-content'>Đăng ký</a>
+              <a href="/doi-ngu-chuyen-gia" className='item-content'>Danh sách khóa học</a>
+              <a href="/goi-tu-van" className='item-content'>Khóa học khai giảng</a>
             </div>
             <div className='footer-item'>
-              <div className='item-header'>TƯ VẤN ĐẦU TƯ</div>
+              <div className='item-header'>FORUM TRADER</div>
               <hr />
-              <a href="/doi-ngu-chuyen-gia" className='item-content'>Đội ngũ chuyên gia</a>
-              <a href="/goi-tu-van" className='item-content'>Gói tư vấn</a>
-              <a href="/dang-ky" className='item-content'>Đăng ký</a>
-            </div>
-            <div className='footer-item'>
-              <div className='item-header'>HƯỚNG DẪN TỰ GIAO DỊCH</div>
-              <hr />
-              <a href="/mbs-co-phieu" className='item-content'>MBS Cổ phiếu</a>
-              <a href="/mbs-phai-sinh" className='item-content'>MBS Phái sinh - HĐTL</a>
-              <a href="/mbs-chung-quyen" className='item-content'>MBS Chứng quyền có bảo đảm</a>
+              <a href="/mbs-co-phieu" className='item-content'>Room 1</a>
+              <a href="/mbs-phai-sinh" className='item-content'>Room 2</a>
+              <a href="/mbs-chung-quyen" className='item-content'>Telegram</a>
             </div>
             <div className='footer-item'>
               <div className='item-header'>HỖ TRỢ</div>
               <hr />
               <a href="/hot-line" className='item-content'>Hotline 1900 9088</a>
               <a href="/faqs" className='item-content'>FAQs</a>
-              <a href="/yeu-cau-chuyen-doi" className='item-content'>Yêu cầu chuyển đổi</a>
-              <a href="/loai-hinh-phuc-vu" className='item-content'>Loại hình phục vụ</a>
+              <a href="/yeu-cau-chuyen-doi" className='item-content'>Chuyển đổi phục vụ</a>
+              <a href="/loai-hinh-phuc-vu" className='item-content'>Điều khoản sử dụng</a>
             </div>
             <div className='footer-item'>
-              <div className='item-header'>VỀ MBS</div>
+              <div className='item-header'>LIÊN HỆ</div>
               <hr />
-              <a href="/gioi-thieu" className='item-content'>Giới thiệu</a>
-              <a href="/tuyen-dung" className='item-content'>Tuyển dụng</a>
-              <a href="/dieu-khoan-su-dung" className='item-content'>Điều khoản sử dụng</a>
-              <a href="/lien-he" className='item-content'>Liên hệ</a>
+              <span className='item-content'>CÔNG TY CP CHỨNG KHOÁN MB</span>
+              <p><span>Hội Sở: </span>Tòa nhà MB - Số 3 Liễu Giai, Quận Ba Đình, Hà Nội.</p>
+              <p>Tel: <span>+84 24 3726 2600</span> Máy lẻ: <span>1001</span></p>
+              <p>Fax: <span>+84 24 3726 2601</span></p>
+              <p>Hotline MBS: <span>+84 24 3755 6688</span></p>
             </div>
             <div className='footer-item'>
               <div className='item-header'>SOCIAL MEDIA</div>
