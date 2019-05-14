@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Layout from '../../layout/layout';
 import './trainingService.scss';
-import icBanner from '../../../assets/img/ic-banner-training.jpg';
+import icBanner from '../../../assets/img/ic-banner-training.png';
 
 const listCourseHot = [
   {
@@ -100,55 +100,58 @@ class TrainingService extends Component {
   render() {
     return(
       <Layout title="">
-        <div className='training-service-page'>
-          <div className='banner'>
-            <img alt='img' src={ icBanner }/>
-          </div>
+        <div className='banner'>
+          <div className='title-banner'>DỊCH VỤ ĐÀO TẠO</div>
+        </div>
+        <div className='course-layout'>
           <div className='course-box'>
-            <div className='title'>DANH SÁCH KHÓA HỌC</div>
-            <hr />
-            <div className='list-course-box'>
-              <div className='select-course-type'>
-                <div className={this.state.selectedCourse === 'Online' ? 'type-course active' : 'type-course'} onClick={() => this.onChangeSelectCourse('Online')} >Khóa học Online</div>
-                <div className={this.state.selectedCourse === 'Offline' ? 'type-course active' : 'type-course'} onClick={() => this.onChangeSelectCourse('Offline')} >Khóa học Offline</div>
-              </div>
-              {
-                this.state.selectedCourse === "Online" ? <div className='list-course'>
-                  {
-                    listCourseOnline.map((item, index) => {
-                      return <div key={index} className='course-item'>
-                        <div className='start-time'><span>KHAI GIẢNG</span>{item.start}</div>
-                        <div className='title'>{item.title}</div>
-                        <div className='calendar'>{item.calendar}</div>
-                      </div>
-                    })
-                  }
-                </div> : <div className='list-course'>
-                  {
-                    listCourseOffline.map((item, index) => {
-                      return <div key={index} className='course-item'>
-                        <div className='start-time'><span>KHAI GIẢNG</span>{item.start}</div>
-                        <div className='title'>{item.title}</div>
-                        <div className='calendar'>{item.calendar}</div>
-                      </div>
-                    })
-                  }
+            <div className='course-content'>
+              <div className='list-course-box'>
+                <div className='select-course-type'>
+                  <div className={this.state.selectedCourse === 'Online' ? 'type-course active' : 'type-course'} onClick={() => this.onChangeSelectCourse('Online')} >Khóa học Online</div>
+                  <div className={this.state.selectedCourse === 'Offline' ? 'type-course active' : 'type-course'} onClick={() => this.onChangeSelectCourse('Offline')} >Khóa học Offline</div>
                 </div>
-              }
-              
-            </div>
-            <div className='hot-course'>
-              <div className='title'>KHÓA HỌC HOT</div>
-              {
-                listCourseHot.map((item, index) => {
-                  return <div className='row-course' key={index}>
-                    <div className='course-index'>{index}</div>
-                    <div className='course-name'>{item.title}</div>
+                {
+                  this.state.selectedCourse === "Online" ? <div className='list-course'>
+                    {
+                      listCourseOnline.map((item, index) => {
+                        return <div key={index} className='course-item'>
+                          <div className='start-time'><span>KHAI GIẢNG</span>{item.start}</div>
+                          <div className='title'>{item.title}</div>
+                          <div className='calendar'>{item.calendar}</div>
+                        </div>
+                      })
+                    }
+                  </div> : <div className='list-course'>
+                    {
+                      listCourseOffline.map((item, index) => {
+                        return <div key={index} className='course-item'>
+                          <div className='start-time'><span>KHAI GIẢNG</span>{item.start}</div>
+                          <div className='title'>{item.title}</div>
+                          <div className='calendar'>{item.calendar}</div>
+                        </div>
+                      })
+                    }
                   </div>
-                })
-              }
+                }
+              </div>
+              <div className='hot-course'>
+                <div className='title'>KHÓA HỌC HOT</div>
+                {
+                  listCourseHot.map((item, index) => {
+                    return <div className='row-course' key={index}>
+                      <div className='course-index'>{index + 1}</div>
+                      <div className='course-name'>{item.title}</div>
+                    </div>
+                  })
+                }
+              </div>
             </div>
           </div>
+        </div>
+        <div className='type-course-layout'>
+          <div className='title'>DANH SÁCH KHÓA HỌC</div>
+          <hr />
         </div>
       </Layout>
     )
