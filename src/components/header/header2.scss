@@ -14,12 +14,43 @@
       min-height: 80px;
 
       .nav-item {
-        transition: width 2s;
-        animation-duration: 2s;
+        .dropdown-menu {
+          background-color: #ffffff;
+          padding: 0;
+          margin: 0;
+          display: block;
+          max-height: 0;
+          overflow: hidden;
+          border: none;
+          border-radius: 0;
+          -webkit-transition: max-height 0.5s; 
+          -moz-transition: max-height 0.5s; 
+          -ms-transition: max-height 0.5s; 
+          -o-transition: max-height 0.5s; 
+          transition: max-height 0.5s;  
+          .dropdown-item {
+            color: #111;
+            border-bottom: solid 1px #b8e6ff;
+            background-color: #75c4f0;
+            height: 40px;
+            line-height: 40px;
+            padding: 0 20px;
+            &:hover {
+              background-color: #005197;
+              color: #ffffff;
+            }
+            &:last-child {
+              border: none;
+            }
+          }
+          .dropdown-divider {
+            border-top: 1px solid rgba(0,0,0,.15);
+          }
+        }
         &:hover {
           cursor: pointer;
           .dropdown-menu {
-            display: block;
+            max-height: 300px;
             background: #75c4f0;
             border:none;
           }
@@ -36,7 +67,10 @@
             right: 18px;
             border: none;
             height: 7px;
-            width: 13px; 
+            width: 13px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
           }
           &.dropdown-toggle
             {
@@ -49,10 +83,13 @@
           .nav-link {
             color: #fffefe !important;  
             &.dropdown-toggle::after{
-              background: url('../../assets/img/icArrowDown.png') no-repeat right bottom;
+              background: url('../../assets/img/icArrowDown.png');
               border: none;
               height: 7px;
-              width: 13px;  
+              width: 13px;
+              position: absolute;
+              top: 50%;
+              transform: translateY(-50%);
             }                 
           }      
           
@@ -69,28 +106,6 @@
             }                 
           }
         }
-      }
-    }
-    .dropdown-menu {
-      background-color: #ffffff;
-      padding: 0;
-      .dropdown-item {
-        color: #111;
-        border-bottom: solid 1px #b8e6ff;
-        background-color: #75c4f0;
-        height: 40px;
-        line-height: 40px;
-        padding: 0 20px;
-        &:hover {
-          background-color: #005197;
-          color: #ffffff;
-        }
-        &:last-child {
-          border: none;
-        }
-      }
-      .dropdown-divider {
-        border-top: 1px solid rgba(0,0,0,.15);
       }
     }
     .form-inline {
