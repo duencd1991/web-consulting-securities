@@ -1,0 +1,19 @@
+.search-bar {
+  width: 250px;
+  height: 38px;
+  margin-right: 20px;
+  position: relative;
+}
+
+.search-bar .form-control {
+  padding-right: 40px;
+}
+
+.search-bar i {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  cursor: pointer;
+  color: rgba(0, 0, 0, 0.33);
+}
+/*# sourceMappingURL=searchBar.css.map */

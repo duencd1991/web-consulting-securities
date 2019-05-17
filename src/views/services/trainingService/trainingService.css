@@ -1,0 +1,53 @@
+.training-service-page .banner {
+  width: 100%;
+  max-width: 1170px;
+  height: 450px;
+}
+
+.training-service-page .course-box {
+  max-width: 1170px;
+  margin: auto;
+  padding: 45px 0 62px 0;
+  background-color: #ececec;
+}
+
+.training-service-page .course-box .title {
+  font-size: 26px;
+  font-family: Arial;
+  font-weight: bold;
+  line-height: 22px;
+  color: #333333;
+  text-align: center;
+}
+
+.training-service-page .course-box hr {
+  height: 2px;
+  width: 41px;
+  margin: 21px auto 34px auto;
+  background-color: #29323c;
+}
+
+.training-service-page .course-box .list-course-box .select-course-type {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.training-service-page .course-box .list-course-box .select-course-type .type-course {
+  width: 192px;
+  height: 73px;
+  background-color: #ffffff;
+  color: #333333;
+  font-size: 15px;
+  font-family: Arial;
+  font-weight: bold;
+  text-align: center;
+  line-height: 73px;
+  cursor: pointer;
+}
+
+.training-service-page .course-box .list-course-box .select-course-type .type-course.active {
+  background-color: #666666;
+  color: #ffffff;
+}
+/*# sourceMappingURL=trainingService.css.map */

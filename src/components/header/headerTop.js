@@ -19,8 +19,8 @@ class HeaderTop extends Component {
         </div>
         <div className='register-top-limit'>
           <span id='guide-register-text'>Bạn có <span>TÀI KHOẢN</span> giao dịch <span>CHỨNG KHOÁN</span> chưa?</span>
-          <button className='btn btn-register'><i className="far fa-user"></i>Mở tài khoản</button>
-          <button className='btn btn-login'><i className="fas fa-unlock-alt"></i>Đăng nhập</button>
+          <button className='btn btn-register'><i className="far ic_account"></i>Mở tài khoản</button>
+          <button className='btn btn-login'><i className="fas ic_unlock"></i>Đăng nhập</button>
         </div>
       </div>
     )

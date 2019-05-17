@@ -46,13 +46,27 @@
         height: 30px;
         border-radius: 18px;
         font-size: 14px;
-        line-height: 10px;
+        line-height: 18px;
         margin-left: 14px;
-        margin-top: 10px;
-
+        margin-top: 10px;   
+        display: inline-flex;    
         i {
           font-size: 12px;
           margin: 0 5px;
+          &.ic_account{
+            background: url('../../assets/img/icAccount.png');
+            height: 14px;
+            width:13px;
+          }
+          &.ic_unlock{
+            background: url('../../assets/img/icLock.png');
+            height: 17px;
+            width:13px;
+            
+          }
+        }
+        label{
+          padding:6px 0px;
         }
       }
       .btn-register {
@@ -67,6 +81,10 @@
         &:hover {
           background-color:#0066b3;
           color: #ffffff;
+          .ic_unlock{
+            background: url('../../assets/img/icUnlockW.png');
+            width: 12px;
+          }
         }
       }
   }
