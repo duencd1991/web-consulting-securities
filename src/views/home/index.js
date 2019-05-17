@@ -7,7 +7,7 @@ import banner1 from '../../assets/img/banner1.jpg';
 import banner2 from '../../assets/img/banner2.jpg';
 import banner3 from '../../assets/img/banner3.jpg';
 import noImg from '../../assets/img/imgThum.png';
-import icFile from '../../assets/img/icFile.png';
+import icFile from '../../assets/img/icPdf.png';
 
 const listBanner = [
   {
@@ -212,9 +212,11 @@ class Home extends Component {
                     onClick={()=>this.selectMenu(index)} >
                     { menu }
                     {
-                      selectedMenu === index ? <i className="fas fa-minus" /> : <i className="fas fa-plus" />
+                      selectedMenu === index ? <i className="fas ic_Sub" /> : <i className="fas ic_Add" />
                     }
-                    <div className={selectedMenu === index ? 'sub-menu-show' : 'sub-menu-hiden'}></div>
+                    <div className={selectedMenu === index ? 'sub-menu-show' : 'sub-menu-hiden'}>
+
+                    </div>
                   </div>
                 }) 
               }

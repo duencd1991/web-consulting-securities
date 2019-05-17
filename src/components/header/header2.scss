@@ -31,10 +31,17 @@
           padding: 0 20px;
           &.dropdown-toggle::after{
             background: url('../../assets/img/icArrow.png');
+            position: absolute;
+            bottom: 36px;
+            right: 18px;
             border: none;
             height: 7px;
-            width: 13px;  
+            width: 13px; 
           }
+          &.dropdown-toggle
+            {
+              margin-right: 15px;
+            }
           
         }
         &.active {
@@ -98,24 +105,29 @@
         border-radius: 0;
         overflow: hidden;
         position: absolute;
-        right: 40px;
+        right: 0px;
         -webkit-transition: width 0.5s;
         -moz-transition: width 0.5s;
         transition: width 0.5s;
-        z-index: 100;
+        z-index: 0;
+        background: #005197;
+        color: #75c4f0;
+        height: 80px;
         &.show {
-          width: 600px;
-          padding: 0 20px;
+          width: 850px;
+          padding: 20px;
           -webkit-transition: width 0.5s;
           -moz-transition: width 0.5s;
           transition: width 0.5s;
-          border: 1px solid #000000;
+          // border: none;
           box-shadow: none;
+         
         }
       }    
       .btn-search {
         margin: 10px 20px;
         cursor: pointer;
+        z-index: 9;
       }
     }
   }
