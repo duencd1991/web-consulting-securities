@@ -31,13 +31,14 @@
     }
     .home-menu {
       width: 370px;
-      background-color: #c2261c;
+      // background-color: #c2261c;
 
       .home-menu-item {
         height: 50px;
         width: 100%;
-        opacity: 0.7;
-        background-color: #c2261c;
+        -webkit-transition: width 2s; /* Safari */
+        transition: width 2s;        
+        // background-color:rgba($color: #c2261c , $alpha: 1.0);
         cursor: pointer;
         font-family: OpenSans;
         font-size: 18px;
@@ -58,6 +59,33 @@
           position: absolute;
           right: 24px;
           top: 15px;
+          &.ic_Sub{
+            background: url('../../assets/img/icSub.png');
+            height: 3px;
+            width: 15px;
+            position: absolute;
+            right: 20px;
+            top: 23px;
+          }
+          &.ic_Add{
+            background: url('../../assets/img/icAd.png');
+            height: 15px;
+            width:15px;
+          }
+        }
+        &:nth-child(1){
+          background-color: rgba($color: #c2261c , $alpha: 1.0);
+
+
+        }
+        &:nth-child(2){
+          background-color: rgba($color: #c2261c , $alpha: 0.9);
+        }
+        &:nth-child(3){
+          background-color: rgba($color: #c2261c , $alpha: 0.8);
+        }
+        &:nth-child(4){
+          background-color: rgba($color: #c2261c , $alpha: 0.7);
         }
         .sub-menu-show {
           margin-left: -17px;

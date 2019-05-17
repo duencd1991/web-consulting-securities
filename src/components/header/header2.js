@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './header2.scss';
+import '../../style/animation.scss';
 import logo from '../../assets/img/vi_mbs_logo.png';
 import icSearch from '../../assets/img/btnSearch.png';
 import HeaderTop from './headerTop';
@@ -47,10 +48,10 @@ export default class Header extends Component {
                 <li className={urlPage === '/register-account' || urlPage === '/trading-instruction'
                   || urlPage === '/training-service' || urlPage === '/consulting' ?
                     "nav-item dropdown active" : "nav-item dropdown"}>
-                  <div className="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <div className="nav-link dropdown-toggle " id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     DỊCH VỤ
                   </div>
-                  <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <div className="dropdown-menu animate slideIn" aria-labelledby="navbarDropdown">
                     <a className="dropdown-item" href="/register-account">Mở tài khoản</a>
                     
                     <a className="dropdown-item" href="/trading-instruction">Hướng dẫn giao dịch</a>
@@ -64,7 +65,7 @@ export default class Header extends Component {
                   <div className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     SẢN PHẨM
                   </div>
-                  <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <div className="dropdown-menu animate slideIn" aria-labelledby="navbarDropdown">
                     <a className="dropdown-item" href="/consulting-securities">Tư vấn chứng khoán phái sinh</a>
                   </div>
                 </li>

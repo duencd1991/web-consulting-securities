@@ -55,6 +55,29 @@
         display: inline;
       }
 
+      &:nth-child(3){
+        .item-content{ 
+          // &:nth-child(1)
+          // {
+          //   &::before{
+          //       content: url('../../assets/img/icTele.png');
+          //     }
+          // }
+          // &:nth-child(2)
+          // {         
+          //   &::before{
+          //     content: url('../../assets/img/icSkypeSM.png');
+          //     padding-right: 5px;          
+          //   }
+          // }
+          
+          &::before{
+            content: url('../../assets/img/icSkypeSM.png');
+            padding-right: 5px;          
+          }
+        }
+      }
+
     }
   }
 }
