@@ -1,0 +1,354 @@
+.trading-instruction-page {
+  max-width: 1170px;
+  margin: auto;
+}
+
+.trading-instruction-page .banner {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.trading-instruction-page .banner img {
+  width: 100%;
+}
+
+.trading-instruction-page .banner .title {
+  font-family: 'OpenSans-Bold';
+  font-size: 45px;
+  color: #ffffff;
+  text-align: center;
+  line-height: 64px;
+  position: absolute;
+  top: 60px;
+  width: 100%;
+}
+
+.trading-instruction-page .banner .sub-title {
+  font-family: 'OpenSans';
+  font-size: 40px;
+  color: #ffffff;
+  text-align: center;
+  line-height: 64px;
+  color: #59e6ff;
+  position: absolute;
+  top: 130px;
+  width: 100%;
+}
+
+.trading-instruction-page .content-box {
+  max-width: 1170px;
+  margin: auto;
+  position: relative;
+}
+
+.trading-instruction-page .content-box .guide-menu {
+  max-width: 770px;
+}
+
+.trading-instruction-page .content-box .guide-menu .title {
+  font-size: 24px;
+  color: #125491;
+  font-family: Arial;
+}
+
+.trading-instruction-page .content-box .guide-menu hr {
+  background-color: #125491;
+  width: 71px;
+  height: 2px;
+  margin: 5px 0 27px 0;
+}
+
+.trading-instruction-page .content-box .guide-menu .list-menu-box {
+  max-width: 770px;
+  padding: 20px;
+  background-color: #f7f7f7;
+}
+
+.trading-instruction-page .content-box .guide-menu .list-menu-box .menu-item-box {
+  list-style: none;
+  height: 50px;
+  overflow: hidden;
+  position: relative;
+  -webkit-transition: height 0.5s;
+  transition: height 0.5s;
+  margin: 0;
+  padding: 0;
+}
+
+.trading-instruction-page .content-box .guide-menu .list-menu-box .menu-item-box .arrow {
+  color: #333333;
+  position: absolute;
+  right: 10px;
+  top: 15px;
+}
+
+.trading-instruction-page .content-box .guide-menu .list-menu-box .menu-item-box.active {
+  height: auto;
+  -webkit-transition: height 0.5s;
+  transition: height 0.5s;
+}
+
+.trading-instruction-page .content-box .guide-menu .list-menu-box .menu-item-box.active .arrow {
+  color: #ffffff;
+}
+
+.trading-instruction-page .content-box .guide-menu .list-menu-box .menu-item-box li {
+  padding-left: 16px;
+  color: #125491;
+  font-size: 15px;
+  font-family: Arial;
+  line-height: 36px;
+  cursor: pointer;
+}
+
+.trading-instruction-page .content-box .guide-menu .list-menu-box .menu-item-box li i {
+  color: #666666;
+  margin-right: 5px;
+  font-size: 12px;
+  line-height: 36px;
+}
+
+.trading-instruction-page .content-box .guide-menu .list-menu-box .menu-item-box li:hover {
+  text-decoration: underline;
+}
+
+.trading-instruction-page .content-box .guide-menu .list-menu-box .menu-item-box .menu-catalog {
+  height: 50px;
+  line-height: 50px;
+  padding: 0 17px;
+  font-weight: bold;
+  font-size: 16px;
+  -webkit-box-shadow: 0px 1px 0 0 #e3e3e3;
+          box-shadow: 0px 1px 0 0 #e3e3e3;
+  background: #ffffff;
+  cursor: pointer;
+  margin-bottom: 20px;
+  color: #333333;
+}
+
+.trading-instruction-page .content-box .guide-menu .list-menu-box .menu-item-box .menu-catalog:hover {
+  text-decoration: none;
+}
+
+.trading-instruction-page .content-box .guide-menu .list-menu-box .menu-item-box .menu-catalog.active {
+  color: #ffffff;
+  background-color: #125491;
+}
+
+.trading-instruction-page .content-box .top-guide {
+  position: relative;
+  max-width: 370px;
+}
+
+.trading-instruction-page .content-box .top-guide .title {
+  background-color: #dce0e4;
+  height: 50px;
+  line-height: 50px;
+  font-family: Arial;
+  font-weight: bold;
+  font-size: 16px;
+  text-align: center;
+}
+
+.trading-instruction-page .content-box .top-guide .box-top-guide {
+  list-style: none;
+  padding: 0 20px;
+  text-align: center;
+  border: solid 1px #dedede;
+}
+
+.trading-instruction-page .content-box .top-guide .box-top-guide i {
+  font-size: 12px;
+  line-height: 36px;
+  margin-right: 5px;
+}
+
+.trading-instruction-page .content-box .top-guide .box-top-guide li {
+  font-size: 14px;
+  color: #333333;
+  line-height: 36px;
+}
+
+.trading-instruction-page .content-box .top-guide .box-top-guide li:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.trading-instruction-page .content-box .top-guide .register-box {
+  width: 100%;
+  height: 160px;
+  background: url(../../../assets/img/bg_open_account.jpg);
+  padding-top: 30px;
+  text-align: center;
+}
+
+.trading-instruction-page .content-box .top-guide .register-box .register-text {
+  font-size: 16px;
+  font-family: Arial;
+  color: #dff0ff;
+  line-height: 30px;
+  margin: 0;
+}
+
+.trading-instruction-page .content-box .top-guide .register-box .register-text span {
+  color: #59e6ff;
+  font-size: 20px;
+}
+
+.trading-instruction-page .content-box .top-guide .register-box .btn-register {
+  width: 157px;
+  height: 36px;
+  margin: 15px auto 0 auto;
+  border-radius: 18px;
+  background-color: #59e6ff;
+  color: #333333;
+}
+
+.trading-instruction-page .content-box .top-guide .register-box .btn-register i {
+  margin-right: 5px;
+}
+
+.trading-instruction-page .content-box .top-guide .register-box .btn-register:hover {
+  background-color: #0066b3;
+  color: #ffffff;
+}
+
+.trading-instruction-page .content-box .contact-box {
+  margin-top: 35px;
+  max-width: 770px;
+}
+
+.trading-instruction-page .content-box .contact-box .title {
+  font-family: Arial;
+  font-weight: bold;
+  color: #333333;
+  font-size: 18px;
+}
+
+.trading-instruction-page .content-box .contact-box hr {
+  height: 2px;
+  width: 71px;
+  background-color: #676e72;
+  margin: 0 0 34px 0;
+}
+
+.trading-instruction-page .content-box .contact-box .contact-content-box {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.trading-instruction-page .content-box .contact-box .contact-content-box .info-box {
+  max-width: 310px;
+}
+
+.trading-instruction-page .content-box .contact-box .contact-content-box .info-box .title {
+  font-size: 16px;
+}
+
+.trading-instruction-page .content-box .contact-box .contact-content-box .info-box .info-content {
+  font-family: Arial;
+  line-height: 36px;
+}
+
+.trading-instruction-page .content-box .contact-box .contact-content-box .info-box .info-content i {
+  color: #666666;
+  margin-right: 10px;
+}
+
+.trading-instruction-page .content-box .contact-box .contact-content-box .info-box .info-content .info-address {
+  color: #333333;
+  font-size: 14px;
+}
+
+.trading-instruction-page .content-box .contact-box .contact-content-box .info-box .info-content .info-hotline {
+  font-size: 16px;
+  color: #d9261c;
+}
+
+.trading-instruction-page .content-box .contact-box .contact-content-box .info-box .info-content .info-email {
+  color: #125491;
+  font-size: 16px;
+}
+
+.trading-instruction-page .content-box .contact-box .contact-content-box .msg-box {
+  max-width: 400px;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  padding-bottom: 20px;
+}
+
+.trading-instruction-page .content-box .contact-box .contact-content-box .msg-box .title {
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+.trading-instruction-page .content-box .contact-box .contact-content-box .msg-box .msg-text {
+  margin-bottom: 20px;
+}
+
+.trading-instruction-page .content-box .contact-box .contact-content-box .msg-box .btn-send-msg {
+  width: 100px;
+  height: 36px;
+  border-radius: 18px;
+  background-color: #005197;
+  color: #ffffff;
+}
+
+@media (max-width: 1165px) {
+  .content-box {
+    padding: 20px;
+  }
+  .content-box .guide-menu {
+    max-width: 100% !important;
+  }
+  .content-box .guide-menu .list-menu-box {
+    max-width: 100% !important;
+  }
+  .content-box .top-guide {
+    max-width: 100% !important;
+  }
+}
+
+@media (min-width: 1170px) {
+  .content-box .top-guide {
+    position: absolute !important;
+    top: 0;
+    right: 0;
+  }
+}
+
+@media (max-width: 767px) {
+  .banner .title {
+    font-size: 30px !important;
+    top: 20px !important;
+  }
+  .banner .sub-title {
+    font-size: 26px !important;
+    top: 55px !important;
+  }
+  .contact-content-box {
+    display: block !important;
+    position: relative;
+    padding-bottom: 20px !important;
+  }
+  .contact-content-box .info-box {
+    max-width: 100% !important;
+    text-align: center;
+  }
+  .contact-content-box .msg-box {
+    max-width: 100% !important;
+  }
+  .contact-content-box .msg-box .btn-send-msg {
+    position: absolute;
+    bottom: 0;
+    -webkit-transform: translateX(-50%);
+            transform: translateX(-50%);
+    left: 50%;
+  }
+}
+/*# sourceMappingURL=tradingInstruction.css.map */

@@ -1,0 +1,105 @@
+.header-top {
+  min-height: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  max-width: 1170px;
+  margin: auto;
+  background-color: #ffffff;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.header-top .menu-top-limit {
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding-left: 20px;
+  min-width: 410px;
+}
+
+.header-top .menu-top-limit a {
+  color: #333333;
+  line-height: 50px;
+}
+
+.header-top .menu-top-limit a:hover {
+  text-decoration: underline;
+}
+
+.header-top .menu-top-limit .col-separator {
+  width: 2px;
+  height: 15px;
+  background-color: #7691a9;
+  margin: auto 020px;
+}
+
+.header-top .register-top-limit {
+  height: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  min-width: 572px;
+}
+
+.header-top .register-top-limit span {
+  line-height: 50px;
+  font-size: 12px;
+}
+
+.header-top .register-top-limit span span {
+  color: #d71921;
+  cursor: text;
+}
+
+.header-top .register-top-limit span span:hover {
+  color: #d71921;
+}
+
+.header-top .register-top-limit .btn {
+  min-width: 121px;
+  height: 30px;
+  border-radius: 18px;
+  font-size: 14px;
+  line-height: 10px;
+  margin-left: 14px;
+  margin-top: 10px;
+}
+
+.header-top .register-top-limit .btn i {
+  font-size: 12px;
+  margin: 0 5px;
+}
+
+.header-top .register-top-limit .btn-register {
+  background-color: #005197;
+  color: #ffffff;
+}
+
+.header-top .register-top-limit .btn-register:hover {
+  background-color: #0066b3;
+}
+
+.header-top .register-top-limit .btn-login {
+  background-color: transparent;
+}
+
+.header-top .register-top-limit .btn-login:hover {
+  background-color: #0066b3;
+  color: #ffffff;
+}
+
+@media (max-width: 793px) {
+  .header-top {
+    display: inline-table;
+  }
+}
+/*# sourceMappingURL=headerTop.css.map */

@@ -43,7 +43,7 @@ class Footer extends Component {
               <div className='item-header'>LIÊN HỆ</div>
               <hr />
               <span className='item-content'>CÔNG TY CP CHỨNG KHOÁN MB</span>
-              <p><span>Hội Sở: </span>Tòa nhà MB - Số 3 Liễu Giai, Quận Ba Đình, Hà Nội.</p>
+              <p><span>Hội Sở: </span>Tòa nhà MB - Số 3 Liễu Giai,<br></br> Quận Ba Đình, Hà Nội.</p>
               <p>Tel: <span>+84 24 3726 2600</span> Máy lẻ: <span>1001</span></p>
               <p>Fax: <span>+84 24 3726 2601</span></p>
               <p>Hotline MBS: <span>+84 24 3755 6688</span></p>
@@ -64,7 +64,7 @@ class Footer extends Component {
           </div>
         </div>
         <div className='footer-copyrights'>
-          Copyrights 2000 - 2019 MBS, thành viên của Tập đoàn MB
+          Copyrights 2000 - 2019 MBS, thành viên của Tập đoàn MB.
         </div>
       </React.Fragment>
       

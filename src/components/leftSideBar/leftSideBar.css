@@ -1,0 +1,110 @@
+.left-side-bar {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 260px;
+  display: block;
+  z-index: 1;
+  color: #fff;
+  font-weight: 200;
+  background-size: cover;
+  background-position: center center;
+  background-color: #3E3E3E;
+  -webkit-transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+  transition: cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.left-side-bar.show {
+  -webkit-transform: unset;
+  transform: unset;
+}
+
+.left-side-bar .side-logo {
+  position: relative;
+  height: 60px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.left-side-bar .side-logo img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+}
+
+.left-side-bar .sidebar-wrapper {
+  height: 100%;
+  background-image: url(../../assets/img/sidebar-bg.jpg);
+  background-size: cover;
+  background-position: center center;
+}
+
+.left-side-bar .sidebar-wrapper ul {
+  margin-top: 20px;
+}
+
+.left-side-bar .sidebar-wrapper ul li {
+  width: 100%;
+}
+
+.left-side-bar .sidebar-wrapper ul li a {
+  color: #FFFFFF;
+  margin: 5px 15px;
+  opacity: .86;
+  border-radius: 4px;
+}
+
+.left-side-bar .sidebar-wrapper ul li a:hover {
+  background-color: #525151;
+}
+
+.left-side-bar .sidebar-wrapper ul li a.active {
+  color: #FFFFFF;
+  background: rgba(255, 255, 255, 0.23);
+}
+
+.left-side-bar .sidebar-wrapper ul li p {
+  margin: 0;
+  line-height: 30px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.left-side-bar .sidebar-wrapper::before {
+  opacity: .76;
+  background: #000000;
+  display: block;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 991px) {
+  .App {
+    padding-left: 0;
+  }
+  .left-side-bar {
+    position: fixed;
+    display: block;
+    top: 0;
+    height: 100%;
+    width: 260px;
+    right: 0;
+    left: auto;
+    z-index: 1032;
+    visibility: visible;
+    overflow-y: visible;
+    border-top: none;
+    text-align: left;
+    padding: 0;
+    -webkit-transform: translate3d(260px, 0, 0);
+    transform: translate3d(260px, 0, 0);
+    -webkit-transition: all 0.33s cubic-bezier(0.685, 0.0473, 0.346, 1);
+    transition: all 0.33s cubic-bezier(0.685, 0.0473, 0.346, 1);
+  }
+}
+/*# sourceMappingURL=leftSideBar.css.map */
