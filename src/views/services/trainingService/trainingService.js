@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Layout from '../../layout/layout';
 import './trainingService.scss';
-import Carousel from 'nuka-carousel';
 import icNoImg from '../../../assets/img/ic_no_img2.png';
 import Slider from "react-slick";
 

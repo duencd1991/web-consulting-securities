@@ -181,7 +181,7 @@
         }
       }
     }
-    .contact-box {
+    .contact-box-layout {
       margin-top: 35px;
       max-width: 770px;
       .title {
@@ -196,53 +196,45 @@
         background-color: #676e72;
         margin: 0 0 34px 0;
       }
-      .contact-content-box {
-        display: flex;
-        justify-content: space-between;
+      .contact-box {
         .info-box {
-          max-width: 310px;
-          .title {
-            font-size: 16px;
+          .contact-title {
+            font-weight: bold;
+            color: #333333;
           }
           .info-content {
-            font-family: Arial;
-            line-height: 36px;
-
-            i {
-              color: #666666;
-              margin-right: 10px;
-            }
+            color: #666666;
             .info-address {
               color: #333333;
-              font-size: 14px;
             }
             .info-hotline {
-              font-size: 16px;
               color: #d9261c;
             }
             .info-email {
               color: #125491;
-              font-size: 16px;
             }
           }
         }
         .msg-box {
-          max-width: 400px;
-          flex-grow: 1;
-          padding-bottom: 20px;
-          .title {
-            margin-bottom: 20px;
-            font-size: 16px;
+          .contact-title {
+            font-weight: bold;
+            color: #333333;
           }
           .msg-text {
-            margin-bottom: 20px;
+            border: solid 1px #d0d0d0;
+            background-color: transparent;
+            &::placeholder { /* Firefox, Chrome, Opera */ 
+                color: #666666;
+            } 
+            &::-ms-input-placeholder { /* Internet Explorer 10-11 */ 
+                color: #666666; 
+            } 
+            &::-ms-input-placeholder { /* Microsoft Edge */ 
+                color: #666666; 
+            } 
           }
           .btn-send-msg {
-            width: 100px;
-            height: 36px;
-            border-radius: 18px;
             background-color: #005197;
-            color: #ffffff;
           }
         }
       }

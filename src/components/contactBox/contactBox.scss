@@ -1,0 +1,52 @@
+.contact-box {
+  display: flex;
+  justify-content: space-between;
+  flex-grow: 1;
+  margin: auto;
+  .info-box {
+    max-width: 310px;
+    .contact-title {
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+    .info-content {
+      font-family: Arial;
+      line-height: 36px;
+
+      i {
+        margin-right: 10px;
+      }
+      .info-address {
+        font-size: 14px;
+      }
+      .info-hotline {
+        font-size: 16px;
+      }
+      .info-email {
+        font-size: 16px;
+      }
+    }
+  }
+  .msg-box {
+    max-width: 400px;
+    flex-grow: 1;
+    padding-bottom: 20px;
+    .contact-title {
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+    .msg-text {
+      margin-bottom: 20px;
+    }
+    .btn-send-msg {
+      width: 100px;
+      height: 36px;
+      border-radius: 18px;
+      background-color: #005197;
+      color: #ffffff;
+      i {
+        margin-right: 5px;
+      }
+    }
+  }
+}
