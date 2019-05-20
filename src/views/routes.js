@@ -13,6 +13,7 @@ import TrainingService from './services/trainingService/trainingService';
 import RegisterAccount from './services/registerAccount/registerAccount';
 import Report from './report/report';
 import AboutUs from './aboutUs/aboutUs';
+import News from './news/news';
 import PageNotFound from './pageNotFound/pageNotFound';
 
 const AppRouter = () => {
@@ -27,6 +28,7 @@ const AppRouter = () => {
           <Route exact path="/register-account" component={RegisterAccount} />
           <Route exact path="/report" component={Report} />
           <Route exact path="/about-us" component={AboutUs} />
+          <Route exact path="/news" component={News} />
           <Route component={PageNotFound}></Route>
         </Switch>
       </RootContainer>
