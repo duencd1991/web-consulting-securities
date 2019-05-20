@@ -27,9 +27,9 @@ class Footer extends Component {
             <div className='footer-item'>
               <div className='item-header'>FORUM TRADER</div>
               <hr />
-              <a href="/mbs-co-phieu" className='item-content'>Room 1</a>
-              <a href="/mbs-phai-sinh" className='item-content'>Room 2</a>
-              <a href="/mbs-chung-quyen" className='item-content'>Telegram</a>
+              <a href="/mbs-co-phieu" className='item-content icSky'>Room 1</a>
+              <a href="/mbs-phai-sinh" className='item-content icSky'>Room 2</a>
+              <a href="/mbs-chung-quyen" className='item-content icTele'>Telegram</a>
             </div>
             <div className='footer-item'>
               <div className='item-header'>HỖ TRỢ</div>
