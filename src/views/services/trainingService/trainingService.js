@@ -42,7 +42,7 @@ const listCourseHot = [
 const listCourseOnline = [
   {
     title: "Khóa học hướng dẫn giao dịch mua bán Cổ phiếu - Lớp CKCS 108",
-    startDate: '24/6',
+    startDate: '08/5',
     time: "18:00 (8, 12, 26/5/2019)",
     date: "8/5/2019",
     teacher: "Nguyễn Thế Phong",
@@ -88,6 +88,7 @@ const listCourseOnline = [
     des: "Các nhà đầu tư, các bạn sinh viên muốn tham gia đầu tư vào Thị trường Chứng khoán nhưng chưa biết gì về thị trường ...",
     urlFile: "abc.com.vn"
   }
+  
 ]
 const listCourseOffline = [
   {
@@ -174,7 +175,8 @@ class TrainingService extends Component {
 
     this.state = {
       selectedCourse: "Online",
-      selectedTypeCourse: 0
+      selectedTypeCourse: 0,
+      activeCourse: 0
     }
   }
 
@@ -188,11 +190,17 @@ class TrainingService extends Component {
       selectedTypeCourse: index
     })
   }
+  onChangeSelectHotCourse = (index) => {
+    this.setState({
+      activeCourse: index
+    })
+  }
 
   render() {
     const {
       selectedCourse,
-      selectedTypeCourse
+      selectedTypeCourse,
+      activeCourse
     } = this.state;
     var settings = {
       dots: true,
@@ -233,13 +241,12 @@ class TrainingService extends Component {
                               <div className='course-title'>Hình thức học: <span>{item.type}</span></div>
                               <div className='course-title'>Chi phí: <span>{item.cost}</span></div>
                             </div>
-                            <div className='course-des'>{item.des}</div>
+                            <div className='course-des'>{item.des}<i class="fas icAdMore"></i></div>
                             <div className='course-footer'>
-                              <div className='file-download'>
-                                File download:
-                                <a href={item.urlFile}></a>
-                              </div>
-                              <div className='url-register'>Click tham gia: <span>Đăng ký học</span></div>
+                              <a className='file-download' href={item.urlFile}>
+                                File download: <i class="fas icPdf"></i>
+                              </a>
+                              <div className='url-register'>Click tham gia: <span><a class="regLean">Đăng ký học</a></span></div>
                             </div>
                           </div>
                         })
@@ -258,13 +265,39 @@ class TrainingService extends Component {
                   }
                 </div>
                 <div className='hot-course'>
-                  <div className='title'>KHÓA HỌC HOT</div>
+                  <div className='hot-title'>KHÓA HỌC HOT</div>
                   {
-                    listCourseHot.map((item, index) => {
-                      return <div className='row-course' key={index}>
-                        <div className='course-index'>{index + 1}</div>
-                        <div className='course-name'>{item.title}</div>
-                      </div>
+                    listCourseOnline.map((item, index) => {
+                      return <React.Fragment>
+                        {
+                          activeCourse === index ? <div className='course-item active' key={index}>
+                           
+                            <div className='course-name' onClick={() => this.onChangeSelectHotCourse(index)}>
+                            <div className='course-index'>{index + 1}</div>
+                            <span>{item.title}</span></div>
+                            <div className='box-left'>
+                              <div className='course-title'>Thời gian: <span>{item.time}</span></div>
+                              <div className='course-title'>Giảng viên: <span>{item.teacher}</span></div>
+                              <div className='course-title'>Địa điểm: <span>{item.addr}</span></div>
+                            </div>
+                            <div className='box-right'>
+                              <div className='course-title'>Khai giảng: <span>{item.date}</span></div>
+                              <div className='course-title'>Hình thức học: <span>{item.type}</span></div>
+                              <div className='course-title'>Chi phí: <span>{item.cost}</span></div>
+                            </div>
+                            <div className='course-des'>{item.des}<i class="fas icAdMore"></i></div>
+                            <div className='course-footer'>
+                              <a className='file-download' href={item.urlFile}>
+                                File download: <i class="fas icPdf"></i>
+                              </a>
+                              <div className='url-register'>Click tham gia: <span><a class="regLean">Đăng ký học</a></span></div>
+                            </div>
+                          </div> : 
+                          <div className='course-item' onClick={() => this.onChangeSelectHotCourse(index)}>
+                              <div className='course-name' ><div className='course-index'>{index + 1}</div>{item.title}</div>
+                          </div>
+                        }
+                      </React.Fragment>
                     })
                   }
                 </div>
@@ -272,8 +305,8 @@ class TrainingService extends Component {
             </div>
           </div>
           <div className='type-course-layout'>
-            <div className='title'>DANH SÁCH KHÓA HỌC</div>
-            <hr />
+            <div className='title'>DANH SÁCH CÁC KHÓA HỌC</div>
+            <hr />            
             <div className='select-type-course'>
             {
               listTypecourse.map((type, index) => {
@@ -283,10 +316,12 @@ class TrainingService extends Component {
               })
             }
             </div>
+            <div className="type-course-list">
             {
               listCourseOnline.map((course, index) => {
                 return <div className='item-course'>
                   <div className='course-index'>{index + 1}</div>
+                  <div className='sqrL'></div>
                   <div className='course-name'>{course.title}</div>
                   <div className='course-date-time-cost'>Thời gian: <span>{course.time}</span></div>
                   <div className='course-date-time-cost'>Khai giảng: <span>{course.date}</span></div>
@@ -318,6 +353,7 @@ class TrainingService extends Component {
                 </div>
               })
             }
+          </div>
           </div>
           <div className='teachers-layout'>
             <div className='teachers-title'>ĐỘI NGŨ GIẢNG VIÊN</div>
