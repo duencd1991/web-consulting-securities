@@ -56,6 +56,8 @@
             line-height: 20px;
           }
           .new-footer {
+            margin-top: 11px;
+            color: #666666;
             i {
               padding: 0 5px 0 5px;
               border-left: 1px solid #abaeaf;
@@ -64,6 +66,41 @@
               margin-right: 5px;
             }
           }
+          .btn-detail {
+            width: 100px;
+            height: 30px;
+            line-height: 30px;
+            background-color: #125491;
+            color: #ffffff;
+            font-size: 14px;
+            font-family: Arial;
+            cursor: pointer;
+            text-align: center;
+            margin-top: 12px;
+            &:hover {
+              background-color: #0066b3;
+            }
+          }
+        }
+      }
+      .pagination {
+        margin-top: 46px;
+        
+        li {
+          border: 1px solid #cccccc;
+          margin-right: 5px;
+          a {
+            color: #111111;
+          }
+        }
+        .active {
+          background-color: #125491;
+          a {
+            color: #ffffff;
+          }
+        }
+        .btn-Pagination {
+          height: 15px;
         }
       }
     }
@@ -82,7 +119,6 @@
           &.selected {
             color: #125491;
             background-color: #dce0e4;
-            
           }
         }
       }

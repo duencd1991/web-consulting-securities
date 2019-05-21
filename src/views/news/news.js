@@ -2,8 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Layout from '../layout/layout';
 import './news.scss';
+import Pagination from 'react-js-pagination';
 import icNoImg from '../../assets/img/thumbnail-no-img.png';
 import icNoImg2 from '../../assets/img/thumbnail-no-img2.png';
+import icArrowPrev from '../../assets/img/icArrowPrev.png'
+import icArrowNext from '../../assets/img/icArrowNext.png'
+import icArrowStart from '../../assets/img/icArrowStart.png'
+import icArrowEnd from '../../assets/img/icArrowEnd.png'
+
 
 const listNewMenu = [
   'Để đầu tư chứng khoán hiệu quả',
@@ -13,7 +19,6 @@ const listNewMenu = [
   'Thư viện',
   'Video'
 ]
-
 const listNews = [
   {
     img: '',
@@ -94,7 +99,10 @@ class News extends Component {
     super(props);
 
     this.state = {
-      selectedMenu: 0 
+      selectedMenu: 0,
+      pageNum: 1,
+      pageSize: 1,
+      total: listNews.length
     }
   }
 
@@ -104,9 +112,19 @@ class News extends Component {
     })
   }
 
+  onChangePageNum = (pageNum) => {
+    this.setState({
+      pageNum: pageNum
+    })
+  }
+
+
   render() {
     const {
-      selectedMenu
+      selectedMenu,
+      pageNum,
+      pageSize,
+      total
     } = this.state;
     return(
       <Layout >
@@ -132,17 +150,30 @@ class News extends Component {
                         <i className="far fa-eye"></i>
                         <span>{item.views}</span>
                       </div>
+                      <div className='btn-detail'>CHI TIẾT</div>
                     </div>
                   })
                 }
               </div>
+              <Pagination
+                firstPageText={<img alt='btnStart' className='btn-Pagination' src={icArrowStart}/>}
+                lastPageText={<img alt='btnEnd' className='btn-Pagination' src={icArrowEnd}/>}
+                prevPageText={<img alt='btnBack' className='btn-Pagination' src={icArrowPrev}/>}
+                nextPageText={<img alt='btnNext' className='btn-Pagination' src={icArrowNext}/>}
+                activePage={pageNum}
+                itemsCountPerPage={pageSize}
+                totalItemsCount={total}
+                pageRangeDisplayed={5}
+                onChange={this.onChangePageNum}
+              />
             </div>
             <div className='box-news'>
               <div className='list-news-menu'>
                 {
                   listNewMenu.map((item, index) => {
                     return <div key={index} onClick={ () => this.onSelectMenu(index)}
-                      className={selectedMenu === index ? 'news-menu-item selected' : 'news-menu-item'}>{item}</div>
+                      className={selectedMenu === index ? 'news-menu-item selected' : 'news-menu-item'}>{item}
+                    </div>
                   })
                 }
               </div>

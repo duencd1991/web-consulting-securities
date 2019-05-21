@@ -120,7 +120,7 @@
         border-radius: 0;
         overflow: hidden;
         position: absolute;
-        right: 0px;
+        right: 40px;
         -webkit-transition: width 0.5s;
         -moz-transition: width 0.5s;
         transition: width 0.5s;
@@ -139,7 +139,6 @@
         }
       }    
       .btn-search {
-        margin: 10px 20px;
         cursor: pointer;
         z-index: 9;
       }
