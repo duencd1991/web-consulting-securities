@@ -243,8 +243,8 @@ class TrainingService extends Component {
                             </div>
                             <div className='course-des'>{item.des}<i class="fas icAdMore"></i></div>
                             <div className='course-footer'>
-                              <a className='file-download' href={item.urlFile}>
-                                File download: <i class="fas icPdf"></i>
+                              
+                                File download: <a className='file-download' href={item.urlFile}><i class="fas icPdf"></i>
                               </a>
                               <div className='url-register'>Click tham gia: <span><a class="regLean">Đăng ký học</a></span></div>
                             </div>
@@ -287,8 +287,8 @@ class TrainingService extends Component {
                             </div>
                             <div className='course-des'>{item.des}<i class="fas icAdMore"></i></div>
                             <div className='course-footer'>
-                              <a className='file-download' href={item.urlFile}>
-                                File download: <i class="fas icPdf"></i>
+                              
+                                File download: <a className='file-download' href={item.urlFile}><i class="fas icPdf"></i>
                               </a>
                               <div className='url-register'>Click tham gia: <span><a class="regLean">Đăng ký học</a></span></div>
                             </div>
@@ -327,6 +327,7 @@ class TrainingService extends Component {
                   <div className='course-date-time-cost'>Khai giảng: <span>{course.date}</span></div>
                   <div className='course-date-time-cost'>Chi phí: <span>{course.cost}</span></div>
                   <div className='course-des'>{course.des}</div>
+                  <div className='blInfo'>
                   <table>
                     <thead>
                       <tr>
@@ -345,11 +346,14 @@ class TrainingService extends Component {
                       </tr>
                     </tbody>
                   </table>
+                  
                   <div className='file-download'>
                     File download:
-                    <a href={course.urlFile}></a>
+                    <a href={course.urlFile}><i class="fas icExcel"></i></a>
                   </div>
-                  <div className='url-register'>Click tham gia: <span>Đăng ký học</span></div>
+                  <div className='url-register'>Để tham gia bạn click: <a className='btn_regis'>Đăng ký học</a></div>
+                
+                  </div>
                 </div>
               })
             }

@@ -135,9 +135,10 @@
 
               }
               .course-des{
+                display: inline-block;
                 text-align: justify;
                 line-height: 18px;
-                padding: 8px 0;
+                padding: 5px 0;
               }
               .course-footer
               {
@@ -295,6 +296,7 @@
 
               }
               .course-des{
+                display: inline-block;
                 text-align: justify;
                 line-height: 18px;
                 padding: 8px 0;
@@ -370,7 +372,8 @@
       .item-type-course {
         flex-grow: 1;
         text-align: center;
-        border: solid 1px #cccccc;
+        border-top: solid 1px #ddd;
+        border-right: solid 1px #ddd;
         color: #333333;
         font-size: 18px;
         height: 50px;
@@ -379,6 +382,9 @@
         &.selected {
           background-color: #005197;
           color: #ffffff;
+        }
+        &:first-child{
+          border-left: solid 1px #ddd;
         }
       }
     }
@@ -401,7 +407,7 @@
       font-weight: bold;
     }
     hr {
-      background-color: #29323c;
+      background-color: #fff;
       height: 2px;
       width: 40px;
       margin: 21px auto 23px auto;
@@ -452,21 +458,27 @@
         padding: 30px;
       }
       .slick-next {
-        background: url(../../../assets/img/next-arrow.png);
+        background: url(../../../assets/img/next-arrowG.png);
         width: 30px;
         height: 50px;
         right: -30px;
         &::before {
           content: ''
         }
+        &:hover{
+          background: url(../../../assets/img/next-arrowHv.png);
+        }
       }
       .slick-prev {
-        background: url(../../../assets/img/back-arrow.png);
+        background: url(../../../assets/img/back-arrowG.png);
         width: 30px;
         height: 50px;
         left: -30px;
         &::before {
           content: ''
+        }
+        &:hover{
+          background: url(../../../assets/img/back-arrowHv.png);
         }
       }
     }
@@ -486,10 +498,14 @@
       color: #555555;
       font-size: 14px;
       line-height: 22px;
+      margin-bottom: 20px;
+      &:last-child{
+        margin-bottom: 0px;
+      }
       .course-index{
         position: absolute;
         background-color: #cc0000;
-        font-size:22px ;font-weight: 900;
+        font-size:22px ;font-weight: 900;line-height: 38px;
         width:40px;
         height: 40px;
         color: #fff;
@@ -515,10 +531,99 @@
       }
       .course-name
       {
-        font-size:18px;
+        font-size:18px;line-height: 30px;
         padding-left: 40px;
+        color: #222;
       }
-      
+      .course-date-time-cost{
+        line-height: 24px;
+        display: inline-block;
+        padding-right: 15px;
+      }
+      .course-des{
+        margin:7px 0px; line-height: 22px; text-align: justify;
+      }
+      .blInfo{
+        display: inline;
+      }
+      table
+      {
+        display: inline-block;
+        width:50%;
+        border-collapse: separate; 
+        border-spacing: 0px; 
+        thead{
+          th{
+            display: inline-block;
+            padding: 0px 20px;
+            text-align: center;
+            &:nth-child(1){
+              width: 115px;
+              border-right: 1px solid #DDD;
+            }
+            &:nth-child(2){
+              width: 165px;
+              border-right: 1px solid #DDD;
+            }
+            &:nth-child(3){
+              width: 135px;
+              border-right: 1px solid #DDD;
+            }
+            &:nth-child(4){
+              width: 110px;
+              border-right: 1px solid #DDD;
+            }
+          }
+        }
+        tbody{
+          td{
+            display: inline-block;
+            padding: 0px 20px;
+            text-align: center;
+            &:nth-child(1){
+              width: 115px;
+              border-right: 1px solid #DDD;
+            }
+            &:nth-child(2){
+              width: 165px;
+              border-right: 1px solid #DDD;
+            }
+            &:nth-child(3){
+              width: 135px;
+              border-right: 1px solid #DDD;
+            }
+            &:nth-child(4){
+              width: 110px;
+              border-right: 1px solid #DDD;
+            }
+          }
+        }
+      }
+      .file-download{
+        display: inline-flex;
+        padding-right: 20px;
+        border-right: 1px solid #ddd;
+        margin-right: 20px;
+        .icExcel{
+          content: url('../../../assets/img/icExcel.png');
+          width: 15px;
+          height:18px;
+          margin-left: 3px;
+        }
+      }
+      .url-register{
+        display: inline-block;
+
+      }
+      .btn_regis{
+        background: #005197;
+        color: #fff;
+        font-size: 14px;
+        line-height: 18px;
+        padding:6px 15px;
+      }
+
+
     }
   }
 }
