@@ -88,7 +88,7 @@ const listCourseOnline = [
     des: "Các nhà đầu tư, các bạn sinh viên muốn tham gia đầu tư vào Thị trường Chứng khoán nhưng chưa biết gì về thị trường ...",
     urlFile: "abc.com.vn"
   }
-  
+
 ]
 const listCourseOffline = [
   {
@@ -168,7 +168,7 @@ const listTeachers = [
     detail: 'Hơn 5 năm kinh nghiệm phân tích kinh tế vĩ mô và trái phiếu'
   }
 ]
-  
+
 class TrainingService extends Component {
   constructor(props) {
     super(props);
@@ -210,7 +210,7 @@ class TrainingService extends Component {
       slidesToShow: 3,
       centerMode: true
     };
-    return(
+    return (
       <Layout title="">
         <div className='training-service-page'>
           <div className='banner'>
@@ -243,8 +243,8 @@ class TrainingService extends Component {
                             </div>
                             <div className='course-des'>{item.des}<i class="fas icAdMore"></i></div>
                             <div className='course-footer'>
-                              
-                                File download: <a className='file-download' href={item.urlFile}><i class="fas icPdf"></i>
+
+                              File download: <a className='file-download' href={item.urlFile}><i class="fas icPdf"></i>
                               </a>
                               <div className='url-register'>Click tham gia: <span><a class="regLean">Đăng ký học</a></span></div>
                             </div>
@@ -252,16 +252,16 @@ class TrainingService extends Component {
                         })
                       }
                     </div> : <div className='list-course'>
-                      {
-                        listCourseOffline.map((item, index) => {
-                          return <div key={index} className='course-item'>
-                            {/* <div className='start-time'><span>KHAI GIẢNG</span>{item.start}</div>
+                        {
+                          listCourseOffline.map((item, index) => {
+                            return <div key={index} className='course-item'>
+                              {/* <div className='start-time'><span>KHAI GIẢNG</span>{item.start}</div>
                             <div className='title'>{item.title}</div>
                             <div className='calendar'>{item.calendar}</div> */}
-                          </div>
-                        })
-                      }
-                    </div>
+                            </div>
+                          })
+                        }
+                      </div>
                   }
                 </div>
                 <div className='hot-course'>
@@ -271,10 +271,10 @@ class TrainingService extends Component {
                       return <React.Fragment>
                         {
                           activeCourse === index ? <div className='course-item active' key={index}>
-                           
+
                             <div className='course-name' onClick={() => this.onChangeSelectHotCourse(index)}>
-                            <div className='course-index'>{index + 1}</div>
-                            <span>{item.title}</span></div>
+                              <div className='course-index'>{index + 1}</div>
+                              <span>{item.title}</span></div>
                             <div className='box-left'>
                               <div className='course-title'>Thời gian: <span>{item.time}</span></div>
                               <div className='course-title'>Giảng viên: <span>{item.teacher}</span></div>
@@ -287,15 +287,15 @@ class TrainingService extends Component {
                             </div>
                             <div className='course-des'>{item.des}<i class="fas icAdMore"></i></div>
                             <div className='course-footer'>
-                              
-                                File download: <a className='file-download' href={item.urlFile}><i class="fas icPdf"></i>
+
+                              File download: <a className='file-download' href={item.urlFile}><i class="fas icPdf"></i>
                               </a>
                               <div className='url-register'>Click tham gia: <span><a class="regLean">Đăng ký học</a></span></div>
                             </div>
-                          </div> : 
-                          <div className='course-item' onClick={() => this.onChangeSelectHotCourse(index)}>
+                          </div> :
+                            <div className='course-item' onClick={() => this.onChangeSelectHotCourse(index)}>
                               <div className='course-name' ><div className='course-index'>{index + 1}</div>{item.title}</div>
-                          </div>
+                            </div>
                         }
                       </React.Fragment>
                     })
@@ -306,58 +306,58 @@ class TrainingService extends Component {
           </div>
           <div className='type-course-layout'>
             <div className='title'>DANH SÁCH CÁC KHÓA HỌC</div>
-            <hr />            
+            <hr />
             <div className='select-type-course'>
-            {
-              listTypecourse.map((type, index) => {
-                return <div className={selectedTypeCourse === index ? 'item-type-course selected' : 'item-type-course'}
-                  onClick={() => this.onChangeSelectTypeCourse(index)}>{type}
-                </div>
-              })
-            }
+              {
+                listTypecourse.map((type, index) => {
+                  return <div className={selectedTypeCourse === index ? 'item-type-course selected' : 'item-type-course'}
+                    onClick={() => this.onChangeSelectTypeCourse(index)}>{type}
+                  </div>
+                })
+              }
             </div>
             <div className="type-course-list">
-            {
-              listCourseOnline.map((course, index) => {
-                return <div className='item-course'>
-                  <div className='course-index'>{index + 1}</div>
-                  <div className='sqrL'></div>
-                  <div className='course-name'>{course.title}</div>
-                  <div className='course-date-time-cost'>Thời gian: <span>{course.time}</span></div>
-                  <div className='course-date-time-cost'>Khai giảng: <span>{course.date}</span></div>
-                  <div className='course-date-time-cost'>Chi phí: <span>{course.cost}</span></div>
-                  <div className='course-des'>{course.des}</div>
-                  <div className='blInfo'>
-                  <table>
-                    <thead>
-                      <tr>
-                        <th scope='col'>Khai giảng</th>
-                        <th scope='col'>Giảng viên</th>
-                        <th scope='col'>Hình thức học</th>
-                        <th scope='col'>Địa điểm</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>{course.date}</td>
-                        <td>{course.teacher}</td>
-                        <td>{course.type}</td>
-                        <td>{course.addr}</td>
-                      </tr>
-                    </tbody>
-                  </table>
-                  
-                  <div className='file-download'>
-                    File download:
+              {
+                listCourseOnline.map((course, index) => {
+                  return <div className='item-course'>
+                    <div className='course-index'>{index + 1}</div>
+                    <div className='sqrL'></div>
+                    <div className='course-name'>{course.title}</div>
+                    <div className='course-date-time-cost'>Thời gian: <span>{course.time}</span></div>
+                    <div className='course-date-time-cost'>Khai giảng: <span>{course.date}</span></div>
+                    <div className='course-date-time-cost'>Chi phí: <span>{course.cost}</span></div>
+                    <div className='course-des'>{course.des}</div>
+                    <div className='blInfo'>
+                      <table>
+                        <thead>
+                          <tr>
+                            <th scope='col'>Khai giảng</th>
+                            <th scope='col'>Giảng viên</th>
+                            <th scope='col'>Hình thức học</th>
+                            <th scope='col'>Địa điểm</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr>
+                            <td>{course.date}</td>
+                            <td>{course.teacher}</td>
+                            <td>{course.type}</td>
+                            <td>{course.addr}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+
+                      <div className='file-download'>
+                        File download:
                     <a href={course.urlFile}><i class="fas icExcel"></i></a>
+                      </div>
+                      <div className='url-register'>Để tham gia bạn click: <a className='btn_regis'>Đăng ký học</a></div>
+
+                    </div>
                   </div>
-                  <div className='url-register'>Để tham gia bạn click: <a className='btn_regis'>Đăng ký học</a></div>
-                
-                  </div>
-                </div>
-              })
-            }
-          </div>
+                })
+              }
+            </div>
           </div>
           <div className='teachers-layout'>
             <div className='teachers-title'>ĐỘI NGŨ GIẢNG VIÊN</div>
@@ -368,7 +368,7 @@ class TrainingService extends Component {
               {
                 listTeachers.map((item, index) => {
                   return <div key={index}>
-                    <img src={item.img ? item.img : icNoImg}/>
+                    <img src={item.img ? item.img : icNoImg} />
                     <div className='teacher-name'>{item.name}</div>
                     <div className='teacher-title'>{item.title}</div>
                     <div className='teacher-detail'>{item.detail}</div>
@@ -391,4 +391,4 @@ const mapDispatchToProps = dispatch => {
   return {}
 };
 
-export default connect(mapStateToProps,mapDispatchToProps)(TrainingService);
+export default connect(mapStateToProps, mapDispatchToProps)(TrainingService);

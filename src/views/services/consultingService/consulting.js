@@ -182,7 +182,7 @@ class Consulting extends Component {
           <div className='investor-layout'>
             <div className='investor-title'>QUYỀN LỢI NHÀ ĐẦU TƯ</div>
             <hr />
-            <div className='list-investor'>
+            <div className='list-investor justify-content-md-center'>
             {
               listInvestor.map((item, index) => {
                 return <Investor key={index} img={item.img} title={item.title} detail={item.detail} />

@@ -19,7 +19,7 @@
       margin-bottom: 34px;
     }
     .sub-title {
-      font-family: OpenSans-Light;
+      font-family: OpenSans;
       font-size: 17px;
       color: #e8e8e8;
       text-align: center;
@@ -142,10 +142,11 @@
       width: 40px;
       margin: 21px auto 29px auto;
     }
+
   }
   .experts-layout {
-    min-height: 700px;
-    padding-top: 63px;
+    min-height: 640px;
+    padding-top: 55px;
     background: url('../../../assets/img/expert-bg.png');
     background-repeat: no-repeat;
     -webkit-background-size: cover;
@@ -160,10 +161,35 @@
       font-weight: bold;
     }
     hr {
-      background-color: #29323c;
+      background-color: #fff;
       height: 2px;
       width: 40px;
       margin: 21px auto 29px auto;
     }
+    .slider-control-bottomcenter{
+      bottom:none !important;
+      ul{
+         top:10px !important; 
+      }
+    }
+    .paging-dot{
+      width: 10px !important;
+      height: 10px !important;
+      background: #75c4f0 none repeat scroll 0% 0% !important;
+    }
+    .paging-item.active .paging-dot{
+      background: #fff none repeat scroll 0% 0% !important;
+    }
+    .expert-specialized{
+      display: none;
+    }
   }
+}
+.paging-dot{
+  width: 10px !important;
+height: 10px !important;
+background: #999 none repeat scroll 0% 0% !important;
+}
+.paging-item.active .paging-dot{
+  background: #125491 none repeat scroll 0% 0% !important;
 }

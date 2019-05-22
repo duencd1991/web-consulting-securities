@@ -50,6 +50,38 @@
         background-color: #125491;
         margin: 0 0 23px 0;
       }
+      .ReactTable{
+        .rt-thead.-header{
+          background: #666666;
+          color: #fff;
+          font-size: 14px;
+          font-weight: bold;
+          text-transform: uppercase;
+          line-height: 22px;
+          padding:8px;
+          .rt-th{
+            border-right: none;
+          }
+          .rt-td{
+            border-right: none;
+          }
+
+        }
+        .rt-tbody{
+          color: #111;
+          font-size: 14px;
+          line-height: 20px;
+          .rt-tr-group{
+            height: 40px;
+            .rt-tr.-even{
+              background: #e5e5e5;
+            }
+            .rt-tr.-odd{
+              background: #f9f9f9;
+            }
+          }
+        }
+      }
     }
   }
 }

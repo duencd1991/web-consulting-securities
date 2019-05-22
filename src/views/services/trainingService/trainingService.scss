@@ -91,12 +91,12 @@
               .time {
                 background-color: #125491;
                 height: 40px;
-                width: 87px;
+                width: 75px;
                 font-size: 12px;
                 font-family: 'OpenSans';
                 color: #fefefe;
                 text-align: center;
-                line-height: 19px;
+                line-height: 18px;
                 float: left;
                 margin-right: 10px;
 
@@ -113,6 +113,7 @@
                 font-size: 16px;
                 font-weight: bold;
                 text-align: justify;
+                margin-bottom: 5px;
               }
               .box-left {
                 float: left;
@@ -270,6 +271,7 @@
                 font-size: 16px;
                 font-weight: bold;
                 text-align: justify;
+                padding-bottom: 5px;
               }
               .box-left {
                 float: left;                
@@ -431,6 +433,7 @@
       width: 1170px;
       margin: auto;
       font-family: Arial;
+      padding: 0 50px;
       img {
         height: 210px;
         border-radius: 50%;
@@ -461,7 +464,7 @@
         background: url(../../../assets/img/next-arrowG.png);
         width: 30px;
         height: 50px;
-        right: -30px;
+        right: 0px;
         &::before {
           content: ''
         }
@@ -473,7 +476,7 @@
         background: url(../../../assets/img/back-arrowG.png);
         width: 30px;
         height: 50px;
-        left: -30px;
+        left: 0px;
         &::before {
           content: ''
         }
@@ -481,8 +484,11 @@
           background: url(../../../assets/img/back-arrowHv.png);
         }
       }
+      
     }
-    
+    .slick-dots{
+      display: none !important;
+    }
   }
 .type-course-layout{
   .type-course-list{
@@ -557,9 +563,11 @@
             display: inline-block;
             padding: 0px 20px;
             text-align: center;
+            margin: -2px;
             &:nth-child(1){
               width: 115px;
               border-right: 1px solid #DDD;
+              padding: 0px 20px 0px 0px;
             }
             &:nth-child(2){
               width: 165px;
@@ -580,9 +588,11 @@
             display: inline-block;
             padding: 0px 20px;
             text-align: center;
+            margin: -2px;
             &:nth-child(1){
               width: 115px;
               border-right: 1px solid #DDD;
+              padding: 0px 20px 0px 0px;
             }
             &:nth-child(2){
               width: 165px;

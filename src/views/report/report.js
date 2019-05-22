@@ -124,7 +124,7 @@ class Report extends Component {
       {
         Header: 'SẢN PHẨM',
         accessor: 'name',
-        Cell: props => <div className='table-center-element'>
+        Cell: props => <div className='txtBold'>
           {props.value}
         </div>
       },

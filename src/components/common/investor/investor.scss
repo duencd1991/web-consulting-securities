@@ -1,9 +1,16 @@
 .investor {
-  width: 270px;
-  margin: 0 50px 20px 0;
+  width: 280px;
+  margin: 0 60px 35px 0;
   position: relative;
+  &:nth-child(4), &:nth-child(5)
+    {
+      margin-bottom: 0px;
+    }
+    &:nth-child(3){
+      margin-right: 0px;
+    }
   img {
-    height: 56px;
+    height: auto;
     position: absolute;
     transform: translateX(-50%);
     left: 50%;
@@ -15,6 +22,7 @@
     font-weight: bold;
     text-align: center;
     margin: 80px auto 17px auto;
+    text-transform: uppercase;
   }
   .detail {
     font-size: 14px;
