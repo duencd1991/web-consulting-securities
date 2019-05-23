@@ -140,6 +140,7 @@
           font-size: 14px;
           color: #333333;
           line-height: 36px;
+          text-align: left;
           &:hover {
             text-decoration: underline;
             cursor: pointer;
@@ -149,7 +150,7 @@
       .register-box {
         width: 100%;
         height: 160px;
-        background: url(../../../assets/img/bg_open_account.jpg);
+        background: url(../../../assets/img/bg_open_account.jpg) no-repeat center;
         padding-top: 30px;
         text-align: center;
         .register-text {
@@ -223,6 +224,7 @@
           .msg-text {
             border: solid 1px #d0d0d0;
             background-color: transparent;
+            border-radius: 0px;
             &::placeholder { /* Firefox, Chrome, Opera */ 
                 color: #666666;
             } 

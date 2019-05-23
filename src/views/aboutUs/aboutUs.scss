@@ -7,6 +7,8 @@
     padding: 45px 0 66px 0;
     max-width: 1170px;
     margin: auto;
+    
+    .slick-dots{display: none !important;}
     .team-title {
       font-size: 26px;
       line-height: 22px;
@@ -39,21 +41,27 @@
       padding: 30px;
     }
     .slick-next {
-      background: url(../../assets/img/next-arrow.png);
+      background:#fff url(../../assets/img/next-arrowG.png) no-repeat;
       width: 30px;
       height: 50px;
-      right: -30px;
+      right: 0px;
       &::before {
         content: ''
       }
+      &:hover{
+        background: url(../../assets/img/next-arrowHv.png);
+      }
     }
     .slick-prev {
-      background: url(../../assets/img/back-arrow.png);
+      background:#fff url(../../assets/img/back-arrowG.png) no-repeat;
       width: 30px;
       height: 50px;
-      left: -30px;
+      left: 0px;
       &::before {
         content: ''
+      }
+      &:hover{
+        background: url(../../assets/img/back-arrowHv.png);
       }
     }
     .mem-item {

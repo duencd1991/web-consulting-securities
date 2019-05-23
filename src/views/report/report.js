@@ -46,7 +46,7 @@ const listReport = [
   },
   {
     stt: 6,
-    name: 'Chiến lược giao dịch HĐTL ngày 10.04.2019 - Article',
+    name: 'Chiến lược giao dịch HĐTL ngày 10.04.2019 - Chiến lược giao dịch HĐTL ngày 10.04.2019',
     updated: '09/04/2019',
     views: 189,
     url: 'abc.com.vn'
@@ -131,7 +131,7 @@ class Report extends Component {
       {
         Header: 'THỜI GIAN',
         accessor: 'updated',
-        maxWidth: 150,
+        maxWidth: 120,
         Cell: props => <div className='table-center-element'>
           {props.value}
         </div>
@@ -190,10 +190,10 @@ class Report extends Component {
               </ReactTable>
               <div className="d-flex flex-row-reverse">
                 <Pagination
-                  firstPageText={<i className="fas fa-angle-double-left"></i>}
-                  lastPageText={<i className="fas fa-angle-double-right"></i>}
-                  prevPageText={<i className="fas fa-angle-left"></i>}
-                  nextPageText={<i className="fas fa-angle-right"></i>}
+                  firstPageText={<i className="fas icArrowStart"></i>}
+                  lastPageText={<i className="fas icArrowEnd"></i>}
+                  prevPageText={<i className="fas icArrowPrev"></i>}
+                  nextPageText={<i className="fas icArrowNext"></i>}
                   activePage={pageNum}
                   itemsCountPerPage={pageSize}
                   totalItemsCount={total}

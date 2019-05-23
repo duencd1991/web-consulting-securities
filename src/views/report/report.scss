@@ -18,7 +18,7 @@
     .report-types {
       width: 320px;
       height: 220px;
-      padding: 30px 20px;
+      padding: 20px;
       border: 1px solid #dadada;
       .report-type-item {
         font-size: 16px;
@@ -72,14 +72,87 @@
           font-size: 14px;
           line-height: 20px;
           .rt-tr-group{
-            height: 40px;
+            height: auto;
             .rt-tr.-even{
               background: #e5e5e5;
             }
             .rt-tr.-odd{
               background: #f9f9f9;
             }
+            .rt-td{
+              white-space: normal;
+            }
           }
+        }
+      }
+      .d-flex{
+        .pagination{
+          font-family: 'Arial', Helvetica, sans-serif;
+          margin: 15px 0;
+          padding-top: 0px;
+          li{
+            width: 35px;
+            height: 35px;
+            color:#111;
+            font-weight: bold;
+            line-height: 35px;
+            margin-left: 15px;
+            &.active{
+              background: #125491;
+              a{
+                color: #fff;        
+              }      
+            }
+            &.disabled{
+              border:1px solid #ccc;
+            }
+            .icArrowNext{
+              background: url(../../assets/img/icArrowNext.png) no-repeat;
+              width: 11px;
+              height: 18px;
+              margin-top: 7px;
+            }
+            .icArrowPrev{
+              background: url(../../assets/img/icArrowPrev.png) no-repeat;
+              width: 11px;
+              height: 18px;
+              margin-top: 7px;
+            }
+            .icArrowEnd{
+              background: url(../../assets/img/icArrowEnd.png) no-repeat;
+              width: 15px;
+              height: 18px;
+              margin-top: 7px;
+            }
+            
+            .icArrowStart{
+              background: url(../../assets/img/icArrowStart.png) no-repeat;
+              width: 15px;
+              height: 18px;
+              margin-top: 7px;
+            }
+          }
+        }
+        .sort-by {
+            display: flex;
+            margin: 15px 20px;
+            height: 35px;
+            border:1px solid #ccc;
+            .dropdown-toggle{
+              line-height: 20px;
+              padding: 7px 15px;
+            }
+            .dropdown-menu
+            {
+              border-radius: 0;
+              padding: 0px;
+              border:1px solid #eee;
+              .dropdown-item{
+                &:hover{
+                  background: #eee;
+                }
+              }
+            }
         }
       }
     }

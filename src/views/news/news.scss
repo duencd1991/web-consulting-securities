@@ -33,7 +33,7 @@
         max-width: 800px;
         .new-item {
           width: 370px;
-          margin-top: 30px;
+          margin-bottom: 30px;
           &:nth-child(odd) {
             margin-right: 30px;
           }
@@ -58,6 +58,7 @@
           .new-footer {
             margin-top: 11px;
             color: #666666;
+            font-size: 0.875rem;
             i {
               padding: 0 5px 0 5px;
               border-left: 1px solid #abaeaf;
@@ -84,8 +85,8 @@
         }
       }
       .pagination {
-        margin-top: 46px;
-        
+        margin-top: 15px;
+        font-family: 'Arial', Helvetica, sans-serif;
         li {
           border: 1px solid #cccccc;
           margin-right: 5px;
@@ -126,7 +127,7 @@
         .title {
           color: #333333;
           font-size: 16px;
-          line-height: 48px;
+          line-height: 27px;
           font-weight: bold;
         }
         hr {
@@ -139,7 +140,7 @@
           display: flex;
           margin-bottom: 20px;
           img {
-            width: 80px;
+            width: 80px;height: 80px;
           }
           .new-info {
             flex-grow: 1;
