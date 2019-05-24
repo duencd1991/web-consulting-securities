@@ -9,7 +9,7 @@
   .menu-top-limit {
       justify-content: flex-start;
       display: flex;
-      padding-left: 20px;
+      padding-left: 0px;
       min-width: 410px;
       a {
         color: #333333;
@@ -94,6 +94,9 @@
     display: inline-table;
   }
 }
+
+
+
 // @media (max-width: 1160px) {
 //   #guide-register-text {
 //     display: none;

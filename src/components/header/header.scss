@@ -12,6 +12,9 @@
   }
   .navbar-toggler {
     visibility: hidden;
+    border-radius: 0px !important;
+    padding: 5px; 
+    border-color: rgba(255,255,255,.5);
     &.show-menu {
       margin-right: 260px;
     }
@@ -24,6 +27,11 @@
     height: 2px;
     border-radius: 1px;
     margin: 5px auto;
+  }
+  .navbar-dark{
+    .navbar-toggler{
+      border-radius: 0px;
+    }
   }
 }
 @media (max-width: 991px) {

@@ -79,10 +79,15 @@ export default class Header extends Component {
                   <a className="nav-link" href="/about-us">VỀ CHÚNG TÔI</a>
                 </li>
               </ul>
-              <form className="form-inline my-2 my-lg-0">
+              <form className="form-inline my-2 my-lg-0 formSearch">
                 <input autoFocus className={showSearchBar ? "form-control mr-sm-2 search-bar show" : "form-control mr-sm-2 search-bar"}
                   type="search" placeholder="Từ khóa tìm kiếm" aria-label="Search" />
                 <img className='btn-search' alt='icon-search' onClick={()=>this.onClickSearchBar(!showSearchBar)} src={ icSearch } />
+              </form>
+              <form className="form-inline my-2 my-lg-0 formSearchR">
+                <input autoFocus className="form-control mr-sm-2 search-input"
+                  type="search" placeholder="Từ khóa tìm kiếm" aria-label="Search" />
+                <img className='btn-search' alt='icon-search' src={ icSearch } />
               </form>
             </div>
           </div>

@@ -222,7 +222,6 @@ class Home extends Component {
               }
             </div>
           </div>
-
           <div className='box-news'>
             <div className='box-width-limit'>
               <div className='box-new-item' id='box-new'>

@@ -122,7 +122,7 @@
         max-width: 1170px;
         margin: 0 auto;
         .box-new-item {
-          width: 370px;
+          // width: 370px;
           height: 100%;
           background-color: #ffffff;
           padding: 10px;
@@ -194,9 +194,9 @@
       justify-content: space-around !important;
     }
   }
-  #box-new {
-    display: none;
-  }
+  // #box-new {
+  //   display: none;
+  // }
 }
 
 @media (max-width: 767px) {
@@ -212,9 +212,9 @@
     }
     .box-news {
       height: auto;
-      #box-new {
-        display: block;
-      }
+      // #box-new {
+      //   display: block;
+      // }
       .box-width-limit {
         flex-direction: column;
         .box-new-item {
