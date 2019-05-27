@@ -146,6 +146,7 @@
           .msg-text {
             border: solid 1px #0078d3;
             background-color: transparent;
+            color: #ffffff;
             &::placeholder { /* Firefox, Chrome, Opera */ 
                 color: #008ffb;
             } 
