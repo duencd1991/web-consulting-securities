@@ -149,7 +149,7 @@ class Report extends Component {
         accessor: 'url',
         maxWidth: 100,
         Cell: props => <div className='table-center-element'>
-          <a href={props.value} target="_blank" >
+          <a href={props.value} target="_blank" rel='noopener noreferrer' >
             <img src={icDownload} alt='img'/>
           </a>
         </div>
