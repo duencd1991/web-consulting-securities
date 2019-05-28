@@ -4,7 +4,24 @@ import Layout from '../../layout/layout';
 import './tradingInstruction.scss';
 import bgHDGD from '../../../assets/img/bg_huong_dan_giao_dich.jpg';
 import ContactBox from '../../../components/contactBox/contactBox';
+import { toast } from 'react-toastify';
+import actions from '../../../store/tradingInstruction/actions';
+import notifyActions from '../../../store/notification/actions';
 
+const typeGuide = [
+  {
+    type: 1,
+    title: 'Hướng dẫn giao dịch CKPS'
+  },
+  {
+    type: 2,
+    title: 'Quy chuẩn hợp đồng tương lai'
+  },
+  {
+    type: 3,
+    title: 'Biểu phí giao dịch'
+  }
+]
 const listGuide = [
   {
     catalog: 'Hướng dẫn giao dịch CKPS',
@@ -70,40 +87,6 @@ const listGuide = [
     ]
   }
 ]
-const listTopGuide = [
-  {
-    title: "Hướng dẫn mở tài khoản chứng khoán cơ sở",
-    url: "abc.com.vn"
-  },
-  {
-    title: "Hướng dẫn mở tài khoản chứng khoán cơ sở",
-    url: "abc.com.vn"
-  },
-  {
-    title: "Hướng dẫn mở tài khoản chứng khoán cơ sở",
-    url: "abc.com.vn"
-  },
-  {
-    title: "Hướng dẫn mở tài khoản chứng khoán cơ sở",
-    url: "abc.com.vn"
-  },
-  {
-    title: "Hướng dẫn mở tài khoản chứng khoán cơ sở",
-    url: "abc.com.vn"
-  },
-  {
-    title: "Hướng dẫn mở tài khoản chứng khoán cơ sở",
-    url: "abc.com.vn"
-  },
-  {
-    title: "Hướng dẫn mở tài khoản chứng khoán cơ sở",
-    url: "abc.com.vn"
-  },
-  {
-    title: "Hướng dẫn mở tài khoản chứng khoán cơ sở",
-    url: "abc.com.vn"
-  }
-]
 
 class TradingInstrucion extends Component {
   constructor(props) {
@@ -121,6 +104,11 @@ class TradingInstrucion extends Component {
     this.setState({
       selectedMenu: select
     })
+  }
+
+  componentDidMount() {
+    // this.props.fetchListType();
+    this.props.fetchGuideLineList(0, 10);
   }
 
   render() {
@@ -164,11 +152,11 @@ class TradingInstrucion extends Component {
               <div className='title'>HƯỚNG DẪN ĐƯỢC XEM NHIỀU NHẤT</div>
               <ul className='box-top-guide'>
                 {
-                  listTopGuide.map((item, index) => {
+                  this.props.listTop.map((item, index) => {
                     return <li key={index}>
                       <i className="fas fa-angle-double-right"></i>
                       {
-                        item.title
+                        item.name
                       }
                     </li>
                   })
@@ -196,11 +184,24 @@ class TradingInstrucion extends Component {
 }
 
 const mapStateToProps = state => {
-  return {};
+  return {
+    listType: state.GuideLines.listType,
+    listTop: state.GuideLines.listTop
+  };
 };
 
 const mapDispatchToProps = dispatch => {
-  return {}
+  return {
+    fetchGuideLineList: (start, limit) => {
+      dispatch(actions.listTop(start, limit));
+    },
+    fetchListType: () => {
+      dispatch(actions.listType());
+    },
+    updateView: (id) => {
+      dispatch(actions.updateView(id));
+    }
+  }
 };
 
 export default connect(mapStateToProps,mapDispatchToProps)(TradingInstrucion);

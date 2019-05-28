@@ -1,13 +1,17 @@
 import { combineReducers } from 'redux';
 
-import Reports from './reports/reducers';
 import Header from './header/reducer';
 import Notifys from './notification/reducer';
+import Reports from './reports/reducers';
+import GuideLines from './tradingInstruction/reducers';
+import Home from './home/reducers';
 
 const reducers = combineReducers({
-  Reports,
   Header,
-  Notifys
+  Notifys,
+  Reports,
+  GuideLines,
+  Home
 });
 
 export default reducers;
