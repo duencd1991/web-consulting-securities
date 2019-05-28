@@ -159,6 +159,12 @@
     }
   }
 }
+.table-center-time{
+  display: none;
+}
+.table-center-view{
+  display: none;
+}
 @media screen and (max-width: 991px) {
   .report-page {
     .report-content {
@@ -185,4 +191,88 @@
     }    
   }
 }
+.trading-instruction-page {
+  .content-box {
+    .guide-menu {
+      .list-menu-box{
+        padding:0px;
+        .menu-item-box {
+          .menu-catalog {
+            height: 40px;
+            line-height: 40px;
+            margin-bottom: 10px;
+          }
+        }
+      }
+      .title {
+        font-size: 22px;
+      }
+      hr{
+        margin: 0px 0 20px 0;
+      }
+    }
+    .top-guide{
+        margin-top: 15px;
+      .title {
+        height: 40px;
+        line-height: 40px;
+      }
+    }
+  }
+  .banner {
+    margin-bottom: 0px;
+  }
+}
+}
+@media screen and (max-width: 575px) {
+.banner {
+  .title {
+    font-size: 22px !important;
+  }
+  .sub-title {
+    font-size: 22px !important;
+  }
+
+}
+.content-box {
+  padding: 10px;
+}
+.trading-instruction-page {
+  .content-box {
+    .top-guide {
+      .box-top-guide {
+        padding: 10px 15px;
+        li{
+          line-height: 20px;
+          margin-bottom: 5px;
+        }
+        i {
+          line-height: 20px;
+        }
+      }
+    }
+    .contact-box-layout {
+      margin-top: 15px;
+    }
+  }
+}
+.contact-box {
+  .info-box {
+    .contact-title {
+      font-size: 15px;
+      margin-bottom: 10px;
+    }
+  }
+  .msg-box 
+  {
+      .contact-title {
+        font-size: 15px;
+        margin-bottom: 10px;
+    }
+      .msg-text {
+        margin-bottom: 10px;
+    }
+  }
+}
+
 }

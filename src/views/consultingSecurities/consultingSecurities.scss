@@ -1,0 +1,133 @@
+.consulting-page {
+  .consulting-banner {
+    height: 100px;
+    background: url(../../assets/img/banner-tuvanCKPS.png) no-repeat center;
+    h3 {
+      font-size: 30px;
+      color: #ffffff;
+      line-height: 100px;
+      font-family: 'OpenSans';
+      text-align: center;
+    }
+  }
+  .page-content {
+    max-width: 1170px;
+    margin: auto;
+    padding: 30px 0;
+    .consulting-menu {
+      text-align: center;
+      .menu-item {
+        font-family: Arial;
+        font-weight: bold;
+        font-size: 16px;
+        color: #111111;
+        display: inline-block;
+        position: relative;
+        cursor: pointer;
+        padding: 0 20px;
+        height: 30px;
+        line-height: 30px;
+        &.active {
+          color: #ffffff;
+          background-color: #005197;
+          &::after{
+              content: '';
+              position: absolute;
+              left: 42%;
+              top: 100%;
+              width: 0;
+              height: 0;
+              border-left: 12px solid transparent;
+              border-right: 12px solid transparent;
+              border-top: 11px solid #005197;
+              clear: both;
+          }
+        }
+      }
+    }
+    .layout-robot-consulting {
+      .title {
+        font-size: 18px;
+        color: #111111;
+        font-family: Arial;
+        margin-top: 40px;
+        span {
+          font-weight: bold;
+        }
+      }
+      hr {
+        width: 71px;
+        height: 2px;
+        background-color: #736d6d;
+        margin: 0 0 29px 0;
+      }
+      .table {
+        .btn-register {
+          background-color: #005197;
+          color: #ffffff;
+          width: 70px;
+          height: 25px;
+          border-radius: 12px;
+          border: none;
+          &:hover {
+            border-radius: 12px;
+            border: solid 1px #cccccc;
+            background-color: #ffffff;
+            color: #333333;
+          }
+          &:focus {
+            outline: 0;
+          }
+        }
+        thead tr th {
+          font-size: 14px;
+          color: #111111;
+          font-family: Arial;
+        }
+        tbody tr td {
+          font-size: 14px;
+          color: #111111;
+          font-family: Arial;
+        }
+      }
+      .layout-tool {
+        display: flex;
+        .tool-trader-layout {
+          color: #005197;
+          font-size: 18px;
+          font-family: Arial;
+          min-width: 350px;
+          .tool-trader-item {
+            line-height: 36px;
+            &:hover {
+              text-decoration: underline;
+              cursor: pointer;
+            }
+            img {
+              height: 16px;
+              margin: 0 10px 5px 0;
+            }
+          }
+        }
+        .room-trader-layout {
+            min-width: 300px;
+            display: flex;
+            justify-content: space-between;
+          .room-trader-item {
+            display: flex;
+            img {
+              width: 24px;
+              height: 24px;
+              margin-right: 7px;
+            }
+            &:hover {
+              text-decoration: underline;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+      
+    }
+  }
+}

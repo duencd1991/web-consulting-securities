@@ -13,7 +13,8 @@
     max-width: 1170px;
     margin: auto;
     display: flex;
-    padding: 40px 0 48px 0;
+    padding: 30px 0 30px 0;
+    flex-flow: row wrap;
     .title {
       font-size: 25px;
       color: #125491;
@@ -23,23 +24,26 @@
       width: 71px;
       height: 2px;
       background-color: #125491;
-      margin: 0 0 30px 0;
+      margin: 0 0 20px 0;
+      text-align: left;
     }
     .list-news {
       flex-grow: 1;
+      flex-basis: 64%;
+      margin-right: 25px;
       .list-new-box {
         display: flex;
         flex-wrap: wrap;
-        max-width: 800px;
+        max-width: 100%;
         .new-item {
-          width: 370px;
-          margin-bottom: 30px;
+          flex-basis: 48%;
+          margin-bottom: 25px;
           &:nth-child(odd) {
-            margin-right: 30px;
+            margin-right: 25px;
           }
           img {
-            width: 370px;
-            margin-bottom: 11px;
+            width: 100%;
+            margin-bottom: 10px;
           }
           .title {
             color: #333333;
@@ -105,24 +109,26 @@
         }
       }
     }
-    .box-news {
-      width: 370px;
-      .list-news-menu {
-        margin-bottom: 34px;
-        .news-menu-item {
-          color: #333333;
-          font-size: 16px;
-          font-weight: bold;
-          line-height: 48px;
-          padding-left: 16px;
-          border: 1px solid #dedede;
-          cursor: pointer;
-          &.selected {
-            color: #125491;
-            background-color: #dce0e4;
-          }
+    .list-news-menu {
+      flex-basis: 32%;
+      margin-bottom: 20px;
+      .news-menu-item {
+        color: #333333;
+        font-size: 16px;
+        font-weight: bold;
+        line-height: 22px;
+        padding: 10px;
+        border: 1px solid #dedede;
+        cursor: pointer;
+        &.selected {
+          color: #125491;
+          background-color: #dce0e4;
         }
       }
+    }
+    .box-news {
+      flex-basis: 32%;
+      
       .list-news-top {
         .title {
           color: #333333;
@@ -154,7 +160,7 @@
             .new-info-footer {
               color: #666666;
               font-size: 13px;
-              position: absolute;
+              // position: absolute;
               bottom: 0;
               i {
                 padding: 0 5px 0 5px;
@@ -169,4 +175,34 @@
       }
     }
   }
+}
+@media screen and (max-width: 991px) {
+  .news-page {
+    .news-content {
+      .title {
+        font-size: 22px;
+      }
+      hr{
+        margin-bottom:15px;
+      }
+      .list-news{
+        .list-new-box{
+          .new-item{
+            &:nth-child(odd) {
+              margin-right: 0px;
+            }
+            flex-basis: 100%;
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width: 767px) {
+  .news-page {
+    .news-content {
+      flex-direction: column-reverse;
+    }
+  }
+
 }

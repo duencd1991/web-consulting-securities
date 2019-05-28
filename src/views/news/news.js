@@ -167,8 +167,11 @@ class News extends Component {
                 onChange={this.onChangePageNum}
               />
             </div>
-            <div className='box-news'>
-              <div className='list-news-menu'>
+            {/* <div className='box-news'> */}
+              
+              {/* </div> */}
+               <div className='box-news'>
+               <div className='list-news-menu'>
                 {
                   listNewMenu.map((item, index) => {
                     return <div key={index} onClick={ () => this.onSelectMenu(index)}

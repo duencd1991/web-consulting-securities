@@ -5,40 +5,6 @@ import './trainingService.scss';
 import icNoImg from '../../../assets/img/ic_no_img2.png';
 import Slider from "react-slick";
 
-const listCourseHot = [
-  {
-    title: "Phân tích kỹ thuật cho người mới bắt đầu",
-    src: 'abc.com.vn'
-  },
-  {
-    title: "Phân tích kỹ thuật cho người mới bắt đầu",
-    src: 'abc.com.vn'
-  },
-  {
-    title: "Phân tích kỹ thuật cho người mới bắt đầu",
-    src: 'abc.com.vn'
-  },
-  {
-    title: "Phân tích kỹ thuật cho người mới bắt đầu",
-    src: 'abc.com.vn'
-  },
-  {
-    title: "Phân tích kỹ thuật cho người mới bắt đầu",
-    src: 'abc.com.vn'
-  },
-  {
-    title: "Phân tích kỹ thuật cho người mới bắt đầu",
-    src: 'abc.com.vn'
-  },
-  {
-    title: "Phân tích kỹ thuật cho người mới bắt đầu",
-    src: 'abc.com.vn'
-  },
-  {
-    title: "Phân tích kỹ thuật cho người mới bắt đầu",
-    src: 'abc.com.vn'
-  },
-]
 const listCourseOnline = [
   {
     title: "Khóa học hướng dẫn giao dịch mua bán Cổ phiếu - Lớp CKCS 108",
@@ -259,7 +225,7 @@ class TrainingService extends Component {
 
                               File download: <a className='file-download' href={item.urlFile}><i class="fas icPdf"></i>
                               </a>
-                              <div className='url-register'>Click tham gia: <span><a class="regLean">Đăng ký học</a></span></div>
+                              <div className='url-register'>Click tham gia: <span><a class="regLean" href='abc.com'>Đăng ký học</a></span></div>
                             </div>
                           </div>
                         })
@@ -303,7 +269,7 @@ class TrainingService extends Component {
 
                               File download: <a className='file-download' href={item.urlFile}><i class="fas icPdf"></i>
                               </a>
-                              <div className='url-register'>Click tham gia: <span><a class="regLean">Đăng ký học</a></span></div>
+                              <div className='url-register'>Click tham gia: <span><a class="regLean" href='abc.com'>Đăng ký học</a></span></div>
                             </div>
                           </div> :
                             <div className='course-item' onClick={() => this.onChangeSelectHotCourse(index)}>
@@ -364,7 +330,7 @@ class TrainingService extends Component {
                         File download:
                     <a href={course.urlFile}><i class="fas icExcel"></i></a>
                       </div>
-                      <div className='url-register'>Để tham gia bạn click: <a className='btn_regis'>Đăng ký học</a></div>
+                      <div className='url-register'>Để tham gia bạn click: <a className='btn_regis' href='abc.com'>Đăng ký học</a></div>
 
                     </div>
                   </div>
@@ -381,7 +347,7 @@ class TrainingService extends Component {
               {
                 listTeachers.map((item, index) => {
                   return <div key={index}>
-                    <img src={item.img ? item.img : icNoImg} />
+                    <img src={item.img ? item.img : icNoImg} alt={`img-${index}`} />
                     <div className='teacher-name'>{item.name}</div>
                     <div className='teacher-title'>{item.title}</div>
                     <div className='teacher-detail'>{item.detail}</div>

@@ -165,7 +165,7 @@ class Consulting extends Component {
             <div className='sub-title'>Sau khi nhà đầu tư đăng ký thành công, chúng tôi sẽ xét duyệt và kích hoạt dịch vụ trong vòng 48h làm việc. Thông báo kích hoạt dịch vụ được gửi qua email.</div>
             <div className='price-consulting'>Chỉ với 2 Triệu/tháng</div>
             <button className='btn btn-register'>ĐĂNG KÝ</button>
-            <a className='btn-arrow-down' href='#slogan-layout'></a>
+            <a className='btn-arrow-down' href='#slogan-layout'> </a>
           </div>
           <div className='slogan-layout' id='slogan-layout'>
             <div className='title'>TRIẾT LÝ TƯ VẤN CKPS KẾT HỢP ROBO</div>

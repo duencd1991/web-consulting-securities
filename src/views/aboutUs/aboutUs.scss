@@ -91,7 +91,7 @@
   }
   .layout-contact {
     background-color: #0066b3;
-    padding: 63px 0;
+    padding: 50px 10px;
     .title {
       color: #ffffff;
       font-size: 26px;
@@ -146,6 +146,7 @@
           .msg-text {
             border: solid 1px #0078d3;
             background-color: transparent;
+            color: #ffffff;
             &::placeholder { /* Firefox, Chrome, Opera */ 
                 color: #008ffb;
             } 
@@ -163,4 +164,55 @@
       }
     }
   }
+}
+@media screen and (max-width: 767px) {
+  .about-us-page {
+    .layout-contact {
+      padding: 20px 10px;
+      .contact-content {
+        .contact-box {
+          .msg-box {
+            .msg-text{
+              border-radius: 0px;
+            }
+          }
+        }
+      }
+  }
+  
+  }
+}
+@media screen and (max-width: 575px) {
+  .about-us-page {
+    .layout-contact {
+      .title {
+        font-size: 22px;
+      }
+      hr{
+        margin: 10px auto 20px auto;
+      }
+      .contact-des {
+        font-size: 18px;
+        margin-bottom: 15px;
+      }
+      .contact-box{
+        .msg-box{
+            padding-bottom: 0px;
+        }
+      }
+    }
+    .team-layout {
+      padding: 20px 0 20px 0;
+      .team-title {
+        font-size: 22px;
+      }
+      hr {
+        margin: 10px auto 15px auto;
+      }
+      .team-special {
+        margin: 20px auto 20px auto;
+      }
+    }
+  }
+  
 }
