@@ -193,3 +193,51 @@ background: #999 none repeat scroll 0% 0% !important;
 .paging-item.active .paging-dot{
   background: #125491 none repeat scroll 0% 0% !important;
 }
+@media screen and (max-width:767px) and (min-width:320px)
+{
+  .consulting-page {
+    .slogan-layout{
+      padding: 30px 15px;
+    }
+    .investor{
+      &:nth-child(4){
+        margin-bottom: 20px;
+      }
+      &:nth-child(5){
+        margin-bottom: 20px;
+      }
+    }
+    .slogan-layout {
+      .title {
+        font-size: 22px;
+      }
+      hr{
+        margin:10px auto;
+      }
+    }
+    .investor-layout {
+      padding: 30px 0;
+      .investor-title {
+        color: #333333;
+        font-size: 22px;
+      }
+    }
+    .investor {
+      width: 100%;
+    }
+    .review-layout {
+        padding: 30px 0;
+        .review-title {
+          font-size: 22px;
+        }
+      }
+      .experts-layout {
+        padding-top: 30px;
+        .expert-title {
+            font-size: 22px;
+          }
+      }
+  }
+  
+  }
+  

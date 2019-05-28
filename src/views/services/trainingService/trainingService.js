@@ -88,6 +88,19 @@ const listCourseOnline = [
     des: "Các nhà đầu tư, các bạn sinh viên muốn tham gia đầu tư vào Thị trường Chứng khoán nhưng chưa biết gì về thị trường ...",
     urlFile: "abc.com.vn"
   }
+  ,
+  {
+    title: "Khóa học hướng dẫn giao dịch mua bán Cổ phiếu - Lớp CKCS 108",
+    startDate: '24/6',
+    time: "18:00 (8, 12, 26/5/2019)",
+    date: "8/5/2019",
+    teacher: "Nguyễn Thế Phong",
+    type: "Online",
+    addr: "Tp. Hà Nội",
+    cost: "3.000.000 VNĐ",
+    des: "Các nhà đầu tư, các bạn sinh viên muốn tham gia đầu tư vào Thị trường Chứng khoán nhưng chưa biết gì về thị trường ...",
+    urlFile: "abc.com.vn"
+  }
 
 ]
 const listCourseOffline = [

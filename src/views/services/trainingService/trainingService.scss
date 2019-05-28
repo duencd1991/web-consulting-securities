@@ -61,31 +61,22 @@
                   transition: $stepTiming;
               }
               }
-                // position: absolute;               
-                // width: 0; 
-                // height: 0; 
-                // border-left: 20px solid transparent;
-                // border-right: 20px solid transparent;
-                
-                // border-top: 20px solid #f00;
-                
-              
             }
           }
           .list-course {
             display: flex;
             flex-wrap: wrap;
-            width: 770px;
+            // width: 770px;
             .course-item {
-              width: 370px;
+              // width: 370px;
               height: 216px;
-              margin-top: 30px;
+              margin-top: 20px;
               background-color: #ffffff;
               padding: 10px;
               font-size: 13px;
               color:#555;
               &:nth-child(odd) {
-                margin-right: 30px;
+                margin-right: 20px;
               }
 
               .time {
@@ -430,10 +421,11 @@
       margin-top: 32px;
     }
     .slick-slider {
-      width: 1170px;
+      max-width: 1170px;
       margin: auto;
       font-family: Arial;
-      padding: 0 50px;
+      padding: 0 40px;
+      display: flex;
       img {
         height: 210px;
         border-radius: 50%;
@@ -550,12 +542,13 @@
         margin:7px 0px; line-height: 22px; text-align: justify;
       }
       .blInfo{
-        display: inline;
+        display: flex;
+        flex-basis: 100%;
       }
       table
       {
-        display: inline-block;
-        width:50%;
+        // display: inline-block;
+        flex-basis:56%;
         border-collapse: separate; 
         border-spacing: 0px; 
         thead{
@@ -611,9 +604,9 @@
       }
       .file-download{
         display: inline-flex;
-        padding-right: 20px;
+        padding: 15px;
         border-right: 1px solid #ddd;
-        margin-right: 20px;
+        margin-right: 15px;
         .icExcel{
           content: url('../../../assets/img/icExcel.png');
           width: 15px;
@@ -623,7 +616,7 @@
       }
       .url-register{
         display: inline-block;
-
+        padding-top:15px;
       }
       .btn_regis{
         background: #005197;
@@ -637,6 +630,307 @@
     }
   }
 }
+}
+@media screen and (min-width:1200px)
+{
+  .training-service-page 
+  {
+    .course-layout {
+      .course-box {
+        .course-content {
+          .list-course-box {
+            flex-basis: 66.6%;
+              padding-right: 20px;
+            .list-course {
+              
+              .course-item{
+                overflow-y: scroll;
+                flex-basis: 48.5%;
+                height: 215px;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width:1199px)
+{
+  .training-service-page 
+  {
+    .course-layout {
+      .course-box {
+        .course-content {
+          .list-course-box {
+            flex-basis: 66.6%;
+              padding-right: 20px;
+            .list-course {
+              height:580px;
+              overflow-y: scroll;
+              .course-item{
+                // 
+                height: auto;
+                &:nth-child(odd) {
+                  margin-right: 0px;
+                }
+                .title {
+                  height: 40px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width:1040px){
+  .training-service-page 
+  {
+    .course-layout {
+      .course-box {
+        .course-content {
+          flex-direction: column;
+          .list-course-box {
+            flex-basis: 100%;
+              padding-right: 0px;
+            .list-course {
+              height: auto;
+              .course-item{
+                .course-title{
+                  padding:3px 0px;
+                }
+              }
+              
+            }
+          }
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width:991px)
+{
+  .training-service-page  {
+    .teachers-layout {
+      padding: 30px 0;
+    }
+    .type-course-layout{
+      padding: 30px 0;
+      .type-course-list {
+        .item-course {
+          table{
+            flex-basis: 100%;
+          }
+          .blInfo{
+            display: flex;
+            flex-basis: 100%;
+            flex-wrap: wrap
+          }
+        }
+      }
+    }
+    .course-layout {
+      .course-box {
+        padding: 30px 0 30px 0;
+        .course-content {
+          .hot-course {
+            width: 100%;
+            height: auto;margin-top: 20px;
+            .course-item{
+              .course-name{
+                width: 100%;
+              }
+              .course-title{
+                padding:3px 0px;
+              }
+            }
+            .hot-title{
+              height: 40px;
+              line-height: 40px;
+            }
+          }
+          .list-course-box {
+            .select-course-type {
+              .type-course{
+                height: 35px;
+                line-height: 35px;
+                &.active{
+                  &::after{
+                    border-left: 10px solid transparent;
+                    border-right: 10px solid transparent;
+                    border-top: 8px solid #125491;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
+}
+@media screen and (max-width:767px)
+{
+  .training-service-page {
+    .type-course-layout{
+      padding: 20px 0 20px 0;
+      .select-type-course{
+        display: flex;
+        flex-direction: column;
+        .item-type-course{
+          height: 40px;
+          line-height: 40px;
+        }
+      }
+      .title{
+        font-size: 22px;
+      }
+      hr{
+        margin: 15px auto;
+      }
+      .type-course-list {
+        padding: 10px;
+        .item-course {
+          padding: 10px;
+          .file-download { padding: 5px 0px !important;}
+          .url-register {
+            padding-top: 5px !important;}
+            .course-date-time-cost{
+              line-height: 20px;
+            }
+            .course-des {
+              margin: 5px 0px;
+              line-height: 20px;}
+
+              table {
+                thead{
+                  th {
+                    padding: 0px !important;
+                  }
+                }
+              }
+              
+        }
+      }
+    }
+    .course-layout {
+        .course-box {
+          padding: 20px 0;
+      }
+    }
+    .teachers-layout {
+      .slick-slider {
+      
+      }
+    }
+  }
+  .slick-list {
+    .slick-track {
+      .slick-slide {
+        display: inline-flex;
+      }
+    }
+  }
+}
+@media screen and (max-width: 583px) {
+  .training-service-page  {
+    .type-course-layout{
+      .type-course-list {
+        .item-course {
+          table{
+            flex-basis: 100%;
+            display: flex;
+          }
+          .blInfo{
+            display: flex;
+            flex-basis: 100%;
+            // flex-wrap: nowrap;
+            flex-direction: column;
+          }
+          .course-name {
+            font-size: 18px;
+            line-height: 22px;
+            padding-left: 35px;
+          }
+          table {
+            thead {
+              th {
+                display: inline-block;
+                width: 135px !important;
+                padding: 5px 0px !important;
+                text-align: left;
+                margin: 0px;
+                border-right: none !important;
+              }
+            }
+          }
+          table {
+            tbody {
+              td {
+                // display: inline-block;
+                // width: 135px !important;
+                padding: 5px 0px !important;
+                text-align: left;
+                margin: 0px;
+                border-right: none !important;
+              }
+            }
+          }
+          .file-download {
+            padding: 10px 0px;
+            border-right: none;
+            margin-right: 0px;
+        }
 
 
+        }
+      }
+    }
+  }
+}
+@media screen and (max-width:374px) and (min-width:320px)
+{
+  .training-service-page 
+  {
+    .course-layout {
+      .course-box {
+        .course-content {
+          .list-course-box {
+            .list-course {
+              .course-item{
+                .title{
+                  height: auto;
+                }
+                .box-left {
+                  float: left;
+                  width: 100%;
+                }
+                .box-right {
+                  float: left;
+                  width: 100%;text-align: left;
+                }
+              }
+            }
+          }
+          .hot-course {
+            .course-item{
+              &.active {
+                .box-left {
+                  width: 100%;
+                }
+                .box-right {
+                  width: 100%;
+                  float: left;
+                  text-align: left;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }

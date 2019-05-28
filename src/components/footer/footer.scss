@@ -82,18 +82,26 @@
   }
 }
 .footer-copyrights {
-  height: 46px;
+  height: auto;
   background-color: #222222;
   box-shadow: 0 0 1px 0 #cccccc;
   color: #ffffff;
   text-align: center;
-  line-height: 46px;
+  line-height: 24px;
   font-family: Arial;
   font-size: 14px;
+  padding: 5px;
   
 }
 @media (max-width: 767px) {
   .footer-box {
-    display: none;
+    // display: none;
+    .footer {
+      // flex-direction: column;
+      padding:15px;
+        .footer-item {
+          margin-bottom: 0px;
+      }
+    }
   }
 }

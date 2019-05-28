@@ -125,6 +125,9 @@ class Report extends Component {
         Header: 'SẢN PHẨM',
         accessor: 'name',
         Cell: props => <div className='txtBold'>
+           {/* <div className='table-center-no'>
+        
+           </div> */}
           {props.value}
         </div>
       },
@@ -132,7 +135,7 @@ class Report extends Component {
         Header: 'THỜI GIAN',
         accessor: 'updated',
         maxWidth: 120,
-        Cell: props => <div className='table-center-element'>
+        Cell: props => <div className='table-center-element'><div className='table-center-time'>Thời gian:</div>
           {props.value}
         </div>
       },
@@ -140,7 +143,7 @@ class Report extends Component {
         Header: 'LƯỢT XEM',
         accessor: 'views',
         maxWidth: 100,
-        Cell: props => <div className='table-center-element'>
+        Cell: props => <div className='table-center-element'><div className='table-center-view'>Lượt view:</div>
           {props.value}
         </div>
       },
@@ -148,7 +151,7 @@ class Report extends Component {
         Header: 'DOWNLOAD',
         accessor: 'url',
         maxWidth: 100,
-        Cell: props => <div className='table-center-element'>
+        Cell: props => <div className='table-center-element'><div className='table-center-time'>Download:</div>
           <a href={props.value} target="_blank" >
             <img src={icDownload} alt='img'/>
           </a>
