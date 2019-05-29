@@ -5,13 +5,15 @@ import Notifys from './notification/reducer';
 import Reports from './reports/reducers';
 import GuideLines from './tradingInstruction/reducers';
 import Home from './home/reducers';
+import News from './news/reducers';
 
 const reducers = combineReducers({
   Header,
   Notifys,
   Reports,
   GuideLines,
-  Home
+  Home,
+  News
 });
 
 export default reducers;

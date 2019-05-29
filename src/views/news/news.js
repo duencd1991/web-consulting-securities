@@ -8,7 +8,8 @@ import icNoImg2 from '../../assets/img/thumbnail-no-img2.png';
 import icArrowPrev from '../../assets/img/icArrowPrev.png'
 import icArrowNext from '../../assets/img/icArrowNext.png'
 import icArrowStart from '../../assets/img/icArrowStart.png'
-import icArrowEnd from '../../assets/img/icArrowEnd.png'
+import icArrowEnd from '../../assets/img/icArrowEnd.png';
+import actions from '../../store/news/actions';
 
 
 const listNewMenu = [
@@ -101,8 +102,8 @@ class News extends Component {
     this.state = {
       selectedMenu: 0,
       pageNum: 1,
-      pageSize: 1,
-      total: listNews.length
+      pageSize: 6,
+      total: 0
     }
   }
 
@@ -118,6 +119,19 @@ class News extends Component {
     })
   }
 
+  componentDidMount() {
+    this.props.fetchListNews();
+    this.props.fetchListNewsHot();
+    this.props.fetchlistNewsTop();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.total !== this.props.total && nextProps.total > 0) {
+      this.setState({
+        total: nextProps.total
+      })
+    }
+  }
 
   render() {
     const {
@@ -138,17 +152,17 @@ class News extends Component {
               <hr />
               <div className='list-new-box'>
                 {
-                  listNews.map((item, index) => {
+                  this.props.listNews.map((item, index) => {
                     return <div className='new-item' key={index}>
                       <img alt={`img-${index}`} src={item.img ? item.img : icNoImg}/>
                       <div className='title'>{item.title}</div>
                       <div className='new-des'>{item.des}</div>
                       <div className='new-footer'>
-                        <span>{item.author}</span>
+                        <span>{item.author ? item.author : 'Admin'}</span>
                         <i className="far fa-calendar-alt"></i>
                         <span>{item.date}</span>
                         <i className="far fa-eye"></i>
-                        <span>{item.views}</span>
+                        <span>{item.views ? item.views : 0}</span>
                       </div>
                       <div className='btn-detail'>CHI TIẾT</div>
                     </div>
@@ -184,7 +198,7 @@ class News extends Component {
                 <div className='title'>CÁC BÀI VIẾT NỔI BẬT</div>
                 <hr />
                 {
-                  listNewTop.map((item, index) => {
+                  this.props.listNewsTop.map((item, index) => {
                     return <div key={index} className='new-top-item'>
                       <img src={item.img ? item.img : icNoImg2} alt={`new-img-${index}`}/>
                       <div className='new-info'>
@@ -205,7 +219,7 @@ class News extends Component {
                 <div className='title'>CÁC BÀI VIẾT MỚI NHẤT</div>
                 <hr />
                 {
-                  listNewTop.map((item, index) => {
+                  this.props.listNewsHot.map((item, index) => {
                     return <div key={index} className='new-top-item'>
                       <img src={item.img ? item.img : icNoImg2} alt={`new-img-${index}`}/>
                       <div className='new-info'>
@@ -231,11 +245,26 @@ class News extends Component {
 }
 
 const mapStateToProps = state => {
-  return {};
+  return {
+    listNews: state.News.listNews,
+    total: state.News.total,
+    listNewsHot: state.News.listNewsHot,
+    listNewsTop: state.News.listNewsTop
+  };
 };
 
 const mapDispatchToProps = dispatch => {
-  return {}
+  return {
+    fetchListNews: (start, limit) => {
+      dispatch(actions.listNews(start, limit));
+    },
+    fetchListNewsHot: () => {
+      dispatch(actions.listNewsHot());
+    },
+    fetchlistNewsTop: () => {
+      dispatch(actions.listNewsTop());
+    }
+  }
 };
 
 export default connect(mapStateToProps,mapDispatchToProps)(News);

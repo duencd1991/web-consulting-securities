@@ -2,14 +2,14 @@ const actions = {
   REPORT_LIST: 'REPORT_LIST',
   REPORT_GET_LIST: 'REPORT_GET_LIST',
   REPORT_VIEW_UPDATE: 'REPORT_VIEW_UPDATE',
-  list: (size) => ({
+  listReport: (start, limit) => ({
     type: actions.REPORT_GET_LIST,
-    size
+    start,
+    limit
   }),
-  updateView: (id, views) => ({
+  updateView: (id) => ({
     type: actions.REPORT_VIEW_UPDATE,
-    id,
-    views
+    id
   })
 };
 export default actions;

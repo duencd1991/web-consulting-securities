@@ -7,6 +7,7 @@ import Pagination from 'react-js-pagination';
 import 'react-table/react-table.css';
 import { DEFAULT_TABLE } from '../../utils/constant';
 import icDownload from '../../assets/img/ic-download.png';
+import actions from '../../store/reports/actions';
 
 const listReport = [
   {
@@ -105,6 +106,22 @@ class Report extends Component {
     })
   }
 
+  componentDidMount() {
+    const pageNum = this.state.pageNum;
+    const pageSize = this.state.pageSize;
+    let start = (pageNum - 1) * pageSize;
+    let end = start + pageSize;
+    this.props.fetchListReport(start, end);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.total !== this.props.total && nextProps.total > 0) {
+      this.setState({
+        total: nextProps.total
+      })
+    }
+  }
+
   render() {
     const {
       selectedType,
@@ -133,7 +150,7 @@ class Report extends Component {
       },
       {
         Header: 'THỜI GIAN',
-        accessor: 'updated',
+        accessor: 'date',
         maxWidth: 120,
         Cell: props => <div className='table-center-element'><div className='table-center-time'>Thời gian:</div>
           {props.value}
@@ -179,7 +196,7 @@ class Report extends Component {
               <div className='report-title'>BÁO CÁO PHÂN TÍCH CƠ BẢN PHÁI SINH</div>
               <hr />
               <ReactTable
-                data={listReport}
+                data={this.props.listReport}
                 columns={columns}
                 previousText='preText'
                 nextText='nextText'
@@ -224,11 +241,21 @@ class Report extends Component {
   }
 }
 const mapStateToProps = state => {
-  return {};
+  return {
+    listReport: state.Reports.list,
+    total: state.Reports.total
+  };
 };
 
 const mapDispatchToProps = dispatch => {
-  return {}
+  return {
+    fetchListReport: (start, limit) => {
+      dispatch(actions.listReport(start, limit));
+    },
+    updateViews: (id) => {
+      dispatch(actions.updateView(id));
+    }
+  }
 };
 
 export default connect(mapStateToProps,mapDispatchToProps)(Report);

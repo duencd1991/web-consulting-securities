@@ -16,9 +16,9 @@ const Layout = props => (
     {
       props.statusMenu && <div className='bodyClick' onClick={props.hideMenu}></div>
     }
-    {
+    {/* {
       props.loading && <Loading />
-    }
+    } */}
     <Footer />
   </React.Fragment>
 );
