@@ -162,9 +162,6 @@
 .table-center-time{
   display: none;
 }
-.table-center-view{
-  display: none;
-}
 @media screen and (max-width: 991px) {
   .report-page {
     .report-content {
@@ -182,14 +179,53 @@
 }
 }
 @media screen and (max-width: 767px) {
+  .table-center-time{
+    display: block;
+    padding-right: 10px;
+  }
   .report-page {
     .report-content {
+      padding: 20px 0;
+      .report-types{
+        padding: 5px;margin: 0px 20px 20px 20px;
+      }
       .report-tables {
+        margin: 0px 20px 0px 0px;
+        padding-left: 20px;        
         .report-title {
-          font-size: 20px;
+          font-size: 18px;
         }
-    }    
+        .ReactTable {
+          .rt-thead.-header{
+            display: none;
+          }
+          .rt-tbody {
+            min-width: auto !important;
+            .rt-tr-group {
+              .rt-tr{
+                flex-direction: column;
+              }
+              .rt-td{
+                flex-basis: 100%;
+                width: 100% !important;
+                max-width: 100% !important;
+                flex-flow: row nowrap;
+                padding:5px;
+                &:nth-child(1){
+                  display: none;
+                }
+                .table-center-element {
+                  text-align: left;
+                  display: flex;
+                }
+               
+              }
+            }
+          }
+        }
+    }
   }
+   
 }
 .trading-instruction-page {
   .content-box {

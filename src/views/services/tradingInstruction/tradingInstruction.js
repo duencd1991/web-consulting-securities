@@ -147,6 +147,11 @@ class TradingInstrucion extends Component {
                   })
                 }
               </div>
+              <div className='contact-box-layout'>
+                <div className='title'>LIÊN HỆ NHÂN VIÊN HỖ TRỢ</div>
+                <hr />
+                <ContactBox />
+              </div>
             </div>
             <div className='top-guide'>
               <div className='title'>HƯỚNG DẪN ĐƯỢC XEM NHIỀU NHẤT</div>
@@ -171,11 +176,7 @@ class TradingInstrucion extends Component {
                 </button>
               </div>
             </div>
-            <div className='contact-box-layout'>
-              <div className='title'>LIÊN HỆ NHÂN VIÊN HỖ TRỢ</div>
-              <hr />
-              <ContactBox />
-            </div>
+            
           </div>
         </div>
       </Layout>

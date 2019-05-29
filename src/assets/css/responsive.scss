@@ -259,57 +259,6 @@
     }
 }
 }
-@media screen and (max-width:374px)
-{
-    .home-page {
-        .home-slider-menu {
-          .home-slider {
-            .carousel-caption {
-                top: 0px;
-                left: 25px;
-                padding-top: 10px;
-                width:100%;
-              .banner-title {
-                  padding:0 15px;
-                  font-size: 16px;
-              }
-              ul{
-                  padding:0px 15px 10px  15px;
-                  font-size: 14px;
-                  margin: 0px;
-              }
-              .banner-detail{
-                  margin-left: 15px;
-                  font-size: 14px;
-                  padding: 3px 10px;
-              }
-            }
-            .carousel-indicators{
-                display: none;
-            }
-        }
-    }
-}
-
-.contact-box{
-    flex-wrap: wrap;
-    .info-box{
-        margin-bottom: 15px;
-    }
-    .msg-box {
-        max-width: 100%;
-    }
-}
-.trading-instruction-page
-{
-    .content-box {
-        .contact-box-layout {
-            hr{margin-bottom: 15px;}
-        }
-    }
-}
-
-}
 
 @media screen and (max-width: 575px) {
     .header-top {
@@ -361,5 +310,58 @@
     }
 }
 
+
+}
+
+
+@media screen and (max-width:374px)
+{
+    .home-page {
+        .home-slider-menu {
+          .home-slider {
+            .carousel-caption {
+                top: 0px;
+                left: 25px;
+                padding-top: 10px;
+                width:100%;
+              .banner-title {
+                  padding:0 15px;
+                  font-size: 16px;
+              }
+              ul{
+                  padding:0px 15px 10px  15px;
+                  font-size: 14px;
+                  margin: 0px;
+              }
+              .banner-detail{
+                  margin-left: 15px;
+                  font-size: 14px;
+                  padding: 3px 10px;
+              }
+            }
+            .carousel-indicators{
+                display: none;
+            }
+        }
+    }
+}
+
+.contact-box{
+    flex-wrap: wrap;
+    .info-box{
+        margin-bottom: 15px;
+    }
+    .msg-box {
+        max-width: 100%;
+    }
+}
+.trading-instruction-page
+{
+    .content-box {
+        .contact-box-layout {
+            hr{margin-bottom: 15px;}
+        }
+    }
+}
 
 }

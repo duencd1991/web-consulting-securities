@@ -32,9 +32,12 @@
   .content-box {
     max-width: 1170px;
     margin: auto;
-    position: relative;
+    display: flex;
+    flex-flow: row wrap;
     .guide-menu {
-      max-width: 770px;
+      // max-width: 770px;
+      flex-basis: 65%;
+      margin-right: 20px;
       .title {
         font-size: 24px;
         color: #125491;
@@ -47,8 +50,8 @@
         margin: 5px 0 27px 0;
       }
       .list-menu-box {
-        max-width: 770px;
-        padding: 20px;
+        max-width: 100%;
+        padding: 0px;
         background-color: #f7f7f7;
         .menu-item-box {
           list-style: none;
@@ -101,7 +104,7 @@
             box-shadow: 0px 1px 0 0 #e3e3e3;
             background: #ffffff;
             cursor: pointer;
-            margin-bottom: 20px;
+            margin-bottom: 5px;
             color: #333333;
             &:hover {
               text-decoration: none;
@@ -115,8 +118,9 @@
       }
     }
     .top-guide {
-      position: relative;
-      max-width: 370px;
+      // position: relative;
+      // max-width: 370px;
+      flex-basis: 33%;
       .title {
         background-color: #dce0e4;
         height: 50px;
@@ -258,11 +262,27 @@
   }
 }
 @media (min-width: 1170px) {
-  .content-box {
-    .top-guide {
-      position: absolute !important;
-      top: 0;
-      right: 0;
+  
+}
+@media (max-width: 1040px)  and (min-width:992px){
+  .trading-instruction-page{
+  .content-box {    
+      .guide-menu {
+        flex-basis: 64%;
+      }
+    }
+    
+  }
+}
+@media (max-width: 991px) {
+  .trading-instruction-page{
+  .content-box {    
+    flex-direction: column;
+    padding-top: 0px;
+      .guide-menu {
+        flex-basis: 100%;
+        margin-right: 0px;
+      }
     }
   }
 }

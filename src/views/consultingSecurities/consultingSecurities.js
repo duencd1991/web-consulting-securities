@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import Layout from '../layout/layout';
 import { connect } from 'react-redux';
 import './consultingSecurities.scss';
-import icArrow from '../../assets/img/next-arrow.png';
-import icSkype from '../../assets/img/icSkype.png';
-import icTele from '../../assets/img/icTele.png';
+import icArrow from '../../assets/img/icArrowNext.png';
+import icSkype from '../../assets/img/icSkype16x16.png';
+import icTele from '../../assets/img/icTele16x16.png';
 
 const listMenu = [
   'HỆ THỐNG MBS',
@@ -89,6 +89,7 @@ class ConsultingSecurities extends Component {
             <div className='layout-robot-consulting'>
               <div className='title'>HỆ THỐNG <span>ROBOT</span> KHUYẾN NGHỊ</div>
               <hr />
+              <div class="table-responsive">
               <table className="table table-striped">
                 <thead>
                   <tr>
@@ -123,6 +124,7 @@ class ConsultingSecurities extends Component {
                   }
                 </tbody>
               </table>
+              </div>
               <div className='title'>LIVE TRADING</div>
               <hr />
               <div className='title'>CÔNG CỤ GIAO DỊCH</div>

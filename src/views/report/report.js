@@ -160,7 +160,7 @@ class Report extends Component {
         Header: 'LƯỢT XEM',
         accessor: 'views',
         maxWidth: 100,
-        Cell: props => <div className='table-center-element'><div className='table-center-view'>Lượt view:</div>
+        Cell: props => <div className='table-center-element'><div className='table-center-time'>Lượt view:</div>
           {props.value}
         </div>
       },

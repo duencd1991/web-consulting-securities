@@ -685,16 +685,16 @@
     }
   }
 }
-@media screen and (max-width:1040px){
+@media screen and (max-width:1040px) and (min-width:992px){
   .training-service-page 
   {
     .course-layout {
       .course-box {
         .course-content {
-          flex-direction: column;
+          flex-direction: row;
           .list-course-box {
-            flex-basis: 100%;
-              padding-right: 0px;
+            flex-basis: 66%;
+              padding-right: 20px;
             .list-course {
               height: auto;
               .course-item{
@@ -765,6 +765,27 @@
                 }
               }
             }
+          }
+        }
+      }
+    }
+  }
+
+  .course-layout {
+    .course-box {
+      .course-content {
+        flex-direction: column;
+        .list-course-box {
+          flex-basis: 100%;
+            padding-right: 0px;
+          .list-course {
+            height: auto;
+            .course-item{
+              .course-title{
+                padding:3px 0px;
+              }
+            }
+            
           }
         }
       }
