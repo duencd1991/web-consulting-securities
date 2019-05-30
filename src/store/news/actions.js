@@ -5,6 +5,7 @@ const actions = {
   NEWS_GET_LIST_TOP: 'NEWS_GET_LIST_TOP',
   NEWS_LIST_HOT: 'NEWS_LIST_HOT',
   NEWS_GET_LIST_HOT: 'NEWS_GET_LIST_HOT',
+  NEWS_UPDATE_VIEWS: 'NEWS_UPDATE_VIEWS',
   listNews: (start, limit, category) => ({
     type: actions.NEWS_GET_LIST,
     start: start,
@@ -16,6 +17,10 @@ const actions = {
   }),
   listNewsTop: () => ({
     type: actions.NEWS_GET_LIST_TOP
+  }),
+  updateViews: (id) => ({
+    type: actions.NEWS_UPDATE_VIEWS,
+    id
   })
 };
 export default actions;

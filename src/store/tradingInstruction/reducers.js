@@ -18,8 +18,6 @@ const GuideLines = (state = initialState, action) => {
       return { ...state, listType2: action.list};
     case actions.GUIDELINE_TYPE_3:
       return { ...state, listType3: action.list};
-    case actions.GUIDELINE_VIEW_UPDATE:
-      return { ...state, status: action.status };
     default:
       return state;
   }

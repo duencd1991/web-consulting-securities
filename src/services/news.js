@@ -21,4 +21,11 @@ const listNewsTop = () => {
     method: 'get'
   });
 };
-export { listNews, listNewsHot, listNewsTop };
+const updateViews = ( id ) => {
+  let url = `/news/upViews?id=${id}`;
+  return request({
+    url: url,
+    method: 'put'
+  });
+};
+export { listNews, listNewsHot, listNewsTop, updateViews };

@@ -1,7 +1,7 @@
 import actions from './actions';
 import notifyActions from '../notification/actions';
 import { all, fork, put, takeEvery } from 'redux-saga/effects';
-import { listTop, listType } from '../../services/tradingGuideLine';
+import { listTop, listType, updateViews } from '../../services/tradingGuideLine';
 
 export function* guideLineListType(data) {
   yield takeEvery(actions.GUIDELINE_GET_LIST_TYPE, function* (data) {
@@ -47,31 +47,31 @@ export function* guideLineListTop(data) {
   });
 }
 
-// export function* guidelineUpdateView(data) {
-//   yield takeEvery(actions.GUIDELINE_VIEW_UPDATE, function* (data) {
-//     try {
-//       yield put({ type: notifyActions.NOTIFY_LOADING });
+export function* guidelineUpdateView(data) {
+  yield takeEvery(actions.GUIDELINE_VIEW_UPDATE, function* (data) {
+    try {
+      yield put({ type: notifyActions.NOTIFY_LOADING });
 
-//       const response = yield updateViews(data.id);
-//       if (response.status === 200) {
-//         if (response.data.statusCode === 1) {
-//           yield put({ type: notifyActions.NOTIFY_SUCCESS, message: response.data.message });
-//         } else {
-//           yield put({ type: notifyActions.NOTIFY_ERROR, error: response.data.message });
-//         }
-//       }
+      const response = yield updateViews(data.id);
+      if (response.status === 200) {
+        if (response.data.statusCode === 1) {
+          yield put({ type: notifyActions.NOTIFY_SUCCESS, message: response.data.message });
+        } else {
+          yield put({ type: notifyActions.NOTIFY_ERROR, error: response.data.message });
+        }
+      }
 
-//       yield put({ type: notifyActions.NOTIFY_LOADING });
-//     } catch (error) {
-//       yield put({ type: notifyActions.NOTIFY_ERROR, error: error.message });
-//     }
-//   });
-// }
+      yield put({ type: notifyActions.NOTIFY_LOADING });
+    } catch (error) {
+      yield put({ type: notifyActions.NOTIFY_ERROR, error: error.message });
+    }
+  });
+}
 
 export default function* rootSaga() {
   yield all([
     fork(guideLineListTop),
-    fork(guideLineListType)
-    // fork(guidelineUpdateView)
+    fork(guideLineListType),
+    fork(guidelineUpdateView)
   ]);
 }

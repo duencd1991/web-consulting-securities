@@ -8,7 +8,7 @@ const actions = {
     limit,
     reportType
   }),
-  updateView: (id) => ({
+  updateViews: (id) => ({
     type: actions.REPORT_VIEW_UPDATE,
     id
   })

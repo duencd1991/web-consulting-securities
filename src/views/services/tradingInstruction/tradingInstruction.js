@@ -154,8 +154,8 @@ const mapDispatchToProps = dispatch => {
     fetchListType: (start, limit) => {
       dispatch(actions.listType(start, limit));
     },
-    updateView: (id) => {
-      dispatch(actions.updateView(id));
+    updateViews: (id) => {
+      dispatch(actions.updateViews(id));
     }
   }
 };

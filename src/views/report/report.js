@@ -126,11 +126,12 @@ class Report extends Component {
         </div>
       },
       {
+        id: 'reportId',
         Header: 'DOWNLOAD',
-        accessor: 'url',
+        accessor: row => [row.id, row.url],
         maxWidth: 100,
         Cell: props => <div className='table-center-element'><div className='table-center-time'>Download:</div>
-          <a href={props.value} target="_blank" rel='noopener noreferrer' >
+          <a href={props.value[1]} target="_blank" rel='noopener noreferrer' onClick={() => this.props.updateViews(props.value[0])} >
             <img src={icDownload} alt='img'/>
           </a>
         </div>
@@ -212,7 +213,7 @@ const mapDispatchToProps = dispatch => {
       dispatch(actions.listReport(start, limit, type));
     },
     updateViews: (id) => {
-      dispatch(actions.updateView(id));
+      dispatch(actions.updateViews(id));
     }
   }
 };

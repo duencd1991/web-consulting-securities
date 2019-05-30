@@ -16,7 +16,7 @@ const actions = {
     start,
     limit
   }),
-  updateView: (id) => ({
+  updateViews: (id) => ({
     type: actions.GUIDELINE_VIEW_UPDATE,
     id
   })

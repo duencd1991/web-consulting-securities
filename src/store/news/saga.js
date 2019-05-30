@@ -1,7 +1,7 @@
 import actions from './actions';
 import notifyActions from '../notification/actions';
 import { all, fork, put, takeEvery } from 'redux-saga/effects';
-import { listNews, listNewsHot, listNewsTop } from '../../services/news';
+import { listNews, listNewsHot, listNewsTop, updateViews } from '../../services/news';
 
 export function* getListNews(data) {
   yield takeEvery(actions.NEWS_GET_LIST, function* (data) {
@@ -54,10 +54,32 @@ export function* getListNewHot(data) {
   });
 }
 
+export function* newsUpdateViews(data) {
+  yield takeEvery(actions.NEWS_UPDATE_VIEWS, function* (data) {
+    try {
+      yield put({ type: notifyActions.NOTIFY_LOADING });
+
+      const response = yield updateViews(data.id);
+      if (response.status === 200) {
+        if (response.data.statusCode === 1) {
+          yield put({ type: notifyActions.NOTIFY_SUCCESS, message: response.data.message });
+        } else {
+          yield put({ type: notifyActions.NOTIFY_ERROR, error: response.data.message });
+        }
+      }
+
+      yield put({ type: notifyActions.NOTIFY_LOADING });
+    } catch (error) {
+      yield put({ type: notifyActions.NOTIFY_ERROR, error: error.message });
+    }
+  });
+}
+
 export default function* rootSaga() {
   yield all([
     fork(getListNews),
     fork(getListNewHot),
-    fork(getListNewsTop)
+    fork(getListNewsTop),
+    fork(newsUpdateViews)
   ]);
 }

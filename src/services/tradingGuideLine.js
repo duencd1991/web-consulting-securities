@@ -14,4 +14,11 @@ const listType = (start, limit, type) => {
     method: 'get'
   });
 };
-export { listTop, listType };
+const updateViews = ( id ) => {
+  let url = `/guideline/upViews?id=${id}`;
+  return request({
+    url: url,
+    method: 'put'
+  });
+};
+export { listTop, listType, updateViews };

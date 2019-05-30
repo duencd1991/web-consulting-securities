@@ -10,6 +10,7 @@ import icArrowNext from '../../assets/img/icArrowNext.png'
 import icArrowStart from '../../assets/img/icArrowStart.png'
 import icArrowEnd from '../../assets/img/icArrowEnd.png';
 import actions from '../../store/news/actions';
+import history from '../../utils/history';
 
 
 const listNewMenu = [
@@ -19,79 +20,6 @@ const listNewMenu = [
   'Tin khuyến mãi',
   'Thư viện',
   'Video'
-]
-const listNews = [
-  {
-    img: '',
-    title: 'Chiến lược giao dịch trong ngày (day trading)',
-    des: 'Thị trường Việt Nam hiện đã có sản phẩm phái sinh cho phép nhà đầu tư thực hiện chiến lược giao dịch trong ngày. Click để tìm hiểu chi tiết về chiến lược này.',
-    author: 'Admin',
-    date: '04/10/2019',
-    views: 112
-  },
-  {
-    img: '',
-    title: 'Chiến lược giao dịch trong ngày (day trading)',
-    des: 'Thị trường Việt Nam hiện đã có sản phẩm phái sinh cho phép nhà đầu tư thực hiện chiến lược giao dịch trong ngày. Click để tìm hiểu chi tiết về chiến lược này.',
-    author: 'Admin',
-    date: '04/10/2019',
-    views: 112
-  },
-  {
-    img: '',
-    title: 'Chiến lược giao dịch trong ngày (day trading)',
-    des: 'Thị trường Việt Nam hiện đã có sản phẩm phái sinh cho phép nhà đầu tư thực hiện chiến lược giao dịch trong ngày. Click để tìm hiểu chi tiết về chiến lược này.',
-    author: 'Admin',
-    date: '04/10/2019',
-    views: 112
-  },
-  {
-    img: '',
-    title: 'Chiến lược giao dịch trong ngày (day trading)',
-    des: 'Thị trường Việt Nam hiện đã có sản phẩm phái sinh cho phép nhà đầu tư thực hiện chiến lược giao dịch trong ngày. Click để tìm hiểu chi tiết về chiến lược này.',
-    author: 'Admin',
-    date: '04/10/2019',
-    views: 112
-  },
-  {
-    img: '',
-    title: 'Chiến lược giao dịch trong ngày (day trading)',
-    des: 'Thị trường Việt Nam hiện đã có sản phẩm phái sinh cho phép nhà đầu tư thực hiện chiến lược giao dịch trong ngày. Click để tìm hiểu chi tiết về chiến lược này.',
-    author: 'Admin',
-    date: '04/10/2019',
-    views: 112
-  },
-  {
-    img: '',
-    title: 'Chiến lược giao dịch trong ngày (day trading)',
-    des: 'Thị trường Việt Nam hiện đã có sản phẩm phái sinh cho phép nhà đầu tư thực hiện chiến lược giao dịch trong ngày. Click để tìm hiểu chi tiết về chiến lược này.',
-    author: 'Admin',
-    date: '04/10/2019',
-    views: 112
-  }
-]
-const listNewTop = [
-  {
-    img: '',
-    title: 'Hướng dẫn cách chơi chứng khoán cho nhà đầu tư mới',
-    author: 'Admin',
-    date: '04/10/2019',
-    views: 112
-  },
-  {
-    img: '',
-    title: 'Thông báo: Điều chỉnh phí giao dịch phái sinh tích hợp giao dịch phái sinh vào phần mềm cơ sở',
-    author: 'Admin',
-    date: '04/10/2019',
-    views: 112
-  },
-  {
-    img: '',
-    title: 'Chứng quyền có bảo đảm là gì?',
-    author: 'Admin',
-    date: '04/10/2019',
-    views: 112
-  }
 ]
 
 class News extends Component {
@@ -145,6 +73,11 @@ class News extends Component {
     }
   }
 
+  goToDetail = (id) => {
+    this.props.updateViews(id);
+    history.push({ pathname: `/news-detail?id=${id}`});
+  }
+
   render() {
     const {
       selectedMenu,
@@ -176,7 +109,7 @@ class News extends Component {
                         <i className="far fa-eye"></i>
                         <span>{item.views ? item.views : 0}</span>
                       </div>
-                      <div className='btn-detail'>CHI TIẾT</div>
+                      <div className='btn-detail' onClick={() => this.goToDetail(item.id)}>CHI TIẾT</div>
                     </div>
                   }) : <div className='error-no-data'>Không có dữ liệu</div>
                   
@@ -273,6 +206,9 @@ const mapDispatchToProps = dispatch => {
     },
     fetchlistNewsTop: () => {
       dispatch(actions.listNewsTop());
+    },
+    updateViews: (id) => {
+      dispatch(actions.updateViews(id));
     }
   }
 };
