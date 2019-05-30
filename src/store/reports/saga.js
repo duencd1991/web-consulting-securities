@@ -8,7 +8,7 @@ export function* reportList(data) {
     try {
       yield put({ type: notifyActions.NOTIFY_LOADING });
 
-      const response = yield list(data.start, data.limit);
+      const response = yield list(data.start, data.limit, data.reportType);
       if (response.status === 200) {
         yield put({ type: actions.REPORT_LIST, list: response.data.list, total: response.data.total });
       }
@@ -21,11 +21,11 @@ export function* reportList(data) {
 }
 
 export function* reportUpdateView(data) {
-  yield takeEvery(actions.ALGORITHM_CHANGE_STATUS, function* (data) {
+  yield takeEvery(actions.REPORT_VIEW_UPDATE, function* (data) {
     try {
       yield put({ type: notifyActions.NOTIFY_LOADING });
 
-      const response = yield updateViews(data.id, data.views);
+      const response = yield updateViews(data.id);
       if (response.status === 200) {
         if (response.data.statusCode === 1) {
           yield put({ type: notifyActions.NOTIFY_SUCCESS, message: response.data.message });

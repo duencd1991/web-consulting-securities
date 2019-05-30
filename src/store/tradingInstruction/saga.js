@@ -12,7 +12,15 @@ export function* guideLineListType(data) {
       const response2 = yield listType(data.start, data.limit, 2);
       const response3 = yield listType(data.start, data.limit, 3);
       if (response1.status === 200) {
-        yield put({ type: actions.GUIDELINE_LIST_TYPE, list: response1.data.list, total: response1.data.total });
+        yield put({ type: actions.GUIDELINE_TYPE_1, list: response1.data.list});
+      }
+      
+      if (response2.status === 200) {
+        yield put({ type: actions.GUIDELINE_TYPE_2, list: response2.data.list});
+      }
+      
+      if (response3.status === 200) {
+        yield put({ type: actions.GUIDELINE_TYPE_3, list: response3.data.list});
       }
 
       yield put({ type: notifyActions.NOTIFY_LOADING });

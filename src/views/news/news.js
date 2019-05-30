@@ -100,7 +100,7 @@ class News extends Component {
     super(props);
 
     this.state = {
-      selectedMenu: 0,
+      selectedMenu: 1,
       pageNum: 1,
       pageSize: 6,
       total: 0
@@ -120,9 +120,21 @@ class News extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchListNews();
+    const state = this.state;
+    let start = (state.pageNum - 1) *  state.pageSize;
+    let limit = state.pageSize + start; 
+    this.props.fetchListNews(start, limit, state.selectedMenu);
     this.props.fetchListNewsHot();
     this.props.fetchlistNewsTop();
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.selectedMenu !== this.state.selectedMenu) {
+      const state = this.state;
+      let start = (state.pageNum - 1) *  state.pageSize;
+      let limit = state.pageSize + start; 
+      this.props.fetchListNews(start, limit, state.selectedMenu);
+    }
   }
 
   componentWillReceiveProps(nextProps) {
@@ -152,7 +164,7 @@ class News extends Component {
               <hr />
               <div className='list-new-box'>
                 {
-                  this.props.listNews.map((item, index) => {
+                  this.props.listNews && this.props.listNews.length > 0 ? this.props.listNews.map((item, index) => {
                     return <div className='new-item' key={index}>
                       <img alt={`img-${index}`} src={item.img ? item.img : icNoImg}/>
                       <div className='title'>{item.title}</div>
@@ -166,7 +178,8 @@ class News extends Component {
                       </div>
                       <div className='btn-detail'>CHI TIẾT</div>
                     </div>
-                  })
+                  }) : <div className='error-no-data'>Không có dữ liệu</div>
+                  
                 }
               </div>
               <Pagination
@@ -181,15 +194,12 @@ class News extends Component {
                 onChange={this.onChangePageNum}
               />
             </div>
-            {/* <div className='box-news'> */}
-              
-              {/* </div> */}
-               <div className='box-news'>
-               <div className='list-news-menu'>
+              <div className='box-news'>
+              <div className='list-news-menu'>
                 {
                   listNewMenu.map((item, index) => {
-                    return <div key={index} onClick={ () => this.onSelectMenu(index)}
-                      className={selectedMenu === index ? 'news-menu-item selected' : 'news-menu-item'}>{item}
+                    return <div key={index} onClick={ () => this.onSelectMenu(index + 1)}
+                      className={selectedMenu === index + 1 ? 'news-menu-item selected' : 'news-menu-item'}>{item}
                     </div>
                   })
                 }
@@ -255,8 +265,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchListNews: (start, limit) => {
-      dispatch(actions.listNews(start, limit));
+    fetchListNews: (start, limit, category) => {
+      dispatch(actions.listNews(start, limit, category));
     },
     fetchListNewsHot: () => {
       dispatch(actions.listNewsHot());

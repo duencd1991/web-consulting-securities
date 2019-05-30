@@ -9,69 +9,22 @@ import { DEFAULT_TABLE } from '../../utils/constant';
 import icDownload from '../../assets/img/ic-download.png';
 import actions from '../../store/reports/actions';
 
-const listReport = [
+const listType = [
   {
-    stt: 1,
-    name: 'Chiến lược giao dịch HĐTL ngày 10.04.2019 - Article',
-    updated: '09/04/2019',
-    views: 189,
-    url: 'abc.com.vn'
+    type: 1,
+    title: 'Bản tin phái sinh'
   },
   {
-    stt: 2,
-    name: 'Chiến lược giao dịch HĐTL ngày 10.04.2019 - Article',
-    updated: '09/04/2019',
-    views: 189,
-    url: 'abc.com.vn'
+    type: 2,
+    title: 'Báo cáo Phân tích cơ bản Phái sinh'
   },
   {
-    stt: 3,
-    name: 'Chiến lược giao dịch HĐTL ngày 10.04.2019 - Article',
-    updated: '09/04/2019',
-    views: 189,
-    url: 'abc.com.vn'
+    type: 3,
+    title: 'Báo cáo phân tích kỹ thuật Phái sinh'
   },
   {
-    stt: 4,
-    name: 'Chiến lược giao dịch HĐTL ngày 10.04.2019 - Article',
-    updated: '09/04/2019',
-    views: 189,
-    url: 'abc.com.vn'
-  },
-  {
-    stt: 5,
-    name: 'Chiến lược giao dịch HĐTL ngày 10.04.2019 - Article',
-    updated: '09/04/2019',
-    views: 189,
-    url: 'abc.com.vn'
-  },
-  {
-    stt: 6,
-    name: 'Chiến lược giao dịch HĐTL ngày 10.04.2019 - Chiến lược giao dịch HĐTL ngày 10.04.2019',
-    updated: '09/04/2019',
-    views: 189,
-    url: 'abc.com.vn'
-  },
-  {
-    stt: 7,
-    name: 'Chiến lược giao dịch HĐTL ngày 10.04.2019 - Article',
-    updated: '09/04/2019',
-    views: 189,
-    url: 'abc.com.vn'
-  },
-  {
-    stt: 8,
-    name: 'Chiến lược giao dịch HĐTL ngày 10.04.2019 - Article',
-    updated: '09/04/2019',
-    views: 189,
-    url: 'abc.com.vn'
-  },
-  {
-    stt: 9,
-    name: 'Chiến lược giao dịch HĐTL ngày 10.04.2019 - Article',
-    updated: '09/04/2019',
-    views: 189,
-    url: 'abc.com.vn'
+    type: 4,
+    title: 'Báo cáo phân tích CW'
   }
 ]
 
@@ -81,10 +34,10 @@ class Report extends Component {
     super(props);
 
     this.state = {
-      selectedType: 'phaisinh',
+      selectedType: 1,
       pageNum: DEFAULT_TABLE.pageNum,
       pageSize: DEFAULT_TABLE.pageSize,
-      total: listReport.length
+      total: 0
     }
   }
 
@@ -107,11 +60,10 @@ class Report extends Component {
   }
 
   componentDidMount() {
-    const pageNum = this.state.pageNum;
-    const pageSize = this.state.pageSize;
-    let start = (pageNum - 1) * pageSize;
-    let end = start + pageSize;
-    this.props.fetchListReport(start, end);
+    const state = this.state;
+    let start = (state.pageNum - 1) *  state.pageSize;
+    let limit = state.pageSize + start; 
+    this.props.fetchListReport(start, limit, state.selectedType);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -119,6 +71,15 @@ class Report extends Component {
       this.setState({
         total: nextProps.total
       })
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.selectedType !== this.state.selectedType) {
+      const state = this.state;
+      let start = (state.pageNum - 1) *  state.pageSize;
+      let limit = state.pageSize + start; 
+      this.props.fetchListReport(start, limit, state.selectedType);
     }
   }
 
@@ -183,14 +144,12 @@ class Report extends Component {
           </div>
           <div className='report-content'>
             <div className='report-types'>
-              <div className={selectedType === 'phaisinh' ? 'report-type-item selected' : 'report-type-item'}
-                onClick={ () => this.onChangeType('phaisinh')} >Bản tin phái sinh <span></span></div>
-              <div className={selectedType === 'coban' ? 'report-type-item selected' : 'report-type-item'}
-                onClick={ () => this.onChangeType('coban')} >Báo cáo Phân tích cơ bản Phái sinh</div>
-              <div className={selectedType === 'kythuat' ? 'report-type-item selected' : 'report-type-item'}
-                onClick={ () => this.onChangeType('kythuat')} >Báo cáo phân tích kỹ thuật Phái sinh</div>
-              <div className={selectedType === 'cw' ? 'report-type-item selected' : 'report-type-item'}
-                onClick={ () => this.onChangeType('cw')} >Báo cáo phân tích CW</div>
+            {
+              listType.map((item, index) => {
+                return <div key={index} className={selectedType === item.type ? 'report-type-item selected' : 'report-type-item'}
+                onClick={ () => this.onChangeType(item.type)} >{item.title}</div>
+              })
+            }
             </div>
             <div className='report-tables'>
               <div className='report-title'>BÁO CÁO PHÂN TÍCH CƠ BẢN PHÁI SINH</div>
@@ -249,8 +208,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchListReport: (start, limit) => {
-      dispatch(actions.listReport(start, limit));
+    fetchListReport: (start, limit, type) => {
+      dispatch(actions.listReport(start, limit, type));
     },
     updateViews: (id) => {
       dispatch(actions.updateView(id));

@@ -55,12 +55,14 @@
         background-color: #f7f7f7;
         .menu-item-box {
           list-style: none;
-          height: 50px;
+          max-height: 50px;
           overflow: hidden;
           position: relative;
-          -webkit-transition: height 0.5s;
-          -moz-transition: height 0.5s;
-          transition: height 0.5s;
+          -webkit-transition: max-height 2s; 
+          -moz-transition: max-height 2s; 
+          -ms-transition: max-height 2s; 
+          -o-transition: max-height 2s; 
+          transition: max-height 2s;
           margin: 0;
           padding: 0;
           .arrow {
@@ -70,10 +72,12 @@
             top: 15px;
           }
           &.active {
-            height: auto;
-            -webkit-transition: height 0.5s;
-            -moz-transition: height 0.5s;
-            transition: height 0.5s;
+            max-height: none;
+            -webkit-transition: max-height 2s; 
+            -moz-transition: max-height 2s; 
+            -ms-transition: max-height 2s; 
+            -o-transition: max-height 2s; 
+            transition: max-height 2s;
             .arrow {
               color: #ffffff;
             }

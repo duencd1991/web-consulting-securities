@@ -7,7 +7,7 @@ export default class ContactBox extends Component {
       <div className='contact-box'>
         <div className='info-box'>
           <div className='contact-title'>PHÒNG DỊCH VỤ KHÁCH HÀNG ONLINE</div>
-          <div class='info-content'>
+          <div className='info-content'>
             <i className="fas fa-map-marker-alt"></i>
             <span className='info-address'>Số 3 Liễu Giai, Quận Ba Đình, Hà Nội</span>
           </div>
@@ -22,10 +22,10 @@ export default class ContactBox extends Component {
         </div>
         <div className='msg-box'>
           <div className='contact-title'>GỬI LỜI NHẮN</div>
-          <input className='form-control msg-text' type='text' placeHolder='Họ và tên *'/>
-          <input className='form-control msg-text' type='text' placeHolder='Điện thoại *'/>
-          <input className='form-control msg-text' type='text' placeHolder='Email *'/>
-          <textarea class="form-control msg-text" rows="3" placeHolder='Nội dung *'/>
+          <input className='form-control msg-text' type='text' placeholder='Họ và tên *'/>
+          <input className='form-control msg-text' type='text' placeholder='Điện thoại *'/>
+          <input className='form-control msg-text' type='text' placeholder='Email *'/>
+          <textarea className="form-control msg-text" rows="3" placeholder='Nội dung *'/>
 
           <button className='btn btn-send-msg'>
             <i className="fas fa-paper-plane"></i>

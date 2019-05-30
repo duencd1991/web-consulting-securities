@@ -8,9 +8,11 @@ export function* getListNews(data) {
     try {
       yield put({ type: notifyActions.NOTIFY_LOADING });
 
-      const response = yield listNews(data.start, data.limit);
+      const response = yield listNews(data.start, data.limit, data.category);
       if (response.data.statusCode === 1) {
         yield put({ type: actions.NEWS_LIST, list: response.data.list, total: response.data.total});
+      } else if (response.data.statusCode === 7) {
+        yield put({ type: actions.NEWS_LIST, list: [], total: response.data.total});
       }
 
       yield put({ type: notifyActions.NOTIFY_LOADING });

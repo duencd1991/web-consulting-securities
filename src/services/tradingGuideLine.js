@@ -8,7 +8,7 @@ const listTop = ( start, limit) => {
   });
 };
 const listType = (start, limit, type) => {
-  let url = `/guideline/listtype`;
+  let url = `/guideline/list/get?start=${start}&limit=${limit}&type=${type}`;
   return request({
     url: url,
     method: 'get'

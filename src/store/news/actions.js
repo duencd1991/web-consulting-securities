@@ -5,10 +5,11 @@ const actions = {
   NEWS_GET_LIST_TOP: 'NEWS_GET_LIST_TOP',
   NEWS_LIST_HOT: 'NEWS_LIST_HOT',
   NEWS_GET_LIST_HOT: 'NEWS_GET_LIST_HOT',
-  listNews: (start, limit) => ({
+  listNews: (start, limit, category) => ({
     type: actions.NEWS_GET_LIST,
     start: start,
-    limit: limit
+    limit: limit,
+    category
   }),
   listNewsHot: () => ({
     type: actions.NEWS_GET_LIST_HOT

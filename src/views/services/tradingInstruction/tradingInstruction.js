@@ -22,77 +22,12 @@ const typeGuide = [
     title: 'Biểu phí giao dịch'
   }
 ]
-const listGuide = [
-  {
-    catalog: 'Hướng dẫn giao dịch CKPS',
-    list: [
-      {
-        title: "Hướng dẫn mở tài khoản",
-        src: 'abc.com.vn'
-      },
-      {
-        title: "Hướng dẫn giao dịch D24",
-        src: 'abc.com.vn'
-      },
-      {
-        title: "Hướng dẫn lệnh điều kiện",
-        src: 'abc.com.vn'
-      },
-      {
-        title: "Hướng dẫn chuyển TK sang kênh Online (áp dụng cho KH đã mở TK)",
-        src: 'abc.com.vn'
-      }
-    ]
-  },
-  {
-    catalog: 'Quy chuẩn hợp đồng tương lai',
-    list: [
-      {
-        title: "Hướng dẫn mở tài khoản",
-        src: 'abc.com.vn'
-      },
-      {
-        title: "Hướng dẫn giao dịch D24",
-        src: 'abc.com.vn'
-      },
-      {
-        title: "Hướng dẫn lệnh điều kiện",
-        src: 'abc.com.vn'
-      },
-      {
-        title: "Hướng dẫn chuyển TK sang kênh Online (áp dụng cho KH đã mở TK)",
-        src: 'abc.com.vn'
-      }
-    ]
-  },
-  {
-    catalog: 'Biểu phí giao dịch',
-    list: [
-      {
-        title: "Hướng dẫn mở tài khoản",
-        src: 'abc.com.vn'
-      },
-      {
-        title: "Hướng dẫn giao dịch D24",
-        src: 'abc.com.vn'
-      },
-      {
-        title: "Hướng dẫn lệnh điều kiện",
-        src: 'abc.com.vn'
-      },
-      {
-        title: "Hướng dẫn chuyển TK sang kênh Online (áp dụng cho KH đã mở TK)",
-        src: 'abc.com.vn'
-      }
-    ]
-  }
-]
 
 class TradingInstrucion extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedMenu: 0
+      selectedMenu: 1
     }
   }
 
@@ -107,7 +42,7 @@ class TradingInstrucion extends Component {
   }
 
   componentDidMount() {
-    // this.props.fetchListType();
+    this.props.fetchListType(0, 4);
     this.props.fetchGuideLineList(0, 10);
   }
 
@@ -129,17 +64,35 @@ class TradingInstrucion extends Component {
               <hr />
               <div className='list-menu-box'>
                 {
-                  listGuide.map((item, index) => {
-                    return <ul key={index} className={selectedMenu === index? 'menu-item-box active' : 'menu-item-box'}>
+                  typeGuide.map((typeItem, index) => {
+                    return <ul key={index} className={selectedMenu === typeItem.type ? 'menu-item-box active' : 'menu-item-box'}>
                       {
-                        selectedMenu === index ? <i className="fas fa-angle-up arrow" /> : <i className="fas fa-angle-down arrow" />
+                        selectedMenu === typeItem.type ? <i className="fas fa-angle-up arrow" />
+                          : <i className="fas fa-angle-down arrow" />
                       }
-                      <li className={selectedMenu === index ? 'menu-catalog active' : 'menu-catalog' } onClick={()=>this.selectMenu(index)}>{ item.catalog}</li>
+                      <li className={selectedMenu === typeItem.type ? 'menu-catalog active' : 'menu-catalog' }
+                        onClick={()=>this.selectMenu(typeItem.type)}>{ typeItem.title}</li>
                       {
-                        item.list.map((item, index) => {
+                        typeItem.type === 1 && this.props.listType1 && this.props.listType1.map((item, index) => {
                           return <li key={index}>
                             <i className="fas fa-angle-double-right"></i>
-                            {item.title}
+                            {item.name}
+                          </li>
+                        })
+                      }
+                      {
+                        typeItem.type === 2 && this.props.listType2 && this.props.listType2.map((item, index) => {
+                          return <li key={index}>
+                            <i className="fas fa-angle-double-right"></i>
+                            {item.name}
+                          </li>
+                        })
+                      }
+                      {
+                        typeItem.type === 3 && this.props.listType3 && this.props.listType3.map((item, index) => {
+                          return <li key={index}>
+                            <i className="fas fa-angle-double-right"></i>
+                            {item.name}
                           </li>
                         })
                       }
@@ -186,7 +139,9 @@ class TradingInstrucion extends Component {
 
 const mapStateToProps = state => {
   return {
-    listType: state.GuideLines.listType,
+    listType1: state.GuideLines.listType1,
+    listType2: state.GuideLines.listType2,
+    listType3: state.GuideLines.listType3,
     listTop: state.GuideLines.listTop
   };
 };
@@ -196,8 +151,8 @@ const mapDispatchToProps = dispatch => {
     fetchGuideLineList: (start, limit) => {
       dispatch(actions.listTop(start, limit));
     },
-    fetchListType: () => {
-      dispatch(actions.listType());
+    fetchListType: (start, limit) => {
+      dispatch(actions.listType(start, limit));
     },
     updateView: (id) => {
       dispatch(actions.updateView(id));
