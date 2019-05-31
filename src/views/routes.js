@@ -16,6 +16,7 @@ import AboutUs from './aboutUs/aboutUs';
 import News from './news/news';
 import ConsultingSecurities from './consultingSecurities/consultingSecurities';
 import PageNotFound from './pageNotFound/pageNotFound';
+import CreateTradingAccount from './createTradingAccount/createTradingAccount';
 
 const AppRouter = () => {
   return (
@@ -31,6 +32,7 @@ const AppRouter = () => {
           <Route exact path="/about-us" component={AboutUs} />
           <Route exact path="/news" component={News} />
           <Route exact path="/consulting-securities" component={ConsultingSecurities} />
+          <Route exact path="/create-trading-account" component={CreateTradingAccount} />
           <Route component={PageNotFound}></Route>
         </Switch>
       </RootContainer>

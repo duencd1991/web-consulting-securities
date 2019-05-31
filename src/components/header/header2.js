@@ -52,7 +52,7 @@ export default class Header extends Component {
                     DỊCH VỤ
                   </div>
                   <div className="dropdown-menu animate slideIn" aria-labelledby="navbarDropdown">
-                    <a className="dropdown-item" href="/register-account">Mở tài khoản</a>
+                    <a className="dropdown-item" href="/create-trading-account">Mở tài khoản</a>
                     
                     <a className="dropdown-item" href="/trading-instruction">Hướng dẫn giao dịch</a>
                     
