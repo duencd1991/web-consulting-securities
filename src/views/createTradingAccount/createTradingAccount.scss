@@ -66,7 +66,7 @@
                 .header_content_form{
                     background-color: #eeeeee;
                     border-bottom: 1px solid #e3e3e3;
-                    padding:10px 20px;
+                    padding:7px 20px;
                     margin-top: 20px;
                     flex-basis: 100%;
                     color: #202020;
@@ -266,11 +266,18 @@
     }
 }
 @media screen and (max-width: 575px) {
-    .create-trading-account-page {
+    .create-trading-account-page {   
         .ctaccount_content {
             .header_title {
                 .ctaccount_title {
                     font-size: 22px;}
+            }
+            .main_form {
+                .content_form {
+                    .header_content_form{
+                        padding: 8px 10px;
+                    }
+                }
             }
         }
     }
