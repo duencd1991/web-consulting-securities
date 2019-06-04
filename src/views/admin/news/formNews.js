@@ -109,7 +109,7 @@ class FormNews extends Component {
       thumbnail,
       content,
     } =  this.state;
-    let check = title !== '' && selectedCategory !== 0 && thumbnail !== '' && connect !== '';
+    let check = title !== '' && selectedCategory !== 0 && thumbnail !== '' && content !== '';
     this.setState({
       validate: check
     })
@@ -119,7 +119,6 @@ class FormNews extends Component {
   render() {
     const {
       title,
-      selectedCategory,
       thumbnail,
       content,
       update,

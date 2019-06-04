@@ -4,9 +4,7 @@ import Layout from '../../layout/layout';
 import './tradingInstruction.scss';
 import bgHDGD from '../../../assets/img/bg_huong_dan_giao_dich.jpg';
 import ContactBox from '../../../components/contactBox/contactBox';
-import { toast } from 'react-toastify';
 import actions from '../../../store/tradingInstruction/actions';
-import notifyActions from '../../../store/notification/actions';
 
 const typeGuide = [
   {

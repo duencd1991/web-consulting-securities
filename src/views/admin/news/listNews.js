@@ -3,9 +3,6 @@ import Layout from '../../layout/layout'
 import { connect } from 'react-redux';
 import { DEFAULT_TABLE, TYPE_NEWS } from '../../../utils/constant';
 import actions from '../../../store/news/actions';
-import ReactTable from 'react-table';
-import Pagination from 'react-js-pagination';
-import 'react-table/react-table.css';
 import './listNews.scss';
 import Table from '../../../components/table/table';
 

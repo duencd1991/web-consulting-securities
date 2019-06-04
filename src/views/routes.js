@@ -4,21 +4,22 @@ import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
 // import component
-import history from '../utils/history'
-import RootContainer from './rootContainer'
-import Home from './home'
-import ConsultingService from './services/consultingService/consulting'
-import TradingInstrucion from './services/tradingInstruction/tradingInstruction'
-import TrainingService from './services/trainingService/trainingService'
-import RegisterAccount from './services/registerAccount/registerAccount'
-import Report from './report/report'
-import AboutUs from './aboutUs/aboutUs'
-import News from './news/news'
-import ConsultingSecurities from './consultingSecurities/consultingSecurities'
-import PageNotFound from './pageNotFound/pageNotFound'
-import CreateTradingAccount from './createTradingAccount/createTradingAccount'
-import ListNews from './admin/news/listNews'
-import FormNews from './admin/news/formNews'
+import history from '../utils/history';
+import RootContainer from './rootContainer';
+import Home from './home';
+import ConsultingService from './services/consultingService/consulting';
+import TradingInstrucion from './services/tradingInstruction/tradingInstruction';
+import TrainingService from './services/trainingService/trainingService';
+import RegisterAccount from './services/registerAccount/registerAccount';
+import Report from './report/report';
+import AboutUs from './aboutUs/aboutUs';
+import News from './news/news';
+import ListNews from './admin/news/listNews';
+import FormNews from './admin/news/formNews';
+import ConsultingSecurities from './consultingSecurities/consultingSecurities';
+import PageNotFound from './pageNotFound/pageNotFound';
+import CreateTradingAccount from './createTradingAccount/createTradingAccount';
+import SearchResults from './searchResults/searchResults';
 
 const AppRouter = () => {
   return (
@@ -35,6 +36,7 @@ const AppRouter = () => {
           <Route path='/news' component={News} />
           <Route exact path='/consulting-securities' component={ConsultingSecurities} />
           <Route exact path='/create-trading-account' component={CreateTradingAccount} />
+          <Route exact path="/search-results" component={SearchResults} />
           <Route exact path='/list-news' component={ListNews} />
           <Route exact path='/create-news' component={FormNews} />
           <Route component={PageNotFound}></Route>

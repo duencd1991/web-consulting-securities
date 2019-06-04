@@ -5,7 +5,6 @@ import './layout.scss';
 import headerActions from '../../store/header/actions';
 import Header from '../../components/header/header2';
 import Footer from '../../components/footer/footer';
-import Loading from '../../components/loading/loading';
 
 const Layout = props => (
   <React.Fragment>

@@ -21,7 +21,7 @@ class HeaderTop extends Component {
           <span id='guide-register-text'>Bạn có <span>TÀI KHOẢN</span> giao dịch <span>CHỨNG KHOÁN</span> chưa?</span>
           <div className='listBtn'>
             <a className='btn btn-register' href='/create-trading-account'><i className="far ic_account"></i>Mở tài khoản</a>
-            <a className='btn btn-login'><i className="fas ic_unlock"></i>Đăng nhập</a>
+            <a className='btn btn-login' href='/search-results'><i className="fas ic_unlock"></i>Đăng nhập</a>
           </div>
           </div>
       </div>

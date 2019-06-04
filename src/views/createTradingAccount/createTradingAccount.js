@@ -242,7 +242,7 @@ export default class CreateTradingAccount extends Component {
                                   </label>
                               </div>
                           </div> 
-                          <div><img src="../assets/img/Capcha.jpg"></img></div>                         
+                          <div><img alt='img-capcha' src="../assets/img/Capcha.jpg"></img></div>                         
                           <button class="btn btn_continue mt15">Tiếp tục</button>
                           </div>
                       </div>

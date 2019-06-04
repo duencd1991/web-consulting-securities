@@ -50,7 +50,6 @@ class News extends Component {
   }
 
   componentDidMount() {
-    const state = this.state;
     this.fetchNews();
     this.props.fetchListNewsHot();
     this.props.fetchlistNewsTop();

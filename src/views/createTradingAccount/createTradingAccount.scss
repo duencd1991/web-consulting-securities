@@ -1,304 +1,311 @@
 .create-trading-account-page {
-    .ctaccount_banner {
-        height: 100px;
-        background: url(../../assets/img/banner_ctAccount.jpg) no-repeat center;
-        h3 {
-            font-size: 30px;
-            text-transform: uppercase;
-            color: #ffffff;
-            line-height: 100px;
-            text-align: center;
-        }
+  .ctaccount_banner {
+    height: 100px;
+    background: url(../../assets/img/banner_ctAccount.jpg) no-repeat center;
+    h3 {
+      font-size: 30px;
+      text-transform: uppercase;
+      color: #ffffff;
+      line-height: 100px;
+      text-align: center;
     }
-    .ctaccount_content {
-        display: flex;
-        flex-direction: column;
-        max-width: 1170px;
-        margin: auto;
-        padding: 40px 0 40px 0;
-        .header_title {
-            flex-basis: 100%;
-            .ctaccount_title {
-                font-size: 25px;
-                color: #125491;
-                text-transform: uppercase;
-            }
-            hr {
-                width: 71px;
-                height: 2px;
-                background-color: #125491;
-                margin: 0 0 23px 0;
-            }
-        }
-        .main_form {
-            border: 1px solid #dedede;
-            .heading_form {
-                background-color: #125491;
-                padding: 10px 20px;
-                flex-basis: 100%;
-                color: #fff;
-                font-size: 18px;
-                .txtC {
-                    color: #33ffff;
-                    font-weight: bold;
-                }
-            }
-            .content_form {
-                .txtRed {
-                    color: red;
-                }
-                .txtBlue {
-                    color: #125491;
-                }
-                .alignCenter {
-                    text-align: center;
-                }
-                padding: 20px;
-                h4 {
-                    color: #333;
-                    font-size: 15px;
-                    .note {
-                        color: red;
-                        text-decoration: underline;
-                    }
-                }
-                .header_content_form {
-                    background-color: #eeeeee;
-                    border-bottom: 1px solid #e3e3e3;
-                    padding: 10px 20px;
-                    margin-top: 20px;
-                    flex-basis: 100%;
-                    color: #202020;
-                    font-size: 16px;
-                    font-weight: bold;
-                    text-transform: uppercase;
-                }
-                .btn_continue {
-                    width: auto;
-                    height: 48px;
-                    border-radius: 24px;
-                    padding: 10px 30px;
-                    background-color: #005197;
-                    color: #ffffff;
-                    text-transform: uppercase;
-                    font-size: 16px;
-                    font-weight: bold;
-                }
-            }
-        }
+  }
+  .ctaccount_content {
+    display: flex;
+    flex-direction: column;
+    max-width: 1170px;
+    margin: auto;
+    padding: 40px 0 40px 0;
+    .header_title {
+      flex-basis: 100%;
+      .ctaccount_title {
+        font-size: 25px;
+        color: #125491;
+        text-transform: uppercase;
+      }
+      hr {
+        width: 71px;
+        height: 2px;
+        background-color: #125491;
+        margin: 0 0 23px 0;
+      }
     }
+    .main_form {
+      border: 1px solid #dedede;
+      .heading_form {
+        background-color: #125491;
+        padding: 10px 20px;
+        flex-basis: 100%;
+        color: #fff;
+        font-size: 18px;
+        .txtC {
+          color: #33ffff;
+          font-weight: bold;
+        }
+      }
+      .content_form {
+        .txtRed {
+          color: red;
+        }
+        .txtBlue {
+          color: #125491;
+        }
+        .alignCenter {
+          text-align: center;
+        }
+        padding: 20px;
+        h4 {
+          color: #333;
+          font-size: 15px;
+          .note {
+            color: red;
+            text-decoration: underline;
+          }
+        }
+        .header_content_form {
+          background-color: #eeeeee;
+          border-bottom: 1px solid #e3e3e3;
+          padding: 7px 20px;
+          margin-top: 20px;
+          flex-basis: 100%;
+          color: #202020;
+          font-size: 16px;
+          font-weight: bold;
+          text-transform: uppercase;
+        }
+        .btn_continue {
+          width: auto;
+          height: 48px;
+          border-radius: 24px;
+          padding: 10px 30px;
+          background-color: #005197;
+          color: #ffffff;
+          text-transform: uppercase;
+          font-size: 16px;
+          font-weight: bold;
+        }
+      }
+    }
+  }
 }
 
 .body_content_form {
-    .form-row {
-        margin: 15px 0px;
-        flex-flow: row nowrap;
-        .form-wrapper {
-            display: inline-flex;
-            flex-basis: 50%;
-            justify-content: space-between;
-            align-items: center;
-            .filterProv,
-            .filterDis {
-                margin-left: 15px;
+  .form-row {
+    margin: 15px 0px;
+    flex-flow: row nowrap;
+    .form-wrapper {
+      display: inline-flex;
+      flex-basis: 50%;
+      justify-content: space-between;
+      align-items: center;
+      .filterProv,
+      .filterDis {
+        margin-left: 15px;
+      }
+      &.vldSTK {
+        flex-wrap: wrap;
+        text-align: right;
+      }
+      span {
+        width: 225px;
+        text-align: right;
+        padding-right: 15px;
+        color: #666;
+        font-size: 14px;
+      }
+      .lnr-calendar-full {
+        position: absolute;
+        left: 16px;
+        font-size: 15px;
+        color: #666;
+        top: 43px;
+      }
+      .field {
+        display: inline-flex;
+        text-align: left;
+        align-self: end;
+        align-items: end;
+        .radio {
+          // position: relative;
+          display: flex;
+          -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+          outline: 0;
+          vertical-align: baseline;
+          font-style: normal;
+          min-height: 25px;
+          font-size: 1rem;
+          line-height: 25px;
+          min-width: 25px;
+          &.checked {
+            label {
+              // &::before {
+              //     position: absolute;
+              //     top: 0;
+              //     left: 0;
+              //     width: 25px;
+              //     height: 25px;
+              //     content: '';
+              //     background: #fff;
+              //     border-radius: 0.5rem;
+              //     border: 1px solid #125491;
+              // }
             }
-            &.vldSTK {
-                flex-wrap: wrap;
-                text-align: right;
-            }
-            span {
-                width: 225px;
-                text-align: right;
-                padding-right: 15px;
-                color: #666;
-                font-size: 14px;
-            }
-            .lnr-calendar-full {
-                position: absolute;
-                left: 16px;
-                font-size: 15px;
-                color: #666;
-                top: 43px;
-            }
-            .field {
-                display: inline-flex;
-                text-align: left;
-                align-self: end;
-                align-items: end;
-                .radio {
-                    // position: relative;
-                    display: flex;
-                    -webkit-backface-visibility: hidden;
-                    backface-visibility: hidden;
-                    outline: 0;
-                    vertical-align: baseline;
-                    font-style: normal;
-                    min-height: 25px;
-                    font-size: 1rem;
-                    line-height: 25px;
-                    min-width: 25px;
-                    &.checked {
-                        label {
-                            // &::before {
-                            //     position: absolute;
-                            //     top: 0;
-                            //     left: 0;
-                            //     width: 25px;
-                            //     height: 25px;
-                            //     content: '';
-                            //     background: #fff;
-                            //     border-radius: 0.5rem;
-                            //     border: 1px solid #125491;
-                            // }
-                        }
-                    }
-                    input[type="radio"] {
-                        cursor: pointer;
-                        // position: absolute;
-                        // top: 0;
-                        // left: 0;
-                        // opacity: 1!important;
-                        // outline: 0;
-                        // z-index: 3;
-                        width: 25px;
-                        height: 25px;
-                    }
-                }
-                .otherDocs {
-                    margin-left: 10px;
-                    .form-control {
-                        width: auto;
-                    }
-                }
-            }
-            .form-control {
-                flex-grow: 1;
-                border-color: #d0d0d0;
-                border-radius: 0px;
-                color: #333;
-                flex-basis: 300px;
-            }
-            i.fa-sort-down {
-                position: absolute;
-                right: 16px;
-                top: 42px;
-                font-size: 15px;
-                color: #666;
-            }
-            .optionVerDocs {
-                display: flex;
-                justify-content: space-between;
-                flex-grow: 1;
-            }
+          }
+          input[type="radio"] {
+            cursor: pointer;
+            // position: absolute;
+            // top: 0;
+            // left: 0;
+            // opacity: 1!important;
+            // outline: 0;
+            // z-index: 3;
+            width: 25px;
+            height: 25px;
+          }
         }
-        .form-row-wrapper {
-            display: inline-flex;
-            flex-basis: 100%;
-            justify-content: space-around;
-            align-items: center;
+        .otherDocs {
+          margin-left: 10px;
+          .form-control {
+            width: auto;
+          }
         }
-        .flb_100 {
-            flex-basis: 100% !important;
-        }
+      }
+      .form-control {
+        flex-grow: 1;
+        border-color: #d0d0d0;
+        border-radius: 0px;
+        color: #333;
+        flex-basis: 300px;
+      }
+      i.fa-sort-down {
+        position: absolute;
+        right: 16px;
+        top: 42px;
+        font-size: 15px;
+        color: #666;
+      }
+      .optionVerDocs {
+        display: flex;
+        justify-content: space-between;
+        flex-grow: 1;
+      }
     }
+    .form-row-wrapper {
+      display: inline-flex;
+      flex-basis: 100%;
+      justify-content: space-around;
+      align-items: center;
+    }
+    .flb_100 {
+      flex-basis: 100% !important;
+    }
+  }
 }
 
 .m15 {
-    margin: 15px 0px;
+  margin: 15px 0px;
 }
 
 .mt15 {
-    margin-top: 15px;
+  margin-top: 15px;
 }
 
 @media (max-width: 991px) {
-    .create-trading-account-page {
-        .ctaccount_content {
-            padding: 20px 0;
-        }
+  .create-trading-account-page {
+    .ctaccount_content {
+      padding: 20px 0;
     }
-    .body_content_form {
-        .form-row {
-            .form-wrapper {
-                .field {
-                    .otherDocs {
-                        .form-control {
-                            flex-basis: 200px;
-                        }
-                    }
-                }
+  }
+  .body_content_form {
+    .form-row {
+      .form-wrapper {
+        .field {
+          .otherDocs {
+            .form-control {
+              flex-basis: 200px;
             }
+          }
         }
+      }
     }
+  }
 }
 
 @media (max-width: 900px) {
-    .body_content_form {
-        margin: 15px 0px;
-        .form-row {
-            margin: 0px 0px;
-            flex-flow: column wrap;
-            .form-wrapper {
-                justify-content: flex-start;
-                flex-basis: 100%;
-                flex-flow: row wrap;
-                &.opVeri {
-                    .field {
-                        .radio {
-                            // flex-direction: column;
-                        }
-                    }
-                }
-                .optionVerDocs {
-                    display: inline-grid;
-                    flex-flow: column wrap;
-                    text-align: left;
-                }
-                .filterProv {
-                    margin-bottom: 0px;
-                    margin-top: 0px;
-                }
-                .filterDis {
-                    margin-bottom: 0px;
-                }
+  .body_content_form {
+    margin: 15px 0px;
+    .form-row {
+      margin: 0px 0px;
+      flex-flow: column wrap;
+      .form-wrapper {
+        justify-content: flex-start;
+        flex-basis: 100%;
+        flex-flow: row wrap;
+        &.opVeri {
+          .field {
+            .radio {
+              // flex-direction: column;
             }
+          }
         }
+        .optionVerDocs {
+          display: inline-grid;
+          flex-flow: column wrap;
+          text-align: left;
+        }
+        .filterProv {
+          margin-bottom: 0px;
+          margin-top: 0px;
+        }
+        .filterDis {
+          margin-bottom: 0px;
+        }
+      }
     }
+  }
 }
 
 @media screen and (max-width: 575px) {
-    .create-trading-account-page {
-        .ctaccount_content {
-            .header_title {
-                .ctaccount_title {
-                    font-size: 22px;
-                }
-            }
+  .create-trading-account-page {
+    .ctaccount_content {
+      .header_title {
+        .ctaccount_title {
+          font-size: 22px;
         }
-    }
-    .body_content_form {
-        .form-row {
-            .form-wrapper {
-                span {
-                    width: 100%;
-                    text-align: left;
-                    padding-right: 0px;
-                    color: #666;
-                    font-size: 14px;
-                    margin-top: 10px;
-                    margin-bottom: 5px;
-                }
-                .filterProv {
-                    margin-bottom: 15px;
-                    margin-top: 15px;
-                    width: 100% !important;
-                    margin-left: 0px;
-                }
-                .filterDis {
-                    margin-bottom: 5px;
-                    margin-left: 0px;
-                }
-            }
+      }
+      .main_form {
+        .content_form {
+          .header_content_form {
+            padding: 8px 10px;
+          }
         }
+      }
     }
+  }
+  .body_content_form {
+    .form-row {
+      .form-wrapper {
+        span {
+          width: 100%;
+          text-align: left;
+          padding-right: 0px;
+          color: #666;
+          font-size: 14px;
+          margin-top: 10px;
+          margin-bottom: 5px;
+        }
+        .filterProv {
+          margin-bottom: 15px;
+          margin-top: 15px;
+          width: 100% !important;
+          margin-left: 0px;
+        }
+        .filterDis {
+          margin-bottom: 5px;
+          margin-left: 0px;
+        }
+      }
+    }
+  }
 }

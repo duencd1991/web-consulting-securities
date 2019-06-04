@@ -1,0 +1,78 @@
+.search_Results_page{
+    .searchResults_Banner{
+        height: 100px;
+        background: url(../../assets/img/BANNER_SEARCH.jpg) no-repeat center;
+        h3 {
+            font-size: 30px;
+            text-transform: uppercase;
+            color: #ffffff;
+            line-height: 100px;
+            text-align: center;
+          }
+    }
+    .mainContent{
+        display: flex;
+        flex-direction: column;
+        max-width: 1170px;
+        margin: auto;
+        padding: 30px 0;
+        .header_title {
+            flex-basis: 100%;
+            .searchresult_title {
+                font-size: 25px;
+                color: #125491;
+                text-transform: uppercase;
+            }
+            hr {
+                width: 71px;
+                height: 2px;
+                background-color: #125491;
+                margin: 0 0 23px 0;
+            }
+        }
+        .listSearchResults{
+            ul{
+                list-style: none;
+                margin:0px;
+                padding:0px;
+                li{
+                    display: flex;
+                    margin-bottom: 20px;
+                    .thumb{
+                        margin-right: 15px;
+                        img{
+                        height: 80px;
+                        width:80px;
+                        }
+                    }
+                    .des{
+                        display: flex;
+                        flex-direction: column;
+                        flex-wrap: wrap;
+                        b{
+                            color:#005197;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@media (max-width:767px){
+    .search_Results_page {
+        .mainContent {
+            padding: 20px 0;
+            .header_title{
+                hr {
+                    margin: 0 0 15px 0;
+                }
+                .searchresult_title {
+                    font-size: 20px;
+                }
+            }
+        }
+    }
+}
+@media (max-width:374px){
+    .thumb{display: none;}
+}
