@@ -34,7 +34,6 @@ class Footer extends Component {
             <div className='footer-item'>
               <div className='item-header'>HỖ TRỢ</div>
               <hr />
-              <a href="/hot-line" className='item-content'>Hotline 1900 9088</a>
               <a href="/faqs" className='item-content'>FAQs</a>
               <a href="/yeu-cau-chuyen-doi" className='item-content'>Chuyển đổi phục vụ</a>
               <a href="/loai-hinh-phuc-vu" className='item-content'>Điều khoản sử dụng</a>

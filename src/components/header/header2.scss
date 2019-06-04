@@ -160,6 +160,7 @@
     }
   }
 }
+.formSearchR{display:none;}
 @media (max-width: 991px) {
   .form-inline {
     position: relative;
@@ -192,4 +193,39 @@
       cursor: pointer;
     }
   }
+  .navbar-nav{
+    .nav-link {
+        line-height: 40px !important;
+        &.dropdown-toggle::after{
+            top: 27% !important;
+        }
+    }
+}
+.form-inline {
+  padding:0px;
+}
+.formSearch{display:none;}
+    .formSearchR{
+        display: flex;justify-content: flex-end;
+        .search-input{
+            background: #005197;
+            color: #75c4f0;
+            height: 40px;
+            width: 100%;
+            border: 1px solid #005999;
+            border-radius: 0px;
+            position: relative;margin-right: 0px !important;
+            padding: 0px 20px;
+            &::placeholder{
+                color: #75c4f0;
+            }
+        }
+        .btn-search {
+            cursor: pointer;
+            z-index: 9;
+            position: absolute;
+            right: 15px;
+        }
+    }
+
 }

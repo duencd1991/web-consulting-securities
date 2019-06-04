@@ -4,7 +4,7 @@ import * as serviceWorker from './serviceWorker';
 import App from './store';
 import './utils/i18n';
 import './assets/fonts/font.scss';
-import './assets/css/responsive.scss';
+// import './assets/css/responsive.scss';
 import "bootstrap/dist/css/bootstrap.min.css";
 
 ReactDOM.render(<App />, document.getElementById('root'));

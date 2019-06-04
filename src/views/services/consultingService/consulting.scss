@@ -275,3 +275,11 @@ background: #999 none repeat scroll 0% 0% !important;
     }
   }
   
+@media (max-width:991px){
+  .consulting-page {
+    .experts-layout {
+        min-height: auto;
+        padding-bottom:30px;
+    }
+  }
+}

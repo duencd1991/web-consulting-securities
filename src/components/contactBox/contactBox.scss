@@ -50,3 +50,27 @@
     }
   }
 }
+@media screen and (max-width:767px) and (min-width:375px)
+{
+  .contact-box{
+    flex-wrap: wrap;
+    .info-box{
+        margin-bottom: 15px;width: 100%;max-width: 100%;
+    }
+    .msg-box {
+        max-width: 100%;
+    }
+  }
+}
+@media screen and (max-width:374px)
+{
+.contact-box{
+    flex-wrap: wrap;
+    .info-box{
+        margin-bottom: 15px;
+    }
+    .msg-box {
+        max-width: 100%;
+    }
+}
+}
