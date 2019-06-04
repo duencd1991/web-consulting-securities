@@ -87,3 +87,29 @@ export const ERROR_CODE = [
     message: 'Employee busy !'
   }
 ]
+export const TYPE_NEWS = [
+  {
+    type: 1,
+    name: 'Để đầu tư chứng khoán hiệu quả'
+  },
+  {
+    type: 2,
+    name: 'Theo dõi hiệu quả DM đầu tư Smart Money'
+  },
+  {
+    type: 3,
+    name: 'Cập nhật thị trường'
+  },
+  {
+    type: 4,
+    name: 'Tin khuyến mãi'
+  },
+  {
+    type: 5,
+    name: 'Thư viện'
+  },
+  {
+    type: 6,
+    name: 'Video'
+  }
+]

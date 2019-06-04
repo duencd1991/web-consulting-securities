@@ -8,6 +8,7 @@ import 'react-table/react-table.css';
 import { DEFAULT_TABLE } from '../../utils/constant';
 import icDownload from '../../assets/img/ic-download.png';
 import actions from '../../store/reports/actions';
+import Table from '../../components/table/table';
 
 const listType = [
   {
@@ -137,6 +138,7 @@ class Report extends Component {
         </div>
       }
     ]
+    const props = this.props;
     return(
       <Layout title="">
         <div className='report-page'>
@@ -145,56 +147,26 @@ class Report extends Component {
           </div>
           <div className='report-content'>
             <div className='report-types'>
-            {
-              listType.map((item, index) => {
-                return <div key={index} className={selectedType === item.type ? 'report-type-item selected' : 'report-type-item'}
-                onClick={ () => this.onChangeType(item.type)} >{item.title}</div>
-              })
-            }
+              {
+                listType.map((item, index) => {
+                  return <div key={index} className={selectedType === item.type ? 'report-type-item selected' : 'report-type-item'}
+                  onClick={ () => this.onChangeType(item.type)} >{item.title}</div>
+                })
+              }
             </div>
             <div className='report-tables'>
-              <div className='report-title'>BÁO CÁO PHÂN TÍCH CƠ BẢN PHÁI SINH</div>
-              <hr />
-              <ReactTable
-                data={this.props.listReport}
+              <Table 
+                title='BÁO CÁO PHÂN TÍCH CƠ BẢN PHÁI SINH'
+                listData={props.listReport}
                 columns={columns}
-                previousText='preText'
-                nextText='nextText'
-                noDataText='Không có dữ liệu'
-                pageText='pageText'
-                ofText='ofText'
-                rowsText='rowsText'
                 pageSize={pageSize}
-                showPagination={false}
-                resizable={false} >
-              </ReactTable>
-              <div className="d-flex flex-row-reverse">
-                <Pagination
-                  firstPageText={<i className="fas icArrowStart"></i>}
-                  lastPageText={<i className="fas icArrowEnd"></i>}
-                  prevPageText={<i className="fas icArrowPrev"></i>}
-                  nextPageText={<i className="fas icArrowNext"></i>}
-                  activePage={pageNum}
-                  itemsCountPerPage={pageSize}
-                  totalItemsCount={total}
-                  onChange={this.onChangePageNum}
-                />
-                <div className='form-group sort-by'>
-                  <div className="dropdown">
-                    <button className="btn dropdown-toggle" type="button" id="dropdownRows" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      {`${pageSize} hàng`}
-                    </button>
-                    <div className="dropdown-menu dropdown-menu-right select-row" aria-labelledby="dropdownRows">
-                      <button className="dropdown-item" onClick={(e) => this.onChangePageSize(5)}>{`5 hàng`}</button>
-                      <button className="dropdown-item" onClick={(e) => this.onChangePageSize(10)}>{`10 hàng`}</button>
-                      <button className="dropdown-item" onClick={(e) => this.onChangePageSize(15)}>{`15 hàng`}</button>
-                      <button className="dropdown-item" onClick={(e) => this.onChangePageSize(20)}>{`20 hàng`}</button>
-                    </div>
-                  </div>
-                </div>
-                </div>
-            </div>
+                pageNum={pageNum}
+                total={total}
+                onChangePageNum={this.onChangePageNum}
+                onChangePageSize={this.onChangePageSize}
+              /> 
           </div>
+        </div>
         </div>
       </Layout>
     );

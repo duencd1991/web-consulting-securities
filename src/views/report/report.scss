@@ -51,82 +51,81 @@
         background-color: #125491;
         margin: 0 0 23px 0;
       }
-      .ReactTable{
-        .rt-thead.-header{
+      .ReactTable {
+        .rt-thead.-header {
           background: #666666;
           color: #fff;
           font-size: 14px;
           font-weight: bold;
           text-transform: uppercase;
           line-height: 22px;
-          padding:8px;
-          .rt-th{
+          padding: 8px;
+          .rt-th {
             border-right: none;
           }
-          .rt-td{
+          .rt-td {
             border-right: none;
           }
-
         }
-        .rt-tbody{
+        .rt-tbody {
           color: #111;
           font-size: 14px;
           line-height: 20px;
-          .rt-tr-group{
+          .rt-tr-group {
             height: auto;
-            .rt-tr.-even{
+            .rt-tr.-even {
               background: #e5e5e5;
             }
-            .rt-tr.-odd{
+            .rt-tr.-odd {
               background: #f9f9f9;
             }
-            .rt-td{
+            .rt-td {
               white-space: normal;
             }
           }
         }
       }
-      .d-flex{
-        .pagination{
-          font-family: 'Arial', Helvetica, sans-serif;
+      .d-flex {
+        .pagination {
+          font-family: "Arial", Helvetica, sans-serif;
           margin: 15px 0;
           padding-top: 0px;
-          li{
+          li {
             width: 35px;
             height: 35px;
-            color:#111;
+            color: #111;
             font-weight: bold;
             line-height: 35px;
             margin-left: 15px;
-            &.active{
+            &.active {
               background: #125491;
-              a{
-                color: #fff;        
-              }      
+              a {
+                color: #fff;
+              }
             }
-            &.disabled{
-              border:1px solid #ccc;
+            &.disabled {
+              border: 1px solid #ccc;
             }
-            .icArrowNext{
+            .icArrowNext {
               background: url(../../assets/img/icArrowNext.png) no-repeat;
               width: 11px;
               height: 18px;
               margin-top: 7px;
             }
-            .icArrowPrev{
+            .icArrowPrev {
               background: url(../../assets/img/icArrowPrev.png) no-repeat;
               width: 11px;
               height: 18px;
               margin-top: 7px;
             }
-            .icArrowEnd{
+            .icArrowEnd {
               background: url(../../assets/img/icArrowEnd.png) no-repeat;
               width: 15px;
               height: 18px;
               margin-top: 7px;
             }
-            
-            .icArrowStart{
+
+            .icArrowStart {
               background: url(../../assets/img/icArrowStart.png) no-repeat;
               width: 15px;
               height: 18px;
@@ -135,37 +134,37 @@
           }
         }
         .sort-by {
-            display: flex;
-            margin: 15px 20px;
-            height: 35px;
-            border:1px solid #ccc;
-            .dropdown-toggle{
-              line-height: 20px;
-              padding: 7px 15px;
-            }
-            .dropdown-menu
-            {
-              border-radius: 0;
-              padding: 0px;
-              border:1px solid #eee;
-              .dropdown-item{
-                &:hover{
-                  background: #eee;
-                }
+          display: flex;
+          margin: 15px 20px;
+          height: 35px;
+          border: 1px solid #ccc;
+          .dropdown-toggle {
+            line-height: 20px;
+            padding: 7px 15px;
+          }
+          .dropdown-menu {
+            border-radius: 0;
+            padding: 0px;
+            border: 1px solid #eee;
+            .dropdown-item {
+              &:hover {
+                background: #eee;
               }
             }
+          }
         }
       }
     }
   }
 }
-.table-center-time{
+.table-center-time {
   display: none;
 }
 @media screen and (max-width: 991px) {
   .report-page {
     .report-content {
-      flex-direction: column;padding: 30px 0;
+      flex-direction: column;
+      padding: 30px 0;
       .report-types {
         flex-basis: 100%;
         height: auto;
@@ -174,141 +173,137 @@
       }
       .report-tables {
         margin: 0px 30px 0px 0px;
-    }    
+      }
+    }
   }
 }
-}
 @media screen and (max-width: 767px) {
-  .table-center-time{
+  .table-center-time {
     display: block;
     padding-right: 10px;
   }
   .report-page {
     .report-content {
       padding: 20px 0;
-      .report-types{
-        padding: 5px;margin: 0px 20px 20px 20px;
+      .report-types {
+        padding: 5px;
+        margin: 0px 20px 20px 20px;
       }
       .report-tables {
         margin: 0px 20px 0px 0px;
-        padding-left: 20px;        
+        padding-left: 20px;
         .report-title {
           font-size: 18px;
         }
         .ReactTable {
-          .rt-thead.-header{
+          .rt-thead.-header {
             display: none;
           }
           .rt-tbody {
             min-width: auto !important;
             .rt-tr-group {
-              .rt-tr{
+              .rt-tr {
                 flex-direction: column;
               }
-              .rt-td{
+              .rt-td {
                 flex-basis: 100%;
                 width: 100% !important;
                 max-width: 100% !important;
                 flex-flow: row nowrap;
-                padding:5px;
-                &:nth-child(1){
+                padding: 5px;
+                &:nth-child(1) {
                   display: none;
                 }
                 .table-center-element {
                   text-align: left;
                   display: flex;
                 }
-               
               }
             }
           }
         }
+      }
     }
   }
-   
+  .trading-instruction-page {
+    .content-box {
+      .guide-menu {
+        .list-menu-box {
+          padding: 0px;
+          .menu-item-box {
+            .menu-catalog {
+              height: 40px;
+              line-height: 40px;
+              margin-bottom: 10px;
+            }
+          }
+        }
+        .title {
+          font-size: 22px;
+        }
+        hr {
+          margin: 0px 0 20px 0;
+        }
+      }
+      .top-guide {
+        margin-top: 15px;
+        .title {
+          height: 40px;
+          line-height: 40px;
+        }
+      }
+    }
+    .banner {
+      margin-bottom: 0px;
+    }
+  }
 }
-.trading-instruction-page {
+@media screen and (max-width: 575px) {
+  .banner {
+    .title {
+      font-size: 22px !important;
+    }
+    .sub-title {
+      font-size: 22px !important;
+    }
+  }
   .content-box {
-    .guide-menu {
-      .list-menu-box{
-        padding:0px;
-        .menu-item-box {
-          .menu-catalog {
-            height: 40px;
-            line-height: 40px;
-            margin-bottom: 10px;
+    padding: 10px;
+  }
+  .trading-instruction-page {
+    .content-box {
+      .top-guide {
+        .box-top-guide {
+          padding: 10px 15px;
+          li {
+            line-height: 20px;
+            margin-bottom: 5px;
+          }
+          i {
+            line-height: 20px;
           }
         }
       }
-      .title {
-        font-size: 22px;
-      }
-      hr{
-        margin: 0px 0 20px 0;
-      }
-    }
-    .top-guide{
+      .contact-box-layout {
         margin-top: 15px;
-      .title {
-        height: 40px;
-        line-height: 40px;
       }
     }
   }
-  .banner {
-    margin-bottom: 0px;
-  }
-}
-}
-@media screen and (max-width: 575px) {
-.banner {
-  .title {
-    font-size: 22px !important;
-  }
-  .sub-title {
-    font-size: 22px !important;
-  }
-
-}
-.content-box {
-  padding: 10px;
-}
-.trading-instruction-page {
-  .content-box {
-    .top-guide {
-      .box-top-guide {
-        padding: 10px 15px;
-        li{
-          line-height: 20px;
-          margin-bottom: 5px;
-        }
-        i {
-          line-height: 20px;
-        }
-      }
-    }
-    .contact-box-layout {
-      margin-top: 15px;
-    }
-  }
-}
-.contact-box {
-  .info-box {
-    .contact-title {
-      font-size: 15px;
-      margin-bottom: 10px;
-    }
-  }
-  .msg-box 
-  {
+  .contact-box {
+    .info-box {
       .contact-title {
         font-size: 15px;
         margin-bottom: 10px;
+      }
     }
+    .msg-box {
+      .contact-title {
+        font-size: 15px;
+        margin-bottom: 10px;
+      }
       .msg-text {
         margin-bottom: 10px;
+      }
     }
   }
-}
-
 }

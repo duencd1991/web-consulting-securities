@@ -15,7 +15,7 @@ export function* listHomeGuidelines(data) {
 
       yield put({ type: notifyActions.NOTIFY_LOADING });
     } catch (error) {
-      yield put({ type: notifyActions.NOTIFY_ERROR, error: error.message });
+      yield put({ type: notifyActions.NOTIFY_SHOW, code: 0 });
     }
   });
 }
@@ -31,7 +31,7 @@ export function* listHomeNews(data) {
 
       yield put({ type: notifyActions.NOTIFY_LOADING });
     } catch (error) {
-      yield put({ type: notifyActions.NOTIFY_ERROR, error: error.message });
+      yield put({ type: notifyActions.NOTIFY_SHOW, code: 0 });
     }
   });
 }
@@ -47,7 +47,7 @@ export function* listHomeReports(data) {
 
       yield put({ type: notifyActions.NOTIFY_LOADING });
     } catch (error) {
-      yield put({ type: notifyActions.NOTIFY_ERROR, error: error.message });
+      yield put({ type: notifyActions.NOTIFY_SHOW, code: 0 });
     }
   });
 }

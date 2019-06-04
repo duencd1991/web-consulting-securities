@@ -25,7 +25,7 @@ export function* guideLineListType(data) {
 
       yield put({ type: notifyActions.NOTIFY_LOADING });
     } catch (error) {
-      yield put({ type: notifyActions.NOTIFY_ERROR, error: error.message });
+      yield put({ type: notifyActions.NOTIFY_SHOW, code: 0 });
     }
   });
 }
@@ -42,7 +42,7 @@ export function* guideLineListTop(data) {
 
       yield put({ type: notifyActions.NOTIFY_LOADING });
     } catch (error) {
-      yield put({ type: notifyActions.NOTIFY_ERROR, error: error.message });
+      yield put({ type: notifyActions.NOTIFY_SHOW, code: 0 });
     }
   });
 }
@@ -53,17 +53,11 @@ export function* guidelineUpdateView(data) {
       yield put({ type: notifyActions.NOTIFY_LOADING });
 
       const response = yield updateViews(data.id);
-      if (response.status === 200) {
-        if (response.data.statusCode === 1) {
-          yield put({ type: notifyActions.NOTIFY_SUCCESS, message: response.data.message });
-        } else {
-          yield put({ type: notifyActions.NOTIFY_ERROR, error: response.data.message });
-        }
-      }
-
+      yield put({ type: notifyActions.NOTIFY_SHOW, message: response.data.code });
+      
       yield put({ type: notifyActions.NOTIFY_LOADING });
     } catch (error) {
-      yield put({ type: notifyActions.NOTIFY_ERROR, error: error.message });
+      yield put({ type: notifyActions.NOTIFY_SHOW, code: 0 });
     }
   });
 }

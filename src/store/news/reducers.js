@@ -4,7 +4,8 @@ const initialState = {
   listNews: [],
   total: 0,
   listNewsHot: [],
-  listNewsTop: []
+  listNewsTop: [],
+  detail: {}
 };
 
 const News = (state = initialState, action) => {
@@ -15,6 +16,8 @@ const News = (state = initialState, action) => {
       return { ...state, listNewsHot: action.list };
     case actions.NEWS_LIST_TOP:
       return { ...state, listNewsTop: action.list };
+    case actions.NEWS_DETAIL:
+      return { ...state, detail: action.detail };
     default:
       return state;
   }

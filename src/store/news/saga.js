@@ -1,7 +1,14 @@
 import actions from './actions';
 import notifyActions from '../notification/actions';
 import { all, fork, put, takeEvery } from 'redux-saga/effects';
-import { listNews, listNewsHot, listNewsTop, updateViews } from '../../services/news';
+import {
+  listNews,
+  listNewsHot,
+  listNewsTop,
+  updateViews,
+  newsDetail,
+  updateNews,
+  createNews } from '../../services/news';
 
 export function* getListNews(data) {
   yield takeEvery(actions.NEWS_GET_LIST, function* (data) {
@@ -17,7 +24,7 @@ export function* getListNews(data) {
 
       yield put({ type: notifyActions.NOTIFY_LOADING });
     } catch (error) {
-      yield put({ type: notifyActions.NOTIFY_ERROR, error: error.message });
+      yield put({ type: notifyActions.NOTIFY_SHOW, code: 0 });
     }
   });
 }
@@ -33,7 +40,7 @@ export function* getListNewsTop(data) {
 
       yield put({ type: notifyActions.NOTIFY_LOADING });
     } catch (error) {
-      yield put({ type: notifyActions.NOTIFY_ERROR, error: error.message });
+      yield put({ type: notifyActions.NOTIFY_SHOW, code: 0 });
     }
   });
 }
@@ -49,28 +56,70 @@ export function* getListNewHot(data) {
 
       yield put({ type: notifyActions.NOTIFY_LOADING });
     } catch (error) {
-      yield put({ type: notifyActions.NOTIFY_ERROR, error: error.message });
+      yield put({ type: notifyActions.NOTIFY_SHOW, code: 0 });
     }
   });
 }
 
+export function* newsUpdate(data) {
+  yield takeEvery(actions.NEWS_UPDATE, function* (data) {
+    try {
+      yield put({ type: notifyActions.NOTIFY_LOADING });
+
+      const response = yield updateNews(data.data);
+      yield put({ type: notifyActions.NOTIFY_SHOW, code: response.data.statusCode });
+      yield put({ type: notifyActions.NOTIFY_LOADING });
+    } catch (error) {
+      yield put({ type: notifyActions.NOTIFY_SHOW, code: 0 });
+    }
+  });
+}
 export function* newsUpdateViews(data) {
   yield takeEvery(actions.NEWS_UPDATE_VIEWS, function* (data) {
     try {
       yield put({ type: notifyActions.NOTIFY_LOADING });
 
       const response = yield updateViews(data.id);
+      yield put({ type: notifyActions.NOTIFY_SHOW, code: response.data.statusCode });
+
+      yield put({ type: notifyActions.NOTIFY_LOADING });
+    } catch (error) {
+      yield put({ type: notifyActions.NOTIFY_SHOW, code: 0 });
+    }
+  });
+}
+
+export function* newsCreate(data) {
+  yield takeEvery(actions.NEWS_CREATE, function* (data) {
+    try {
+      yield put({ type: notifyActions.NOTIFY_LOADING });
+
+      const response = yield createNews(data.data);
+      yield put({ type: notifyActions.NOTIFY_SHOW, code: response.data.statusCode });
+      yield put({ type: notifyActions.NOTIFY_LOADING });
+    } catch (error) {
+      yield put({ type: notifyActions.NOTIFY_SHOW, code: 0 });
+    }
+  });
+}
+
+export function* getNewsDetail(data) {
+  yield takeEvery(actions.NEWS_GET_DETAIL, function* (data) {
+    try {
+      yield put({ type: notifyActions.NOTIFY_LOADING });
+
+      const response = yield newsDetail(data.id);
       if (response.status === 200) {
         if (response.data.statusCode === 1) {
-          yield put({ type: notifyActions.NOTIFY_SUCCESS, message: response.data.message });
+          yield put({ type: actions.NEWS_DETAIL, detail: response.data.data });
         } else {
-          yield put({ type: notifyActions.NOTIFY_ERROR, error: response.data.message });
+          yield put({ type: notifyActions.NOTIFY_SHOW, code: response.data.statusCode });
         }
       }
 
       yield put({ type: notifyActions.NOTIFY_LOADING });
     } catch (error) {
-      yield put({ type: notifyActions.NOTIFY_ERROR, error: error.message });
+      yield put({ type: notifyActions.NOTIFY_SHOW, code: 0 });
     }
   });
 }
@@ -80,6 +129,9 @@ export default function* rootSaga() {
     fork(getListNews),
     fork(getListNewHot),
     fork(getListNewsTop),
-    fork(newsUpdateViews)
+    fork(newsUpdateViews),
+    fork(getNewsDetail),
+    fork(newsUpdate),
+    fork(newsCreate)
   ]);
 }

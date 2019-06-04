@@ -1,16 +1,11 @@
 const actions = {
-  NOTIFY_SUCCESS: 'NOTIFY_SUCCESS',
-  NOTIFY_ERROR: 'NOTIFY_ERROR',
+  NOTIFY_SHOW: 'NOTIFY_SHOW',
   NOTIFY_CLEAR: 'NOTIFY_CLEAR',
   NOTIFY_LOADING: 'NOTIFY_LOADING',
 
-  success: message => ({
-    type: actions.NOTIFY_SUCCESS,
+  showNotify: message => ({
+    type: actions.NOTIFY_SHOW,
     message
-  }),
-  error: error => ({
-    type: actions.NOTIFY_ERROR,
-    error
   }),
   clearNotify: () => ({
     type: actions.NOTIFY_CLEAR

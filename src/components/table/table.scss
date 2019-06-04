@@ -1,0 +1,168 @@
+.table-custom {
+  .table-title {
+    font-size: 25px;
+    color: #125491;
+    text-transform: uppercase;
+  }
+  hr {
+    width: 71px;
+    height: 2px;
+    background-color: #125491;
+    margin: 0 0 23px 0;
+  }
+  .ReactTable {
+    .rt-thead.-header {
+      background: #666666;
+      color: #fff;
+      font-size: 14px;
+      font-weight: bold;
+      text-transform: uppercase;
+      line-height: 22px;
+      padding: 8px;
+      .rt-th {
+        border-right: none;
+      }
+      .rt-td {
+        border-right: none;
+      }
+    }
+    .rt-tbody {
+      color: #111;
+      font-size: 14px;
+      line-height: 20px;
+      .rt-tr-group {
+        height: auto;
+        .rt-tr.-even {
+          background: #e5e5e5;
+        }
+        .rt-tr.-odd {
+          background: #f9f9f9;
+        }
+        .rt-td {
+          white-space: normal;
+          .action-box {
+            display: flex;
+            justify-content: center;
+            i {
+              cursor: pointer;
+            }
+          }
+        }
+      }
+    }
+    .table-center-time {
+      display: none;
+    }
+  }
+  .pagination {
+    font-family: "Arial", Helvetica, sans-serif;
+    margin: 15px 0;
+    padding-top: 0px;
+    li {
+      width: 35px;
+      height: 35px;
+      color: #111;
+      font-weight: bold;
+      line-height: 35px;
+      margin-left: 15px;
+      border: 1px solid #ccc;
+      &.active {
+        background: #125491;
+        a {
+          color: #fff;
+        }
+      }
+      .icArrowNext {
+        background: url(../../assets/img/icArrowNext.png) no-repeat;
+        width: 11px;
+        height: 18px;
+        margin-top: 7px;
+      }
+      .icArrowPrev {
+        background: url(../../assets/img/icArrowPrev.png) no-repeat;
+        width: 11px;
+        height: 18px;
+        margin-top: 7px;
+      }
+      .icArrowEnd {
+        background: url(../../assets/img/icArrowEnd.png) no-repeat;
+        width: 15px;
+        height: 18px;
+        margin-top: 7px;
+      }
+
+      .icArrowStart {
+        background: url(../../assets/img/icArrowStart.png) no-repeat;
+        width: 15px;
+        height: 18px;
+        margin-top: 7px;
+      }
+    }
+  }
+  .sort-by {
+    display: flex;
+    margin: 15px 20px;
+    height: 35px;
+    border: 1px solid #ccc;
+    .dropdown-toggle {
+      line-height: 20px;
+      padding: 7px 15px;
+    }
+    .dropdown-menu {
+      border-radius: 0;
+      padding: 0px;
+      border: 1px solid #eee;
+      .dropdown-item {
+        &:hover {
+          background: #eee;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 991px) {
+  .table-custom {
+    margin: 0px 30px 0px 0px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .table-custom {
+    margin: 0px 20px 0px 0px;
+    padding-left: 20px;
+    .table-title {
+      font-size: 18px;
+    }
+    .ReactTable {
+      .rt-thead.-header {
+        display: none;
+      }
+      .rt-tbody {
+        min-width: auto !important;
+        .rt-tr-group {
+          .rt-tr {
+            flex-direction: column;
+          }
+          .rt-td {
+            flex-basis: 100%;
+            width: 100% !important;
+            max-width: 100% !important;
+            flex-flow: row nowrap;
+            padding: 5px;
+            .table-center-element {
+              text-align: left;
+              display: flex;
+            }
+            .action-box {
+              justify-content: start;
+            }
+          }
+        }
+      }
+      .table-center-time {
+        display: block;
+        padding-right: 10px;
+      }
+    }
+  }
+}
