@@ -20,6 +20,8 @@ import ConsultingSecurities from './consultingSecurities/consultingSecurities';
 import PageNotFound from './pageNotFound/pageNotFound';
 import CreateTradingAccount from './createTradingAccount/createTradingAccount';
 import SearchResults from './searchResults/searchResults';
+import ListReport from './admin/report/listReport';
+import FormReport from './admin/report/formReport';
 
 const AppRouter = () => {
   return (
@@ -36,9 +38,11 @@ const AppRouter = () => {
           <Route path='/news' component={News} />
           <Route exact path='/consulting-securities' component={ConsultingSecurities} />
           <Route exact path='/create-trading-account' component={CreateTradingAccount} />
-          <Route exact path="/search-results" component={SearchResults} />
+          <Route path="/search-results" component={SearchResults} />
           <Route exact path='/list-news' component={ListNews} />
           <Route exact path='/create-news' component={FormNews} />
+          <Route exact path='/list-report' component={ListReport} />
+          <Route exact path='/create-report' component={FormReport} />
           <Route component={PageNotFound}></Route>
         </Switch>
       </RootContainer>

@@ -4,13 +4,15 @@ import '../../style/animation.scss';
 import logo from '../../assets/img/vi_mbs_logo.png';
 import icSearch from '../../assets/img/btnSearch.png';
 import HeaderTop from './headerTop';
+import history from '../../utils/history';
 
 export default class Header extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      showSearchBar: false
+      showSearchBar: false,
+      searchText: ''
     }
   }
 
@@ -19,10 +21,24 @@ export default class Header extends Component {
       showSearchBar: show
     })
   }
+  onInputSearch = (e) => {
+    this.setState({
+      searchText: e.target.value
+    })
+  }
+
+  onEnter = (e) => {
+    const key = e.which || e.keyCode;
+    const search = this.state.searchText;
+    if (key === 13 && search !== '') {
+      history.push(`/search-results?search=${search}`);
+    }
+  }
 
   render() {
     const {
-      showSearchBar
+      showSearchBar,
+      searchText
     } = this.state;
     const urlPage = window.location.pathname.toLowerCase();
 
@@ -69,11 +85,34 @@ export default class Header extends Component {
                     <a className="dropdown-item" href="/consulting-securities">Tư vấn chứng khoán phái sinh</a>
                   </div>
                 </li>
-                <li className={urlPage === '/report' ? "nav-item active" : "nav-item"}>
+                {/* <li className={urlPage === '/report' ? "nav-item active" : "nav-item"}>
                   <a className="nav-link" href="/report">BÁO CÁO</a>
+                </li> */}
+                <li className={urlPage === '/list-report' ? "nav-item dropdown active" : "nav-item dropdown"}>
+                  <div className="nav-link dropdown-toggle " id="navbarDropdown"
+                    role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    BÁO CÁO
+                  </div>
+                  <div className="dropdown-menu animate slideIn" aria-labelledby="navbarDropdown">
+                    <a className="dropdown-item" href="/report">Báo cáo</a>
+                    <a className="dropdown-item" href="/list-report">Danh sách báo cáo</a>
+                    <a className="dropdown-item" href="/create-report">Tạo báo cáo mới</a>
+                  </div>
                 </li>
-                <li className={urlPage === '/news' ? "nav-item active" : "nav-item"}>
+                {/* <li className={urlPage === '/news' ? "nav-item active" : "nav-item"}>
                   <a className="nav-link" href="/news">KIẾN THỨC</a>
+                </li> */}
+                <li className={urlPage === '/list-news' || urlPage === '/form-news' || urlPage === '/news' ?
+                  "nav-item dropdown active" : "nav-item dropdown"}>
+                  <div className="nav-link dropdown-toggle " 
+                    role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    KIẾN THỨC
+                  </div>
+                  <div className="dropdown-menu animate slideIn" aria-labelledby="navbarDropdown">
+                    <a className="dropdown-item" href="/news">Kiến thức</a>
+                    <a className="dropdown-item" href="/list-news">Danh sách kiến thức</a>
+                    <a className="dropdown-item" href="/create-news">Tạo kiến thức mới</a>
+                  </div>
                 </li>
                 <li className={urlPage === '/about-us' ? "nav-item dropdown active" : "nav-item dropdown"}>
                   <a className="nav-link" href="/about-us">VỀ CHÚNG TÔI</a>
@@ -81,12 +120,13 @@ export default class Header extends Component {
               </ul>
               <form className="form-inline my-2 my-lg-0 formSearch">
                 <input autoFocus className={showSearchBar ? "form-control mr-sm-2 search-bar show" : "form-control mr-sm-2 search-bar"}
+                  onKeyDown={this.onEnter} value={searchText} onChange={this.onInputSearch}
                   type="search" placeholder="Từ khóa tìm kiếm" aria-label="Search" />
                 <img className='btn-search' alt='icon-search' onClick={()=>this.onClickSearchBar(!showSearchBar)} src={ icSearch } />
               </form>
               <form className="form-inline my-2 my-lg-0 formSearchR">
-                <input autoFocus className="form-control mr-sm-2 search-input"
-                  type="search" placeholder="Từ khóa tìm kiếm" aria-label="Search" />
+                <input autoFocus className="form-control mr-sm-2 search-input" onKeyDown={this.onEnter}
+                  type="search" placeholder="Từ khóa tìm kiếm" aria-label="Search" value={searchText} onChange={this.onInputSearch} />
                 <img className='btn-search' alt='icon-search' src={ icSearch } />
               </form>
             </div>

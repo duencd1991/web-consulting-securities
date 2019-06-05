@@ -177,4 +177,58 @@ body {
     text-align: center;
     width: 100%;
   }
+
+  .admin-form {
+    max-width: 1170px;
+    margin: auto;
+    padding: 30px 0;
+    .form-group {
+      label {
+        font-size: 16px;
+        color: #666;
+      }
+      .file-attach {
+        margin-left: 10px;
+      }
+      .uploaded-file {
+        display: flex;
+        justify-content: flex-start;
+        position: relative;
+        margin-top: 10px;
+        height: 30px;
+        line-height: 30px;
+        background-color: #eeeeee;
+        padding-left: 15px;
+        .file-name {
+          font-size: 16px;
+          flex-grow: 1;
+        }
+        .file-size {
+          color: #666;
+          margin-right: 40px;
+        }
+        i {
+          position: absolute;
+          right: 10px;
+          top: 7px;
+          cursor: pointer;
+        }
+      }
+    }
+    .btn-save {
+      background-color: #005197;
+      min-width: 100px;
+      color: #ffffff;
+      &:hover {
+        background-color: #0066b3;
+      }
+    }
+  }
+}
+@media screen and (max-width: 1170px) {
+  body {
+    .admin-form {
+      padding: 30px;
+    }
+  }
 }

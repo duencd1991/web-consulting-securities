@@ -2,7 +2,8 @@ import actions from './actions';
 
 const initialState = {
   list: [],
-  total: 0
+  total: 0,
+  detail: {}
 };
 
 const Reports = (state = initialState, action) => {
@@ -11,6 +12,8 @@ const Reports = (state = initialState, action) => {
       return { ...state, list: action.list, total: action.total };
     case actions.REPORT_VIEW_UPDATE:
       return { ...state, status: action.status };
+    case actions.REPORT_DETAIL:
+      return { ...state, detail: action.detail };
     default:
       return state;
   }

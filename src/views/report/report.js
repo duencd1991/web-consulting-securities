@@ -2,29 +2,10 @@ import React, { Component } from 'react';
 import Layout from '../layout/layout';
 import { connect } from 'react-redux';
 import './report.scss';
-import { DEFAULT_TABLE } from '../../utils/constant';
+import { DEFAULT_TABLE, TYPE_REPORT } from '../../utils/constant';
 import icDownload from '../../assets/img/ic-download.png';
 import actions from '../../store/reports/actions';
 import Table from '../../components/table/table';
-
-const listType = [
-  {
-    type: 1,
-    title: 'Bản tin phái sinh'
-  },
-  {
-    type: 2,
-    title: 'Báo cáo Phân tích cơ bản Phái sinh'
-  },
-  {
-    type: 3,
-    title: 'Báo cáo phân tích kỹ thuật Phái sinh'
-  },
-  {
-    type: 4,
-    title: 'Báo cáo phân tích CW'
-  }
-]
 
 class Report extends Component {
 
@@ -145,9 +126,9 @@ class Report extends Component {
           <div className='report-content'>
             <div className='report-types'>
               {
-                listType.map((item, index) => {
+                TYPE_REPORT.map((item, index) => {
                   return <div key={index} className={selectedType === item.type ? 'report-type-item selected' : 'report-type-item'}
-                  onClick={ () => this.onChangeType(item.type)} >{item.title}</div>
+                  onClick={ () => this.onChangeType(item.type)} >{item.name}</div>
                 })
               }
             </div>

@@ -113,3 +113,21 @@ export const TYPE_NEWS = [
     name: 'Video'
   }
 ]
+export const TYPE_REPORT = [
+  {
+    type: 1,
+    name: 'Bản tin phái sinh'
+  },
+  {
+    type: 2,
+    name: 'Báo cáo Phân tích cơ bản Phái sinh'
+  },
+  {
+    type: 3,
+    name: 'Báo cáo phân tích kỹ thuật Phái sinh'
+  },
+  {
+    type: 4,
+    name: 'Báo cáo phân tích CW'
+  }
+]

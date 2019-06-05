@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Layout from '../../layout/layout';
 import { toast } from 'react-toastify';
 import { TYPE_NEWS } from '../../../utils/constant';
+import '../../../style/common.scss';
 import './formNews.scss';
 import actions from '../../../store/news/actions';
 import notifyActions from '../../../store/notification/actions';
@@ -17,13 +18,14 @@ class FormNews extends Component {
     this.state = {
       id: '',
       title: '',
-      selectedCategory: 1,
+      categoryId: 1,
       thumbnail: '',
       content: '',
       views: 0,
 
       update: false,
-      validate: true
+      validate: true,
+      validateUploadImage: ""
     }
   }
 
@@ -48,7 +50,7 @@ class FormNews extends Component {
       const detail = nextProps.detail;
       this.setState({
         title: detail.title,
-        selectedCategory: detail.categoryId,
+        categoryId: detail.categoryId,
         thumbnail: detail.imgUrl,
         content: detail.content,
         views: detail.views
@@ -68,9 +70,31 @@ class FormNews extends Component {
       [e.target.name]: e.target.value
     })
   }
-  onSelectCategory = (index) => {
+
+  onChangeFile = (e) => {
+    var imageDisplayArea = document.getElementById('imageDisplayArea');
+    var file = e.target.files[0];
+    var imageType = /image.*/;
+    if (file.type.match(imageType)) {
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        imageDisplayArea.innerHTML = "";
+
+        var img = new Image();
+        img.src = reader.result;
+
+        imageDisplayArea.appendChild(img);
+      }
+
+      reader.readAsDataURL(file);	
+    } else {
+      imageDisplayArea.innerHTML = "File not supported!"
+    }
+  }
+
+  onSelectCategoryId = (e) => {
     this.setState({
-      categoryId: index
+      categoryId: TYPE_NEWS[e.target.selectedIndex].type
     })
   }
   onChangeEditor = (data) => {
@@ -86,7 +110,7 @@ class FormNews extends Component {
           views: this.state.views,
           title: this.state.title,
           content: this.state.content,
-          categoryId: this.state.selectedCategory,
+          categoryId: this.state.categoryId,
           imgUrl: this.state.thumbnail
         }
         this.props.updateNews(data);
@@ -95,7 +119,7 @@ class FormNews extends Component {
           views: this.state.views,
           title: this.state.title,
           content: this.state.content,
-          categoryId: this.state.selectedCategory,
+          categoryId: this.state.categoryId,
           imgUrl: this.state.thumbnail
         }
         this.props.createNews(data);
@@ -105,11 +129,11 @@ class FormNews extends Component {
   onValidateForm = () => {
     const {
       title,
-      selectedCategory,
+      categoryId,
       thumbnail,
       content,
     } =  this.state;
-    let check = title !== '' && selectedCategory !== 0 && thumbnail !== '' && content !== '';
+    let check = title !== '' && categoryId !== 0 && thumbnail !== '' && content !== '';
     this.setState({
       validate: check
     })
@@ -121,17 +145,19 @@ class FormNews extends Component {
       title,
       thumbnail,
       content,
+      categoryId,
       update,
-      validate
+      validate,
+      validateUploadImage
     } = this.state;
     return(
       <Layout>
-        <div className='create-news-form'>
+        <div className='admin-form'>
           {
             update ? <h1>Cập nhật tin tức</h1> : <h1>Tạo mới tin tức</h1>
           }
           <div className="form-group">
-            <label>Tiêu đề:</label>
+            <label>Tiêu đề</label>
             <input type="text" className="form-control" id="title" name='title' value={title} onChange={this.onChange} />
             {
               !validate && title === '' && <div className="alert alert-warning" role="alert">
@@ -141,19 +167,30 @@ class FormNews extends Component {
           </div>
           <div className="form-group">
             <label>Danh mục</label>
-            <select className="form-control" id="categorySelect">
+            <select className="form-control" id="categorySelect" onChange={this.onSelectCategoryId}>
               {
                 TYPE_NEWS.map((item, index) => {
-                  return <option key={index} onClick={(e) => this.onSelectCategory(item.type)}>{item.name}</option>  
+                  return <option key={index} value={item.type === categoryId ? "selected" : ""} >{item.name}</option>  
                 })
               }
             </select>
           </div>
           <div className="form-group">
-            <label>Hình ảnh mẫu</label>
-            <input type="text" className="form-control" name="thumbnail" value={thumbnail} onChange={this.onChange} />
+            <label>Hình ảnh</label>
+            <div className="custom-file">
+              <input type="file" className="custom-file-input" id="thumbnail" onChange={this.onChangeFile}/>
+              <label className="custom-file-label" >Chọn hình ảnh</label>
+            </div>
             {
-              !validate && thumbnail === '' && <div className="alert alert-warning" role="alert">
+              validateUploadImage !== "" && <div className="alert alert-warning" role="alert">
+                {
+                  validateUploadImage
+                }
+              </div>
+            }
+            <div id="imageDisplayArea"></div>
+            {
+              !validate && thumbnail === null && <div className="alert alert-warning" role="alert">
                 Vui lòng nhập thông tin
               </div>
             }

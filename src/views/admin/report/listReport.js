@@ -1,13 +1,12 @@
 import React, { Component } from 'react'
 import Layout from '../../layout/layout'
 import { connect } from 'react-redux';
-import { DEFAULT_TABLE, TYPE_NEWS } from '../../../utils/constant';
-import actions from '../../../store/news/actions';
-import './listNews.scss';
+import { DEFAULT_TABLE, TYPE_REPORT } from '../../../utils/constant';
+import actions from '../../../store/reports/actions';
+import './listReport.scss';
 import Table from '../../../components/table/table';
 
-
-class ListNews extends Component {
+class ListReport extends Component {
   constructor (props) {
     super(props)
 
@@ -33,23 +32,23 @@ class ListNews extends Component {
     alert('Xóa bản tin số ', index);
   }
   onEdit = (index) => {
-    this.props.history.push(`/create-news?id=${index}`);
+    this.props.history.push(`/create-report?id=${index}`);
   }
 
-  fetchNews = () => {
+  fetchReport = () => {
     const state = this.state
     let start = (state.pageNum - 1) * state.pageSize
     let limit = state.pageSize + start
-    this.props.fetchListNews(start, limit, null)
+    this.props.fetchListReport(start, limit, null)
   }
 
   componentDidMount () {
-    this.fetchNews();
+    this.fetchReport();
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (prevState.pageNum !== this.state.pageNum || prevState.pageSize !== this.state.pageSize) {
-      this.fetchNews();
+      this.fetchReport();
     }
   }
   componentWillReceiveProps(nextProps) {
@@ -65,22 +64,23 @@ class ListNews extends Component {
     const columns = [
       {
         Header: 'DANH MỤC',
-        accessor: 'categoryId',
+        accessor: 'type',
         maxWidth: 300,
         Cell: props => <div className='table-center-element'><div className='table-center-time'>Danh mục:</div>
           {
-            TYPE_NEWS.map(item => {
+            TYPE_REPORT.map(item => {
               if (item.type === props.value) {
-                return item.name
+                return item.name;
+              } else {
+                return null;
               }
-              return null;
             })
           }
         </div>
       },
       {
         Header: 'TIÊU ĐỀ',
-        accessor: 'title',
+        accessor: 'name',
         Cell: props => <div className='table-center-element'><div className='table-center-time'>Tiêu đề:</div>
           {props.value}
         </div>
@@ -117,8 +117,8 @@ class ListNews extends Component {
         <div className='list-news-page'>
           <div className='news-tables'>
             <Table 
-              title='Quản lý danh mục kiến thức'
-              listData={props.listNews}
+              title='Quản lý danh mục báo cáo'
+              listData={props.listReport}
               columns={columns}
               pageSize={pageSize}
               pageNum={pageNum}
@@ -134,16 +134,16 @@ class ListNews extends Component {
 }
 const mapStateToProps = state => {
   return {
-    listNews: state.News.listNews,
-    total: state.News.total,
-    detail: state.News.detail
+    listReport: state.Reports.list,
+    total: state.Reports.total,
+    detail: state.Reports.detail
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchListNews: (start, limit, category) => {
-      dispatch(actions.listNews(start, limit, category))
+    fetchListReport: (start, limit, category) => {
+      dispatch(actions.listReport(start, limit, category))
     },
     getDetail: (id) => {
       dispatch(actions.getDetail(id))
@@ -151,4 +151,4 @@ const mapDispatchToProps = dispatch => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ListNews)
+export default connect(mapStateToProps, mapDispatchToProps)(ListReport)
