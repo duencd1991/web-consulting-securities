@@ -26,6 +26,7 @@
       background-color: #125491;
       margin: 0 0 20px 0;
       text-align: left;
+<<<<<<< Updated upstream
     }
     .new-footer {
       margin-top: 11px;
@@ -57,6 +58,8 @@
         font-family: Arial;
         margin: 16px 0 10px 0;
       }
+=======
+>>>>>>> Stashed changes
     }
     .list-news {
       flex-grow: 1;
@@ -147,7 +150,11 @@
     }
     .box-news {
       flex-basis: 32%;
+<<<<<<< Updated upstream
 
+=======
+      
+>>>>>>> Stashed changes
       .list-news-top {
         .title {
           color: #333333;
@@ -202,12 +209,21 @@
       .title {
         font-size: 22px;
       }
+<<<<<<< Updated upstream
       hr {
         margin-bottom: 15px;
       }
       .list-news {
         .list-new-box {
           .new-item {
+=======
+      hr{
+        margin-bottom:15px;
+      }
+      .list-news{
+        .list-new-box{
+          .new-item{
+>>>>>>> Stashed changes
             &:nth-child(odd) {
               margin-right: 0px;
             }
@@ -224,4 +240,9 @@
       flex-direction: column-reverse;
     }
   }
+<<<<<<< Updated upstream
 }
+=======
+
+}
+>>>>>>> Stashed changes

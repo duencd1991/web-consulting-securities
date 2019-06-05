@@ -22,6 +22,8 @@ import CreateTradingAccount from './createTradingAccount/createTradingAccount';
 import SearchResults from './searchResults/searchResults';
 import ListReport from './admin/report/listReport';
 import FormReport from './admin/report/formReport';
+import SignIn from './signIn/signIn';
+
 
 const AppRouter = () => {
   return (
@@ -43,6 +45,7 @@ const AppRouter = () => {
           <Route exact path='/create-news' component={FormNews} />
           <Route exact path='/list-report' component={ListReport} />
           <Route exact path='/create-report' component={FormReport} />
+          <Route exact path='/sign-in' component={SignIn} />
           <Route component={PageNotFound}></Route>
         </Switch>
       </RootContainer>

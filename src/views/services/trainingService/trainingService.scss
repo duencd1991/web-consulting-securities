@@ -644,7 +644,7 @@
             .list-course {
               
               .course-item{
-                overflow-y: scroll;
+                overflow-y: auto;
                 flex-basis: 48.5%;
                 height: 215px;
               }
@@ -667,7 +667,7 @@
               padding-right: 20px;
             .list-course {
               height:580px;
-              overflow-y: scroll;
+              overflow-y: auto;
               .course-item{
                 // 
                 height: auto;

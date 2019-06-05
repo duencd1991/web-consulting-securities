@@ -29,7 +29,24 @@ const listBanner = [
     url: "#"
   }
 ];
-const listMenu = ['HƯỚNG DẪN TỰ GIAO DỊCH', 'BÁO CÁO PHÂN TÍCH', 'ĐÀO TẠO', 'TƯ VẤN ĐẦU TƯ'];
+const listMenu = [
+  {
+    link: '/trading-instruction',
+    name: 'HƯỚNG DẪN TỰ GIAO DỊCH'
+  },
+  {
+    link: '/report',
+    name: 'BÁO CÁO PHÂN TÍCH'
+  },
+  {
+    link: '/training-service',
+    name: 'ĐÀO TẠO'
+  },
+  {
+    link: '/consulting',
+    name: 'TƯ VẤN ĐẦU TƯ'
+  }
+];
 
 class Home extends Component {
 
@@ -106,12 +123,12 @@ class Home extends Component {
                 listMenu.map((menu, index) => {
                   return <div className={selectedMenu === index ? 'home-menu-item active':'home-menu-item'}
                     onClick={()=>this.selectMenu(index)} >
-                    { menu }
+                    { menu.name }
                     {
                       selectedMenu === index ? <i className="fas ic_Sub" /> : <i className="fas ic_Add" />
                     }
                     <div className={selectedMenu === index ? 'sub-menu-show' : 'sub-menu-hiden'}>
-
+                      <a href={menu.link} className='btn_readMore'>Xem thêm</a>
                     </div>
                   </div>
                 }) 

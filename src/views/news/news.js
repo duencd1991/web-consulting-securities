@@ -180,8 +180,11 @@ class News extends Component {
               }
               
             </div>
-            <div className='box-news'>
-              <div className='list-news-menu'>
+            {/* <div className='box-news'> */}
+              
+              {/* </div> */}
+               <div className='box-news'>
+               <div className='list-news-menu'>
                 {
                   TYPE_NEWS.map((item, index) => {
                     return <div key={index} onClick={ () => this.onSelectMenu(item.type)}

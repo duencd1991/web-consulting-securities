@@ -50,17 +50,17 @@ export default class searchResults extends Component {
                 {
                   listResultSearch.map((item, index) => {
                     return <li key={index}>
-                        <div className='thumb'>
-                          <a href=""><img alt="" src={item.image ? item.image : icThumbnail} /></a>
-                        </div>
-                        <div className='des'>
-                          <a href="">
-                            <b>{item.title}</b>
-                          </a>
-                          {
-                            item.des
-                          }
-                        </div>
+                      <div className='thumb'>
+                        <a href=""><img alt="" src={item.image ? item.image : icThumbnail} /></a>
+                      </div>
+                      <div className='des'>
+                        <a href="">
+                          <b>{item.title}</b>
+                        </a>
+                        {
+                          item.des
+                        }
+                      </div>
                     </li>
                   })
                 }
