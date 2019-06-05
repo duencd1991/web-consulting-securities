@@ -21,8 +21,8 @@ class Footer extends Component {
             <div className='footer-item'>
               <div className='item-header'>ĐÀO TẠO CHỨNG KHOÁN</div>
               <hr />
-              <a href="/doi-ngu-chuyen-gia" className='item-content'>Danh sách khóa học</a>
-              <a href="/goi-tu-van" className='item-content'>Khóa học khai giảng</a>
+              <a href="/training-service" className='item-content'>Danh sách khóa học</a>
+              <a href="/training-service" className='item-content'>Khóa học khai giảng</a>
             </div>
             <div className='footer-item'>
               <div className='item-header'>FORUM TRADER</div>
