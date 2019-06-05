@@ -88,7 +88,7 @@ class FormNews extends Component {
 
       reader.readAsDataURL(file);	
     } else {
-      imageDisplayArea.innerHTML = "File not supported!"
+      imageDisplayArea.innerHTML = "Vui lòng tải hình ảnh!";
     }
   }
 
@@ -150,6 +150,13 @@ class FormNews extends Component {
       validate,
       validateUploadImage
     } = this.state;
+    
+    var cb = function() { return (new Date()).getTime() }
+    ClassicEditor.create(document.querySelector( '#editor' ), {
+      simpleUpload: {
+          uploadUrl: {url:'http://127.0.0.1/my-upload-endpoint', headers:{ 'x-header':'myhead', 'x-header-cb': cb } }
+      }
+    })
     return(
       <Layout>
         <div className='admin-form'>
