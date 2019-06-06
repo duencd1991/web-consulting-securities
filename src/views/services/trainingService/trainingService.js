@@ -4,6 +4,8 @@ import Layout from '../../layout/layout';
 import './trainingService.scss';
 import icNoImg from '../../../assets/img/ic_no_img2.png';
 import Slider from "react-slick";
+import actions from '../../../store/trainingService/actions';
+import { TYPE_COURSE, CATEGORY_COURSE } from '../../../utils/constant';
 
 const listCourseOnline = [
   {
@@ -115,12 +117,7 @@ const listCourseOffline = [
     urlFile: "abc.com.vn"
   }
 ]
-const listTypecourse = [
-  'ĐÀO TẠO SẢN PHẨM',
-  'ĐÀO TẠO CƠ BẢN',
-  'ĐÀO TẠO KỸ THUẬT',
-  'TÂM LÝ ĐẦU TƯ'
-]
+
 const listTeachers = [
   {
     img: '',
@@ -153,7 +150,7 @@ class TrainingService extends Component {
     super(props);
 
     this.state = {
-      selectedCourse: "Online",
+      selectedCourse: 0,
       selectedTypeCourse: 0,
       activeCourse: 0
     }
@@ -175,12 +172,33 @@ class TrainingService extends Component {
     })
   }
 
+  onRegister = (id) => {
+    alert('Đăng ký khóa học: ', id);
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.selectedCourse !== this.state.selectedCourse) {
+      this.props.fetchlistCourseTop(this.state.selectedCourse);
+    }
+    if (prevState.selectedTypeCourse !== this.state.selectedTypeCourse) {
+      this.props.fetchlistCourseCategory(this.state.selectedTypeCourse);
+    }
+  }
+
+  componentDidMount() {
+    const state = this.state;
+    this.props.fetchListCourseHot(1);
+    this.props.fetchlistCourseTop(state.selectedCourse);
+    this.props.fetchlistCourseCategory(state.selectedTypeCourse);
+  }
+
   render() {
     const {
       selectedCourse,
       selectedTypeCourse,
       activeCourse
     } = this.state;
+    const props = this.props;
     var settings = {
       dots: true,
       arrows: true,
@@ -200,76 +218,86 @@ class TrainingService extends Component {
               <div className='course-content'>
                 <div className='list-course-box'>
                   <div className='select-course-type'>
-                    <div className={selectedCourse === 'Online' ? 'type-course active' : 'type-course'} onClick={() => this.onChangeSelectCourse('Online')} >Khóa học Online</div>
-                    <div className={selectedCourse === 'Offline' ? 'type-course active' : 'type-course'} onClick={() => this.onChangeSelectCourse('Offline')} >Khóa học Offline</div>
+                    {
+                      TYPE_COURSE.map((item, index) => {
+                        return <div key={index} className={selectedCourse === item.type ? 'type-course active' : 'type-course'}
+                          onClick={() => this.onChangeSelectCourse(item.type)} >{item.name}</div>
+                      })
+                    }
                   </div>
-                  {
-                    selectedCourse === "Online" ? <div className='list-course'>
-                      {
-                        listCourseOnline.map((item, index) => {
-                          return <div key={index} className='course-item'>
-                            <div className='time'>KHAI GIẢNG<br /><span>{item.startDate}</span></div>
-                            <div className='title'>{item.title}</div>
-                            <div className='box-left'>
-                              <div className='course-title'>Thời gian: <span>{item.time}</span></div>
-                              <div className='course-title'>Giảng viên: <span>{item.teacher}</span></div>
-                              <div className='course-title'>Địa điểm: <span>{item.addr}</span></div>
-                            </div>
-                            <div className='box-right'>
-                              <div className='course-title'>Khai giảng: <span>{item.date}</span></div>
-                              <div className='course-title'>Hình thức học: <span>{item.type}</span></div>
-                              <div className='course-title'>Chi phí: <span>{item.cost}</span></div>
-                            </div>
-                            <div className='course-des'>{item.des}<i class="fas icAdMore"></i></div>
-                            <div className='course-footer'>
-
-                              File download: <a className='file-download' href={item.urlFile}><i class="fas icPdf"></i>
-                              </a>
-                              <div className='url-register'>Click tham gia: <span><a class="regLean" href='abc.com'>Đăng ký học</a></span></div>
-                            </div>
+                  <div className='list-course'>
+                    {
+                      props.listCourseTop.map((item, index) => {
+                        return <div key={index} className='course-item'>
+                          <div className='time'>KHAI GIẢNG<br /><span>{item.startDate}</span></div>
+                          <div className='title'>{item.name}</div>
+                          <div className='box-left'>
+                            <div className='course-title'>Thời gian: <span>{item.schedule}</span></div>
+                            <div className='course-title'>Giảng viên: <span>{item.teacher}</span></div>
+                            <div className='course-title'>Địa điểm: <span>{item.address}</span></div>
                           </div>
-                        })
-                      }
-                    </div> : <div className='list-course'>
-                        {
-                          listCourseOffline.map((item, index) => {
-                            return <div key={index} className='course-item'>
-                              {/* <div className='start-time'><span>KHAI GIẢNG</span>{item.start}</div>
-                            <div className='title'>{item.title}</div>
-                            <div className='calendar'>{item.calendar}</div> */}
-                            </div>
-                          })
-                        }
-                      </div>
-                  }
+                          <div className='box-right'>
+                            <div className='course-title'>Khai giảng: <span>{item.startDate}</span></div>
+                            <div className='course-title'>Hình thức học: <span>
+                            {
+                              TYPE_COURSE.map(course => {
+                                if (item.type === course.type) {
+                                  return course.name;
+                                }
+                                return null;
+                              })
+                            }
+                            </span></div>
+                            <div className='course-title'>Chi phí: <span>{item.fee}</span></div>
+                          </div>
+                          <div className='course-des'>{item.description}<i className="fas icAdMore"></i></div>
+                          <div className='course-footer'>
+
+                            File download: <a className='file-download' href={item.url}><i className="fas icPdf"></i>
+                            </a>
+                            <div className='url-register'>Click tham gia: <span><span className="regLean" onClick={() => this.onRegister(item.id)}>Đăng ký học</span></span></div>
+                          </div>
+                        </div>
+                      })
+                    }
+                  </div>
                 </div>
                 <div className='hot-course'>
                   <div className='hot-title'>KHÓA HỌC HOT</div>
                   {
-                    listCourseOnline.map((item, index) => {
-                      return <React.Fragment>
+                    props.listCourseHot.map((item, index) => {
+                      return <React.Fragment key={index}>
                         {
                           activeCourse === index ? <div className='course-item active' key={index}>
 
                             <div className='course-name' onClick={() => this.onChangeSelectHotCourse(index)}>
                               <div className='course-index'>{index + 1}</div>
-                              <span>{item.title}</span></div>
+                              <span>{item.name}</span></div>
                             <div className='box-left'>
-                              <div className='course-title'>Thời gian: <span>{item.time}</span></div>
+                              <div className='course-title'>Thời gian: <span>{item.schedule}</span></div>
                               <div className='course-title'>Giảng viên: <span>{item.teacher}</span></div>
-                              <div className='course-title'>Địa điểm: <span>{item.addr}</span></div>
+                              <div className='course-title'>Địa điểm: <span>{item.address}</span></div>
                             </div>
                             <div className='box-right'>
-                              <div className='course-title'>Khai giảng: <span>{item.date}</span></div>
-                              <div className='course-title'>Hình thức học: <span>{item.type}</span></div>
-                              <div className='course-title'>Chi phí: <span>{item.cost}</span></div>
+                              <div className='course-title'>Khai giảng: <span>{item.startDate}</span></div>
+                              <div className='course-title'>Hình thức học: <span>
+                                {
+                                  TYPE_COURSE.map(course => {
+                                    if (item.type === course.type) {
+                                      return course.name;
+                                    }
+                                    return null;
+                                  })
+                                }
+                              </span></div>
+                              <div className='course-title'>Chi phí: <span>{item.fee}</span></div>
                             </div>
-                            <div className='course-des'>{item.des}<i class="fas icAdMore"></i></div>
+                            <div className='course-des'>{item.des}<i className="fas icAdMore"></i></div>
                             <div className='course-footer'>
 
-                              File download: <a className='file-download' href={item.urlFile}><i class="fas icPdf"></i>
+                              File download: <a className='file-download' href={item.url}><i className="fas icPdf"></i>
                               </a>
-                              <div className='url-register'>Click tham gia: <span><a class="regLean" href='abc.com'>Đăng ký học</a></span></div>
+                              <div className='url-register'>Click tham gia: <span><span className="regLean" onClick={() => this.onRegister(item.id)}>Đăng ký học</span></span></div>
                             </div>
                           </div> :
                             <div className='course-item' onClick={() => this.onChangeSelectHotCourse(index)}>
@@ -288,24 +316,24 @@ class TrainingService extends Component {
             <hr />
             <div className='select-type-course'>
               {
-                listTypecourse.map((type, index) => {
-                  return <div className={selectedTypeCourse === index ? 'item-type-course selected' : 'item-type-course'}
-                    onClick={() => this.onChangeSelectTypeCourse(index)}>{type}
+                CATEGORY_COURSE.map((item, index) => {
+                  return <div key={index} className={selectedTypeCourse === item.cat ? 'item-type-course selected' : 'item-type-course'}
+                    onClick={() => this.onChangeSelectTypeCourse(item.cat)}>{item.name}
                   </div>
                 })
               }
             </div>
             <div className="type-course-list">
               {
-                listCourseOnline.map((course, index) => {
-                  return <div className='item-course'>
+                props.listCourseCategory.map((course, index) => {
+                  return <div className='item-course' key={index}>
                     <div className='course-index'>{index + 1}</div>
                     <div className='sqrL'></div>
-                    <div className='course-name'>{course.title}</div>
-                    <div className='course-date-time-cost'>Thời gian: <span>{course.time}</span></div>
-                    <div className='course-date-time-cost'>Khai giảng: <span>{course.date}</span></div>
-                    <div className='course-date-time-cost'>Chi phí: <span>{course.cost}</span></div>
-                    <div className='course-des'>{course.des}</div>
+                    <div className='course-name'>{course.name}</div>
+                    <div className='course-date-time-cost'>Thời gian: <span>{course.schedule}</span></div>
+                    <div className='course-date-time-cost'>Khai giảng: <span>{course.startDate}</span></div>
+                    <div className='course-date-time-cost'>Chi phí: <span>{course.fee}</span></div>
+                    <div className='course-des'>{course.description}</div>
                     <div className='blInfo'>
                       <table>
                         <thead>
@@ -318,19 +346,28 @@ class TrainingService extends Component {
                         </thead>
                         <tbody>
                           <tr>
-                            <td>{course.date}</td>
+                            <td>{course.startDate}</td>
                             <td>{course.teacher}</td>
-                            <td>{course.type}</td>
-                            <td>{course.addr}</td>
+                            <td>
+                              {
+                                  TYPE_COURSE.map(item => {
+                                    if (item.type === course.type) {
+                                      return item.name;
+                                    }
+                                    return null;
+                                  })
+                                }
+                            </td>
+                            <td>{course.address}</td>
                           </tr>
                         </tbody>
                       </table>
 
                       <div className='file-download'>
                         File download:
-                    <a href={course.urlFile}><i class="fas icExcel"></i></a>
+                    <a href={course.urlFile}><i className="fas icExcel"></i></a>
                       </div>
-                      <div className='url-register'>Để tham gia bạn click: <a className='btn_regis' href='abc.com'>Đăng ký học</a></div>
+                      <div className='url-register'>Để tham gia bạn click: <span className='btn_regis' onClick={() => this.onRegister(course.id)}>Đăng ký học</span></div>
 
                     </div>
                   </div>
@@ -363,11 +400,33 @@ class TrainingService extends Component {
 }
 
 const mapStateToProps = state => {
-  return {};
+  return {
+    listCourseHot: state.TrainingService.listCourseHot,
+    listCourseCategory: state.TrainingService.listCourseCategory,
+    listCourseTop: state.TrainingService.listCourseTop,
+    total: state.TrainingService.total,
+    detail: state.TrainingService.detail
+  };
 };
 
 const mapDispatchToProps = dispatch => {
-  return {}
+  return {
+    fetchListCourse: (start, limit, type, category, priority) => {
+      dispatch(actions.listCourse(start, limit, type, category, priority));
+    },
+    fetchListCourseHot: (priority) => {
+      dispatch(actions.listCourseHot(priority));
+    },
+    fetchlistCourseTop: (type) => {
+      dispatch(actions.listCourseTop(type));
+    },
+    fetchlistCourseCategory: (category) => {
+      dispatch(actions.listCourseCategory(category));
+    },
+    getDetail: (id) => {
+      dispatch(actions.getDetail(id));
+    }
+  }
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TrainingService);

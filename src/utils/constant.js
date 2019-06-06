@@ -131,3 +131,31 @@ export const TYPE_REPORT = [
     name: 'Báo cáo phân tích CW'
   }
 ]
+export const TYPE_COURSE = [
+  {
+    type: 0,
+    name: 'Khóa học Offline'
+  },
+  {
+    type: 1,
+    name: 'Khóa học Online'
+  }
+]
+export const CATEGORY_COURSE = [
+  {
+    cat: 0,
+    name: 'ĐÀO TẠO SẢN PHẨM'
+  },
+  {
+    cat: 1,
+    name: 'ĐÀO TẠO CƠ BẢN'
+  },
+  {
+    cat: 2,
+    name: 'ĐÀO TẠO KỸ THUẬT'
+  },
+  {
+    cat: 3,
+    name: 'TÂM LÝ ĐẦU TƯ'
+  }
+]
