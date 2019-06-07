@@ -79,14 +79,14 @@ class FormNews extends Component {
       var reader = new FileReader();
       reader.onload = function(e) {
         imageDisplayArea.innerHTML = "";
-
         var img = new Image();
         img.src = reader.result;
-
         imageDisplayArea.appendChild(img);
       }
-
       reader.readAsDataURL(file);	
+      this.setState({
+        thumbnail: file
+      })
     } else {
       imageDisplayArea.innerHTML = "Vui lòng tải hình ảnh!";
     }
@@ -104,24 +104,24 @@ class FormNews extends Component {
   }
   onSubmit = () => {
     if (this.onValidateForm()) {
-      if (this.state.update) {
+      const state = this.state;
+      if (state.update) {
         const data = {
-          id: this.state.id,
-          views: this.state.views,
-          title: this.state.title,
-          content: this.state.content,
-          categoryId: this.state.categoryId,
-          imgUrl: this.state.thumbnail
+          id: state.id,
+          views: state.views,
+          title: state.title,
+          content: state.content,
+          categoryId: state.categoryId,
+          imgUrl: state.thumbnail
         }
         this.props.updateNews(data);
       } else {
-        const data = {
-          views: this.state.views,
-          title: this.state.title,
-          content: this.state.content,
-          categoryId: this.state.categoryId,
-          imgUrl: this.state.thumbnail
-        }
+        let data = new FormData();
+        data.append('views', encodeURI(state.name));
+        data.append('title', state.title);
+        data.append('content', state.content);
+        data.append('categoryId', state.categoryId);
+        data.append('imgUrl', state.thumbnail);
         this.props.createNews(data);
       }
     }
@@ -151,12 +151,12 @@ class FormNews extends Component {
       validateUploadImage
     } = this.state;
     
-    var cb = function() { return (new Date()).getTime() }
-    ClassicEditor.create(document.querySelector( '#editor' ), {
-      simpleUpload: {
-          uploadUrl: {url:'http://127.0.0.1/my-upload-endpoint', headers:{ 'x-header':'myhead', 'x-header-cb': cb } }
-      }
-    })
+    // var cb = function() { return (new Date()).getTime() }
+    // ClassicEditor.create(document.querySelector( '#editor' ), {
+    //   simpleUpload: {
+    //       uploadUrl: {url:'http://127.0.0.1/my-upload-endpoint', headers:{ 'x-header':'myhead', 'x-header-cb': cb } }
+    //   }
+    // })
     return(
       <Layout>
         <div className='admin-form'>

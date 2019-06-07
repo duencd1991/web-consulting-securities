@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Layout from '../layout/layout';
 import './createTradingAccount.scss';
-
+import icCapcha from '../../assets/img/Capcha.jpg';
 
 export default class CreateTradingAccount extends Component {
   render() {
@@ -242,7 +242,7 @@ export default class CreateTradingAccount extends Component {
                                   </label>
                               </div>
                           </div> 
-                          <div><img alt='img-capcha' src="../assets/img/Capcha.jpg"></img></div>                         
+                          <div><img alt='img-capcha' src={icCapcha}></img></div>                         
                           <button class="btn btn_continue mt15">Tiếp tục</button>
                           </div>
                       </div>
