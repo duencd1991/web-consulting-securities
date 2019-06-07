@@ -23,6 +23,9 @@ import SearchResults from './searchResults/searchResults';
 import ListReport from './admin/report/listReport';
 import FormReport from './admin/report/formReport';
 import SignIn from './signIn/signIn';
+import SignUp from './signUp/signUp';
+import ForgotPassWord from './forgotPassWord/forgotPassWord';
+import GetPassWord from './forgotPassWord/getPassWord';
 
 
 const AppRouter = () => {
@@ -46,6 +49,9 @@ const AppRouter = () => {
           <Route exact path='/list-report' component={ListReport} />
           <Route exact path='/create-report' component={FormReport} />
           <Route exact path='/sign-in' component={SignIn} />
+          <Route exact path='/sign-up' component={SignUp} />
+          <Route exact path='/forgot-pass-word' component={ForgotPassWord}/>
+          <Route exact path='/get-pass-word' component={GetPassWord}/>
           <Route component={PageNotFound}></Route>
         </Switch>
       </RootContainer>
