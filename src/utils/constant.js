@@ -159,3 +159,44 @@ export const CATEGORY_COURSE = [
     name: 'TÂM LÝ ĐẦU TƯ'
   }
 ]
+
+export const NATIONALITY = [
+  {
+    id: 'Viet Nam',
+    name: 'Việt Nam'
+  },
+  {
+    id: 'Han Quoc',
+    name: 'Hàn Quốc'
+  },
+  {
+    id: 'Nhat Ban',
+    name: 'Nhật Bản'
+  },
+  {
+    id: 'Trung Quoc',
+    name: 'Trung Quốc'
+  },
+  {
+    id: 'Phillipin',
+    name: 'Phillipin'
+  },
+  {
+    id: 'Singapore',
+    name: 'Singapore'
+  }
+]
+export const TYPE_AUTHEN = [
+  {
+    id: 1,
+    name: 'Giấy CMND'
+  },
+  {
+    id: 2,
+    name: 'Thẻ căn cước công dân'
+  },
+  {
+    id: 3,
+    name: 'Khác'
+  }
+]

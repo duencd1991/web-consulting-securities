@@ -6,6 +6,7 @@ import icNoImg from '../../../assets/img/ic_no_img2.png';
 import Slider from "react-slick";
 import actions from '../../../store/trainingService/actions';
 import { TYPE_COURSE, CATEGORY_COURSE } from '../../../utils/constant';
+import Popup from '../../../components/popup/popup';
 
 const listTeachers = [
   {
@@ -41,7 +42,8 @@ class TrainingService extends Component {
     this.state = {
       selectedCourse: 0,
       selectedTypeCourse: 0,
-      activeCourse: 0
+      activeCourse: 0,
+      showPopup: false
     }
   }
 
@@ -62,7 +64,15 @@ class TrainingService extends Component {
   }
 
   onRegister = (id) => {
-    alert('Đăng ký khóa học: ', id);
+    this.setState({
+      showPopup: true
+    })
+  }
+
+  onCloseRegister = () => {
+    this.setState({
+      showPopup: false
+    })
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -85,7 +95,8 @@ class TrainingService extends Component {
     const {
       selectedCourse,
       selectedTypeCourse,
-      activeCourse
+      activeCourse,
+      showPopup
     } = this.state;
     const props = this.props;
     var settings = {
@@ -98,6 +109,9 @@ class TrainingService extends Component {
     };
     return (
       <Layout title="">
+        {
+          showPopup && <Popup showPopup={this.onCloseRegister} />
+        }
         <div className='training-service-page'>
           <div className='banner'>
             <div className='title-banner'>DỊCH VỤ ĐÀO TẠO</div>
