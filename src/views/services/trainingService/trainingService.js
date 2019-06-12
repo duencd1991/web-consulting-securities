@@ -6,7 +6,7 @@ import icNoImg from '../../../assets/img/ic_no_img2.png';
 import Slider from "react-slick";
 import actions from '../../../store/trainingService/actions';
 import { TYPE_COURSE, CATEGORY_COURSE } from '../../../utils/constant';
-import Popup from '../../../components/popup/popup';
+import RegisterPopup from './registerPopup';
 
 const listTeachers = [
   {
@@ -43,7 +43,8 @@ class TrainingService extends Component {
       selectedCourse: 0,
       selectedTypeCourse: 0,
       activeCourse: 0,
-      showPopup: false
+      showPopup: false,
+      objCourse: null
     }
   }
 
@@ -63,15 +64,17 @@ class TrainingService extends Component {
     })
   }
 
-  onRegister = (id) => {
+  onRegister = (course) => {
     this.setState({
-      showPopup: true
+      showPopup: true,
+      objCourse: course
     })
   }
 
   onCloseRegister = () => {
     this.setState({
-      showPopup: false
+      showPopup: false,
+      objCourse: null
     })
   }
 
@@ -96,7 +99,8 @@ class TrainingService extends Component {
       selectedCourse,
       selectedTypeCourse,
       activeCourse,
-      showPopup
+      showPopup,
+      objCourse
     } = this.state;
     const props = this.props;
     var settings = {
@@ -107,10 +111,11 @@ class TrainingService extends Component {
       slidesToShow: 3,
       centerMode: true
     };
+    
     return (
       <Layout title="">
         {
-          showPopup && <Popup showPopup={this.onCloseRegister} />
+          <RegisterPopup isShowModal={showPopup} title="Tiêu đề" courseInfo={objCourse} closePopup={this.onCloseRegister}/>
         }
         <div className='training-service-page'>
           <div className='banner'>
@@ -158,7 +163,7 @@ class TrainingService extends Component {
 
                             File download: <a className='file-download' href={item.url}><i className="fas icPdf"></i>
                             </a>
-                            <div className='url-register'>Click tham gia: <span><span className="regLean" onClick={() => this.onRegister(item.id)}>Đăng ký học</span></span></div>
+                            <div className='url-register'>Click tham gia: <span><span className="regLean" onClick={() => this.onRegister(item)}>Đăng ký học</span></span></div>
                           </div>
                         </div>
                       })
@@ -200,7 +205,8 @@ class TrainingService extends Component {
 
                               File download: <a className='file-download' href={item.url}><i className="fas icPdf"></i>
                               </a>
-                              <div className='url-register'>Click tham gia: <span><span className="regLean" onClick={() => this.onRegister(item.id)}>Đăng ký học</span></span></div>
+                              <div className='url-register'>Click tham gia: <span>
+                                  <span className="regLean" onClick={() => this.onRegister(item)}>Đăng ký học</span></span></div>
                             </div>
                           </div> :
                             <div className='course-item' onClick={() => this.onChangeSelectHotCourse(index)}>
@@ -270,8 +276,7 @@ class TrainingService extends Component {
                         File download:
                     <a href={course.urlFile}><i className="fas icExcel"></i></a>
                       </div>
-                      <div className='url-register'>Để tham gia bạn click: <span className='btn_regis' onClick={() => this.onRegister(course.id)}>Đăng ký học</span></div>
-
+                      <div className='url-register'>Để tham gia bạn click: <span className='btn_regis' onClick={() => this.onRegister(course)}>Đăng ký học</span></div>
                     </div>
                   </div>
                 })

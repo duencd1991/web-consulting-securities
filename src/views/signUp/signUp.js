@@ -12,7 +12,7 @@ export default class signIn extends Component {
           <div className='leftF'>
             <img src={imgBgLeft} alt="Đăng nhập" />
             <div className='titleSignin top14'>Đăng Ký<br/>Tài Khoản Website</div>
-              <div class="checkTKCK"><a href="/" alt="Trang chủ" className='logo'><img src={logoMbs}/></a>
+              <div class="checkTKCK"><a href="/" alt="Trang chủ" className='logo'><img src={logoMbs} alt=""/></a>
                 <p className="copyRight">Copyrights 2000 - 2019 MBS.</p>
               <input type="checkbox" name="frequency"  tabindex="0" class="hidden"/>
               <label>Tôi đã có tài khoản chứng khoán</label>

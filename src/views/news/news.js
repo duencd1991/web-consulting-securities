@@ -150,7 +150,7 @@ class News extends Component {
                     {
                       this.props.listNews && this.props.listNews.length > 0 ? this.props.listNews.map((item, index) => {
                         return <div className='new-item' key={index}>
-                          <img alt={`img-${index}`} src={item.img ? item.img : icNoImg}/>
+                          <img alt={`img-${index}`} src={item.img ? item.img : icNoImg} onClick={() => this.goToDetail(item.id)}/>
                           <div className='title'>{item.title}</div>
                           <div className='new-des'>{item.des}</div>
                           <div className='new-footer'>
