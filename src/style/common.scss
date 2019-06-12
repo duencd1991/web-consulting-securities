@@ -14,6 +14,20 @@ body,
   font-weight: bold;
 }
 body {
+  .table-content {
+    position: relative;
+    .btn-create-new {
+      position: absolute;
+      right: 0;
+      background-color: #005197;
+      border: none;
+      min-width: 100px;
+      color: #ffffff;
+      &:hover {
+        background-color: #0066b3;
+      }
+    }
+  }
   .list-group-item {
     border-color: #dcdde0;
   }

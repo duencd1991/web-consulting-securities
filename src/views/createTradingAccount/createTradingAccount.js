@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Layout from '../layout/layout';
 import './createTradingAccount.scss';
 import icCapcha from '../../assets/img/Capcha.jpg';
 import { NATIONALITY, TYPE_AUTHEN } from '../../utils/constant';
+import { toast } from 'react-toastify';
+import actions from '../../store/accountTrading/actions';
+import notifyActions from '../../store/notification/actions';
 
-export default class CreateTradingAccount extends Component {
+class CreateTradingAccount extends Component {
 
   constructor(props) {
     super(props)
@@ -28,14 +32,55 @@ export default class CreateTradingAccount extends Component {
       currentAddress: '',
       currentCity: '',
       currentDistrict: '',
-      accountType: 3
+      accountType: 3,
+
+      accountType1: false,
+      accountType2: false,
+      agreement: false,
+      validate: true
     }
+  }
+
+  componentWillUpdate(nextProps, nextState) {
+    if (nextState.accountType1 !== this.state.accountType1 || nextState.accountType2 !== this.state.accountType2) {
+      let accountType = 0;
+      if (nextState.accountType1 && nextState.accountType2) {
+        accountType = 3;
+      } else if (nextState.accountType1 && !nextState.accountType2) {
+        accountType = 1;
+      } else if (!nextState.accountType1 && nextState.accountType2) {
+        accountType = 2;
+      }
+      this.setState({
+        accountType: accountType
+      })
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.message !== '' && nextProps.message !== this.props.message) {
+      toast(nextProps.message);
+      this.props.clearNotify();
+    }
+  }
+
+  onCheckBoxChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.checked
+    })
   }
 
   onChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value
     })
+  }
+  onChangeDate = (e) => {
+    if (e.target.value) {
+      this.setState({
+        [e.target.name]: e.target.value
+      })
+    }
   }
 
   onChangeGender = (gender) => {
@@ -53,6 +98,66 @@ export default class CreateTradingAccount extends Component {
     this.setState({
       [e.target.name]: NATIONALITY[e.target.selectedIndex].id
     })
+  }
+
+  validateForm = () => {
+    const {
+      name,
+      dateBirth,
+      numberAuthen,
+      dateRange,
+      issueBy,
+      permanentAddress,
+      permanentCity,
+      permanentDistrict,
+      currentAddress,
+      currentCity,
+      currentDistrict,
+      phoneNumber,
+      email,
+      accountNumber
+    } = this.state;
+    let check = name !== '' 
+      && dateBirth !== ''
+      && numberAuthen !== ''
+      && dateRange !== ''
+      && issueBy !== ''
+      && permanentAddress !== ''
+      && currentAddress !== ''
+      && phoneNumber !== ''
+      && email !== ''
+      && accountNumber !== '';
+    this.setState({
+      validate: check
+    })
+    return check;
+  }
+  handleSubmit = () => {
+    if (this.validateForm()) {
+      const state = this.state;
+      const data = {
+        name: state.name,
+        phoneNumber: state.phoneNumber,
+        email: state.email,
+        accountNumber: state.accountNumber,
+        nationality: state.nationality,
+        nationalityOther: state.nationalityOther,
+        sex: state.sex,
+        dateBirth: state.dateBirth,
+        typeAuthen: state.typeAuthen,
+        numberAuthen: state.numberAuthen,
+        dateRange: state.dateRange,
+        issueBy: state.issueBy,
+        permanentAddress: state.permanentAddress,
+        permanentCity: state.permanentCity,
+        permanentDistrict: state.permanentDistrict,
+        currentAddress: state.currentAddress,
+        currentCity: state.currentCity,
+        currentDistrict: state.currentDistrict,
+        accountType: state.accountType
+      }
+      this.props.createAccountTrading(data);
+    }
   }
 
   render() {
@@ -75,7 +180,11 @@ export default class CreateTradingAccount extends Component {
       currentAddress,
       currentCity,
       currentDistrict,
-      accountType
+      accountType,
+      accountType1,
+      accountType2,
+      agreement,
+      validate
     } = this.state;
     return(
       <Layout>
@@ -127,7 +236,7 @@ export default class CreateTradingAccount extends Component {
                       <span htmlFor="">Ngày sinh ( <i className="txtRed">*</i> ) : </span>
                       <div className="lnr lnr-calendar-full"></div>
                       <input type="text" className="form-control datepicker-here" data-language='en'
-                        data-date-format="dd-mm-yyyy" id="dp1" name="dateBirth" onChange={this.onChange}/>
+                        data-date-format="dd-mm-yyyy" id="dp1" name="dateBirth" onBlur={this.onChangeDate}/>
                     </div>
                     <div className="form-wrapper">
                       <span htmlFor="">Quốc tịch :</span>
@@ -184,7 +293,7 @@ export default class CreateTradingAccount extends Component {
                         <span htmlFor="">Ngày cấp : </span>
                         <div className="lnr lnr-calendar-full"></div>
                         <input type="text" className="form-control datepicker-here" data-language='en'
-                          data-date-format="dd-mm-yyyy" id="dp1" name="dateRange" onChange={this.onChange}/>
+                          data-date-format="dd-mm-yyyy" id="dp1" name="dateRange" onBlur={this.onChangeDate}/>
                       </div>                      
                     </div>
                     <div className="form-row">
@@ -206,21 +315,25 @@ export default class CreateTradingAccount extends Component {
                             value={permanentAddress} name="permanentAddress" onChange={this.onChange}/>
                         </div>
                         <div className="form-wrapper">
-                          <select name="" id="" className="form-control filterProv">
-                            <option value="0">Tỉnh / Thành phố</option>
-                            <option value="1">Bà Rịa - Vũng Tàu</option>
-                            <option value="2">Hà Nội</option>
-                            <option value="3">Tp.Hồ Chí Minh</option>
-                            <option value="4">Hải Phòng</option>
-                            <option value="5">Đà Nẵng</option>
+                          <span htmlFor="">Tỉnh / Thành phố</span>
+                          <select name="permanentCity" id="permanentCity" className="form-control"
+                            onChange={this.onSelectNational}>
+                            {
+                              NATIONALITY.map((item, index ) => {
+                                return <option key={index} value={item.id}>{item.name}</option>
+                              })
+                            }
                           </select>
-                          <select name="" id="" className="form-control filterDis">
-                            <option value="0">Quận / Huyện</option>
-                            <option value="1">Bà Rịa - Vũng Tàu</option>
-                            <option value="2">Hà Nội</option>
-                            <option value="3">Tp.Hồ Chí Minh</option>
-                            <option value="4">Hải Phòng</option>
-                            <option value="5">Đà Nẵng</option>
+                        </div>
+                        <div className="form-wrapper">
+                          <span htmlFor="">Quận / Huyện</span>
+                          <select name="permanentDistrict" id="permanentDistrict" className="form-control"
+                            onChange={this.onSelectNational}>
+                            {
+                              NATIONALITY.map((item, index ) => {
+                                return <option key={index} value={item.id}>{item.name}</option>
+                              })
+                            }
                           </select>
                         </div>
                       </div>
@@ -231,28 +344,32 @@ export default class CreateTradingAccount extends Component {
                             value={currentAddress} name="currentAddress" onChange={this.onChange}/>
                         </div>
                         <div className="form-wrapper">
-                          <select name="" id="" className="form-control filterProv">
-                            <option value="0">Tỉnh / Thành phố</option>
-                            <option value="1">Bà Rịa - Vũng Tàu</option>
-                            <option value="2">Hà Nội</option>
-                            <option value="3">Tp.Hồ Chí Minh</option>
-                            <option value="4">Hải Phòng</option>
-                            <option value="5">Đà Nẵng</option>
+                          <span htmlFor="">Tỉnh / Thành phố</span>
+                          <select name="currentCity" id="currentCity" className="form-control"
+                            onChange={this.onSelectNational}>
+                            {
+                              NATIONALITY.map((item, index ) => {
+                                return <option key={index} value={item.id}>{item.name}</option>
+                              })
+                            }
                           </select>
-                          <select name="" id="" className="form-control filterDis">
-                            <option value="0">Quận / Huyện</option>
-                            <option value="1">Bà Rịa - Vũng Tàu</option>
-                            <option value="2">Hà Nội</option>
-                            <option value="3">Tp.Hồ Chí Minh</option>
-                            <option value="4">Hải Phòng</option>
-                            <option value="5">Đà Nẵng</option>
+                        </div>
+                        <div className="form-wrapper">
+                          <span htmlFor="">Quận / Huyện</span>
+                          <select name="currentDistrict" id="currentDistrict" className="form-control"
+                            onChange={this.onSelectNational}>
+                            {
+                              NATIONALITY.map((item, index ) => {
+                                return <option key={index} value={item.id}>{item.name}</option>
+                              })
+                            }
                           </select>
                         </div>
                       </div>
                       <div className="form-row">
                         <div className="form-wrapper">
                           <span htmlFor="">Điện thoại di động ( <i className="txtRed">*</i> ) : </span>
-                          <input type="text" className="form-control" placeholder="Địa chỉ thường trú"
+                          <input type="text" className="form-control" placeholder="Điện thoại di động"
                             name="phoneNumber" value={phoneNumber} onChange={this.onChange}/>
                         </div>
                         <div className="form-wrapper">
@@ -272,28 +389,27 @@ export default class CreateTradingAccount extends Component {
                       <div className="form-row">
                         <div className="form-wrapper">
                           <div className="form-group">
-                            <div className="form-check">
-                              <input className="form-check-input" type="checkbox" id="gridCheck"/>
-                              <label className="form-check-label" htmlFor="gridCheck">
-                              Cổ phiếu, trái phiếu, chứng quyền có bảo đảm
+                            <div className="custom-control custom-checkbox">
+                              <input type="checkbox" className="custom-control-input" id="accountType1"
+                                name="accountType1" onChange={this.onCheckBoxChange}/>
+                              <label className="custom-control-label" htmlFor="accountType1">
+                                Cổ phiếu, trái phiếu, chứng quyền có bảo đảm
                               </label>
                             </div>
-                        </div>
-                        </div>
-                        <div className="form-wrapper">
-
+                          </div>
                         </div>
                       </div>
                     <div className="form-row">
                         <div className="form-wrapper">
                           <div className="form-group">
-                            <div className="form-check">
-                              <input className="form-check-input" type="checkbox" id="gridCheck"/>
-                                <label className="form-check-label" htmlFor="gridCheck">
+                            <div className="custom-control custom-checkbox">
+                              <input type="checkbox" className="custom-control-input" id="accountType2"
+                                name="accountType2" onChange={this.onCheckBoxChange}/>
+                              <label className="custom-control-label" htmlFor="accountType2">
                                 Hợp đồng tương lai
-                                </label>
+                              </label>
                             </div>
-                        </div>
+                          </div>
                         </div>
                         <div className="form-wrapper vldSTK">
                           <span htmlFor="validationSTK">Số tài khoản tại MBS ( <i className="txtRed">*</i> ): </span>
@@ -308,15 +424,18 @@ export default class CreateTradingAccount extends Component {
                       <div className="form-row ">
                           <div className="form-wrapper flb_100 justify-content-center flex-column">
                             <div className="form-group">
-                              <div className="form-check">
-                                <input className="form-check-input" type="checkbox" id="gridCheck"/>
-                                  <label className="form-check-label" htmlFor="gridCheck">
+                              <div className="custom-control custom-checkbox">
+                                <input type="checkbox" className="custom-control-input" id="agreement" name="agreement" onChange={this.onCheckBoxChange}/>
+                                <label className="custom-control-label" htmlFor="agreement">
                                   Tôi đồng ý với <i className='txtBlue'>Điều khoản và Điều kiện Mở tài khoản Giao dịch Chứng khoán</i>
-                                  </label>
+                                </label>
                               </div>
-                          </div> 
-                          <div><img alt='img-capcha' src={icCapcha}></img></div>                         
-                          <button className="btn btn_continue mt15">Tiếp tục</button>
+                            </div>
+                          <div><img alt='img-capcha' src={icCapcha}></img></div>       
+                          {
+                            !validate && <div className="txtRed">Vui lòng nhập đủ các thông tin bắt buộc (*)</div>
+                          }                  
+                          <button disabled={!agreement} className="btn btn_continue mt15" onClick={this.handleSubmit}>Tiếp tục</button>
                           </div>
                       </div>
                     </div>
@@ -329,3 +448,22 @@ export default class CreateTradingAccount extends Component {
     );
   }
 }
+const mapStateToProps = state => {
+  return {
+    success: state.Notifys.success,
+    message: state.Notifys.message
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    createAccountTrading: (data) => {
+      dispatch(actions.createAccountTrading(data));
+    },
+    clearNotify: () => {
+      dispatch(notifyActions.clearNotify());
+    }
+  }
+};
+
+export default connect(mapStateToProps,mapDispatchToProps)(CreateTradingAccount);

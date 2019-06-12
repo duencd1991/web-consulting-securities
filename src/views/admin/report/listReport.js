@@ -115,7 +115,10 @@ class ListReport extends Component {
     return (
       <Layout>
         <div className='list-news-page'>
-          <div className='news-tables'>
+          <div className='news-tables table-content'>
+            <button className='btn btn-create-new' onClick={() => this.props.history.push(`/create-report`)}>
+              Tạo mới báo cáo
+            </button>
             <Table 
               title='Quản lý danh mục báo cáo'
               listData={props.listReport}

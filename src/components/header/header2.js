@@ -85,33 +85,28 @@ export default class Header extends Component {
                     <a className="dropdown-item" href="/consulting-securities">Tư vấn chứng khoán phái sinh</a>
                   </div>
                 </li>
-                {/* <li className={urlPage === '/report' ? "nav-item active" : "nav-item"}>
+                <li className={urlPage === '/report' ? "nav-item active" : "nav-item"}>
                   <a className="nav-link" href="/report">BÁO CÁO</a>
-                </li> */}
-                <li className={urlPage === '/list-report' ? "nav-item dropdown active" : "nav-item dropdown"}>
+                </li>
+                <li className={urlPage === '/news' ? "nav-item active" : "nav-item"}>
+                  <a className="nav-link" href="/news">KIẾN THỨC</a>
+                </li>
+                <li className={
+                    urlPage === '/list-report'
+                    || urlPage === 'list-news'
+                    || urlPage === 'list-course'
+                    || urlPage === 'list-expert'
+                    || urlPage === 'list-user' ? "nav-item dropdown active" : "nav-item dropdown"}>
                   <div className="nav-link dropdown-toggle " id="navbarDropdown"
                     role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    BÁO CÁO
+                    DANH MỤC
                   </div>
                   <div className="dropdown-menu animate slideIn" aria-labelledby="navbarDropdown">
-                    <a className="dropdown-item" href="/report">Báo cáo</a>
-                    <a className="dropdown-item" href="/list-report">Danh sách báo cáo</a>
-                    <a className="dropdown-item" href="/create-report">Tạo báo cáo mới</a>
-                  </div>
-                </li>
-                {/* <li className={urlPage === '/news' ? "nav-item active" : "nav-item"}>
-                  <a className="nav-link" href="/news">KIẾN THỨC</a>
-                </li> */}
-                <li className={urlPage === '/list-news' || urlPage === '/form-news' || urlPage === '/news' ?
-                  "nav-item dropdown active" : "nav-item dropdown"}>
-                  <div className="nav-link dropdown-toggle " 
-                    role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    KIẾN THỨC
-                  </div>
-                  <div className="dropdown-menu animate slideIn" aria-labelledby="navbarDropdown">
-                    <a className="dropdown-item" href="/news">Kiến thức</a>
-                    <a className="dropdown-item" href="/list-news">Danh sách kiến thức</a>
-                    <a className="dropdown-item" href="/create-news">Tạo kiến thức mới</a>
+                    <a className="dropdown-item" href="/list-report">Quản lý báo cáo</a>
+                    <a className="dropdown-item" href="/list-news">Quản lý kiến thức</a>
+                    <a className="dropdown-item" href="/list-course">Quản lý khóa học</a>
+                    <a className="dropdown-item" href="/list-expert">Quản lý chuyên gia</a>
+                    <a className="dropdown-item" href="/list-user">Quản lý phân quyền</a>
                   </div>
                 </li>
                 <li className={urlPage === '/about-us' ? "nav-item dropdown active" : "nav-item dropdown"}>

@@ -4,7 +4,14 @@ import tradingInstructionSaga from './tradingInstruction/saga';
 import homeSaga from './home/saga';
 import newsSaga from './news/saga';
 import trainingServiceSaga from './trainingService/saga';
+import accountTradingSaga from './accountTrading/saga';
 
 export default function* rootSaga() {
-  yield all([reportSaga(), tradingInstructionSaga(), homeSaga(), newsSaga(), trainingServiceSaga()]);
+  yield all([
+    reportSaga(),
+    tradingInstructionSaga(),
+    homeSaga(),
+    newsSaga(),
+    trainingServiceSaga(),
+    accountTradingSaga()]);
 }

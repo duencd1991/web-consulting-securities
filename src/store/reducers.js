@@ -7,6 +7,7 @@ import GuideLines from './tradingInstruction/reducers';
 import Home from './home/reducers';
 import News from './news/reducers';
 import TrainingService from './trainingService/reducers';
+import AccountTrading from './accountTrading/reducers';
 
 const reducers = combineReducers({
   Header,
@@ -15,7 +16,8 @@ const reducers = combineReducers({
   GuideLines,
   Home,
   News,
-  TrainingService
+  TrainingService,
+  AccountTrading
 });
 
 export default reducers;
