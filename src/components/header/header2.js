@@ -107,6 +107,7 @@ export default class Header extends Component {
                     <a className="dropdown-item" href="/list-course">Quản lý khóa học</a>
                     <a className="dropdown-item" href="/list-expert">Quản lý chuyên gia</a>
                     <a className="dropdown-item" href="/list-user">Quản lý phân quyền</a>
+                    <a className="dropdown-item" href="/list-register-course">Danh sách đăng ký</a>
                   </div>
                 </li>
                 <li className={urlPage === '/about-us' ? "nav-item dropdown active" : "nav-item dropdown"}>

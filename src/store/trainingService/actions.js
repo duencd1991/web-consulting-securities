@@ -11,11 +11,15 @@ const actions = {
   COURSE_DETAIL: 'COURSE_DETAIL',
   COURSE_UPDATE: 'COURSE_UPDATE',
   COURSE_CREATE: 'COURSE_CREATE',
-  listCourse: (start, limit, type, category, priority) => ({
+  REGISTER_COURSE: 'REGISTER_COURSE',
+  REGISTER_COURSE_GET_LIST: 'REGISTER_COURSE_GET_LIST',
+  REGISTER_COURSE_LIST: 'REGISTER_COURSE_LIST',
+  REGISTER_COURSE_DETAIL: 'REGISTER_COURSE_DETAIL',
+  listCourse: (start, limit, courseType, category, priority) => ({
     type: actions.COURSE_GET_LIST,
     start: start,
     limit: limit,
-    type,
+    courseType,
     category,
     priority
   }),
@@ -42,6 +46,18 @@ const actions = {
   createCourse: data => ({
     type: actions.COURSE_CREATE,
     data
+  }),
+  registerCourse: data => ({
+    type: actions.REGISTER_COURSE,
+    data
+  }),
+  registerCourseList: data => ({
+    type: actions.REGISTER_COURSE_GET_LIST,
+    data
+  }),
+  registerCourseDetail: id => ({
+    type: actions.REGISTER_COURSE_DETAIL,
+    id
   })
 };
 export default actions;

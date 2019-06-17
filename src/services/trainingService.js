@@ -60,4 +60,39 @@ const courseDetail = (id) => {
     method: 'get'
   })
 }
-export { listCourse, listCourseHot, listCourseTop, listCourseCategory, createCourse, updateCourse, courseDetail };
+const registerCourse = (data) => {
+  let url = `/course/register/create`
+  return request({
+    url: url,
+    method: 'post',
+    data: data
+  })
+}
+const registerCourseList = (data) => {
+  let url = `/course/register/list/get`
+  return request({
+    url: url,
+    method: 'get',
+    params: data
+  })
+}
+const registerCourseDetail = (data) => {
+  let url = `/course/register/detail`
+  return request({
+    url: url,
+    method: 'get',
+    params: data
+  })
+}
+export {
+  listCourse,
+  listCourseHot,
+  listCourseTop,
+  listCourseCategory,
+  createCourse,
+  updateCourse,
+  courseDetail,
+  registerCourse,
+  registerCourseList,
+  registerCourseDetail
+  };

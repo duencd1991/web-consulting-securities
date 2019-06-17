@@ -131,31 +131,41 @@ export const TYPE_REPORT = [
     name: 'Báo cáo phân tích CW'
   }
 ]
+export const PRIORITY_COURSE = [
+  {
+    index: 1,
+    name: 'Khóa học hot'
+  },
+  {
+    index: 2,
+    name: 'Bình thường'
+  }
+]
 export const TYPE_COURSE = [
   {
-    type: 0,
+    type: 1,
     name: 'Khóa học Offline'
   },
   {
-    type: 1,
+    type: 2,
     name: 'Khóa học Online'
   }
 ]
 export const CATEGORY_COURSE = [
   {
-    cat: 0,
+    cat: 1,
     name: 'ĐÀO TẠO SẢN PHẨM'
   },
   {
-    cat: 1,
+    cat: 2,
     name: 'ĐÀO TẠO CƠ BẢN'
   },
   {
-    cat: 2,
+    cat: 3,
     name: 'ĐÀO TẠO KỸ THUẬT'
   },
   {
-    cat: 3,
+    cat: 4,
     name: 'TÂM LÝ ĐẦU TƯ'
   }
 ]

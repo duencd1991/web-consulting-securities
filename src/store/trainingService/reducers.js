@@ -5,8 +5,10 @@ const initialState = {
   listCourseTop: [],
   listCourseHot: [],
   listCourseCategory: [],
+  listRegisterCourse: [],
   total: 0,
-  detail: {}
+  detail: {},
+  registerDetail: {}
 };
 
 const TrainingService = (state = initialState, action) => {
@@ -19,8 +21,12 @@ const TrainingService = (state = initialState, action) => {
       return { ...state, listCourseTop: action.list };
     case actions.COURSE_LIST_CATEGORY:
       return { ...state, listCourseCategory: action.list };
-    case actions.NEWS_DETAIL:
+    case actions.COURSE_DETAIL:
       return { ...state, detail: action.detail };
+    case actions.REGISTER_COURSE_LIST:
+      return { ...state, listRegisterCourse: action.list, total: action.total };
+    case actions.REGISTER_COURSE_DETAIL:
+      return { ...state, registerDetail: action.detail };
     default:
       return state;
   }

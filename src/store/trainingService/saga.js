@@ -8,14 +8,17 @@ import {
   listCourseCategory,
   courseDetail,
   updateCourse,
-  createCourse
+  createCourse,
+  registerCourse,
+  registerCourseList,
+  registerCourseDetail
   } from '../../services/trainingService';
 export function* getListCourse(data) {
   yield takeEvery(actions.COURSE_GET_LIST, function* (data) {
     try {
       yield put({ type: notifyActions.NOTIFY_LOADING });
 
-      const response = yield listCourse(data.start, data.limit, data.type, data.category, data.priority);
+      const response = yield listCourse(data.start, data.limit, data.courseType, data.category, data.priority);
       if (response.data.statusCode === 1) {
         yield put({ type: actions.COURSE_LIST, list: response.data.list, total: response.data.total});
       } else if (response.data.statusCode === 7) {
@@ -104,7 +107,6 @@ export function* courseCreate(data) {
     }
   });
 }
-
 export function* getCourseDetail(data) {
   yield takeEvery(actions.COURSE_GET_DETAIL, function* (data) {
     try {
@@ -125,6 +127,57 @@ export function* getCourseDetail(data) {
     }
   });
 }
+export function* courseRegister(data) {
+  yield takeEvery(actions.REGISTER_COURSE, function* (data) {
+    try {
+      yield put({ type: notifyActions.NOTIFY_LOADING });
+
+      const response = yield registerCourse(data.data);
+      yield put({ type: notifyActions.NOTIFY_SHOW, code: response.data.statusCode });
+      
+      yield put({ type: notifyActions.NOTIFY_LOADING });
+    } catch (error) {
+      yield put({ type: notifyActions.NOTIFY_SHOW, code: 0 });
+    }
+  });
+}
+export function* courseRegisterList(data) {
+  yield takeEvery(actions.REGISTER_COURSE_GET_LIST, function* (data) {
+    try {
+      yield put({ type: notifyActions.NOTIFY_LOADING });
+
+      const response = yield registerCourseList(data.data);
+      if (response.data.statusCode === 1) {
+        yield put({ type: actions.REGISTER_COURSE_LIST, list: response.data.list, total: response.data.total});
+      } else if (response.data.statusCode === 7) {
+        yield put({ type: actions.REGISTER_COURSE_LIST, list: [], total: response.data.total});
+      }
+      
+      yield put({ type: notifyActions.NOTIFY_LOADING });
+    } catch (error) {
+      yield put({ type: notifyActions.NOTIFY_SHOW, code: 0 });
+    }
+  });
+}
+export function* courseRegisterDetail(data) {
+  yield takeEvery(actions.COURSE_CREATE, function* (data) {
+    try {
+      yield put({ type: notifyActions.NOTIFY_LOADING });
+
+      const response = yield registerCourseDetail(data.data);
+      if (response.status === 200) {
+        if (response.data.statusCode === 1) {
+          yield put({ type: actions.REGISTER_COURSE_DETAIL, detail: response.data.data });
+        } else {
+          yield put({ type: notifyActions.NOTIFY_SHOW, code: response.data.statusCode });
+        }
+      }
+      yield put({ type: notifyActions.NOTIFY_LOADING });
+    } catch (error) {
+      yield put({ type: notifyActions.NOTIFY_SHOW, code: 0 });
+    }
+  });
+}
 
 export default function* rootSaga() {
   yield all([
@@ -134,6 +187,9 @@ export default function* rootSaga() {
     fork(getListCourseTop),
     fork(getCourseDetail),
     fork(courseUpdate),
-    fork(courseCreate)
+    fork(courseCreate),
+    fork(courseRegister),
+    fork(courseRegisterList),
+    fork(courseRegisterDetail)
   ]);
 }

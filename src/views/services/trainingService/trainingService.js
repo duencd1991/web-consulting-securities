@@ -5,8 +5,11 @@ import './trainingService.scss';
 import icNoImg from '../../../assets/img/ic_no_img2.png';
 import Slider from "react-slick";
 import actions from '../../../store/trainingService/actions';
+import notifyActions from '../../../store/notification/actions';
+import { toast } from 'react-toastify';
 import { TYPE_COURSE, CATEGORY_COURSE } from '../../../utils/constant';
 import RegisterPopup from './registerPopup';
+import { currency } from '../../../utils/currency';
 
 const listTeachers = [
   {
@@ -40,9 +43,9 @@ class TrainingService extends Component {
     super(props);
 
     this.state = {
-      selectedCourse: 0,
-      selectedTypeCourse: 0,
-      activeCourse: 0,
+      selectedCourse: 1,
+      selectedTypeCourse: 1,
+      activeCourse: 1,
       showPopup: false,
       objCourse: null
     }
@@ -63,21 +66,27 @@ class TrainingService extends Component {
       activeCourse: index
     })
   }
-
   onRegister = (course) => {
     this.setState({
       showPopup: true,
       objCourse: course
     })
   }
-
   onCloseRegister = () => {
     this.setState({
       showPopup: false,
       objCourse: null
     })
   }
-
+  onSubmitRegister = (data) => {
+    this.props.registerCourse(data);
+  }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.message !== '' && nextProps.message !== this.props.message) {
+      toast(nextProps.message);
+      this.props.clearNotify();
+    }
+  }
   componentDidUpdate(prevProps, prevState) {
     if (prevState.selectedCourse !== this.state.selectedCourse) {
       this.props.fetchlistCourseTop(this.state.selectedCourse);
@@ -115,7 +124,8 @@ class TrainingService extends Component {
     return (
       <Layout title="">
         {
-          <RegisterPopup isShowModal={showPopup} title="Tiêu đề" courseInfo={objCourse} closePopup={this.onCloseRegister}/>
+          <RegisterPopup isShowModal={showPopup} title="Tiêu đề" courseInfo={objCourse}
+            closePopup={this.onCloseRegister} onSubmit={this.onSubmitRegister}/>
         }
         <div className='training-service-page'>
           <div className='banner'>
@@ -156,7 +166,7 @@ class TrainingService extends Component {
                               })
                             }
                             </span></div>
-                            <div className='course-title'>Chi phí: <span>{item.fee}</span></div>
+                            <div className='course-title'>Chi phí: <span>{currency(item.fee)} VNĐ</span></div>
                           </div>
                           <div className='course-des'>{item.description}<i className="fas icAdMore"></i></div>
                           <div className='course-footer'>
@@ -198,7 +208,7 @@ class TrainingService extends Component {
                                   })
                                 }
                               </span></div>
-                              <div className='course-title'>Chi phí: <span>{item.fee}</span></div>
+                              <div className='course-title'>Chi phí: <span>{currency(item.fee)} VNĐ</span></div>
                             </div>
                             <div className='course-des'>{item.des}<i className="fas icAdMore"></i></div>
                             <div className='course-footer'>
@@ -241,7 +251,7 @@ class TrainingService extends Component {
                     <div className='course-name'>{course.name}</div>
                     <div className='course-date-time-cost'>Thời gian: <span>{course.schedule}</span></div>
                     <div className='course-date-time-cost'>Khai giảng: <span>{course.startDate}</span></div>
-                    <div className='course-date-time-cost'>Chi phí: <span>{course.fee}</span></div>
+                    <div className='course-date-time-cost'>Chi phí: <span>{currency(course.fee)} VNĐ</span></div>
                     <div className='course-des'>{course.description}</div>
                     <div className='blInfo'>
                       <table>
@@ -313,7 +323,8 @@ const mapStateToProps = state => {
     listCourseCategory: state.TrainingService.listCourseCategory,
     listCourseTop: state.TrainingService.listCourseTop,
     total: state.TrainingService.total,
-    detail: state.TrainingService.detail
+    detail: state.TrainingService.detail,
+    message: state.Notifys.message
   };
 };
 
@@ -333,6 +344,12 @@ const mapDispatchToProps = dispatch => {
     },
     getDetail: (id) => {
       dispatch(actions.getDetail(id));
+    },
+    registerCourse: (data) => {
+      dispatch(actions.registerCourse(data));
+    },
+    clearNotify: () => {
+      dispatch(notifyActions.clearNotify());
     }
   }
 };

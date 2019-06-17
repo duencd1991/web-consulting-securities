@@ -22,6 +22,9 @@ import CreateTradingAccount from './createTradingAccount/createTradingAccount';
 import SearchResults from './searchResults/searchResults';
 import ListReport from './admin/report/listReport';
 import FormReport from './admin/report/formReport';
+import ListCourse from './admin/course/listCourse';
+import FormCourse from './admin/course/formCourse';
+import ListRegisterCourse from './admin/registerCourse/listRegisterCourse';
 import SignIn from './signIn/signIn';
 import SignUp from './signUp/signUp';
 import ForgotPassWord from './forgotPassWord/forgotPassWord';
@@ -47,6 +50,9 @@ const AppRouter = () => {
           <Route exact path='/list-news' component={ListNews} />
           <Route exact path='/create-news' component={FormNews} />
           <Route exact path='/list-report' component={ListReport} />
+          <Route exact path='/list-course' component={ListCourse} />
+          <Route exact path='/list-register-course' component={ListRegisterCourse} />
+          <Route exact path='/create-course' component={FormCourse} />
           <Route exact path='/create-report' component={FormReport} />
           <Route exact path='/sign-in' component={SignIn} />
           <Route exact path='/sign-up' component={SignUp} />
