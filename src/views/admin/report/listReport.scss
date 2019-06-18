@@ -1,0 +1,55 @@
+.form-control {
+    border-radius: 0px;
+}
+.custom-file{
+    // margin:0 15px;
+}
+.custom-file-label {
+    border-radius: .0rem;
+}
+.padding0{
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+}
+.titleNewRe{
+    font-size: 25px;
+    color: #125491;
+    text-transform: uppercase;
+}
+.admin-form{
+    padding:20px 0px !important;
+    .breadcrumb {
+        padding: .5rem 1rem;
+        background-color: #f5f5f5;
+    }
+    .row{
+        margin-left:0px;
+        margin-right:0px;
+    }
+    hr {
+        width: 71px;
+        height: 2px;
+        background-color: #125491;
+        margin: 0 0 23px 0;
+    }
+}
+@media screen and (max-width:767px)
+{
+    .list-news-page {
+        padding: 20px 0 20px 0;
+    }
+
+}
+@media screen and (max-width:575px)
+{
+    .ReactTable{
+        margin-top: 60px;
+    }
+    .table-content {
+        .btn-create-new {
+            top:40px;
+            left: 0px;
+        }
+    }
+
+}

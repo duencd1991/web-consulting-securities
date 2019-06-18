@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { DEFAULT_TABLE, CATEGORY_COURSE, TYPE_COURSE } from '../../../utils/constant';
 import actions from '../../../store/trainingService/actions';
 import Table from '../../../components/table/table';
+import '../report/listReport.scss';
 
 
 class ListCourse extends Component {

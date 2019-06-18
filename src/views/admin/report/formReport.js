@@ -136,20 +136,31 @@ class FormReport extends Component {
     return(
       <Layout>
         <div className='admin-form'>
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#">Danh mục</a></li>
+              <li class="breadcrumb-item"><a href="#">Quản lý báo cáo</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Tạo mới báo cáo</li>
+            </ol>
+          </nav>
           {
-            update ? <h1>Cập nhật báo cáo</h1> : <h1>Tạo mới báo cáo</h1>
+            update ? <h1>Cập nhật báo cáo</h1> : <h1 className="titleNewRe">Tạo mới báo cáo</h1>
           }
-          <div className="form-group">
-            <label>Tiêu đề</label>
+          <hr></hr>
+          <div className="form-group row">
+            <label className="col-sm-3 padding0">Tiêu đề</label>
+            <div className="col-sm-9 padding0">
             <input type="text" className="form-control" id="name" name='name' value={name} onChange={this.onChange} />
-            {
-              !validate && name === '' && <div className="alert alert-warning" role="alert">
-                Vui lòng nhập thông tin
-              </div>
-            }
+              {
+                !validate && name === '' && <div className="alert alert-warning" role="alert">
+                  Vui lòng nhập thông tin
+                </div>
+              }
+            </div>
           </div>
-          <div className="form-group">
-            <label>Danh mục</label>
+          <div className="form-group row">
+            <label className="col-sm-3 padding0">Danh mục</label>
+            <div className="col-sm-9 padding0">
             <select className="form-control" id="selectType" onChange={this.onSelectType}>
               {
                 TYPE_REPORT.map((item, index) => {
@@ -157,20 +168,24 @@ class FormReport extends Component {
                 })
               }
             </select>
+            </div>
           </div>
           {
-            update ? <div className="form-group">
-                <label>File đính kèm</label>
+            update ? <div className="form-group row">
+                <label className="col-sm-3 padding0">File đính kèm</label>
+                <div className="col-sm-9 padding0">
                 <a href={linkFile} target="_blank" rel='noopener noreferrer' className='file-attach' >
                   <img src={icDownload} alt='img'/>
                 </a>
+                </div>
               </div>
-            : <div className="form-group">
-              <label>File đính kèm</label>
-              <div className="custom-file">
+            : <div className="form-group row">
+              <label className="col-sm-3 padding0">File đính kèm</label>
+              
+              <div className="col-sm-9 padding0">
                 <input type="file" className="custom-file-input" id="customFile" onChange={this.onChageFile}/>
                 <label className="custom-file-label" >Chọn file</label>
-              </div>
+              
               {
                 selectedFile && <div className='uploaded-file'>
                   <div className='file-name'>{selectedFile.name}</div>
@@ -183,10 +198,15 @@ class FormReport extends Component {
                   Vui lòng nhập thông tin
                 </div>
               }
+              </div>
             </div>
           }
-          
-          <button className="btn btn-save" onClick={this.onSubmit}>Lưu</button>
+          <div className="form-group row">
+              <div className="col-sm-3 padding0"></div>
+              <div className="col-sm-9 padding0">
+                <button className="btn btn-save" onClick={this.onSubmit}>Lưu</button>
+          </div>
+          </div>
         </div>
       </Layout>
     );

@@ -221,6 +221,16 @@
   .news-page {
     .news-content {
       flex-direction: column-reverse;
+      .list-news{
+        margin-right: 0px;
+      }
     }
   }
 }
+// @media screen and (max-width:374px)
+// {
+//   .news-page {
+//     .news-content {
+//     }
+//   }
+// }

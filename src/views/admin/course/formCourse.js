@@ -205,11 +205,20 @@ class FormCourse extends Component {
     return(
       <Layout>
         <div className='admin-form'>
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#">Danh mục</a></li>
+              <li class="breadcrumb-item"><a href="#">Quản lý khóa học</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Tạo mới khóa học</li>
+            </ol>
+          </nav>
           {
-            update ? <h1>Cập nhật khóa học</h1> : <h1>Tạo mới khóa học</h1>
+            update ? <h1>Cập nhật khóa học</h1> : <h1 className="titleNewRe">Tạo mới khóa học</h1>
           }
-          <div className="form-group">
-            <label>Tiêu đề</label>
+          <hr></hr>
+          <div className="form-group row">
+            <label className="col-sm-3 padding0">Tiêu đề</label>            
+            <div className="col-sm-9 padding0">
             <input type="text" className="form-control" id="name" name='name'
               value={name} onChange={this.onChange} />
             {
@@ -217,9 +226,11 @@ class FormCourse extends Component {
                 Vui lòng nhập thông tin
               </div>
             }
+            </div>
           </div>
-          <div className="form-group">
-            <label>Hình thức học</label>
+          <div className="form-group row">
+            <label className="col-sm-3 padding0">Hình thức học</label>            
+            <div className="col-sm-9 padding0">
             <select className="form-control" id="categorySelect" onChange={this.onSelectType}>
               {
                 TYPE_COURSE.map((item, index) => {
@@ -232,9 +243,11 @@ class FormCourse extends Component {
                 Vui lòng nhập thông tin
               </div>
             }
+            </div>
           </div>
-          <div className="form-group">
-            <label>Phân loại</label>
+          <div className="form-group row">
+            <label className="col-sm-3 padding0">Phân loại</label>            
+            <div className="col-sm-9 padding0">
             <select className="form-control" id="categorySelect" onChange={this.onSelectCategory}>
               {
                 CATEGORY_COURSE.map((item, index) => {
@@ -247,9 +260,11 @@ class FormCourse extends Component {
                 Vui lòng nhập thông tin
               </div>
             }
+            </div>
           </div>
-          <div className="form-group">
-            <label>Độ ưu tiên</label>
+          <div className="form-group row">
+            <label className="col-sm-3 padding0">Độ ưu tiên</label>            
+            <div className="col-sm-9 padding0">
             <select className="form-control" id="categorySelect" onChange={this.onSelectPriority}>
               {
                 PRIORITY_COURSE.map((item, index) => {
@@ -262,18 +277,23 @@ class FormCourse extends Component {
                 Vui lòng nhập thông tin
               </div>
             }
+            </div>
           </div>
-          <div className="form-group">
-            <label>Lịch học</label>
+          <div className="form-group row">
+            <label className="col-sm-3 padding0">Lịch học</label>
+            
+            <div className="col-sm-9 padding0">
             <input type="text" className="form-control" id="schedule" name='schedule' value={schedule} onChange={this.onChange} />
             {
               !validate && schedule === '' && <div className="alert alert-warning" role="alert">
                 Vui lòng nhập thông tin
               </div>
             }
+            </div>
           </div>
-          <div className="form-group">
-            <label>Ngày khai giảng</label>
+          <div className="form-group row">
+            <label className="col-sm-3 padding0">Ngày khai giảng</label>            
+            <div className="col-sm-9 padding0">
             <input type="text" className="form-control datepicker-here" data-language='en'
                 data-date-format="dd-mm-yyyy" id="startDate" name="startDate" value={startDate} onBlur={this.onChangeDate}/>
             {
@@ -281,19 +301,23 @@ class FormCourse extends Component {
                 Vui lòng nhập thông tin
               </div>
             }
+            </div>
           </div>
-          <div className="form-group">
-            <label>Ngày kết thúc</label>
-            <input type="text" className="form-control datepicker-here" data-language='en'
-                data-date-format="dd-mm-yyyy" id="endDate" name="endDate" value={endDate} onBlur={this.onChangeDate}/>
-            {
-              !validate && endDate === '' && <div className="alert alert-warning" role="alert">
-                Vui lòng nhập thông tin
-              </div>
-            }
+          <div className="form-group row">
+            <label className="col-sm-3 padding0">Ngày kết thúc</label>            
+            <div className="col-sm-9 padding0">
+              <input type="text" className="form-control datepicker-here" data-language='en'
+                  data-date-format="dd-mm-yyyy" id="endDate" name="endDate" value={endDate} onBlur={this.onChangeDate}/>
+              {
+                !validate && endDate === '' && <div className="alert alert-warning" role="alert">
+                  Vui lòng nhập thông tin
+                </div>
+              }
+            </div>
           </div>
-          <div className="form-group">
-            <label>Mô tả chi tiết</label>
+          <div className="form-group row">
+            <label className="col-sm-3 padding0">Mô tả chi tiết</label>            
+            <div className="col-sm-9 padding0">
             <input type="text" className="form-control" id="description" name='description'
               value={description} onChange={this.onChange} />
             {
@@ -301,9 +325,11 @@ class FormCourse extends Component {
                 Vui lòng nhập thông tin
               </div>
             }
+            </div>
           </div>
-          <div className="form-group">
-            <label>Địa chỉ</label>
+          <div className="form-group row">
+            <label className="col-sm-3 padding0">Địa chỉ</label>            
+            <div className="col-sm-9 padding0">
             <input type="text" className="form-control" id="address" name='address'
               value={address} onChange={this.onChange} />
             {
@@ -311,9 +337,11 @@ class FormCourse extends Component {
                 Vui lòng nhập thông tin
               </div>
             }
+            </div>
           </div>
-          <div className="form-group">
-            <label>Học phí</label>
+          <div className="form-group row">
+            <label className="col-sm-3 padding0">Học phí</label>            
+            <div className="col-sm-9 padding0">
             <input type="text" className="form-control" id="fee" name='fee'
               value={fee} onChange={this.onChange} />
             {
@@ -321,9 +349,11 @@ class FormCourse extends Component {
                 Vui lòng nhập thông tin
               </div>
             }
+            </div>
           </div>
-          <div className="form-group">
-            <label>Giảng viên</label>
+          <div className="form-group row">
+            <label className="col-sm-3 padding0">Giảng viên</label>
+            <div className="col-sm-9 padding0">
             <input type="text" className="form-control" id="teacher" name='teacher'
               value={teacher} onChange={this.onChange} />
             {
@@ -331,21 +361,23 @@ class FormCourse extends Component {
                 Vui lòng nhập thông tin
               </div>
             }
+            </div>
           </div>
 
           {
-            update ? <div className="form-group">
-                <label>File đính kèm</label>
-                <a href={url} target="_blank" rel='noopener noreferrer' className='file-attach' >
-                  <img src={icDownload} alt='img'/>
-                </a>
+            update ? <div className="form-group row">
+                <label className="col-sm-3 padding0">File đính kèm</label>
+                <div className="col-sm-9 padding0">
+                  <a href={url} target="_blank" rel='noopener noreferrer' className='file-attach' >
+                    <img src={icDownload} alt='img'/>
+                  </a>
+                </div>
               </div>
-            : <div className="form-group">
-              <label>File đính kèm</label>
-              <div className="custom-file">
+            : <div className="form-group row">
+              <label className="col-sm-3 padding0">File đính kèm</label>
+              <div className="col-sm-9 padding0">
                 <input type="file" className="custom-file-input" id="customFile" onChange={this.onChageFile}/>
                 <label className="custom-file-label" >Chọn file</label>
-              </div>
               {
                 file && <div className='uploaded-file'>
                   <div className='file-name'>{file.name}</div>
@@ -358,9 +390,15 @@ class FormCourse extends Component {
                   Vui lòng nhập thông tin
                 </div>
               }
+              </div>
             </div>
           }
-          <button className="btn btn-save" onClick={this.onSubmit}>Lưu</button>
+          <div className="form-group row">
+            <div className="col-sm-3 padding0"></div>
+              <div className="col-sm-9 padding0">
+                <button className="btn btn-save" onClick={this.onSubmit}>Lưu</button>
+            </div>
+          </div>          
         </div>
       </Layout>
     );

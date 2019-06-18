@@ -160,20 +160,31 @@ class FormNews extends Component {
     return(
       <Layout>
         <div className='admin-form'>
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="#">Danh mục</a></li>
+              <li class="breadcrumb-item"><a href="#">Quản lý kiến thức</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Tạo mới kiến thức</li>
+            </ol>
+          </nav>
           {
-            update ? <h1>Cập nhật tin tức</h1> : <h1>Tạo mới tin tức</h1>
+            update ? <h1>Cập nhật kiến thức</h1> : <h1 className="titleNewRe">Tạo mới kiến thức</h1>
           }
-          <div className="form-group">
-            <label>Tiêu đề</label>
-            <input type="text" className="form-control" id="title" name='title' value={title} onChange={this.onChange} />
-            {
-              !validate && title === '' && <div className="alert alert-warning" role="alert">
-                Vui lòng nhập thông tin
+          <hr></hr>
+          <div className="form-group row">
+            <label className="col-sm-3 padding0">Tiêu đề</label>
+            <div className="col-sm-9 padding0">
+              <input type="text" className="form-control" id="title" name='title' value={title} onChange={this.onChange} />
+              {
+                !validate && title === '' && <div className="alert alert-warning" role="alert">
+                  Vui lòng nhập thông tin
+                </div>
+              }
               </div>
-            }
           </div>
-          <div className="form-group">
-            <label>Danh mục</label>
+          <div className="form-group row">
+            <label className="col-sm-3 padding0">Danh mục</label>
+            <div className="col-sm-9 padding0">
             <select className="form-control" id="categorySelect" onChange={this.onSelectCategoryId}>
               {
                 TYPE_NEWS.map((item, index) => {
@@ -181,13 +192,13 @@ class FormNews extends Component {
                 })
               }
             </select>
+            </div>
           </div>
-          <div className="form-group">
-            <label>Hình ảnh</label>
-            <div className="custom-file">
+          <div className="form-group row">
+            <label className="col-sm-3 padding0">Hình ảnh</label>
+            <div className="col-sm-9 padding0">
               <input type="file" className="custom-file-input" id="thumbnail" onChange={this.onChangeFile}/>
               <label className="custom-file-label" >Chọn hình ảnh</label>
-            </div>
             {
               validateUploadImage !== "" && <div className="alert alert-warning" role="alert">
                 {
@@ -201,10 +212,13 @@ class FormNews extends Component {
                 Vui lòng nhập thông tin
               </div>
             }
+            
+            </div>
           </div>
           
-          <div className="form-group">
-            <label>Nội dung</label>
+          <div className="form-group row">
+            <label className="col-sm-3 padding0">Nội dung</label>
+            <div className="col-sm-9 padding0">
             <CKEditor
               name='content'
               data={content ? content : ''}
@@ -219,9 +233,15 @@ class FormNews extends Component {
                 Vui lòng nhập thông tin
               </div>
             }
+            </div>
           </div>
-
+          <div className="form-group row">
+            <div className="col-sm-3 padding0">
+              </div>
+              <div className="col-sm-9 padding0">
           <button className="btn btn-save" onClick={this.onSubmit}>Lưu</button>
+              </div>
+          </div>
         </div>
       </Layout>
     );

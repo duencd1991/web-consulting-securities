@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { DEFAULT_TABLE, TYPE_NEWS } from '../../../utils/constant';
 import actions from '../../../store/news/actions';
 import './listNews.scss';
+import '../report/listReport.scss';
 import Table from '../../../components/table/table';
 
 
