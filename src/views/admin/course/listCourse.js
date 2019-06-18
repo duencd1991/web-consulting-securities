@@ -66,7 +66,7 @@ class ListCourse extends Component {
       {
         Header: 'DANH MỤC',
         accessor: 'category',
-        maxWidth: 300,
+        maxWidth: 100,
         Cell: props => <div className='table-center-element'><div className='table-center-time'>Danh mục:</div>
           {
             CATEGORY_COURSE.map(item => {
@@ -81,6 +81,7 @@ class ListCourse extends Component {
       {
         Header: 'TIÊU ĐỀ',
         accessor: 'name',
+        maxWidth: 100,
         Cell: props => <div className='table-center-element'><div className='table-center-time'>Tiêu đề:</div>
           {props.value}
         </div>
@@ -88,7 +89,7 @@ class ListCourse extends Component {
       {
         Header: 'CHI TIẾT',
         accessor: 'description',
-        maxWidth: 100,
+        maxWidth: 500,
         Cell: props => <div className='table-center-element'><div className='table-center-time'>Chi tiết:</div>
           {props.value}
         </div>
@@ -96,7 +97,7 @@ class ListCourse extends Component {
       {
         Header: 'LỊCH HỌC',
         accessor: 'schedule',
-        maxWidth: 200,
+        maxWidth: 100,
         Cell: props => <div className='table-center-element'><div className='table-center-time'>Lịch học:</div>
           {props.value}
         </div>
@@ -104,7 +105,7 @@ class ListCourse extends Component {
       {
         Header: 'KHAI GIẢNG',
         accessor: 'startDate',
-        maxWidth: 200,
+        maxWidth: 100,
         Cell: props => <div className='table-center-element'><div className='table-center-time'>Khai giảng:</div>
           {props.value}
         </div>
@@ -112,7 +113,7 @@ class ListCourse extends Component {
       {
         Header: 'HỌC PHÍ',
         accessor: 'fee',
-        maxWidth: 200,
+        maxWidth: 100,
         Cell: props => <div className='table-center-element'><div className='table-center-time'>Học phí:</div>
           {props.value}
         </div>
@@ -128,7 +129,7 @@ class ListCourse extends Component {
       {
         Header: 'HÌNH THỨC',
         accessor: 'type',
-        maxWidth: 200,
+        maxWidth: 50,
         Cell: props => <div className='table-center-element'><div className='table-center-time'>Giảng viên:</div>
           {
             TYPE_COURSE.map(item => {
@@ -156,10 +157,10 @@ class ListCourse extends Component {
         <div className='list-news-page'>
           <div className='news-tables table-content'>
             <button className='btn btn-create-new' onClick={() => this.props.history.push(`/create-course`)}>
-              Tạo mới kiến thức
+              Tạo mới khóa học
             </button>
             <Table 
-              title='Quản lý danh mục kiến thức'
+              title='Quản lý khóa học'
               listData={props.listCourse}
               columns={columns}
               pageSize={pageSize}

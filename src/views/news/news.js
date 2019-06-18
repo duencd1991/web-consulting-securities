@@ -165,24 +165,23 @@ class News extends Component {
                       }) : <div className='error-no-data'>Không có dữ liệu</div>
                     }
                   </div>
-                  <Pagination
-                    firstPageText={<img alt='btnStart' className='btn-Pagination' src={icArrowStart}/>}
-                    lastPageText={<img alt='btnEnd' className='btn-Pagination' src={icArrowEnd}/>}
-                    prevPageText={<img alt='btnBack' className='btn-Pagination' src={icArrowPrev}/>}
-                    nextPageText={<img alt='btnNext' className='btn-Pagination' src={icArrowNext}/>}
-                    activePage={pageNum}
-                    itemsCountPerPage={pageSize}
-                    totalItemsCount={total}
-                    pageRangeDisplayed={5}
-                    onChange={this.onChangePageNum}
-                  />  
+                  {
+                    this.props.listNews && this.props.listNews.length > 0 && <Pagination
+                      firstPageText={<img alt='btnStart' className='btn-Pagination' src={icArrowStart}/>}
+                      lastPageText={<img alt='btnEnd' className='btn-Pagination' src={icArrowEnd}/>}
+                      prevPageText={<img alt='btnBack' className='btn-Pagination' src={icArrowPrev}/>}
+                      nextPageText={<img alt='btnNext' className='btn-Pagination' src={icArrowNext}/>}
+                      activePage={pageNum}
+                      itemsCountPerPage={pageSize}
+                      totalItemsCount={total}
+                      pageRangeDisplayed={5}
+                      onChange={this.onChangePageNum}
+                    />  
+                  }
                 </React.Fragment>
               }
               
             </div>
-            {/* <div className='box-news'> */}
-              
-              {/* </div> */}
                <div className='box-news'>
                <div className='list-news-menu'>
                 {

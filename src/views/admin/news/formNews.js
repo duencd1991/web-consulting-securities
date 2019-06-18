@@ -188,7 +188,7 @@ class FormNews extends Component {
             <select className="form-control" id="categorySelect" onChange={this.onSelectCategoryId}>
               {
                 TYPE_NEWS.map((item, index) => {
-                  return <option key={index} value={item.type === categoryId ? "selected" : ""} >{item.name}</option>  
+                  return <option key={index} selected={item.type === categoryId ? "selected" : ""} >{item.name}</option>  
                 })
               }
             </select>

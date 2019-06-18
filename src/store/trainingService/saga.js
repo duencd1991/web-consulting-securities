@@ -39,6 +39,8 @@ export function* getListCourseHot(data) {
       const response = yield listCourseHot(data.priority);
       if (response.data.statusCode === 1) {
         yield put({ type: actions.COURSE_LIST_HOT, list: response.data.list});
+      } else if (response.data.statusCode === 7) {
+        yield put({ type: actions.COURSE_LIST_HOT, list: [], total: response.data.total});
       }
 
       yield put({ type: notifyActions.NOTIFY_LOADING });
@@ -55,6 +57,8 @@ export function* getListCourseTop(data) {
       const response = yield listCourseTop(data.typeCourse);
       if (response.data.statusCode === 1) {
         yield put({ type: actions.COURSE_LIST_TOP, list: response.data.list});
+      } else if (response.data.statusCode === 7) {
+        yield put({ type: actions.COURSE_LIST_TOP, list: [], total: response.data.total});
       }
 
       yield put({ type: notifyActions.NOTIFY_LOADING });
@@ -71,6 +75,8 @@ export function* getListCourseCategory(data) {
       const response = yield listCourseCategory(data.category);
       if (response.data.statusCode === 1) {
         yield put({ type: actions.COURSE_LIST_CATEGORY, list: response.data.list});
+      } else if (response.data.statusCode === 7) {
+        yield put({ type: actions.COURSE_LIST_CATEGORY, list: [], total: response.data.total});
       }
 
       yield put({ type: notifyActions.NOTIFY_LOADING });

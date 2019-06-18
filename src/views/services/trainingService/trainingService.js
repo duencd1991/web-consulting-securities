@@ -47,10 +47,20 @@ class TrainingService extends Component {
       selectedTypeCourse: 1,
       activeCourse: 1,
       showPopup: false,
-      objCourse: null
+      objCourse: null,
+      showMore: null
     }
   }
 
+  onShowMore = (index) => {
+    let nextShow = null;
+    if (this.state.showMore !== index) {
+      nextShow = index;
+    }
+    this.setState(state => ({
+      showMore: nextShow
+    }))
+  }
   onChangeSelectCourse = (type) => {
     this.setState({
       selectedCourse: type
@@ -109,7 +119,8 @@ class TrainingService extends Component {
       selectedTypeCourse,
       activeCourse,
       showPopup,
-      objCourse
+      objCourse,
+      showMore
     } = this.state;
     const props = this.props;
     var settings = {
@@ -168,7 +179,8 @@ class TrainingService extends Component {
                             </span></div>
                             <div className='course-title'>Chi phí: <span>{currency(item.fee)} VNĐ</span></div>
                           </div>
-                          <div className='course-des'>{item.description}<i className="fas icAdMore"></i></div>
+                          <div className={showMore === index ? 'course-des show-more' : 'course-des'}>{item.description}</div>
+                          <div><i className={showMore === index ?'fas icSubMore': 'fas icAdMore'} onClick={() => this.onShowMore(index)}></i></div>
                           <div className='course-footer'>
 
                             File download: <a className='file-download' href={item.url}><i className="fas icPdf"></i>

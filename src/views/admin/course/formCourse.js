@@ -234,7 +234,7 @@ class FormCourse extends Component {
             <select className="form-control" id="categorySelect" onChange={this.onSelectType}>
               {
                 TYPE_COURSE.map((item, index) => {
-                  return <option key={index} value={item.type === type ? "selected" : ""} >{item.name}</option>  
+                  return <option key={index} selected={item.type === type ? "selected" : ""} >{item.name}</option>  
                 })
               }
             </select>
@@ -251,7 +251,7 @@ class FormCourse extends Component {
             <select className="form-control" id="categorySelect" onChange={this.onSelectCategory}>
               {
                 CATEGORY_COURSE.map((item, index) => {
-                  return <option key={index} value={item.cat === category ? "selected" : ""} >{item.name}</option>  
+                  return <option key={index} selected={item.cat === category ? "selected" : ""} >{item.name}</option>  
                 })
               }
             </select>
@@ -268,7 +268,7 @@ class FormCourse extends Component {
             <select className="form-control" id="categorySelect" onChange={this.onSelectPriority}>
               {
                 PRIORITY_COURSE.map((item, index) => {
-                  return <option key={index} value={item.index === priority ? "selected" : ""} >{item.name}</option>  
+                  return <option key={index} selected={item.index === priority ? "selected" : ""} >{item.name}</option>  
                 })
               }
             </select>
@@ -318,7 +318,7 @@ class FormCourse extends Component {
           <div className="form-group row">
             <label className="col-sm-3 padding0">Mô tả chi tiết</label>            
             <div className="col-sm-9 padding0">
-            <input type="text" className="form-control" id="description" name='description'
+            <textarea rows="4" type="text" className="form-control" id="description" name='description'
               value={description} onChange={this.onChange} />
             {
               !validate && description === '' && <div className="alert alert-warning" role="alert">
@@ -386,7 +386,7 @@ class FormCourse extends Component {
                 </div>
               }
               {
-                !validate && file === null && <div className="alert alert-warning" role="alert">
+                !validate && file === '' && <div className="alert alert-warning" role="alert">
                   Vui lòng nhập thông tin
                 </div>
               }

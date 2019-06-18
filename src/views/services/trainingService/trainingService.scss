@@ -69,7 +69,7 @@ $stepTiming: 0.8s 0.2s;
             // width: 770px;
             .course-item {
               // width: 370px;
-              height: 216px;
+              // height: 216px;
               margin-top: 20px;
               background-color: #ffffff;
               padding: 10px;
@@ -108,7 +108,7 @@ $stepTiming: 0.8s 0.2s;
               }
               .box-left {
                 float: left;
-                width:100%;
+                width: 100%;
                 .course-title {
                   span {
                     font-weight: bold;
@@ -118,7 +118,7 @@ $stepTiming: 0.8s 0.2s;
               }
               .box-right {
                 float: left;
-                width:100%;
+                width: 100%;
                 text-align: left;
                 .course-title {
                   span {
@@ -132,7 +132,15 @@ $stepTiming: 0.8s 0.2s;
                 text-align: justify;
                 line-height: 18px;
                 padding: 5px 0;
-                width: 100%;
+                white-space: nowrap;
+                width: 360px;
+                overflow: hidden;
+                height: 30px;
+                text-overflow: ellipsis;
+                &.show-more {
+                  white-space: pre-wrap;
+                  height: unset;
+                }
               }
               .course-footer {
                 display: inline-flex;
@@ -160,12 +168,14 @@ $stepTiming: 0.8s 0.2s;
                 width: 13px;
                 height: 14px;
                 margin-left: 3px;
+                cursor: pointer;
               }
               .icSubMore {
                 content: url("../../../assets/img/icSubMore.png");
                 width: 13px;
                 height: 14px;
                 margin-left: 3px;
+                cursor: pointer;
               }
             }
           }
@@ -631,7 +641,7 @@ $stepTiming: 0.8s 0.2s;
               .course-item {
                 overflow-y: auto;
                 flex-basis: 48.5%;
-                height: 215px;
+                // height: 215px;
               }
             }
           }

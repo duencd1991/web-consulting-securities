@@ -164,7 +164,7 @@ class FormReport extends Component {
             <select className="form-control" id="selectType" onChange={this.onSelectType}>
               {
                 TYPE_REPORT.map((item, index) => {
-                  return <option key={index} value={item.type === selectedType ? "selected" : ""} >{item.name}</option>  
+                  return <option key={index} selected={item.type === selectedType ? "selected" : ""} >{item.name}</option>  
                 })
               }
             </select>
