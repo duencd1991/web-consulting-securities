@@ -208,7 +208,7 @@ class FormCourse extends Component {
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="#">Danh mục</a></li>
-              <li class="breadcrumb-item"><a href="#">Quản lý khóa học</a></li>
+              <li class="breadcrumb-item"><a href="list-course">Quản lý khóa học</a></li>
               <li class="breadcrumb-item active" aria-current="page">Tạo mới khóa học</li>
             </ol>
           </nav>

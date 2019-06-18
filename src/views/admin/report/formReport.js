@@ -139,7 +139,7 @@ class FormReport extends Component {
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="#">Danh mục</a></li>
-              <li class="breadcrumb-item"><a href="#">Quản lý báo cáo</a></li>
+              <li class="breadcrumb-item"><a href="/list-report">Quản lý báo cáo</a></li>
               <li class="breadcrumb-item active" aria-current="page">Tạo mới báo cáo</li>
             </ol>
           </nav>

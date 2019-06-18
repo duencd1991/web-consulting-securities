@@ -163,7 +163,7 @@ class FormNews extends Component {
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="#">Danh mục</a></li>
-              <li class="breadcrumb-item"><a href="#">Quản lý kiến thức</a></li>
+              <li class="breadcrumb-item"><a href="list-news">Quản lý kiến thức</a></li>
               <li class="breadcrumb-item active" aria-current="page">Tạo mới kiến thức</li>
             </ol>
           </nav>
