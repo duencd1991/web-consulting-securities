@@ -1,24 +1,24 @@
-import request from '../utils/request';
+import request from "../utils/request";
 
 const listNews = () => {
-  let url = `/news/list/home/get`;
+  const url = `/news/list/home/get`;
   return request({
     url: url,
-    method: 'get'
+    method: "get"
   });
 };
 const listReports = () => {
-  let url = `/report/list/home/get`;
+  const url = `/report/list/home/get`;
   return request({
     url: url,
-    method: 'get'
+    method: "get"
   });
 };
 const listGuidelines = () => {
-  let url = `/guideline/list/home/get`;
+  const url = `/guideline/list/home/get`;
   return request({
     url: url,
-    method: 'get'
+    method: "get"
   });
 };
 export { listNews, listGuidelines, listReports };

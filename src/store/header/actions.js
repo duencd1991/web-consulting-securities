@@ -1,7 +1,7 @@
 const actions = {
-  ACTIVE_MENU: 'ACTIVE_MENU',
-  HIDE_MENU: 'HIDE_MENU',
-  SHOW_MENU: 'SHOW_MENU',
+  ACTIVE_MENU: "ACTIVE_MENU",
+  HIDE_MENU: "HIDE_MENU",
+  SHOW_MENU: "SHOW_MENU",
 
   activeMenu: () => ({
     type: actions.ACTIVE_MENU
@@ -12,5 +12,5 @@ const actions = {
   showMenu: () => ({
     type: actions.SHOW_MENU
   })
-}
+};
 export default actions;

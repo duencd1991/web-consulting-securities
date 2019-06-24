@@ -1,4 +1,4 @@
-import actions from './actions';
+import actions from "./actions";
 
 const initialState = {
   listType1: [],
@@ -13,11 +13,11 @@ const GuideLines = (state = initialState, action) => {
     case actions.GUIDELINE_LIST_TOP:
       return { ...state, listTop: action.list, total: action.total };
     case actions.GUIDELINE_TYPE_1:
-      return { ...state, listType1: action.list};
+      return { ...state, listType1: action.list };
     case actions.GUIDELINE_TYPE_2:
-      return { ...state, listType2: action.list};
+      return { ...state, listType2: action.list };
     case actions.GUIDELINE_TYPE_3:
-      return { ...state, listType3: action.list};
+      return { ...state, listType3: action.list };
     default:
       return state;
   }

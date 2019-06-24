@@ -1,20 +1,18 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import './layout.scss';
-import headerActions from '../../store/header/actions';
-import Header from '../../components/header/header2';
-import Footer from '../../components/footer/footer';
+import React from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import "./layout.scss";
+import headerActions from "../../store/header/actions";
+import Header from "../../components/header/header2";
+import Footer from "../../components/footer/footer";
 
 const Layout = props => (
   <React.Fragment>
     <Header title={props.title} />
-    <div className='content-body'>
-      {props.children}
-    </div>
-    {
-      props.statusMenu && <div className='bodyClick' onClick={props.hideMenu}></div>
-    }
+    <div className="content-body">{props.children}</div>
+    {props.statusMenu && (
+      <div className="bodyClick" onClick={props.hideMenu}></div>
+    )}
     {/* {
       props.loading && <Loading />
     } */}
@@ -41,8 +39,13 @@ const mapDispatchToProps = dispatch => {
     hideMenu: () => {
       dispatch(headerActions.hideMenu());
     }
-  }
-}
+  };
+};
+Layout.propTypes = {
+  children: PropTypes.object,
+  statusMenu: PropTypes.bool,
+  hideMenu: PropTypes.func
+};
 
 export default connect(
   mapStateToProps,

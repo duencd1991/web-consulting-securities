@@ -1,7 +1,7 @@
-import request from '../utils/request';
+import request from "../utils/request";
 
-const list = ( start, limit, type) => {
-  let url = '';
+const list = (start, limit, type) => {
+  let url = "";
   if (type) {
     url = `/report/list/get?start=${start}&limit=${limit}&type=${type}`;
   } else {
@@ -9,37 +9,37 @@ const list = ( start, limit, type) => {
   }
   return request({
     url: url,
-    method: 'get'
+    method: "get"
   });
 };
-const updateViews = ( id ) => {
-  let url = `/report/upViews?id=${id}`;
+const updateViews = id => {
+  const url = `/report/upViews?id=${id}`;
   return request({
     url: url,
-    method: 'put'
+    method: "put"
   });
 };
-const createReport = ( data ) => {
-  let url = `/report/create`;
+const createReport = data => {
+  const url = `/report/create`;
   return request({
     url: url,
-    method: 'post',
+    method: "post",
     data: data
   });
 };
-const updateReport = ( data ) => {
-  let url = `/report/update`;
+const updateReport = data => {
+  const url = `/report/update`;
   return request({
     url: url,
-    method: 'put',
+    method: "put",
     data: data
   });
 };
-const reportDetail = (id) => {
-  let url = `/report/detail?id=${id}`
+const reportDetail = id => {
+  const url = `/report/detail?id=${id}`;
   return request({
     url: url,
-    method: 'get'
-  })
-}
-export { list, updateViews, createReport, updateReport, reportDetail }
+    method: "get"
+  });
+};
+export { list, updateViews, createReport, updateReport, reportDetail };

@@ -1,15 +1,15 @@
 const actions = {
-  NEWS_LIST: 'NEWS_LIST',
-  NEWS_GET_LIST: 'NEWS_GET_LIST',
-  NEWS_LIST_TOP: 'NEWS_LIST_TOP',
-  NEWS_GET_LIST_TOP: 'NEWS_GET_LIST_TOP',
-  NEWS_LIST_HOT: 'NEWS_LIST_HOT',
-  NEWS_GET_LIST_HOT: 'NEWS_GET_LIST_HOT',
-  NEWS_UPDATE_VIEWS: 'NEWS_UPDATE_VIEWS',
-  NEWS_GET_DETAIL: 'NEWS_GET_DETAIL',
-  NEWS_DETAIL: 'NEWS_DETAIL',
-  NEWS_UPDATE: 'NEWS_UPDATE',
-  NEWS_CREATE: 'NEWS_CREATE',
+  NEWS_LIST: "NEWS_LIST",
+  NEWS_GET_LIST: "NEWS_GET_LIST",
+  NEWS_LIST_TOP: "NEWS_LIST_TOP",
+  NEWS_GET_LIST_TOP: "NEWS_GET_LIST_TOP",
+  NEWS_LIST_HOT: "NEWS_LIST_HOT",
+  NEWS_GET_LIST_HOT: "NEWS_GET_LIST_HOT",
+  NEWS_UPDATE_VIEWS: "NEWS_UPDATE_VIEWS",
+  NEWS_GET_DETAIL: "NEWS_GET_DETAIL",
+  NEWS_DETAIL: "NEWS_DETAIL",
+  NEWS_UPDATE: "NEWS_UPDATE",
+  NEWS_CREATE: "NEWS_CREATE",
   listNews: (start, limit, category) => ({
     type: actions.NEWS_GET_LIST,
     start: start,
@@ -22,11 +22,11 @@ const actions = {
   listNewsTop: () => ({
     type: actions.NEWS_GET_LIST_TOP
   }),
-  updateViews: (id) => ({
+  updateViews: id => ({
     type: actions.NEWS_UPDATE_VIEWS,
     id
   }),
-  getDetail: (id) => ({
+  getDetail: id => ({
     type: actions.NEWS_GET_DETAIL,
     id
   }),

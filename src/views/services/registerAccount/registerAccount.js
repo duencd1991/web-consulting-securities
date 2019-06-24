@@ -1,17 +1,16 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import Layout from '../../layout/layout';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import Layout from "../../layout/layout";
 
 class RegisterAccount extends Component {
   render() {
-    return(
+    return (
       <Layout title="">
         <div>
           <h1>Mở tài khoản</h1>
-          
         </div>
       </Layout>
-    )
+    );
   }
 }
 
@@ -20,7 +19,10 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
-  return {}
+  return {};
 };
 
-export default connect(mapStateToProps,mapDispatchToProps)(RegisterAccount);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(RegisterAccount);

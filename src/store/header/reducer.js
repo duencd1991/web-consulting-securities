@@ -1,14 +1,14 @@
-import actions from './actions';
+import actions from "./actions";
 
 const initState = {
   activeMenu: false,
   showMenu: false
-}
+};
 
 const Header = (state = initState, action) => {
-  switch(action.type) {
+  switch (action.type) {
     case actions.ACTIVE_MENU:
-      return { ...state, activeMenu: action.active};
+      return { ...state, activeMenu: action.active };
     case actions.HIDE_MENU:
       return { ...state, showMenu: false };
     case actions.SHOW_MENU:
@@ -16,6 +16,6 @@ const Header = (state = initState, action) => {
     default:
       return state;
   }
-}
+};
 
 export default Header;

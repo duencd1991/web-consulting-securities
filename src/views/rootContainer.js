@@ -1,10 +1,11 @@
-import React, { Suspense } from 'react';
-import { ToastContainer } from 'react-toastify';
+import React, { Suspense } from "react";
+import { ToastContainer } from "react-toastify";
+import PropTypes from "prop-types";
 // import style
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'font-awesome/css/font-awesome.min.css';
-import 'react-toastify/dist/ReactToastify.css';
-import '../style/index.scss';
+import "bootstrap/dist/css/bootstrap.min.css";
+import "font-awesome/css/font-awesome.min.css";
+import "react-toastify/dist/ReactToastify.css";
+import "../style/index.scss";
 
 const Loader = () => (
   <div className="App">
@@ -21,6 +22,9 @@ const RootContainer = props => {
       </Suspense>
     </div>
   );
+};
+RootContainer.propTypes = {
+  children: PropTypes.object
 };
 
 export default RootContainer;

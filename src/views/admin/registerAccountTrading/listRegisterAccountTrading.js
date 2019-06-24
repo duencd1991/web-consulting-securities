@@ -3,10 +3,10 @@ import Layout from "../../layout/layout";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { DEFAULT_TABLE } from "../../../utils/constant";
-import actions from "../../../store/trainingService/actions";
+import actions from "../../../store/accountTrading/actions";
 import Table from "../../../components/table/table";
 
-class ListRegisterCourse extends Component {
+class ListAccountTrading extends Component {
   constructor(props) {
     super(props);
 
@@ -32,7 +32,7 @@ class ListRegisterCourse extends Component {
     alert("Xóa bản tin số ", index);
   };
 
-  fetchListRegisterCourse = () => {
+  fetchListAccountTrading = () => {
     const state = this.state;
     const start = (state.pageNum - 1) * state.pageSize;
     const limit = state.pageSize + start;
@@ -40,11 +40,11 @@ class ListRegisterCourse extends Component {
       start: start,
       limit: limit
     };
-    this.props.fetchListRegisterCourse(data);
+    this.props.fetchListAccountTrading(data);
   };
 
   componentDidMount() {
-    this.fetchListRegisterCourse();
+    this.fetchListAccountTrading();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -52,7 +52,7 @@ class ListRegisterCourse extends Component {
       prevState.pageNum !== this.state.pageNum ||
       prevState.pageSize !== this.state.pageSize
     ) {
-      this.fetchListRegisterCourse();
+      this.fetchListAccountTrading();
     }
   }
   componentWillReceiveProps(nextProps) {
@@ -77,9 +77,9 @@ class ListRegisterCourse extends Component {
         )
       },
       {
-        Header: "SỐ ĐIỆN THOẠI",
+        Header: "ĐIỆN THOẠI",
         accessor: "phoneNumber",
-        maxWidth: 100,
+        maxWidth: 150,
         Cell: props => (
           <div className="table-center-element">
             <div className="table-center-time">Số điện thoại:</div>
@@ -99,30 +99,8 @@ class ListRegisterCourse extends Component {
         )
       },
       {
-        Header: "TÊN KHÓA HỌC",
-        accessor: "courseName",
-        maxWidth: 200,
-        Cell: props => (
-          <div className="table-center-element">
-            <div className="table-center-time">Tên khóa học:</div>
-            {props.value}
-          </div>
-        )
-      },
-      {
-        Header: "KHAI GIẢNG",
-        accessor: "courseStartDate",
-        maxWidth: 200,
-        Cell: props => (
-          <div className="table-center-element">
-            <div className="table-center-time">Khai giảng:</div>
-            {props.value}
-          </div>
-        )
-      },
-      {
         Header: "NGÀY ĐĂNG KÝ",
-        accessor: "createDate",
+        accessor: "createdDate",
         maxWidth: 200,
         Cell: props => (
           <div className="table-center-element">
@@ -152,8 +130,8 @@ class ListRegisterCourse extends Component {
         <div className="admin-form">
           <div className="table-content">
             <Table
-              title="Danh sách đăng ký khóa học"
-              listData={props.listRegisterCourse}
+              title="Danh sách mở tài khoản"
+              listData={props.listAccountTrading}
               columns={columns}
               pageSize={pageSize}
               pageNum={pageNum}
@@ -167,25 +145,25 @@ class ListRegisterCourse extends Component {
     );
   }
 }
-ListRegisterCourse.propTypes = {
-  fetchListRegisterCourse: PropTypes.func,
+ListAccountTrading.propTypes = {
+  fetchListAccountTrading: PropTypes.func,
   total: PropTypes.number
 };
 
 const mapStateToProps = state => {
   return {
-    listRegisterCourse: state.TrainingService.listRegisterCourse,
-    total: state.TrainingService.total
+    listAccountTrading: state.AccountTrading.listAccountTrading,
+    total: state.AccountTrading.total
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchListRegisterCourse: data => {
-      dispatch(actions.registerCourseList(data));
+    fetchListAccountTrading: data => {
+      dispatch(actions.listAccountTrading(data));
     },
     getDetail: id => {
-      dispatch(actions.registerCourseDetail(id));
+      dispatch(actions.accountTradingDetail(id));
     }
   };
 };
@@ -193,4 +171,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ListRegisterCourse);
+)(ListAccountTrading);

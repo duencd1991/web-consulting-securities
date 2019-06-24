@@ -1,5 +1,5 @@
-import React from 'react';
-import './loading.scss';
+import React from "react";
+import "./loading.scss";
 
 const Loading = () => (
   <div className="loading-box">
@@ -7,4 +7,4 @@ const Loading = () => (
   </div>
 );
 
-export default Loading
+export default Loading;

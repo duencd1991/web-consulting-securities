@@ -1,59 +1,67 @@
-import request from '../utils/request'
+import request from "../utils/request";
 
 const listNews = (start, limit, category) => {
-  let url = ''
+  let url = "";
   if (category) {
-    url = `/news/list/get?start=${start}&limit=${limit}&categoryId=${category}`
+    url = `/news/list/get?start=${start}&limit=${limit}&categoryId=${category}`;
   } else {
-    url = `/news/list/get?start=${start}&limit=${limit}`
+    url = `/news/list/get?start=${start}&limit=${limit}`;
   }
   return request({
     url: url,
-    method: 'get'
-  })
-}
+    method: "get"
+  });
+};
 const listNewsHot = () => {
-  let url = `/news/list/get?start=0&limit=5`
+  const url = `/news/list/get?start=0&limit=5`;
   return request({
     url: url,
-    method: 'get'
-  })
-}
+    method: "get"
+  });
+};
 const listNewsTop = () => {
-  let url = `/news/list/get?start=0&limit=5`
+  const url = `/news/list/get?start=0&limit=5`;
   return request({
     url: url,
-    method: 'get'
-  })
-}
-const updateViews = (id) => {
-  let url = `/news/upViews?id=${id}`
+    method: "get"
+  });
+};
+const updateViews = id => {
+  const url = `/news/upViews?id=${id}`;
   return request({
     url: url,
-    method: 'put'
-  })
-}
-const updateNews = (data) => {
-  let url = `/news/update`
+    method: "put"
+  });
+};
+const updateNews = data => {
+  const url = `/news/update`;
   return request({
     url: url,
-    method: 'put',
+    method: "put",
     data: data
-  })
-}
-const createNews = (data) => {
-  let url = `/news/create`
+  });
+};
+const createNews = data => {
+  const url = `/news/create`;
   return request({
     url: url,
-    method: 'post',
+    method: "post",
     data: data
-  })
-}
-const newsDetail = (id) => {
-  let url = `/news/detail?id=${id}`
+  });
+};
+const newsDetail = id => {
+  const url = `/news/detail?id=${id}`;
   return request({
     url: url,
-    method: 'get'
-  })
-}
-export { listNews, listNewsHot, listNewsTop, updateViews, newsDetail, updateNews, createNews }
+    method: "get"
+  });
+};
+export {
+  listNews,
+  listNewsHot,
+  listNewsTop,
+  updateViews,
+  newsDetail,
+  updateNews,
+  createNews
+};

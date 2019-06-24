@@ -1,24 +1,24 @@
-import request from '../utils/request';
+import request from "../utils/request";
 
-const listTop = ( start, limit) => {
-  let url = `/guideline/list/get?start=${start}&limit=${limit}`;
+const listTop = (start, limit) => {
+  const url = `/guideline/list/get?start=${start}&limit=${limit}`;
   return request({
     url: url,
-    method: 'get'
+    method: "get"
   });
 };
 const listType = (start, limit, type) => {
-  let url = `/guideline/list/get?start=${start}&limit=${limit}&type=${type}`;
+  const url = `/guideline/list/get?start=${start}&limit=${limit}&type=${type}`;
   return request({
     url: url,
-    method: 'get'
+    method: "get"
   });
 };
-const updateViews = ( id ) => {
-  let url = `/guideline/upViews?id=${id}`;
+const updateViews = id => {
+  const url = `/guideline/upViews?id=${id}`;
   return request({
     url: url,
-    method: 'put'
+    method: "put"
   });
 };
 export { listTop, listType, updateViews };

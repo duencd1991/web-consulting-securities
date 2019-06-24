@@ -1,32 +1,32 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import Layout from '../../layout/layout';
-import { toast } from 'react-toastify';
-import { TYPE_NEWS } from '../../../utils/constant';
-import '../../../style/common.scss';
-import './formNews.scss';
-import actions from '../../../store/news/actions';
-import notifyActions from '../../../store/notification/actions';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import Layout from "../../layout/layout";
+import PropTypes from "prop-types";
+import { toast } from "react-toastify";
+import { TYPE_NEWS } from "../../../utils/constant";
+import "../../../style/common.scss";
+import "./formNews.scss";
+import actions from "../../../store/news/actions";
+import notifyActions from "../../../store/notification/actions";
 
-import CKEditor from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import CKEditor from "@ckeditor/ckeditor5-react";
+import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
 class FormNews extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
-      id: '',
-      title: '',
+      id: "",
+      title: "",
       categoryId: 1,
-      thumbnail: '',
-      content: '',
+      thumbnail: "",
+      content: "",
       views: 0,
 
       update: false,
       validate: true,
       validateUploadImage: ""
-    }
+    };
   }
 
   componentDidMount() {
@@ -36,12 +36,12 @@ class FormNews extends Component {
       this.setState({
         id: id,
         update: true
-      })
+      });
       this.props.getDetail(id);
     } else {
       this.setState({
         update: false
-      })
+      });
     }
   }
 
@@ -54,9 +54,9 @@ class FormNews extends Component {
         thumbnail: detail.imgUrl,
         content: detail.content,
         views: detail.views
-      })
+      });
     }
-    if (nextProps.message !== '' && nextProps.message !== this.props.message) {
+    if (nextProps.message !== "" && nextProps.message !== this.props.message) {
       toast(nextProps.message);
       if (nextProps.success) {
         this.props.history.push(`/list-news`);
@@ -65,43 +65,43 @@ class FormNews extends Component {
     }
   }
 
-  onChange = (e) => {
+  onChange = e => {
     this.setState({
       [e.target.name]: e.target.value
-    })
-  }
+    });
+  };
 
-  onChangeFile = (e) => {
-    var imageDisplayArea = document.getElementById('imageDisplayArea');
-    var file = e.target.files[0];
-    var imageType = /image.*/;
+  onChangeFile = e => {
+    const imageDisplayArea = document.getElementById("imageDisplayArea");
+    const file = e.target.files[0];
+    const imageType = /image.*/;
     if (file.type.match(imageType)) {
-      var reader = new FileReader();
-      reader.onload = function(e) {
+      const reader = new FileReader();
+      reader.onload = function() {
         imageDisplayArea.innerHTML = "";
-        var img = new Image();
+        const img = new Image();
         img.src = reader.result;
         imageDisplayArea.appendChild(img);
-      }
-      reader.readAsDataURL(file);	
+      };
+      reader.readAsDataURL(file);
       this.setState({
         thumbnail: file
-      })
+      });
     } else {
       imageDisplayArea.innerHTML = "Vui lòng tải hình ảnh!";
     }
-  }
+  };
 
-  onSelectCategoryId = (e) => {
+  onSelectCategoryId = e => {
     this.setState({
       categoryId: TYPE_NEWS[e.target.selectedIndex].type
-    })
-  }
-  onChangeEditor = (data) => {
+    });
+  };
+  onChangeEditor = data => {
     this.setState({
       content: data
-    })
-  }
+    });
+  };
   onSubmit = () => {
     if (this.onValidateForm()) {
       const state = this.state;
@@ -113,32 +113,28 @@ class FormNews extends Component {
           content: state.content,
           categoryId: state.categoryId,
           imgUrl: state.thumbnail
-        }
+        };
         this.props.updateNews(data);
       } else {
-        let data = new FormData();
-        data.append('views', encodeURI(state.name));
-        data.append('title', state.title);
-        data.append('content', state.content);
-        data.append('categoryId', state.categoryId);
-        data.append('imgUrl', state.thumbnail);
+        const data = new FormData();
+        data.append("views", encodeURI(state.name));
+        data.append("title", state.title);
+        data.append("content", state.content);
+        data.append("categoryId", state.categoryId);
+        data.append("imgUrl", state.thumbnail);
         this.props.createNews(data);
       }
     }
-  }
+  };
   onValidateForm = () => {
-    const {
-      title,
-      categoryId,
-      thumbnail,
-      content,
-    } =  this.state;
-    let check = title !== '' && categoryId !== 0 && thumbnail !== '' && content !== '';
+    const { title, categoryId, thumbnail, content } = this.state;
+    const check =
+      title !== "" && categoryId !== 0 && thumbnail !== "" && content !== "";
     this.setState({
       validate: check
-    })
+    });
     return check;
-  }
+  };
 
   render() {
     const {
@@ -150,97 +146,124 @@ class FormNews extends Component {
       validate,
       validateUploadImage
     } = this.state;
-    
+
     // var cb = function() { return (new Date()).getTime() }
     // ClassicEditor.create(document.querySelector( '#editor' ), {
     //   simpleUpload: {
     //       uploadUrl: {url:'http://127.0.0.1/my-upload-endpoint', headers:{ 'x-header':'myhead', 'x-header-cb': cb } }
     //   }
     // })
-    return(
+    return (
       <Layout>
-        <div className='admin-form'>
+        <div className="admin-form">
           <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="#">Danh mục</a></li>
-              <li class="breadcrumb-item"><a href="list-news">Quản lý kiến thức</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Tạo mới kiến thức</li>
+            <ol className="breadcrumb">
+              <li className="breadcrumb-item">
+                <a href="#">Danh mục</a>
+              </li>
+              <li className="breadcrumb-item">
+                <a href="list-news">Quản lý kiến thức</a>
+              </li>
+              <li className="breadcrumb-item active" aria-current="page">
+                Tạo mới kiến thức
+              </li>
             </ol>
           </nav>
-          {
-            update ? <h1>Cập nhật kiến thức</h1> : <h1 className="titleNewRe">Tạo mới kiến thức</h1>
-          }
+          {update ? (
+            <h1>Cập nhật kiến thức</h1>
+          ) : (
+            <h1 className="titleNewRe">Tạo mới kiến thức</h1>
+          )}
           <hr></hr>
           <div className="form-group row">
             <label className="col-sm-3 padding0">Tiêu đề</label>
             <div className="col-sm-9 padding0">
-              <input type="text" className="form-control" id="title" name='title' value={title} onChange={this.onChange} />
-              {
-                !validate && title === '' && <div className="alert alert-warning" role="alert">
+              <input
+                type="text"
+                className="form-control"
+                id="title"
+                name="title"
+                value={title}
+                onChange={this.onChange}
+              />
+              {!validate && title === "" && (
+                <div className="alert alert-warning" role="alert">
                   Vui lòng nhập thông tin
                 </div>
-              }
-              </div>
+              )}
+            </div>
           </div>
           <div className="form-group row">
             <label className="col-sm-3 padding0">Danh mục</label>
             <div className="col-sm-9 padding0">
-            <select className="form-control" id="categorySelect" onChange={this.onSelectCategoryId}>
-              {
-                TYPE_NEWS.map((item, index) => {
-                  return <option key={index} selected={item.type === categoryId ? "selected" : ""} >{item.name}</option>  
-                })
-              }
-            </select>
+              <select
+                className="form-control"
+                id="categorySelect"
+                onChange={this.onSelectCategoryId}
+              >
+                {TYPE_NEWS.map((item, index) => {
+                  return (
+                    <option
+                      key={index}
+                      selected={item.type === categoryId ? "selected" : ""}
+                    >
+                      {item.name}
+                    </option>
+                  );
+                })}
+              </select>
             </div>
           </div>
           <div className="form-group row">
             <label className="col-sm-3 padding0">Hình ảnh</label>
             <div className="col-sm-9 padding0">
-              <input type="file" className="custom-file-input" id="thumbnail" onChange={this.onChangeFile}/>
-              <label className="custom-file-label" >Chọn hình ảnh</label>
-            {
-              validateUploadImage !== "" && <div className="alert alert-warning" role="alert">
-                {
-                  validateUploadImage
-                }
-              </div>
-            }
-            <div id="imageDisplayArea"></div>
-            {
-              !validate && thumbnail === null && <div className="alert alert-warning" role="alert">
-                Vui lòng nhập thông tin
-              </div>
-            }
-            
+              <input
+                type="file"
+                className="custom-file-input"
+                id="thumbnail"
+                onChange={this.onChangeFile}
+              />
+              <label className="custom-file-label">Chọn hình ảnh</label>
+              {validateUploadImage !== "" && (
+                <div className="alert alert-warning" role="alert">
+                  {validateUploadImage}
+                </div>
+              )}
+              <div id="imageDisplayArea"></div>
+              {!validate && thumbnail === null && (
+                <div className="alert alert-warning" role="alert">
+                  Vui lòng nhập thông tin
+                </div>
+              )}
             </div>
           </div>
-          
+
           <div className="form-group row">
             <label className="col-sm-3 padding0">Nội dung</label>
             <div className="col-sm-9 padding0">
-            <CKEditor
-              name='content'
-              data={content ? content : ''}
-              editor={ ClassicEditor }
-              onChange={( event, editor ) => {
-                const data = editor.getData();
-                this.onChangeEditor(data);
-              }}
-            />
-            {
-              !validate && content === '' && <div className="alert alert-warning" role="alert">
-                Vui lòng nhập thông tin
-              </div>
-            }
+              <CKEditor
+                name="content"
+                data={content ? content : ""}
+                editor={ClassicEditor}
+                onChange={(event, editor) => {
+                  const data = editor.getData();
+                  this.onChangeEditor(data);
+                }}
+              />
+              {!validate && content === "" && (
+                <div className="alert alert-warning" role="alert">
+                  Vui lòng nhập thông tin
+                </div>
+              )}
             </div>
           </div>
           <div className="form-group row">
-            <div className="col-sm-3 padding0">
-              </div>
-              <div className="col-sm-9 padding0">
-          <button className="btn btn-save" onClick={this.onSubmit}>Lưu</button>
-              </div>
+            <div className="col-sm-3 padding0"></div>
+            <div className="col-sm-9 padding0">
+              <button className="btn btn-save" onClick={this.onSubmit}>
+                Lưu
+              </button>
+            </div>
           </div>
         </div>
       </Layout>
@@ -258,19 +281,32 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    updateNews: (data) => {
+    updateNews: data => {
       dispatch(actions.updateNews(data));
     },
-    createNews: (data) => {
+    createNews: data => {
       dispatch(actions.createNews(data));
     },
-    getDetail: (id) => {
+    getDetail: id => {
       dispatch(actions.getDetail(id));
     },
     clearNotify: () => {
       dispatch(notifyActions.clearNotify());
     }
-  }
+  };
+};
+FormNews.propTypes = {
+  createNews: PropTypes.func,
+  updateNews: PropTypes.func,
+  clearNotify: PropTypes.func,
+  history: PropTypes.func,
+  getDetail: PropTypes.func,
+  detail: PropTypes.object,
+  message: PropTypes.string,
+  success: PropTypes.string
 };
 
-export default connect(mapStateToProps,mapDispatchToProps)(FormNews);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(FormNews);

@@ -1,16 +1,19 @@
-import actions from './actions';
-import notifyActions from '../notification/actions';
-import { all, fork, put, takeEvery } from 'redux-saga/effects';
-import { listGuidelines, listNews, listReports } from '../../services/home';
+import actions from "./actions";
+import notifyActions from "../notification/actions";
+import { all, fork, put, takeEvery } from "redux-saga/effects";
+import { listGuidelines, listNews, listReports } from "../../services/home";
 
-export function* listHomeGuidelines(data) {
-  yield takeEvery(actions.GUIDELINE_GET_HOME_LIST, function* (data) {
+export function* listHomeGuidelines() {
+  yield takeEvery(actions.GUIDELINE_GET_HOME_LIST, function*(data) {
     try {
       yield put({ type: notifyActions.NOTIFY_LOADING });
 
       const response = yield listGuidelines();
       if (response.data.statusCode === 1) {
-        yield put({ type: actions.GUIDELINE_HOME_LIST, list: response.data.list});
+        yield put({
+          type: actions.GUIDELINE_HOME_LIST,
+          list: response.data.list
+        });
       }
 
       yield put({ type: notifyActions.NOTIFY_LOADING });
@@ -19,14 +22,14 @@ export function* listHomeGuidelines(data) {
     }
   });
 }
-export function* listHomeNews(data) {
-  yield takeEvery(actions.NEWS_GET_HOME_LIST, function* (data) {
+export function* listHomeNews() {
+  yield takeEvery(actions.NEWS_GET_HOME_LIST, function*(data) {
     try {
       yield put({ type: notifyActions.NOTIFY_LOADING });
 
       const response = yield listNews();
       if (response.data.statusCode === 1) {
-        yield put({ type: actions.NEWS_HOME_LIST, list: response.data.list});
+        yield put({ type: actions.NEWS_HOME_LIST, list: response.data.list });
       }
 
       yield put({ type: notifyActions.NOTIFY_LOADING });
@@ -35,14 +38,14 @@ export function* listHomeNews(data) {
     }
   });
 }
-export function* listHomeReports(data) {
-  yield takeEvery(actions.REPORT_GET_HOME_LIST, function* (data) {
+export function* listHomeReports() {
+  yield takeEvery(actions.REPORT_GET_HOME_LIST, function*(data) {
     try {
       yield put({ type: notifyActions.NOTIFY_LOADING });
 
       const response = yield listReports();
       if (response.data.statusCode === 1) {
-        yield put({ type: actions.REPORT_HOME_LIST, list: response.data.list});
+        yield put({ type: actions.REPORT_HOME_LIST, list: response.data.list });
       }
 
       yield put({ type: notifyActions.NOTIFY_LOADING });

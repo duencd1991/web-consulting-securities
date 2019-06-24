@@ -1,10 +1,26 @@
-import request from '../utils/request';
-const createAccountTrading = (data) => {
-  let url = `/accountTrading/create`
+import request from "../utils/request";
+const createAccountTrading = data => {
+  const url = `/accountTrading/create`;
   return request({
     url: url,
-    method: 'post',
+    method: "post",
     data: data
-  })
-}
-export { createAccountTrading }
+  });
+};
+const listAccountTrading = data => {
+  const url = `/accountTrading/list/get`;
+  return request({
+    url: url,
+    method: "get",
+    params: data
+  });
+};
+const accountTradingDetail = data => {
+  const url = `/accountTrading/detail`;
+  return request({
+    url: url,
+    method: "get",
+    params: data
+  });
+};
+export { createAccountTrading, listAccountTrading, accountTradingDetail };
