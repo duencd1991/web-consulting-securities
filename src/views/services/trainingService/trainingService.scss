@@ -110,6 +110,8 @@ $stepTiming: 0.8s 0.2s;
                 float: left;
                 width: 100%;
                 .course-title {
+                  line-height: 24px;
+                  font-size: 14px;
                   span {
                     font-weight: bold;
                     color: #005197;
@@ -121,6 +123,8 @@ $stepTiming: 0.8s 0.2s;
                 width: 100%;
                 text-align: left;
                 .course-title {
+                  line-height: 24px;
+                  font-size: 14px;
                   span {
                     font-weight: bold;
                     color: #005197;
@@ -695,6 +699,7 @@ $stepTiming: 0.8s 0.2s;
               .course-item {
                 .course-title {
                   padding: 3px 0px;
+                 
                 }
               }
             }
@@ -845,8 +850,8 @@ $stepTiming: 0.8s 0.2s;
       }
     }
     .teachers-layout {
-      .slick-slider {
-      }
+      // .slick-slider {
+      // }
     }
   }
   .slick-list {

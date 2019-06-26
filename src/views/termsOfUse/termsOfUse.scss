@@ -1,0 +1,31 @@
+.terms_of_use_page{
+    .terms_of_use_Banner{
+        height: 100px;
+        background: url(../../assets/img/banner_policy_terms.jpg) no-repeat center;
+        h3 {
+            font-size: 30px;
+            text-transform: uppercase;
+            color: #ffffff;
+            line-height: 100px;
+            text-align: center;
+          }
+    }
+    .mainContent{
+        display: flex;
+        flex-direction: column;
+        max-width: 1170px;
+        margin: auto;
+        padding: 30px 0;
+        text-align: justify;
+    }
+    .txtBlue{color:#005197;}
+}
+@media screen and (max-width: 575px) {
+    .terms_of_use_page{
+        .terms_of_use_Banner{
+            h3 {
+                font-size: 23px;
+            }
+        }
+    }
+}
