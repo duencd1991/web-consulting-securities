@@ -232,6 +232,7 @@ const mapDispatchToProps = dispatch => {
 ListCourse.propTypes = {
   history: PropTypes.func,
   fetchListCourse: PropTypes.func,
+  listCourse: PropTypes.array,
   total: PropTypes.number
 };
 

@@ -147,6 +147,7 @@ class ListAccountTrading extends Component {
 }
 ListAccountTrading.propTypes = {
   fetchListAccountTrading: PropTypes.func,
+  listAccountTrading: PropTypes.array,
   total: PropTypes.number
 };
 

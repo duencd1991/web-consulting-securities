@@ -169,6 +169,7 @@ class ListRegisterCourse extends Component {
 }
 ListRegisterCourse.propTypes = {
   fetchListRegisterCourse: PropTypes.func,
+  listRegisterCourse: PropTypes.array,
   total: PropTypes.number
 };
 

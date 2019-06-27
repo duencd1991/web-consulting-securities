@@ -160,6 +160,7 @@ class ListNews extends Component {
 ListNews.propTypes = {
   history: PropTypes.func,
   fetchListNews: PropTypes.func,
+  listNews: PropTypes.array,
   total: PropTypes.number
 };
 

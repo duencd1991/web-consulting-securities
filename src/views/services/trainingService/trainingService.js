@@ -495,6 +495,9 @@ TrainingService.propTypes = {
   fetchlistCourseTop: PropTypes.func,
   fetchlistCourseCategory: PropTypes.func,
   fetchListCourseHot: PropTypes.func,
+  listCourseTop: PropTypes.array,
+  listCourseHot: PropTypes.array,
+  listCourseCategory: PropTypes.array,
   message: PropTypes.string
 };
 export default connect(

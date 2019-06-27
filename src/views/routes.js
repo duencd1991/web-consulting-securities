@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
 // import component
-<<<<<<< Updated upstream
 import history from "../utils/history";
 import RootContainer from "./rootContainer";
 import Home from "./home";
@@ -31,35 +30,7 @@ import SignIn from "./signIn/signIn";
 import SignUp from "./signUp/signUp";
 import ForgotPassWord from "./forgotPassWord/forgotPassWord";
 import GetPassWord from "./forgotPassWord/getPassWord";
-=======
-import history from '../utils/history';
-import RootContainer from './rootContainer';
-import Home from './home';
-import ConsultingService from './services/consultingService/consulting';
-import TradingInstrucion from './services/tradingInstruction/tradingInstruction';
-import TrainingService from './services/trainingService/trainingService';
-import RegisterAccount from './services/registerAccount/registerAccount';
-import Report from './report/report';
-import AboutUs from './aboutUs/aboutUs';
-import News from './news/news';
-import ListNews from './admin/news/listNews';
-import FormNews from './admin/news/formNews';
-import ConsultingSecurities from './consultingSecurities/consultingSecurities';
-import PageNotFound from './pageNotFound/pageNotFound';
-import CreateTradingAccount from './createTradingAccount/createTradingAccount';
-import SearchResults from './searchResults/searchResults';
-import ListReport from './admin/report/listReport';
-import FormReport from './admin/report/formReport';
-import ListCourse from './admin/course/listCourse';
-import FormCourse from './admin/course/formCourse';
-import ListRegisterCourse from './admin/registerCourse/listRegisterCourse';
-import SignIn from './signIn/signIn';
-import SignUp from './signUp/signUp';
-import TermsOfUse from './termsOfUse/termsOfUse';
-import ForgotPassWord from './forgotPassWord/forgotPassWord';
-import GetPassWord from './forgotPassWord/getPassWord';
-
->>>>>>> Stashed changes
+import TermsOfUse from "./termsOfUse/termsOfUse";
 
 const AppRouter = () => {
   return (
@@ -89,7 +60,6 @@ const AppRouter = () => {
             component={CreateTradingAccount}
           />
           <Route path="/search-results" component={SearchResults} />
-<<<<<<< Updated upstream
           <Route exact path="/list-news" component={ListNews} />
           <Route exact path="/create-news" component={FormNews} />
           <Route exact path="/list-report" component={ListReport} />
@@ -110,21 +80,8 @@ const AppRouter = () => {
           <Route exact path="/sign-up" component={SignUp} />
           <Route exact path="/forgot-pass-word" component={ForgotPassWord} />
           <Route exact path="/get-pass-word" component={GetPassWord} />
-=======
-          <Route exact path='/list-news' component={ListNews} />
-          <Route exact path='/create-news' component={FormNews} />
-          <Route exact path='/list-report' component={ListReport} />
-          <Route exact path='/list-course' component={ListCourse} />
-          <Route exact path='/list-register-course' component={ListRegisterCourse} />
-          <Route exact path='/create-course' component={FormCourse} />
-          <Route exact path='/create-report' component={FormReport} />
-          <Route exact path='/sign-in' component={SignIn} />
-          <Route exact path='/sign-up' component={SignUp} />
-          <Route exact path='/forgot-pass-word' component={ForgotPassWord}/>
-          <Route exact path='/get-pass-word' component={GetPassWord}/>
-          <Route exact path='/terms-of-use' component={TermsOfUse}/>
->>>>>>> Stashed changes
-          <Route component={PageNotFound}></Route>
+          <Route exact path="/terms-of-use" component={TermsOfUse} />
+          <Route component={PageNotFound} />
         </Switch>
       </RootContainer>
     </Router>

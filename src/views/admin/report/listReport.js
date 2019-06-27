@@ -159,6 +159,7 @@ class ListReport extends Component {
 ListReport.propTypes = {
   history: PropTypes.func,
   fetchListReport: PropTypes.func,
+  listReport: PropTypes.array,
   total: PropTypes.number
 };
 const mapStateToProps = state => {

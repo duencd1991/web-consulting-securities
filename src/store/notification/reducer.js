@@ -8,10 +8,10 @@ const initialState = {
 };
 
 const Notifys = (state = initialState, action) => {
+  let message = "";
+  let success = false;
   switch (action.type) {
     case actions.NOTIFY_SHOW:
-      let message = "";
-      let success = false;
       for (let i = 0; i < ERROR_CODE.length; i++) {
         if (action.code === ERROR_CODE[i].code) {
           message = ERROR_CODE[i].message;

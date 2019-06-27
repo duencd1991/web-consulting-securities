@@ -40,7 +40,7 @@
       "unicodeCodePointEscapes": true,
       "globalReturn": true
     },
-    "sourceType": "module",
+    "sourceType": "module"
   },
   "rules": {
     "comma-dangle": 2,

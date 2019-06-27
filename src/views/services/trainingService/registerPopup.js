@@ -89,9 +89,9 @@ class RegisterPopup extends Component {
           <Modal.Header>
             <div className="popup-header mb-2 text-center">
               đăng ký học{" "}
-              <a onClick={props.closePopup} className="mclose w100">
+              <span onClick={props.closePopup} className="mclose w100">
                 <i className="fa fa-times"></i>
-              </a>
+              </span>
             </div>
           </Modal.Header>
           <Modal.Body className="popup-body">
@@ -197,6 +197,7 @@ RegisterPopup.propTypes = {
   closePopup: PropTypes.func,
   title: PropTypes.string,
   closeText: PropTypes.string,
-  courseInfo: PropTypes.object
+  courseInfo: PropTypes.object,
+  isShowModal: PropTypes.bool
 };
 export default RegisterPopup;

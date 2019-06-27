@@ -95,13 +95,9 @@
     flex-flow: row nowrap;
     .form-wrapper {
       display: inline-flex;
-      flex-basis: 50%;
+      width: 50%;
       justify-content: space-between;
       align-items: center;
-      .filterProv,
-      .filterDis {
-        margin-left: 15px;
-      }
       &.vldSTK {
         flex-wrap: wrap;
         text-align: right;
@@ -254,13 +250,6 @@
           flex-flow: column wrap;
           text-align: left;
         }
-        .filterProv {
-          margin-bottom: 0px;
-          margin-top: 0px;
-        }
-        .filterDis {
-          margin-bottom: 0px;
-        }
       }
     }
   }
@@ -294,16 +283,6 @@
           font-size: 14px;
           margin-top: 10px;
           margin-bottom: 5px;
-        }
-        .filterProv {
-          margin-bottom: 15px;
-          margin-top: 15px;
-          width: 100% !important;
-          margin-left: 0px;
-        }
-        .filterDis {
-          margin-bottom: 5px;
-          margin-left: 0px;
         }
       }
     }

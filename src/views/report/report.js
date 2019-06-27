@@ -188,6 +188,7 @@ const mapDispatchToProps = dispatch => {
 Report.propTypes = {
   fetchListReport: PropTypes.func,
   updateViews: PropTypes.func,
+  listReport: PropTypes.array,
   total: PropTypes.number
 };
 
