@@ -1,20 +1,20 @@
 import actions from "./actions";
 
 const initialState = {
-  listCourse: [],
+  listExpert: [],
   total: 0,
   detail: {}
 };
 
-const Course = (state = initialState, action) => {
+const Expert = (state = initialState, action) => {
   switch (action.type) {
-    case actions.COURSE_LIST:
-      return { ...state, listCourse: action.list, total: action.total };
-    case actions.COURSE_DETAIL:
+    case actions.EXPERT_LIST:
+      return { ...state, listExpert: action.list, total: action.total };
+    case actions.EXPERT_DETAIL:
       return { ...state, detail: action.detail };
     default:
       return state;
   }
 };
 
-export default Course;
+export default Expert;

@@ -24,6 +24,8 @@ import ListReport from "./admin/report/listReport";
 import FormReport from "./admin/report/formReport";
 import ListCourse from "./admin/course/listCourse";
 import FormCourse from "./admin/course/formCourse";
+import FormExpert from "./admin/expert/formExpert";
+import listExpert from "./admin/expert/listExpert";
 import ListRegisterCourse from "./admin/registerCourse/listRegisterCourse";
 import ListAccountTrading from "./admin/registerAccountTrading/listRegisterAccountTrading";
 import SignIn from "./signIn/signIn";
@@ -76,6 +78,8 @@ const AppRouter = () => {
           />
           <Route exact path="/create-course" component={FormCourse} />
           <Route exact path="/create-report" component={FormReport} />
+          <Route exact path="/create-expert" component={FormExpert} />
+          <Route exact path="/list-expert" component={listExpert} />
           <Route exact path="/sign-in" component={SignIn} />
           <Route exact path="/sign-up" component={SignUp} />
           <Route exact path="/forgot-pass-word" component={ForgotPassWord} />

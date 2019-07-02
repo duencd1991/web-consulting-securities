@@ -13,13 +13,13 @@ class Footer extends Component {
             <div className="footer-item">
               <div className="item-header">TƯ VẤN PHÁI SINH</div>
               <hr />
-              <a href="/cac-khoa-hoc" className="item-content">
+              <a href="/consulting-securities" className="item-content">
                 Robo advisor
               </a>
-              <a href="/chuan-bi-khai-giang" className="item-content">
+              <a href="/consulting-securities" className="item-content">
                 Tư vấn trực tuyến
               </a>
-              <a href="/dang-ky" className="item-content">
+              <a href="/about-us" className="item-content">
                 Đội ngũ chuyên gia
               </a>
             </div>

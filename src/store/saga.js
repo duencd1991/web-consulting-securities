@@ -5,6 +5,7 @@ import homeSaga from "./home/saga";
 import newsSaga from "./news/saga";
 import trainingServiceSaga from "./trainingService/saga";
 import accountTradingSaga from "./accountTrading/saga";
+import expertSaga from "./expert/saga";
 
 export default function* rootSaga() {
   yield all([
@@ -13,6 +14,7 @@ export default function* rootSaga() {
     homeSaga(),
     newsSaga(),
     trainingServiceSaga(),
-    accountTradingSaga()
+    accountTradingSaga(),
+    expertSaga()
   ]);
 }

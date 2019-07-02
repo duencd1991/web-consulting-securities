@@ -3,10 +3,11 @@ import Layout from "../../layout/layout";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { DEFAULT_TABLE } from "../../../utils/constant";
-import actions from "../../../store/trainingService/actions";
+import actions from "../../../store/expert/actions";
 import Table from "../../../components/table/table";
+import icNoImg from "../../../assets/img/ic_no_img2.png";
 
-class ListRegisterCourse extends Component {
+class ListExpert extends Component {
   constructor(props) {
     super(props);
 
@@ -28,23 +29,23 @@ class ListRegisterCourse extends Component {
       pageNum: pageNum
     });
   };
-  onDelete = index => {
-    alert("Xóa bản tin số ", index);
+  onEdit = index => {
+    this.props.history.push(`/create-expert?id=${index}`);
   };
 
-  fetchListRegisterCourse = () => {
+  fetchListExpert = () => {
     const state = this.state;
     const start = (state.pageNum - 1) * state.pageSize;
     const limit = state.pageSize + start;
     const data = {
       start: start,
       limit: limit
-    };
-    this.props.fetchListRegisterCourse(data);
+    }
+    this.props.fetchListExpert(data);
   };
 
   componentDidMount() {
-    this.fetchListRegisterCourse();
+    this.fetchListExpert();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -52,7 +53,7 @@ class ListRegisterCourse extends Component {
       prevState.pageNum !== this.state.pageNum ||
       prevState.pageSize !== this.state.pageSize
     ) {
-      this.fetchListRegisterCourse();
+      this.fetchListExpert();
     }
   }
   componentWillReceiveProps(nextProps) {
@@ -67,66 +68,45 @@ class ListRegisterCourse extends Component {
     const { pageNum, pageSize, total } = this.state;
     const columns = [
       {
-        Header: "NGƯỜI ĐĂNG KÝ",
+        Header: "HÌNH ẢNH",
+        accessor: "image",
+        maxWidth: 100,
+        Cell: props => (
+          <div className="table-center-element">
+            <div className="table-center-time">Hình ảnh:</div>
+            <img alt="img-expert" src={props.value ? props.value : icNoImg}/>
+          </div>
+        )
+      },
+      {
+        Header: "HỌ TÊN",
         accessor: "name",
+        maxWidth: 400,
+        Cell: props => (
+          <div className="table-center-element">
+            <div className="table-center-time">Họ tên:</div>
+            {props.value}
+          </div>
+        )
+      },
+      {
+        Header: "CHỨC VỤ",
+        accessor: "title",
         maxWidth: 200,
         Cell: props => (
           <div className="table-center-element">
-            <div className="table-center-time">Người đăng ký:</div>
+            <div className="table-center-time">Chức vụ:</div>
             {props.value}
           </div>
         )
       },
       {
-        Header: "ĐIỆN THOẠI",
-        accessor: "phoneNumber",
-        maxWidth: 150,
+        Header: "Kinh nghiệm",
+        accessor: "desc",
+        maxWidth: 100,
         Cell: props => (
           <div className="table-center-element">
-            <div className="table-center-time">Số điện thoại:</div>
-            {props.value}
-          </div>
-        )
-      },
-      {
-        Header: "Email",
-        accessor: "email",
-        maxWidth: 200,
-        Cell: props => (
-          <div className="table-center-element">
-            <div className="table-center-time">Email:</div>
-            {props.value}
-          </div>
-        )
-      },
-      {
-        Header: "TÊN KHÓA HỌC",
-        accessor: "courseName",
-        Cell: props => (
-          <div className="table-center-element">
-            <div className="table-center-time">Tên khóa học:</div>
-            {props.value}
-          </div>
-        )
-      },
-      {
-        Header: "KHAI GIẢNG",
-        accessor: "courseStartDate",
-        maxWidth: 150,
-        Cell: props => (
-          <div className="table-center-element">
-            <div className="table-center-time">Khai giảng:</div>
-            {props.value}
-          </div>
-        )
-      },
-      {
-        Header: "NGÀY ĐĂNG KÝ",
-        accessor: "createDate",
-        maxWidth: 150,
-        Cell: props => (
-          <div className="table-center-element">
-            <div className="table-center-time">Ngày đăng ký:</div>
+            <div className="table-center-time">Kinh nghiệm:</div>
             {props.value}
           </div>
         )
@@ -137,10 +117,9 @@ class ListRegisterCourse extends Component {
         maxWidth: 100,
         Cell: props => (
           <div className="table-center-element action-box">
-            {/* <i className="far fa-edit mr-3" onClick={(e) => this.onEdit(props.value)}></i> */}
             <i
-              className="far fa-trash-alt"
-              onClick={e => this.onDelete(props.value)}
+              className="far fa-edit mr-3"
+              onClick={e => this.onEdit(props.value)}
             ></i>
           </div>
         )
@@ -151,9 +130,15 @@ class ListRegisterCourse extends Component {
       <Layout>
         <div className="admin-form">
           <div className="table-content">
+            <button
+              className="btn btn-create-new"
+              onClick={() => this.props.history.push(`/create-expert`)}
+            >
+              Thêm chuyên gia
+            </button>
             <Table
-              title="Danh sách đăng ký khóa học"
-              listData={props.listRegisterCourse}
+              title="Quản lý chuyên gia"
+              listData={props.listExpert}
               columns={columns}
               pageSize={pageSize}
               pageNum={pageNum}
@@ -167,31 +152,32 @@ class ListRegisterCourse extends Component {
     );
   }
 }
-ListRegisterCourse.propTypes = {
-  fetchListRegisterCourse: PropTypes.func,
-  listRegisterCourse: PropTypes.array,
-  total: PropTypes.number
-};
-
 const mapStateToProps = state => {
   return {
-    listRegisterCourse: state.TrainingService.listRegisterCourse,
-    total: state.TrainingService.total
+    listExpert: state.Expert.listExpert,
+    total: state.Expert.total,
+    detail: state.Expert.detail
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchListRegisterCourse: data => {
-      dispatch(actions.registerCourseList(data));
+    fetchListExpert: data => {
+      dispatch(actions.listExpert(data));
     },
-    getDetail: id => {
-      dispatch(actions.registerCourseDetail(id));
+    getDetail: data => {
+      dispatch(actions.getDetail(data));
     }
   };
+};
+
+ListExpert.propTypes = {
+  history: PropTypes.func,
+  fetchListExpert: PropTypes.func,
+  total: PropTypes.number
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ListRegisterCourse);
+)(ListExpert);
