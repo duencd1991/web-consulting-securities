@@ -108,7 +108,7 @@ class SignUp extends Component {
                   />
                   <label>
                     Tôi đã đọc và đồng ý với{" "}
-                    <a href="./privaci-policy-term-service">
+                    <a href="./terms-of-use">
                       điều khoản sử dụng
                     </a>{" "}
                     website
@@ -120,7 +120,7 @@ class SignUp extends Component {
                   <span>Đăng ký</span>
                 </button>
                 <p>
-                  Bạn có tài khoản rồi
+                  Bạn có tài khoản rồi{" "}
                   <a href="./sign-in">Đăng nhập</a>
                 </p>
               </div>
