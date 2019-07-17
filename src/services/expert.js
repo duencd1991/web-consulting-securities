@@ -11,7 +11,7 @@ const updateExpert = data => {
   const url = `/expert/update`;
   return request({
     url: url,
-    method: "post",
+    method: "put",
     data: data
   });
 };
@@ -31,4 +31,12 @@ const expertDetail = data => {
     params: data
   });
 };
-export { createExpert, updateExpert, listExpert, expertDetail };
+const deleteExpert = data => {
+  const url = `/expert/delete`;
+  return request({
+    url: url,
+    method: "delete",
+    params: data
+  });
+};
+export { createExpert, updateExpert, listExpert, expertDetail, deleteExpert };

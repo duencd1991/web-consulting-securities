@@ -5,7 +5,8 @@ import {
   createExpert,
   updateExpert,
   listExpert,
-  expertDetail
+  expertDetail,
+  deleteExpert
 } from "../../services/expert";
 export function* expertCreate() {
   yield takeEvery(actions.EXPERT_CREATE, function*(data) {
@@ -89,11 +90,29 @@ export function* getExpertDetail() {
     }
   });
 }
+
+export function* onDeleteExpert() {
+  yield takeEvery(actions.EXPERT_DELETE, function*(data) {
+    try {
+      yield put({ type: notifyActions.NOTIFY_LOADING });
+      const response = yield deleteExpert(data.data);
+      yield put({
+        type: notifyActions.NOTIFY_SHOW,
+        code: response.data.statusCode
+      });
+
+      yield put({ type: notifyActions.NOTIFY_LOADING });
+    } catch (error) {
+      yield put({ type: notifyActions.NOTIFY_SHOW, code: 0 });
+    }
+  });
+}
 export default function* rootSaga() {
   yield all([
     fork(expertCreate),
     fork(expertUpdate),
     fork(getExpertDetail),
-    fork(getListExpert)
+    fork(getListExpert),
+    fork(onDeleteExpert)
   ]);
 }

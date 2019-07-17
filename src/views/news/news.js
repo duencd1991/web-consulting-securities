@@ -159,7 +159,7 @@ class News extends Component {
                           <div className="new-item" key={index}>
                             <img
                               alt={`img-${index}`}
-                              src={item.img ? item.img : icNoImg}
+                              src={item.imgUrl ? item.imgUrl : icNoImg}
                               onClick={() => this.goToDetail(item.id)}
                             />
                             <div className="title">{item.title}</div>
@@ -249,7 +249,7 @@ class News extends Component {
                   return (
                     <div key={index} className="new-top-item">
                       <img
-                        src={item.img ? item.img : icNoImg2}
+                        src={item.imgUrl ? item.imgUrl : icNoImg2}
                         alt={`new-img-${index}`}
                       />
                       <div className="new-info">
@@ -278,7 +278,7 @@ class News extends Component {
                   return (
                     <div key={index} className="new-top-item">
                       <img
-                        src={item.img ? item.img : icNoImg2}
+                        src={item.imgUrl ? item.imgUrl : icNoImg2}
                         alt={`new-img-${index}`}
                       />
                       <div className="new-info">

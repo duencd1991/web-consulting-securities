@@ -2,14 +2,14 @@ import React, { Component } from "react";
 import Layout from "../../layout/layout";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { DEFAULT_TABLE } from "../../../utils/constant";
-import actions from "../../../store/expert/actions";
+import { DEFAULT_TABLE, TYPE_GUIDELINE } from "../../../utils/constant";
+import actions from "../../../store/tradingInstruction/actions";
 import Table from "../../../components/table/table";
 import { toast } from "react-toastify";
 import icNoImg from "../../../assets/img/ic_no_img2.png";
 import notifyActions from "../../../store/notification/actions";
 
-class ListExpert extends Component {
+class ListGuideline extends Component {
   constructor(props) {
     super(props);
 
@@ -32,16 +32,16 @@ class ListExpert extends Component {
     });
   };
   onEdit = index => {
-    this.props.history.push(`/create-expert?id=${index}`);
+    this.props.history.push(`/create-guideline?id=${index}`);
   };
   onDelete = index => {
     const data = {
       id: index
     };
-    this.props.delete(data);
+    this.props.deleteGuideline(data);
   };
 
-  fetchListExpert = () => {
+  fetchListGuideline = () => {
     const state = this.state;
     const start = (state.pageNum - 1) * state.pageSize;
     const limit = state.pageSize + start;
@@ -49,11 +49,11 @@ class ListExpert extends Component {
       start: start,
       limit: limit
     };
-    this.props.fetchListExpert(data);
+    this.props.fetchListGuideline(data);
   };
 
   componentDidMount() {
-    this.fetchListExpert();
+    this.fetchListGuideline();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -61,7 +61,7 @@ class ListExpert extends Component {
       prevState.pageNum !== this.state.pageNum ||
       prevState.pageSize !== this.state.pageSize
     ) {
-      this.fetchListExpert();
+      this.fetchListGuideline();
     }
   }
   componentWillReceiveProps(nextProps) {
@@ -73,7 +73,7 @@ class ListExpert extends Component {
     if (nextProps.message !== "" && nextProps.message !== this.props.message) {
       toast(nextProps.message);
       if (nextProps.success) {
-        this.fetchListExpert();
+        this.fetchListGuideline();
       }
       this.props.clearNotify();
     }
@@ -83,48 +83,49 @@ class ListExpert extends Component {
     const { pageNum, pageSize, total } = this.state;
     const columns = [
       {
-        Header: "HÌNH ẢNH",
-        accessor: "url",
-        maxWidth: 100,
+        Header: "DANH MỤC",
+        accessor: "type",
+        maxWidth: 300,
         Cell: props => (
           <div className="table-center-element">
-            <div className="table-center-time">Hình ảnh:</div>
-            <img
-              className="img-expert"
-              alt="img-expert"
-              src={props.value ? props.value : icNoImg}
-            />
+            <div className="table-center-time">Danh mục:</div>
+            {TYPE_GUIDELINE.map(item => {
+              if (item.type === props.value) {
+                return item.title;
+              }
+              return null;
+            })}
           </div>
         )
       },
       {
-        Header: "HỌ TÊN",
+        Header: "TIÊU ĐỀ",
         accessor: "name",
         maxWidth: 300,
         Cell: props => (
           <div className="table-center-element">
-            <div className="table-center-time">Họ tên:</div>
+            <div className="table-center-time">Tiêu đề:</div>
             {props.value}
           </div>
         )
       },
       {
-        Header: "CHỨC VỤ",
-        accessor: "position",
-        maxWidth: 200,
+        Header: "Ngày tạo",
+        accessor: "date",
+        Cell: props => (
+          <div className="table-center-element">
+            <div className="table-center-time">Ngày tạo:</div>
+            {props.value}
+          </div>
+        )
+      },
+      {
+        Header: "LƯỢT XEM",
+        accessor: "views",
+        maxWidth: 100,
         Cell: props => (
           <div className="table-center-element">
             <div className="table-center-time">Chức vụ:</div>
-            {props.value}
-          </div>
-        )
-      },
-      {
-        Header: "Kinh nghiệm",
-        accessor: "description",
-        Cell: props => (
-          <div className="table-center-element">
-            <div className="table-center-time">Kinh nghiệm:</div>
             {props.value}
           </div>
         )
@@ -139,10 +140,10 @@ class ListExpert extends Component {
               className="far fa-edit mr-3"
               onClick={e => this.onEdit(props.value)}
             ></i>
-            <i
+            {/* <i
               className="far fa-trash-alt"
               onClick={e => this.onDelete(props.value)}
-            ></i>
+            ></i> */}
           </div>
         )
       }
@@ -154,13 +155,13 @@ class ListExpert extends Component {
           <div className="table-content">
             <button
               className="btn btn-create-new"
-              onClick={() => this.props.history.push(`/create-expert`)}
+              onClick={() => this.props.history.push(`/create-guideline`)}
             >
-              Thêm chuyên gia
+              Thêm hướng dẫn
             </button>
             <Table
-              title="Quản lý chuyên gia"
-              listData={props.listExpert}
+              title="Quản lý hướng dẫn"
+              listData={props.listGuideline}
               columns={columns}
               pageSize={pageSize}
               pageNum={pageNum}
@@ -176,9 +177,9 @@ class ListExpert extends Component {
 }
 const mapStateToProps = state => {
   return {
-    listExpert: state.Expert.listExpert,
-    total: state.Expert.total,
-    detail: state.Expert.detail,
+    listGuideline: state.GuideLines.listGuideline,
+    total: state.GuideLines.total,
+    detail: state.GuideLines.detail,
     success: state.Notifys.success,
     message: state.Notifys.message
   };
@@ -186,14 +187,20 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchListExpert: data => {
-      dispatch(actions.listExpert(data));
+    fetchListGuideline: data => {
+      dispatch(actions.listGuideline(data));
     },
     getDetail: data => {
       dispatch(actions.getDetail(data));
     },
-    delete: data => {
-      dispatch(actions.deleteExpert(data));
+    create: data => {
+      dispatch(actions.create(data));
+    },
+    update: data => {
+      dispatch(actions.update(data));
+    },
+    deleteGuideline: data => {
+      dispatch(actions.deleteGuideline(data));
     },
     clearNotify: () => {
       dispatch(notifyActions.clearNotify());
@@ -201,9 +208,9 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-ListExpert.propTypes = {
+ListGuideline.propTypes = {
   history: PropTypes.func,
-  fetchListExpert: PropTypes.func,
+  fetchListGuideline: PropTypes.func,
   total: PropTypes.number,
   message: PropTypes.string,
   success: PropTypes.string,
@@ -213,4 +220,4 @@ ListExpert.propTypes = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ListExpert);
+)(ListGuideline);

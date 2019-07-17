@@ -8,7 +8,7 @@
       width: 100%;
     }
     .title {
-      font-family: 'OpenSans-Bold';
+      font-family: "OpenSans-Bold";
       font-size: 45px;
       color: #ffffff;
       text-align: center;
@@ -18,7 +18,7 @@
       width: 100%;
     }
     .sub-title {
-      font-family: 'OpenSans';
+      font-family: "OpenSans";
       font-size: 40px;
       color: #ffffff;
       text-align: center;
@@ -58,10 +58,10 @@
           max-height: 50px;
           overflow: hidden;
           position: relative;
-          -webkit-transition: max-height 2s; 
-          -moz-transition: max-height 2s; 
-          -ms-transition: max-height 2s; 
-          -o-transition: max-height 2s; 
+          -webkit-transition: max-height 2s;
+          -moz-transition: max-height 2s;
+          -ms-transition: max-height 2s;
+          -o-transition: max-height 2s;
           transition: max-height 2s;
           margin: 0;
           padding: 0;
@@ -73,10 +73,10 @@
           }
           &.active {
             max-height: none;
-            -webkit-transition: max-height 2s; 
-            -moz-transition: max-height 2s; 
-            -ms-transition: max-height 2s; 
-            -o-transition: max-height 2s; 
+            -webkit-transition: max-height 2s;
+            -moz-transition: max-height 2s;
+            -ms-transition: max-height 2s;
+            -o-transition: max-height 2s;
             transition: max-height 2s;
             .arrow {
               color: #ffffff;
@@ -153,6 +153,9 @@
             text-decoration: underline;
             cursor: pointer;
           }
+          a {
+            color: #125491;
+          }
         }
       }
       .register-box {
@@ -184,7 +187,7 @@
             margin-right: 5px;
           }
           &:hover {
-            background-color:#0066b3;
+            background-color: #0066b3;
             color: #ffffff;
           }
         }
@@ -233,15 +236,18 @@
             border: solid 1px #d0d0d0;
             background-color: transparent;
             border-radius: 0px;
-            &::placeholder { /* Firefox, Chrome, Opera */ 
-                color: #666666;
-            } 
-            &::-ms-input-placeholder { /* Internet Explorer 10-11 */ 
-                color: #666666; 
-            } 
-            &::-ms-input-placeholder { /* Microsoft Edge */ 
-                color: #666666; 
-            } 
+            &::placeholder {
+              /* Firefox, Chrome, Opera */
+              color: #666666;
+            }
+            &::-ms-input-placeholder {
+              /* Internet Explorer 10-11 */
+              color: #666666;
+            }
+            &::-ms-input-placeholder {
+              /* Microsoft Edge */
+              color: #666666;
+            }
           }
           .btn-send-msg {
             background-color: #005197;
@@ -266,23 +272,21 @@
   }
 }
 @media (min-width: 1170px) {
-  
 }
-@media (max-width: 1040px)  and (min-width:992px){
-  .trading-instruction-page{
-  .content-box {    
+@media (max-width: 1040px) and (min-width: 992px) {
+  .trading-instruction-page {
+    .content-box {
       .guide-menu {
         flex-basis: 64%;
       }
     }
-    
   }
 }
 @media (max-width: 991px) {
-  .trading-instruction-page{
-  .content-box {    
-    flex-direction: column;
-    padding-top: 10px;
+  .trading-instruction-page {
+    .content-box {
+      flex-direction: column;
+      padding-top: 10px;
       .guide-menu {
         flex-basis: 100%;
         margin-right: 0px;
@@ -320,25 +324,25 @@
     }
   }
 }
-@media screen and (max-width:767px) and (min-width:375px)
-{
-  .trading-instruction-page
-  {
+@media screen and (max-width: 767px) and (min-width: 375px) {
+  .trading-instruction-page {
     .content-box {
-        .contact-box-layout {
-            hr{margin-bottom: 15px;}
+      .contact-box-layout {
+        hr {
+          margin-bottom: 15px;
         }
       }
+    }
   }
 }
-@media screen and (max-width:374px)
-{
-  .trading-instruction-page
-  {
-      .content-box {
-          .contact-box-layout {
-              hr{margin-bottom: 15px;}
-          }
+@media screen and (max-width: 374px) {
+  .trading-instruction-page {
+    .content-box {
+      .contact-box-layout {
+        hr {
+          margin-bottom: 15px;
+        }
       }
+    }
   }
 }

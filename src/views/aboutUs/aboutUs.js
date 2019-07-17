@@ -5,6 +5,8 @@ import "./aboutUs.scss";
 import icNoImg from "../../assets/img/ic_no_img2.png";
 import Slider from "react-slick";
 import ContactBox from "../../components/contactBox/contactBox";
+import expertActions from "../../store/expert/actions";
+import ExpertBox from "../../components/expertBox/expertBox";
 
 const listTeachers = [
   {
@@ -34,6 +36,14 @@ const listTeachers = [
 ];
 
 class AboutUs extends Component {
+  componentDidMount() {
+    const data = {
+      start: 0,
+      limit: 10
+    };
+    this.props.fetchListExpert(data);
+  }
+
   render() {
     const settings = {
       dots: true,
@@ -47,31 +57,7 @@ class AboutUs extends Component {
       <Layout>
         <div className="about-us-page">
           <div className="about-us-banner"></div>
-          <div className="team-layout">
-            <div className="team-title">ĐỘI NGŨ</div>
-            <hr />
-            <div className="team-des">
-              Đội ngũ giảng viên của MBS tập hợp những chuyên gia hàng đầu trên
-              thị trường chứng khoán với kho kiến thức sâu rộng cùng kinh nghiệm
-              giao dịch lâu năm
-            </div>
-            <div className="team-special">CHUYÊN GIA TƯ VẤN</div>
-            <Slider {...settings}>
-              {listTeachers.map((item, index) => {
-                return (
-                  <div key={index} className="mem-item">
-                    <img
-                      alt={`ic-${index}`}
-                      src={item.img ? item.img : icNoImg}
-                    />
-                    <div className="mem-name">{item.name}</div>
-                    <div className="mem-title">{item.title}</div>
-                    <div className="mem-detail">{item.detail}</div>
-                  </div>
-                );
-              })}
-            </Slider>
-          </div>
+          <ExpertBox listExpert={this.props.listExpert} style="white" />
           <div className="layout-contact">
             <div className="title">LIÊN HỆ</div>
             <hr />
@@ -88,11 +74,17 @@ class AboutUs extends Component {
   }
 }
 const mapStateToProps = state => {
-  return {};
+  return {
+    listExpert: state.Expert.listExpert
+  };
 };
 
 const mapDispatchToProps = dispatch => {
-  return {};
+  return {
+    fetchListExpert: data => {
+      dispatch(expertActions.listExpert(data));
+    }
+  };
 };
 
 export default connect(

@@ -3,41 +3,14 @@ import { connect } from "react-redux";
 import Layout from "../../layout/layout";
 import PropTypes from "prop-types";
 import "./trainingService.scss";
-import icNoImg from "../../../assets/img/ic_no_img2.png";
-import Slider from "react-slick";
 import actions from "../../../store/trainingService/actions";
+import expertActions from "../../../store/expert/actions";
 import notifyActions from "../../../store/notification/actions";
 import { toast } from "react-toastify";
 import { TYPE_COURSE, CATEGORY_COURSE } from "../../../utils/constant";
 import RegisterPopup from "./registerPopup";
+import ExpertBox from "../../../components/expertBox/expertBox";
 import { currency } from "../../../utils/currency";
-
-const listTeachers = [
-  {
-    img: "",
-    name: "NGUYỄN THỊ MINH THƯ",
-    title: "CEO & FOUNDER",
-    detail: "Hơn 5 năm kinh nghiệm phân tích kinh tế vĩ mô và trái phiếu"
-  },
-  {
-    img: "",
-    name: "NGUYỄN THỊ MINH THƯ",
-    title: "CEO & FOUNDER",
-    detail: "Hơn 5 năm kinh nghiệm phân tích kinh tế vĩ mô và trái phiếu"
-  },
-  {
-    img: "",
-    name: "NGUYỄN THỊ MINH THƯ",
-    title: "CEO & FOUNDER",
-    detail: "Hơn 5 năm kinh nghiệm phân tích kinh tế vĩ mô và trái phiếu"
-  },
-  {
-    img: "",
-    name: "NGUYỄN THỊ MINH THƯ",
-    title: "CEO & FOUNDER",
-    detail: "Hơn 5 năm kinh nghiệm phân tích kinh tế vĩ mô và trái phiếu"
-  }
-];
 
 class TrainingService extends Component {
   constructor(props) {
@@ -112,6 +85,11 @@ class TrainingService extends Component {
     this.props.fetchListCourseHot(1);
     this.props.fetchlistCourseTop(state.selectedCourse);
     this.props.fetchlistCourseCategory(state.selectedTypeCourse);
+    const data = {
+      start: 0,
+      limit: 10
+    };
+    this.props.fetchListExpert(data);
   }
 
   render() {
@@ -124,15 +102,6 @@ class TrainingService extends Component {
       showMore
     } = this.state;
     const props = this.props;
-    const settings = {
-      dots: true,
-      arrows: true,
-      infinite: true,
-      speed: 500,
-      slidesToShow: 3,
-      centerMode: true
-    };
-
     return (
       <Layout title="">
         {
@@ -230,7 +199,9 @@ class TrainingService extends Component {
                           </div>
                           <div className="course-footer">
                             File download:{" "}
-                            <a className="file-download" href={item.url}>
+                            <a className="file-download"
+                              target="_blank"
+                              rel="noopener noreferrer" href={item.url}>
                               <i className="fas icPdf"></i>
                             </a>
                             <div className="url-register">
@@ -302,7 +273,9 @@ class TrainingService extends Component {
                             </div>
                             <div className="course-footer">
                               File download:{" "}
-                              <a className="file-download" href={item.url}>
+                              <a className="file-download"
+                                target="_blank"
+                                rel="noopener noreferrer" href={item.url}>
                                 <i className="fas icPdf"></i>
                               </a>
                               <div className="url-register">
@@ -402,7 +375,9 @@ class TrainingService extends Component {
 
                       <div className="file-download">
                         File download:
-                        <a href={course.urlFile}>
+                        <a href={course.urrl}
+                          target="_blank"
+                          rel="noopener noreferrer">
                           <i className="fas icExcel"></i>
                         </a>
                       </div>
@@ -421,31 +396,7 @@ class TrainingService extends Component {
               })}
             </div>
           </div>
-          <div className="teachers-layout">
-            <div className="teachers-title">ĐỘI NGŨ GIẢNG VIÊN</div>
-            <hr />
-            <div className="teacher-des">
-              Đội ngũ giảng viên của MBS tập hợp những chuyên gia hàng đầu trên
-              thị trường chứng khoán với kho kiến thức sâu rộng cùng kinh nghiệm
-              giao dịch lâu năm
-            </div>
-            <div className="teacher-special">CHUYÊN GIA TƯ VẤN</div>
-            <Slider {...settings}>
-              {listTeachers.map((item, index) => {
-                return (
-                  <div key={index}>
-                    <img
-                      src={item.img ? item.img : icNoImg}
-                      alt={`img-${index}`}
-                    />
-                    <div className="teacher-name">{item.name}</div>
-                    <div className="teacher-title">{item.title}</div>
-                    <div className="teacher-detail">{item.detail}</div>
-                  </div>
-                );
-              })}
-            </Slider>
-          </div>
+          <ExpertBox listExpert={props.listExpert} />
         </div>
       </Layout>
     );
@@ -457,6 +408,7 @@ const mapStateToProps = state => {
     listCourseHot: state.TrainingService.listCourseHot,
     listCourseCategory: state.TrainingService.listCourseCategory,
     listCourseTop: state.TrainingService.listCourseTop,
+    listExpert: state.Expert.listExpert,
     total: state.TrainingService.total,
     detail: state.TrainingService.detail,
     message: state.Notifys.message
@@ -477,6 +429,9 @@ const mapDispatchToProps = dispatch => {
     fetchlistCourseCategory: category => {
       dispatch(actions.listCourseCategory(category));
     },
+    fetchListExpert: data => {
+      dispatch(expertActions.listExpert(data));
+    },
     getDetail: id => {
       dispatch(actions.getDetail(id));
     },
@@ -495,6 +450,7 @@ TrainingService.propTypes = {
   fetchlistCourseTop: PropTypes.func,
   fetchlistCourseCategory: PropTypes.func,
   fetchListCourseHot: PropTypes.func,
+  fetchListExpert: PropTypes.func,
   listCourseTop: PropTypes.array,
   listCourseHot: PropTypes.array,
   listCourseCategory: PropTypes.array,

@@ -6,7 +6,7 @@
       font-size: 30px;
       color: #ffffff;
       line-height: 100px;
-      font-family: 'OpenSans';
+      font-family: "OpenSans";
       text-align: center;
     }
   }
@@ -34,17 +34,17 @@
         &.active {
           color: #ffffff;
           background-color: #005197;
-          &::after{
-              content: '';
-              position: absolute;
-              left: 42%;
-              top: 100%;
-              width: 0;
-              height: 0;
-              border-left: 12px solid transparent;
-              border-right: 12px solid transparent;
-              border-top: 11px solid #005197;
-              clear: both;
+          &::after {
+            content: "";
+            position: absolute;
+            left: 42%;
+            top: 100%;
+            width: 0;
+            height: 0;
+            border-left: 12px solid transparent;
+            border-right: 12px solid transparent;
+            border-top: 11px solid #005197;
+            clear: both;
           }
         }
       }
@@ -68,11 +68,16 @@
       .table {
         .btn-register {
           border: 1px solid #ccc;
-          background-color: transparent;          
-          color: #333333;          
+          background-color: transparent;
+          color: #333333;
           width: 70px;
           height: 25px;
           border-radius: 12px;
+          &.active {
+            border: 1px solid #005197;
+            background-color: #005197;
+            color: #ffffff;
+          }
           &:hover {
             border: 1px solid #005197;
             background-color: #005197;
@@ -87,13 +92,28 @@
           color: #111111;
           font-family: Arial;
           vertical-align: middle;
-          padding: .5rem;
+          padding: 0.5rem;
           white-space: nowrap;
         }
         tbody tr td {
           font-size: 14px;
           color: #111111;
           font-family: Arial;
+        }
+      }
+      .box-chat-consulting {
+        .box-chat {
+          max-height: 400px;
+          overflow-y: auto;
+          padding-bottom: 40px;
+        }
+        .box-input-chat {
+          display: flex;
+          .btn-primary {
+            border-radius: 0;
+            background-color: #005197;
+            color: #ffffff;
+          }
         }
       }
       .layout-tool {
@@ -116,9 +136,9 @@
           }
         }
         .room-trader-layout {
-            min-width: 300px;
-            display: flex;
-            justify-content: space-between;
+          min-width: 300px;
+          display: flex;
+          justify-content: space-between;
           .room-trader-item {
             display: flex;
             margin-top: 5px;
@@ -135,17 +155,24 @@
           }
         }
       }
-      
+    }
+  }
+}
+@media screen and (max-width: 1200px) {
+  .consulting-page {
+    .page-content {
+      padding: 20px;
     }
   }
 }
 @media screen and (max-width: 575px) {
   .consulting-page {
-    .consulting-banner{
+    .consulting-banner {
       display: flex;
       align-items: center;
       h3 {
-        font-size: 22px;line-height: 30px;
+        font-size: 22px;
+        line-height: 30px;
       }
     }
     .page-content {
@@ -157,9 +184,9 @@
         .layout-tool {
           flex-direction: column;
           .room-trader-layout {
-            justify-content:start ;
+            justify-content: start;
             margin-left: 20px;
-            .room-trader-item{
+            .room-trader-item {
               padding-right: 15px;
             }
           }

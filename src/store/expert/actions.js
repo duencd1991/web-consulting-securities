@@ -5,13 +5,14 @@ const actions = {
   EXPERT_DETAIL: "EXPERT_DETAIL",
   EXPERT_UPDATE: "EXPERT_UPDATE",
   EXPERT_CREATE: "EXPERT_CREATE",
+  EXPERT_DELETE: "EXPERT_DELETE",
   listExpert: data => ({
     type: actions.EXPERT_GET_LIST,
     data
   }),
-  getDetail: id => ({
+  getDetail: data => ({
     type: actions.EXPERT_GET_DETAIL,
-    id
+    data
   }),
   updateExpert: data => ({
     type: actions.EXPERT_UPDATE,
@@ -19,6 +20,10 @@ const actions = {
   }),
   createExpert: data => ({
     type: actions.EXPERT_CREATE,
+    data
+  }),
+  deleteExpert: data => ({
+    type: actions.EXPERT_DELETE,
     data
   })
 };

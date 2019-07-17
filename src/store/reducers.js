@@ -9,6 +9,7 @@ import News from "./news/reducers";
 import TrainingService from "./trainingService/reducers";
 import AccountTrading from "./accountTrading/reducers";
 import Expert from "./expert/reducers";
+import ChatConsulting from "./consulting/reducers";
 
 const reducers = combineReducers({
   Header,
@@ -19,7 +20,8 @@ const reducers = combineReducers({
   News,
   TrainingService,
   AccountTrading,
-  Expert
+  Expert,
+  ChatConsulting
 });
 
 export default reducers;

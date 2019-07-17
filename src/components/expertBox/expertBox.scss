@@ -1,0 +1,100 @@
+.teachers-layout {
+  min-height: 700px;
+  padding-top: 63px;
+  background: url("/img/expert-bg.png");
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  .teachers-title {
+    font-size: 26px;
+    line-height: 22px;
+    text-align: center;
+    color: #ffffff;
+    font-weight: bold;
+  }
+  hr {
+    background-color: #fff;
+    height: 2px;
+    width: 40px;
+    margin: 21px auto 23px auto;
+  }
+  .teacher-des {
+    font-size: 16px;
+    color: #ffffff;
+    line-height: 22px;
+    text-align: center;
+    max-width: 635px;
+    margin: auto;
+  }
+  .teacher-special {
+    font-size: 26px;
+    color: #ffffff;
+    line-height: 22px;
+    text-align: center;
+    margin-top: 32px;
+  }
+  .slick-slider {
+    max-width: 1170px;
+    margin: auto;
+    font-family: Arial;
+    padding: 0 40px;
+    display: flex;
+    img {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      margin: auto;
+      object-fit: cover;
+    }
+    .teacher-name {
+      font-size: 18px;
+      color: #ffffff;
+      margin-top: 27px;
+      text-align: center;
+    }
+    .teacher-title {
+      font-size: 18px;
+      color: rgba(250, 250, 250, 0.7);
+      margin-bottom: 21px;
+      text-align: center;
+    }
+    .teacher-detail {
+      font-size: 16px;
+      line-height: 24px;
+      text-align: center;
+      color: #fafafa;
+    }
+    .slick-list .slick-track .slick-slide {
+      padding: 30px;
+    }
+    .slick-next {
+      background: url(/img/next-arrowG.png);
+      width: 30px;
+      height: 50px;
+      right: 0px;
+      &::before {
+        content: "";
+      }
+      &:hover {
+        background: url(/img/next-arrowHv.png);
+      }
+    }
+    .slick-prev {
+      background: url(/img/back-arrowG.png);
+      width: 30px;
+      height: 50px;
+      left: 0px;
+      &::before {
+        content: "";
+      }
+      &:hover {
+        background: url(/img/back-arrowHv.png);
+      }
+    }
+  }
+  .slick-dots {
+    display: none !important;
+  }
+}

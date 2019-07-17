@@ -6,21 +6,7 @@ import "./tradingInstruction.scss";
 import bgHDGD from "../../../assets/img/bg_huong_dan_giao_dich.jpg";
 import ContactBox from "../../../components/contactBox/contactBox";
 import actions from "../../../store/tradingInstruction/actions";
-
-const typeGuide = [
-  {
-    type: 1,
-    title: "Hướng dẫn giao dịch CKPS"
-  },
-  {
-    type: 2,
-    title: "Quy chuẩn hợp đồng tương lai"
-  },
-  {
-    type: 3,
-    title: "Biểu phí giao dịch"
-  }
-];
+import { TYPE_GUIDELINE } from "../../../utils/constant";
 
 class TradingInstrucion extends Component {
   constructor(props) {
@@ -41,8 +27,16 @@ class TradingInstrucion extends Component {
   };
 
   componentDidMount() {
-    this.props.fetchListType(0, 4);
-    this.props.fetchGuideLineList(0, 10);
+    const dataTop4 = {
+      start: 0,
+      limit: 4
+    }
+    const dataTop10 = {
+      start: 0,
+      limit: 10
+    }
+    this.props.fetchListType(dataTop4);
+    this.props.fetchGuideLineList(dataTop10);
   }
 
   render() {
@@ -60,7 +54,7 @@ class TradingInstrucion extends Component {
               <div className="title">HƯỚNG DẪN GIAO DỊCH</div>
               <hr />
               <div className="list-menu-box">
-                {typeGuide.map((typeItem, index) => {
+                {TYPE_GUIDELINE.map((typeItem, index) => {
                   return (
                     <ul
                       key={index}
@@ -131,8 +125,15 @@ class TradingInstrucion extends Component {
                 {this.props.listTop.map((item, index) => {
                   return (
                     <li key={index}>
-                      <i className="fas fa-angle-double-right"></i>
-                      {item.name}
+                      <a
+                        href={item.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={() => this.props.updateViews({id: item.id})}
+                      >
+                        <i className="fas fa-angle-double-right"></i>
+                        {item.name}
+                      </a>
                     </li>
                   );
                 })}
@@ -168,14 +169,14 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchGuideLineList: (start, limit) => {
-      dispatch(actions.listTop(start, limit));
+    fetchGuideLineList: data => {
+      dispatch(actions.listTop(data));
     },
-    fetchListType: (start, limit) => {
-      dispatch(actions.listType(start, limit));
+    fetchListType: data => {
+      dispatch(actions.listType(data));
     },
-    updateViews: id => {
-      dispatch(actions.updateViews(id));
+    updateViews: data => {
+      dispatch(actions.updateViews(data));
     }
   };
 };

@@ -33,6 +33,8 @@ import SignUp from "./signUp/signUp";
 import ForgotPassWord from "./forgotPassWord/forgotPassWord";
 import GetPassWord from "./forgotPassWord/getPassWord";
 import TermsOfUse from "./termsOfUse/termsOfUse";
+import ListGuideline from "./admin/guideline/listGuideline";
+import FormGuideline from "./admin/guideline/formGuideline";
 
 const AppRouter = () => {
   return (
@@ -80,6 +82,8 @@ const AppRouter = () => {
           <Route exact path="/create-report" component={FormReport} />
           <Route exact path="/create-expert" component={FormExpert} />
           <Route exact path="/list-expert" component={listExpert} />
+          <Route exact path="/list-guideline" component={ListGuideline} />
+          <Route exact path="/create-guideline" component={FormGuideline} />
           <Route exact path="/sign-in" component={SignIn} />
           <Route exact path="/sign-up" component={SignUp} />
           <Route exact path="/forgot-pass-word" component={ForgotPassWord} />

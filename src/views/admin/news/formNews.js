@@ -19,9 +19,10 @@ class FormNews extends Component {
       id: "",
       title: "",
       categoryId: 1,
-      thumbnail: "",
+      file: "",
       content: "",
       views: 0,
+      imgUrl: "",
 
       update: false,
       validate: true,
@@ -51,7 +52,7 @@ class FormNews extends Component {
       this.setState({
         title: detail.title,
         categoryId: detail.categoryId,
-        thumbnail: detail.imgUrl,
+        imgUrl: detail.imgUrl,
         content: detail.content,
         views: detail.views
       });
@@ -85,7 +86,7 @@ class FormNews extends Component {
       };
       reader.readAsDataURL(file);
       this.setState({
-        thumbnail: file
+        file: file
       });
     } else {
       imageDisplayArea.innerHTML = "Vui lòng tải hình ảnh!";
@@ -112,7 +113,7 @@ class FormNews extends Component {
           title: state.title,
           content: state.content,
           categoryId: state.categoryId,
-          imgUrl: state.thumbnail
+          file: state.imgUrl
         };
         this.props.updateNews(data);
       } else {
@@ -121,15 +122,15 @@ class FormNews extends Component {
         data.append("title", state.title);
         data.append("content", state.content);
         data.append("categoryId", state.categoryId);
-        data.append("imgUrl", state.thumbnail);
+        data.append("file", state.file);
         this.props.createNews(data);
       }
     }
   };
   onValidateForm = () => {
-    const { title, categoryId, thumbnail, content } = this.state;
+    const { title, categoryId, file, content } = this.state;
     const check =
-      title !== "" && categoryId !== 0 && thumbnail !== "" && content !== "";
+      title !== "" && categoryId !== 0 && file !== "" && content !== "";
     this.setState({
       validate: check
     });
@@ -139,7 +140,8 @@ class FormNews extends Component {
   render() {
     const {
       title,
-      thumbnail,
+      file,
+      imgUrl,
       content,
       categoryId,
       update,
@@ -216,26 +218,28 @@ class FormNews extends Component {
           </div>
           <div className="form-group row">
             <label className="col-sm-3 padding0">Hình ảnh</label>
-            <div className="col-sm-9 padding0">
-              <input
-                type="file"
-                className="custom-file-input"
-                id="thumbnail"
-                onChange={this.onChangeFile}
-              />
-              <label className="custom-file-label">Chọn hình ảnh</label>
-              {validateUploadImage !== "" && (
-                <div className="alert alert-warning" role="alert">
-                  {validateUploadImage}
-                </div>
-              )}
-              <div id="imageDisplayArea"></div>
-              {!validate && thumbnail === null && (
-                <div className="alert alert-warning" role="alert">
-                  Vui lòng nhập thông tin
-                </div>
-              )}
-            </div>
+            {
+              update ? <img src={imgUrl} alt="img-news" className="img-expert-detail"/> : <div className="col-sm-9 padding0">
+                <input
+                  type="file"
+                  className="custom-file-input"
+                  id="file"
+                  onChange={this.onChangeFile}
+                />
+                <label className="custom-file-label">Chọn hình ảnh</label>
+                {validateUploadImage !== "" && (
+                  <div className="alert alert-warning" role="alert">
+                    {validateUploadImage}
+                  </div>
+                )}
+                <div id="imageDisplayArea"></div>
+                {!validate && file === "" && (
+                  <div className="alert alert-warning" role="alert">
+                    Vui lòng nhập thông tin
+                  </div>
+                )}
+              </div>
+            }
           </div>
 
           <div className="form-group row">

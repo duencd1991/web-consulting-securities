@@ -183,6 +183,9 @@ export default class Header extends Component {
                     className="dropdown-menu animate slideIn"
                     aria-labelledby="navbarDropdown"
                   >
+                    <a className="dropdown-item" href="/list-guideline">
+                      Quản lý hướng dẫn
+                    </a>
                     <a className="dropdown-item" href="/list-report">
                       Quản lý báo cáo
                     </a>
@@ -195,9 +198,9 @@ export default class Header extends Component {
                     <a className="dropdown-item" href="/list-expert">
                       Quản lý chuyên gia
                     </a>
-                    <a className="dropdown-item" href="/list-user">
+                    {/* <a className="dropdown-item" href="/list-user">
                       Quản lý phân quyền
-                    </a>
+                    </a> */}
                     <a className="dropdown-item" href="/list-register-course">
                       Danh sách đăng ký khóa học
                     </a>

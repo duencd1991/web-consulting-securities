@@ -5,83 +5,10 @@ import "./consulting.scss";
 import Carousel from "nuka-carousel";
 import Investor from "../../../components/common/investor/investor";
 import ReviewBox from "../../../components/common/reviewBox/reviewBox";
-import ExpertBox from "../../../components/common/expertBox/expertBox";
+import expertActions from "../../../store/expert/actions";
+import { listReview, listInvestor } from "../../../utils/constant";
+import ExpertBox from "../../../components/expertBox/expertBox";
 
-import icGroup1 from "../../../assets/img/ic_investor1.png";
-import icGroup2 from "../../../assets/img/ic_investor2.png";
-import icGroup3 from "../../../assets/img/ic_investor3.png";
-import icGroup4 from "../../../assets/img/ic_investor4.png";
-import icGroup5 from "../../../assets/img/ic_investor5.png";
-
-const listInvestor = [
-  {
-    img: icGroup1,
-    title: "THAM GIA GROUP TƯ VẤN PHÁI SINH REAL TIME",
-    detail:
-      "Tùy theo như cầu, NĐT được lựa chọn tham gia vào group tư vấn đầu tư Cổ phiếu/ HĐTL/ ETF/ Chứng quyền có đảm bảo hoặc tất cả."
-  },
-  {
-    img: icGroup2,
-    title: "THAM GIA ROOM ROBO TƯ VẤN VỚI HIỆU QUẢ LÊN TỚI 100%/THÁNG",
-    detail:
-      "Tùy theo như cầu, NĐT được lựa chọn tham gia vào group tư vấn đầu tư Cổ phiếu/ HĐTL/ ETF/ Chứng quyền có đảm bảo hoặc tất cả."
-  },
-  {
-    img: icGroup3,
-    title: "THAM GIA GROUP TƯ VẤN KÍN TRÊN FACEBOOK",
-    detail:
-      "Tùy theo như cầu, NĐT được lựa chọn tham gia vào group tư vấn đầu tư Cổ phiếu/ HĐTL/ ETF/ Chứng quyền có đảm bảo hoặc tất cả."
-  },
-  {
-    img: icGroup4,
-    title: "NHÂN BÁO CÁO VIP VỀ XU THẾ THỊ TRƯỜNG VÀ CƠ HỘI ĐẦU TƯ",
-    detail:
-      "Tùy theo như cầu, NĐT được lựa chọn tham gia vào group tư vấn đầu tư Cổ phiếu/ HĐTL/ ETF/ Chứng quyền có đảm bảo hoặc tất cả."
-  },
-  {
-    img: icGroup5,
-    title: "THAM GIA CÁC LỚP ĐÀO TẠO VỀ KỸ THUẬT, TÂM LÝ GIAO DỊCH VÀ SẢN PHẨM",
-    detail:
-      "Tùy theo như cầu, NĐT được lựa chọn tham gia vào group tư vấn đầu tư Cổ phiếu/ HĐTL/ ETF/ Chứng quyền có đảm bảo hoặc tất cả."
-  }
-];
-const listReview = [
-  {
-    name: "NGUYỄN VĂN DƯƠNG",
-    title: "CEO STOCKPLUS",
-    img: "",
-    review:
-      "Một phương pháp tiếp cận mới, đột phá, hiệu quả, an toàn. Chiến lược đầu tư SmartMoney rất phù hợp cho nhà đầu tư cá nhân."
-  },
-  {
-    name: "NGUYỄN VĂN DƯƠNG",
-    title: "CEO STOCKPLUS",
-    img: "",
-    review:
-      "Một phương pháp tiếp cận mới, đột phá, hiệu quả, an toàn. Chiến lược đầu tư SmartMoney rất phù hợp cho nhà đầu tư cá nhân."
-  },
-  {
-    name: "NGUYỄN VĂN DƯƠNG",
-    title: "CEO STOCKPLUS",
-    img: "",
-    review:
-      "Một phương pháp tiếp cận mới, đột phá, hiệu quả, an toàn. Chiến lược đầu tư SmartMoney rất phù hợp cho nhà đầu tư cá nhân."
-  },
-  {
-    name: "NGUYỄN VĂN DƯƠNG",
-    title: "CEO STOCKPLUS",
-    img: "",
-    review:
-      "Một phương pháp tiếp cận mới, đột phá, hiệu quả, an toàn. Chiến lược đầu tư SmartMoney rất phù hợp cho nhà đầu tư cá nhân."
-  },
-  {
-    name: "NGUYỄN VĂN DƯƠNG",
-    title: "CEO STOCKPLUS",
-    img: "",
-    review:
-      "Một phương pháp tiếp cận mới, đột phá, hiệu quả, an toàn. Chiến lược đầu tư SmartMoney rất phù hợp cho nhà đầu tư cá nhân."
-  }
-];
 const listExperts = [
   {
     specialized: "BỘ PHẬN PHÂN TÍCH",
@@ -167,6 +94,14 @@ const listExperts = [
 ];
 
 class Consulting extends Component {
+  componentDidMount() {
+    const data = {
+      start: 0,
+      limit: 10
+    };
+    this.props.fetchListExpert(data);
+  }
+
   render() {
     return (
       <Layout title="">
@@ -245,24 +180,7 @@ class Consulting extends Component {
               })}
             </Carousel>
           </div>
-          <div className="experts-layout">
-            <div className="expert-title">ĐỘI NGŨ CHUYÊN GIA</div>
-            <hr />
-            <Carousel
-              renderCenterLeftControls={({ previousSlide }) => <i></i>}
-              renderCenterRightControls={({ nextSlide }) => <i></i>}
-            >
-              {listExperts.map((item, index) => {
-                return (
-                  <ExpertBox
-                    key={index}
-                    specialized={item.specialized}
-                    list={item.list}
-                  />
-                );
-              })}
-            </Carousel>
-          </div>
+          <ExpertBox listExpert={this.props.listExpert} />
         </div>
       </Layout>
     );
@@ -270,11 +188,17 @@ class Consulting extends Component {
 }
 
 const mapStateToProps = state => {
-  return {};
+  return {
+    listExpert: state.Expert.listExpert
+  };
 };
 
 const mapDispatchToProps = dispatch => {
-  return {};
+  return {
+    fetchListExpert: data => {
+      dispatch(expertActions.listExpert(data));
+    }
+  };
 };
 
 export default connect(

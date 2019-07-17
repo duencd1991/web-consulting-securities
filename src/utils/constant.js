@@ -210,3 +210,87 @@ export const TYPE_AUTHEN = [
     name: "Khác"
   }
 ];
+
+export const listInvestor = [
+  {
+    img: "/img/ic_investor1.png",
+    title: "THAM GIA GROUP TƯ VẤN PHÁI SINH REAL TIME",
+    detail:
+      "Tùy theo như cầu, NĐT được lựa chọn tham gia vào group tư vấn đầu tư Cổ phiếu/ HĐTL/ ETF/ Chứng quyền có đảm bảo hoặc tất cả."
+  },
+  {
+    img: "/img/ic_investor2.png",
+    title: "THAM GIA ROOM ROBO TƯ VẤN VỚI HIỆU QUẢ LÊN TỚI 100%/THÁNG",
+    detail:
+      "Tùy theo như cầu, NĐT được lựa chọn tham gia vào group tư vấn đầu tư Cổ phiếu/ HĐTL/ ETF/ Chứng quyền có đảm bảo hoặc tất cả."
+  },
+  {
+    img: "/img/ic_investor3.png",
+    title: "THAM GIA GROUP TƯ VẤN KÍN TRÊN FACEBOOK",
+    detail:
+      "Tùy theo như cầu, NĐT được lựa chọn tham gia vào group tư vấn đầu tư Cổ phiếu/ HĐTL/ ETF/ Chứng quyền có đảm bảo hoặc tất cả."
+  },
+  {
+    img: "/img/ic_investor4.png",
+    title: "NHÂN BÁO CÁO VIP VỀ XU THẾ THỊ TRƯỜNG VÀ CƠ HỘI ĐẦU TƯ",
+    detail:
+      "Tùy theo như cầu, NĐT được lựa chọn tham gia vào group tư vấn đầu tư Cổ phiếu/ HĐTL/ ETF/ Chứng quyền có đảm bảo hoặc tất cả."
+  },
+  {
+    img: "/img/ic_investor5.png",
+    title: "THAM GIA CÁC LỚP ĐÀO TẠO VỀ KỸ THUẬT, TÂM LÝ GIAO DỊCH VÀ SẢN PHẨM",
+    detail:
+      "Tùy theo như cầu, NĐT được lựa chọn tham gia vào group tư vấn đầu tư Cổ phiếu/ HĐTL/ ETF/ Chứng quyền có đảm bảo hoặc tất cả."
+  }
+];
+export const listReview = [
+  {
+    name: "NGUYỄN VĂN DƯƠNG",
+    title: "CEO STOCKPLUS",
+    img: "",
+    review:
+      "Một phương pháp tiếp cận mới, đột phá, hiệu quả, an toàn. Chiến lược đầu tư SmartMoney rất phù hợp cho nhà đầu tư cá nhân."
+  },
+  {
+    name: "NGUYỄN VĂN DƯƠNG",
+    title: "CEO STOCKPLUS",
+    img: "",
+    review:
+      "Một phương pháp tiếp cận mới, đột phá, hiệu quả, an toàn. Chiến lược đầu tư SmartMoney rất phù hợp cho nhà đầu tư cá nhân."
+  },
+  {
+    name: "NGUYỄN VĂN DƯƠNG",
+    title: "CEO STOCKPLUS",
+    img: "",
+    review:
+      "Một phương pháp tiếp cận mới, đột phá, hiệu quả, an toàn. Chiến lược đầu tư SmartMoney rất phù hợp cho nhà đầu tư cá nhân."
+  },
+  {
+    name: "NGUYỄN VĂN DƯƠNG",
+    title: "CEO STOCKPLUS",
+    img: "",
+    review:
+      "Một phương pháp tiếp cận mới, đột phá, hiệu quả, an toàn. Chiến lược đầu tư SmartMoney rất phù hợp cho nhà đầu tư cá nhân."
+  },
+  {
+    name: "NGUYỄN VĂN DƯƠNG",
+    title: "CEO STOCKPLUS",
+    img: "",
+    review:
+      "Một phương pháp tiếp cận mới, đột phá, hiệu quả, an toàn. Chiến lược đầu tư SmartMoney rất phù hợp cho nhà đầu tư cá nhân."
+  }
+];
+export const TYPE_GUIDELINE = [
+  {
+    type: 1,
+    title: "Hướng dẫn giao dịch CKPS"
+  },
+  {
+    type: 2,
+    title: "Quy chuẩn hợp đồng tương lai"
+  },
+  {
+    type: 3,
+    title: "Biểu phí giao dịch"
+  }
+]
