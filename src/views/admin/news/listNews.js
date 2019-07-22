@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import Layout from "../../layout/layout";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { toast } from "react-toastify";
 import { DEFAULT_TABLE, TYPE_NEWS } from "../../../utils/constant";
 import actions from "../../../store/news/actions";
+import notifyActions from "../../../store/notification/actions";
 import "./listNews.scss";
 import "../report/listReport.scss";
 import Table from "../../../components/table/table";
@@ -31,7 +33,7 @@ class ListNews extends Component {
     });
   };
   onDelete = index => {
-    alert("Xóa bản tin số ", index);
+    this.props.deleteNews({id: index});
   };
   onEdit = index => {
     this.props.history.push(`/create-news?id=${index}`);
@@ -61,6 +63,13 @@ class ListNews extends Component {
       this.setState({
         total: nextProps.total
       });
+    }
+    if (nextProps.message !== "" && nextProps.message !== this.props.message) {
+      toast(nextProps.message);
+      if (nextProps.success) {
+        this.props.history.push(`/list-news`);
+      }
+      this.props.clearNotify();
     }
   }
 
@@ -125,7 +134,7 @@ class ListNews extends Component {
               className="far fa-edit mr-3"
               onClick={e => this.onEdit(props.value)}
             ></i>
-            {/* <i className="far fa-trash-alt" onClick={(e) => this.onDelete(props.value)}></i> */}
+            <i className="far fa-trash-alt" onClick={(e) => this.onDelete(props.value)}></i>
           </div>
         )
       }
@@ -168,7 +177,9 @@ const mapStateToProps = state => {
   return {
     listNews: state.News.listNews,
     total: state.News.total,
-    detail: state.News.detail
+    detail: state.News.detail,
+    message: PropTypes.string,
+    success: PropTypes.string
   };
 };
 
@@ -177,8 +188,11 @@ const mapDispatchToProps = dispatch => {
     fetchListNews: (start, limit, category) => {
       dispatch(actions.listNews(start, limit, category));
     },
-    getDetail: id => {
-      dispatch(actions.getDetail(id));
+    getDetail: data => {
+      dispatch(actions.getDetail(data));
+    },
+    deleteNews: data => {
+      dispatch(actions.deleteNews(data));
     }
   };
 };

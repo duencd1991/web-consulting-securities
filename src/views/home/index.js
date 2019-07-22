@@ -12,6 +12,8 @@ import banner3 from "../../assets/img/banner3.jpg";
 import noImg from "../../assets/img/imgThum.png";
 import icFile from "../../assets/img/icPdf.png";
 import actions from "../../store/home/actions";
+import notifyActions from "../../store/notification/actions";
+import { toast } from "react-toastify";
 
 const listBanner = [
   {
@@ -76,6 +78,12 @@ class Home extends Component {
     this.props.fetchNews();
     this.props.fetchGuideLines();
     this.props.fetchReports();
+  }
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.message !== "" && nextProps.message !== this.props.message) {
+      toast(nextProps.message);
+      this.props.clearNotify();
+    }
   }
 
   render() {
@@ -234,7 +242,9 @@ const mapStateToProps = state => {
   return {
     listNews: state.Home.listNews,
     listReports: state.Home.listReports,
-    listGuidelines: state.Home.listGuidelines
+    listGuidelines: state.Home.listGuidelines,
+    success: state.Notifys.success,
+    message: state.Notifys.message
   };
 };
 
@@ -248,6 +258,9 @@ const mapDispatchToProps = dispatch => {
     },
     fetchReports: () => {
       dispatch(actions.listReports());
+    },
+    clearNotify: () => {
+      dispatch(notifyActions.clearNotify());
     }
   };
 };

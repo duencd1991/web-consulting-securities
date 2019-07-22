@@ -26,11 +26,12 @@ const listNewsTop = () => {
     method: "get"
   });
 };
-const updateViews = id => {
-  const url = `/news/upViews?id=${id}`;
+const updateViews = data => {
+  const url = `/news/upViews`;
   return request({
     url: url,
-    method: "put"
+    method: "put",
+    data: data
   });
 };
 const updateNews = data => {
@@ -49,11 +50,20 @@ const createNews = data => {
     data: data
   });
 };
-const newsDetail = id => {
-  const url = `/news/detail?id=${id}`;
+const newsDetail = data => {
+  const url = `/news/detail`;
   return request({
     url: url,
-    method: "get"
+    method: "get",
+    params: data
+  });
+};
+const newsDelete = data => {
+  const url = `/news/delete`;
+  return request({
+    url: url,
+    method: "delete",
+    params: data
   });
 };
 export {
@@ -63,5 +73,6 @@ export {
   updateViews,
   newsDetail,
   updateNews,
-  createNews
+  createNews,
+  newsDelete
 };

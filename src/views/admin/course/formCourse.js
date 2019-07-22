@@ -356,6 +356,7 @@ class FormCourse extends Component {
                 id="startDate"
                 name="startDate"
                 value={startDate}
+                autocomplete="off"
                 onBlur={this.onChangeDate}
               />
               {!validate && startDate === "" && (
@@ -376,6 +377,7 @@ class FormCourse extends Component {
                 id="endDate"
                 name="endDate"
                 value={endDate}
+                autocomplete="off"
                 onBlur={this.onChangeDate}
               />
               {!validate && endDate === "" && (

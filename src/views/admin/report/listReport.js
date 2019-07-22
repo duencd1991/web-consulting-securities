@@ -3,7 +3,9 @@ import Layout from "../../layout/layout";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import { DEFAULT_TABLE, TYPE_REPORT } from "../../../utils/constant";
+import { toast } from "react-toastify";
 import actions from "../../../store/reports/actions";
+import notifyActions from "../../../store/notification/actions";
 import "./listReport.scss";
 import Table from "../../../components/table/table";
 
@@ -30,7 +32,7 @@ class ListReport extends Component {
     });
   };
   onDelete = index => {
-    alert("Xóa bản tin số ", index);
+    this.props.deleteReport({id: index});
   };
   onEdit = index => {
     this.props.history.push(`/create-report?id=${index}`);
@@ -60,6 +62,13 @@ class ListReport extends Component {
       this.setState({
         total: nextProps.total
       });
+    }
+    if (nextProps.message !== "" && nextProps.message !== this.props.message) {
+      toast(nextProps.message);
+      if (nextProps.success) {
+        this.fetchReport();
+      }
+      this.props.clearNotify();
     }
   }
 
@@ -124,7 +133,7 @@ class ListReport extends Component {
               className="far fa-edit mr-3"
               onClick={e => this.onEdit(props.value)}
             ></i>
-            {/* <i className="far fa-trash-alt" onClick={(e) => this.onDelete(props.value)}></i> */}
+            <i className="far fa-trash-alt" onClick={(e) => this.onDelete(props.value)}></i>
           </div>
         )
       }
@@ -166,7 +175,9 @@ const mapStateToProps = state => {
   return {
     listReport: state.Reports.list,
     total: state.Reports.total,
-    detail: state.Reports.detail
+    detail: state.Reports.detail,
+    success: state.Notifys.success,
+    message: state.Notifys.message
   };
 };
 
@@ -177,6 +188,12 @@ const mapDispatchToProps = dispatch => {
     },
     getDetail: id => {
       dispatch(actions.getDetail(id));
+    },
+    deleteReport: data => {
+      dispatch(actions.deleteReport(data));
+    },
+    clearNotify: () => {
+      dispatch(notifyActions.clearNotify());
     }
   };
 };

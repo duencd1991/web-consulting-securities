@@ -7,86 +7,98 @@
   background-color: #ffffff;
   justify-content: space-between;
   .menu-top-limit {
-      justify-content: flex-start;
-      display: flex;
-      padding-left: 0px;
-      min-width: 410px;
-      a {
-        color: #333333;
-        line-height: 50px;
-        &:hover {
-          text-decoration: underline;
-        }
+    justify-content: flex-start;
+    display: flex;
+    padding-left: 0px;
+    min-width: 410px;
+    a {
+      color: #333333;
+      line-height: 50px;
+      &:hover {
+        text-decoration: underline;
       }
-      .col-separator {
-        width: 2px;
-        height: 15px;
-        background-color: #7691a9;
-        margin: auto 020px;
-      }
+    }
+    .col-separator {
+      width: 2px;
+      height: 15px;
+      background-color: #7691a9;
+      margin: auto 020px;
+    }
   }
   .register-top-limit {
-      height: 50px;
-      display: flex;
-      justify-content: flex-end;
-      min-width: 572px;
+    height: 50px;
+    display: flex;
+    justify-content: flex-end;
+    min-width: 572px;
+    span {
+      line-height: 50px;
+      font-size: 12px;
       span {
-        line-height: 50px;
-        font-size: 12px;
-        span {
+        color: #d71921;
+        cursor: text;
+        &:hover {
           color: #d71921;
-          cursor: text;
-          &:hover {
-            color: #d71921;
-          }
         }
       }
-      .btn {
-        min-width: 121px;
-        height: 30px;
-        border-radius: 18px;
+    }
+  }
+  .user-info {
+    line-height: 50px;
+    font-size: 16px;
+    font-weight: 500;
+    .btn {
+      margin: 0 10px;
+      line-height: 15px;
+      i {
         font-size: 14px;
-        line-height: 18px;
-        margin-left: 14px;
-        margin-top: 10px;   
-        display: inline-flex;    
-        i {
-          font-size: 12px;
-          margin: 0 5px;
-          &.ic_account{
-            background: url('../../assets/img/icAccount.png');
-            height: 14px;
-            width:13px;
-          }
-          &.ic_unlock{
-            background: url('../../assets/img/icLock.png');
-            height: 17px;
-            width:13px;
-            
-          }
-        }
-        label{
-          padding:6px 0px;
-        }
+        margin: 2px 10px;
       }
-      .btn-register {
-        background-color: #005197;
-        color: #ffffff;
-        &:hover {
-          background-color:#0066b3;
-        }
+    }
+  }
+  .btn {
+    min-width: 121px;
+    height: 30px;
+    border-radius: 18px;
+    font-size: 14px;
+    line-height: 18px;
+    margin-left: 14px;
+    margin-top: 10px;
+    display: inline-flex;
+    i {
+      font-size: 12px;
+      margin: 0 5px;
+      &.ic_account {
+        background: url("../../assets/img/icAccount.png");
+        height: 14px;
+        width: 13px;
       }
-      .btn-login {
-        background-color: transparent;
-        &:hover {
-          background-color:#0066b3;
-          color: #ffffff;
-          .ic_unlock{
-            background: url('../../assets/img/icUnlockW.png');
-            width: 12px;
-          }
-        }
+      &.ic_unlock {
+        background: url("../../assets/img/icLock.png");
+        height: 17px;
+        width: 13px;
       }
+    }
+    label {
+      padding: 6px 0px;
+    }
+  }
+  .btn-register {
+    background-color: #005197;
+    color: #ffffff;
+    &:hover {
+      background-color: #0066b3;
+    }
+  }
+  .btn-login {
+    background-color: transparent;
+    &:hover {
+      background-color: #0066b3;
+      color: #ffffff;
+      .ic_unlock {
+        background: url("../../assets/img/icUnlockW.png");
+        width: 12px;
+      }
+    }
   }
 }
 @media (max-width: 793px) {
@@ -94,8 +106,6 @@
     display: inline-table;
   }
 }
-
-
 
 // @media (max-width: 1160px) {
 //   #guide-register-text {
@@ -129,39 +139,39 @@
 // }
 @media screen and (max-width: 991px) {
   .header-top {
+    justify-content: center;
+    .menu-top-limit {
+      display: none;
+    }
+    .register-top-limit {
       justify-content: center;
-      .menu-top-limit{
-          display: none;
-      }
-      .register-top-limit{
-          justify-content: center;
-      }
+    }
   }
 }
 @media screen and (max-width: 575px) {
   .header-top {
-      justify-content: center;
-      min-height: auto;
-      .menu-top-limit{
-          display: none;
+    justify-content: center;
+    min-height: auto;
+    .menu-top-limit {
+      display: none;
+    }
+    .register-top-limit {
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      min-width: 320px;
+      text-align: center;
+      margin-bottom: 5px;
+      span {
+        line-height: 30px;
       }
-      .register-top-limit{
-        height: auto;
-        display: flex;
-        flex-direction: column;
-        min-width: 320px;
-        text-align: center;
-        margin-bottom: 5px;
-        span {
-            line-height: 30px;
-        }
-        .listBtn{
-            margin-top: 3px;
-        }
-        .btn{
-            margin-left: 0px;
-            margin-top: 0px;
-        }
+      .listBtn {
+        margin-top: 3px;
+      }
+      .btn {
+        margin-left: 0px;
+        margin-top: 0px;
+      }
     }
   }
 }

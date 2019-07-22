@@ -6,6 +6,7 @@ const actions = {
   REPORT_GET_DETAIL: "REPORT_GET_DETAIL",
   REPORT_UPDATE: "REPORT_UPDATE",
   REPORT_CREATE: "REPORT_CREATE",
+  REPORT_DELETE: "REPORT_DELETE",
   listReport: (start, limit, reportType) => ({
     type: actions.REPORT_GET_LIST,
     start,
@@ -26,6 +27,10 @@ const actions = {
   }),
   createReport: data => ({
     type: actions.REPORT_CREATE,
+    data
+  }),
+  deleteReport: data => ({
+    type: actions.REPORT_DELETE,
     data
   })
 };

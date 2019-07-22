@@ -60,7 +60,7 @@ class News extends Component {
       this.setState({
         detail: true
       });
-      this.props.getDetail(id);
+      this.props.getDetail({id: id});
     } else {
       this.setState({
         detail: false
@@ -82,7 +82,7 @@ class News extends Component {
         this.setState({
           detail: true
         });
-        this.props.getDetail(id);
+        this.props.getDetail({id: id});
       } else {
         this.setState({
           detail: false
@@ -106,7 +106,7 @@ class News extends Component {
   }
 
   goToDetail = id => {
-    this.props.updateViews(id);
+    this.props.updateViews({id: id});
     this.props.history.push(`/news?id=${id}`);
   };
 
@@ -329,11 +329,11 @@ const mapDispatchToProps = dispatch => {
     fetchlistNewsTop: () => {
       dispatch(actions.listNewsTop());
     },
-    updateViews: id => {
-      dispatch(actions.updateViews(id));
+    updateViews: data => {
+      dispatch(actions.updateViews(data));
     },
-    getDetail: id => {
-      dispatch(actions.getDetail(id));
+    getDetail: data => {
+      dispatch(actions.getDetail(data));
     }
   };
 };

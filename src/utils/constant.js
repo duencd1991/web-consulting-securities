@@ -90,11 +90,11 @@ export const ERROR_CODE = [
 export const TYPE_NEWS = [
   {
     type: 1,
-    name: "Để đầu tư chứng khoán hiệu quả"
+    name: "Chiến lược giao dịch phái sinh"
   },
   {
     type: 2,
-    name: "Theo dõi hiệu quả DM đầu tư Smart Money"
+    name: "Theo dõi hiệu quả Robo advisor"
   },
   {
     type: 3,
@@ -102,7 +102,7 @@ export const TYPE_NEWS = [
   },
   {
     type: 4,
-    name: "Tin khuyến mãi"
+    name: "Thông tin khóa học"
   },
   {
     type: 5,
@@ -169,7 +169,6 @@ export const CATEGORY_COURSE = [
     name: "TÂM LÝ ĐẦU TƯ"
   }
 ];
-
 export const NATIONALITY = [
   {
     id: "Viet Nam",
@@ -210,7 +209,6 @@ export const TYPE_AUTHEN = [
     name: "Khác"
   }
 ];
-
 export const listInvestor = [
   {
     img: "/img/ic_investor1.png",
@@ -293,4 +291,60 @@ export const TYPE_GUIDELINE = [
     type: 3,
     title: "Biểu phí giao dịch"
   }
-]
+];
+export const TYPE_ACCOUNT = [
+  {
+    type: 1,
+    name: "Khách"
+  },
+  {
+    type: 2,
+    name: "Quản trị viên"
+  },
+  {
+    type: 3,
+    name: "Chuyên gia"
+  },
+  {
+    type: 4,
+    name: "Chăm sóc khách hàng"
+  }
+];
+export const PERMISSION =  [
+  {
+    type: 1,
+    name: "Quản trị viên"
+  },
+  {
+    type: 2,
+    name: "Khách"
+  },
+  {
+    type: 3,
+    name: "Chăm sóc khách hàng"
+  },
+  {
+    type: 4,
+    name: "Chuyên gia"
+  }
+];
+export const TYPE_PERMISSION = {
+  ADMIN: 1,
+  CUSTOMER: 2,
+  CUSTOMERCARE: 3,
+  EXPERT: 4
+};
+export const REGISTER_STATUS = [
+  {
+    status: 1,
+    name: "Đang chờ"
+  },
+  {
+    status: 2,
+    name: "Đã xử lý"
+  },
+  {
+    status: 3,
+    name: "Đã hủy"
+  }
+];

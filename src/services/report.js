@@ -42,4 +42,12 @@ const reportDetail = id => {
     method: "get"
   });
 };
-export { list, updateViews, createReport, updateReport, reportDetail };
+const deleteReport = data => {
+  const url = `/report/delete`;
+  return request({
+    url: url,
+    method: "delete",
+    params: data
+  });
+};
+export { list, updateViews, createReport, updateReport, reportDetail, deleteReport };

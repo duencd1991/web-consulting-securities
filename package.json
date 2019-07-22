@@ -33,6 +33,7 @@
   "devDependencies": {
     "axios": "^0.19.0",
     "babel-eslint": "^10.0.2",
+    "base-64": "^0.1.0",
     "bootstrap": "^4.3.1",
     "dotenv": "^6.2.0",
     "eslint": "^5.16.0",
@@ -63,6 +64,7 @@
     "react-table": "^6.9.2",
     "react-toastify": "^4.5.2",
     "redux": "^4.0.1",
+    "redux-persist": "^5.10.0",
     "redux-saga": "^1.0.2",
     "validator": "^11.0.0"
   }

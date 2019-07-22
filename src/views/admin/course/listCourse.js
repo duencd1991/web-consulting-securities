@@ -10,6 +10,8 @@ import {
 import actions from "../../../store/trainingService/actions";
 import Table from "../../../components/table/table";
 import "../report/listReport.scss";
+import { toast } from "react-toastify";
+import notifyActions from "../../../store/notification/actions";
 
 class ListCourse extends Component {
   constructor(props) {
@@ -34,7 +36,7 @@ class ListCourse extends Component {
     });
   };
   onDelete = index => {
-    alert("Xóa bản tin số ", index);
+    this.props.deleteCourse({id: index});
   };
   onEdit = index => {
     this.props.history.push(`/create-course?id=${index}`);
@@ -64,6 +66,13 @@ class ListCourse extends Component {
       this.setState({
         total: nextProps.total
       });
+    }
+    if (nextProps.message !== "" && nextProps.message !== this.props.message) {
+      toast(nextProps.message);
+      if (nextProps.success) {
+        this.fetchListCourse();
+      }
+      this.props.clearNotify();
     }
   }
 
@@ -178,7 +187,7 @@ class ListCourse extends Component {
               className="far fa-edit mr-3"
               onClick={e => this.onEdit(props.value)}
             ></i>
-            {/* <i className="far fa-trash-alt" onClick={(e) => this.onDelete(props.value)}></i> */}
+            <i className="far fa-trash-alt" onClick={(e) => this.onDelete(props.value)}></i>
           </div>
         )
       }
@@ -214,7 +223,9 @@ const mapStateToProps = state => {
   return {
     listCourse: state.TrainingService.listCourse,
     total: state.TrainingService.total,
-    detail: state.TrainingService.detail
+    detail: state.TrainingService.detail,
+    success: state.Notifys.success,
+    message: state.Notifys.message
   };
 };
 
@@ -225,6 +236,12 @@ const mapDispatchToProps = dispatch => {
     },
     getDetail: id => {
       dispatch(actions.getDetail(id));
+    },
+    deleteCourse: data => {
+      dispatch(actions.deleteCourse(data));
+    },
+    clearNotify: () => {
+      dispatch(notifyActions.clearNotify());
     }
   };
 };

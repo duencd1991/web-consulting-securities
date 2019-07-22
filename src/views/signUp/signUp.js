@@ -1,11 +1,129 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import "../signIn/signIn.scss";
 import "./signUp.scss";
 import imgBgLeft from "../../assets/img/bg_SignIn.jpg";
 import logoMbs from "../../assets/img/logo-blue.png";
+import userActions from "../../store/user/actions";
+import { toast } from "react-toastify";
+import notifyActions from "../../store/notification/actions";
+import { TYPE_ACCOUNT, PERMISSION } from "../../utils/constant";
+import validator from "validator";
 
 class SignUp extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      fullName: "",
+      phoneNumber: "",
+      email: "",
+      address: "",
+      username: "",
+      password: "",
+      type: TYPE_ACCOUNT[0].type,
+      permissionId: PERMISSION[1].type,
+      confirmPass: "",
+
+      validate: true,
+      validateEmail: "",
+      validatePassword: "",
+      agreement: false
+    }
+  }
+  onChange = e => {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
+  onCheckbox = e => {
+    this.setState({
+      agreement: e.target.checked
+    })
+  }
+  validateForm = () => {
+    const {
+      fullName,
+      phoneNumber,
+      email,
+      address,
+      username,
+      password,
+      confirmPass
+    } = this.state;
+    let check = fullName !== "" && phoneNumber !== "" && address !== "" && username !== "" && password !== "";
+    let checkEmail = "";
+    if (email !== "") {
+      if (!validator.isEmail(email)) {
+        check = false;
+        checkEmail= "Email không đúng định dạng";
+      } else {
+        checkEmail="";
+      }
+    } else {
+      checkEmail= "Vui lòng nhập thông tin";
+    }
+    let checkPasswoard = "";
+    if (password !== "") {
+      if (password !== confirmPass) {
+        check = false;
+        checkPasswoard = "Xác nhận mật khẩu không chính xác"
+      } else {
+        checkPasswoard = "";
+      }
+    }
+    this.setState({
+      validate: check,
+      validateEmail: checkEmail,
+      validatePassword: checkPasswoard
+    });
+    return check;
+  }
+  onSubmit = () => {
+    const state = this.state;
+    if (state.agreement && this.validateForm()) {
+      const data = {
+        username: state.username,
+        email: state.email,
+        phoneNumber: state.phoneNumber,
+        address: state.address,
+        password: state.password,
+        fullName: state.fullName,
+        type: state.type,
+        permissionId: state.permissionId
+      }
+      this.props.register(data);
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.message !== "" && nextProps.message !== this.props.message) {
+      toast(nextProps.message);
+      if (nextProps.success) {
+        this.props.history.push(`/sign-in`);
+      }
+      this.props.clearNotify();
+    }
+  }
+
   render() {
+    const {
+      fullName,
+      phoneNumber,
+      email,
+      address,
+      username,
+      password,
+      confirmPass,
+
+      validate,
+      validateEmail,
+      validatePassword,
+      agreement
+    } = this.state;
+
     return (
       <div className="signin_page">
         <div className="contentForm">
@@ -21,62 +139,90 @@ class SignUp extends Component {
                 <img src={logoMbs} alt="" />
               </a>
               <p className="copyRight">Copyrights 2000 - 2019 MBS.</p>
-              <input
+              {/* <input
                 type="checkbox"
                 name="frequency"
                 tabIndex="0"
                 className="hidden"
               />
-              <label>Tôi đã có tài khoản chứng khoán</label>
+              <label>Tôi đã có tài khoản chứng khoán</label> */}
             </div>
           </div>
           <div className="rightF">
-            <form className="form-detail" action="#" method="post" id="myform">
+            <div className="form-detail" id="myform">
               <div className="form-row">
-                <label htmlFor="fullname">Họ và tên</label>
+                <label htmlFor="fullName">Họ và tên</label>
                 <input
                   type="text"
-                  name="fullname"
-                  id="fullname"
+                  name="fullName"
+                  id="fullName"
                   className="input-text"
+                  value={fullName}
+                  onChange={this.onChange}
                 />
+                {!validate && fullName === "" && (
+                  <div className="alert alert-warning" role="alert">
+                    Vui lòng nhập thông tin
+                  </div>
+                )}
               </div>
               <div className="form-row">
-                <label htmlFor="tel">Số điện thoại</label>
-                <input type="text" name="tel" id="tel" className="input-text" />
+                <label htmlFor="phoneNumber">Số điện thoại</label>
+                <input type="text" name="phoneNumber" id="phoneNumber"
+                  className="input-text" value={phoneNumber} onChange={this.onChange} />
+                {!validate && phoneNumber === "" && (
+                  <div className="alert alert-warning" role="alert">
+                    Vui lòng nhập thông tin
+                  </div>
+                )}
               </div>
               <div className="form-row">
-                <label htmlFor="your_email">E-MAIL</label>
+                <label htmlFor="email">E-MAIL</label>
                 <input
                   type="text"
-                  name="your_email"
-                  id="your_email"
+                  name="email"
+                  id="email"
                   className="input-text"
-                  required
-                  pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}"
+                  value={email}
+                  onChange={this.onChange}
                 />
+                {!validate && validateEmail !== "" && (
+                  <div className="alert alert-warning" role="alert">
+                    {validateEmail}
+                  </div>
+                )}
               </div>
               <div className="form-row">
-                <label htmlFor="your_addr">Địa chỉ</label>
+                <label htmlFor="address">Địa chỉ</label>
                 <input
                   type="text"
-                  name="your_email"
-                  id="your_addr"
+                  name="address"
+                  id="address"
                   className="input-text"
-                  required
-                  pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}"
+                  value={address}
+                  onChange={this.onChange}
                 />
+                {!validate && address === "" && (
+                  <div className="alert alert-warning" role="alert">
+                    Vui lòng nhập thông tin
+                  </div>
+                )}
               </div>
               <div className="form-row">
-                <label htmlFor="your_accName">Tên tài khoản</label>
+                <label htmlFor="username">Tên tài khoản</label>
                 <input
                   type="text"
-                  name="your_accName"
-                  id="your_accName"
+                  name="username"
+                  id="username"
                   className="input-text"
-                  required
-                  pattern="[^@]+@[^@]+.[a-zA-Z]{2,6}"
+                  value={username}
+                  onChange={this.onChange}
                 />
+                {!validate && username === "" && (
+                  <div className="alert alert-warning" role="alert">
+                    Vui lòng nhập thông tin
+                  </div>
+                )}
               </div>
               <div className="form-row">
                 <label htmlFor="password">Mật khẩu</label>
@@ -85,18 +231,30 @@ class SignUp extends Component {
                   name="password"
                   id="password"
                   className="input-text"
-                  required
+                  value={password}
+                  onChange={this.onChange}
                 />
+                {!validate && password === "" && (
+                  <div className="alert alert-warning" role="alert">
+                    Vui lòng nhập thông tin
+                  </div>
+                )}
               </div>
               <div className="form-row">
-                <label htmlFor="comfirm_password">Nhập lại mật khẩu</label>
+                <label htmlFor="confirmPass">Nhập lại mật khẩu</label>
                 <input
                   type="password"
-                  name="comfirm_password"
-                  id="comfirm_password"
+                  name="confirmPass"
+                  id="confirmPass"
                   className="input-text"
-                  required
+                  value={confirmPass}
+                  onChange={this.onChange}
                 />
+                {!validate && validatePassword !== "" && (
+                  <div className="alert alert-warning" role="alert">
+                    {validatePassword}
+                  </div>
+                )}
               </div>
               <div className="form-row-check">
                 <div className="checkTKCK">
@@ -105,6 +263,7 @@ class SignUp extends Component {
                     name="frequency"
                     tabIndex="0"
                     className="hidden"
+                    onChange={this.onCheckbox}
                   />
                   <label>
                     Tôi đã đọc và đồng ý với{" "}
@@ -116,7 +275,7 @@ class SignUp extends Component {
                 </div>
               </div>
               <div className="form-row-last">
-                <button className="register">
+                <button className={agreement ? "register" : "register disabled"} onClick={this.onSubmit}>
                   <span>Đăng ký</span>
                 </button>
                 <p>
@@ -124,11 +283,35 @@ class SignUp extends Component {
                   <a href="./sign-in">Đăng nhập</a>
                 </p>
               </div>
-            </form>
+            </div>
           </div>
         </div>
       </div>
     );
   }
 }
-export default SignUp;
+const mapStateToProps = state => {
+  return {
+    success: state.Notifys.success,
+    message: state.Notifys.message
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    register: data => {
+      dispatch(userActions.createUser(data));
+    },
+    clearNotify: () => {
+      dispatch(notifyActions.clearNotify());
+    }
+  };
+};
+
+SignUp.propTypes = {
+  register: PropTypes.func
+};
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SignUp);

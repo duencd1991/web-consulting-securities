@@ -1,12 +1,16 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+
 import "./header2.scss";
 import "../../style/animation.scss";
 import logo from "../../assets/img/vi_mbs_logo.png";
 import icSearch from "../../assets/img/btnSearch.png";
 import HeaderTop from "./headerTop";
 import history from "../../utils/history";
+import { PERMISSION, TYPE_PERMISSION } from "../../utils/constant";
 
-export default class Header extends Component {
+class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -65,12 +69,8 @@ export default class Header extends Component {
             </button>
             <div className="collapse navbar-collapse" id="navbarResponsive">
               <ul className="navbar-nav ml-auto">
-                <li
-                  className={urlPage === "/" ? "nav-item active" : "nav-item"}
-                >
-                  <a className="nav-link" href="/">
-                    TRANG CHỦ
-                  </a>
+                <li className={urlPage === "/" ? "nav-item active" : "nav-item"}>
+                  <a className="nav-link" href="/">TRANG CHỦ</a>
                 </li>
                 <li
                   className={
@@ -96,21 +96,10 @@ export default class Header extends Component {
                     className="dropdown-menu animate slideIn"
                     aria-labelledby="navbarDropdown"
                   >
-                    <a className="dropdown-item" href="/create-trading-account">
-                      Mở tài khoản
-                    </a>
-
-                    <a className="dropdown-item" href="/trading-instruction">
-                      Hướng dẫn giao dịch
-                    </a>
-
-                    <a className="dropdown-item" href="/training-service">
-                      Dịch vụ đào tạo
-                    </a>
-
-                    <a className="dropdown-item" href="/consulting">
-                      Dịch vụ tư vấn
-                    </a>
+                    <a className="dropdown-item" href="/create-trading-account">Mở tài khoản</a>
+                    <a className="dropdown-item" href="/trading-instruction">Hướng dẫn giao dịch</a>
+                    <a className="dropdown-item" href="/training-service">Dịch vụ đào tạo</a>
+                    <a className="dropdown-item" href="/consulting">Dịch vụ tư vấn</a>
                   </div>
                 </li>
                 <li
@@ -131,97 +120,52 @@ export default class Header extends Component {
                   >
                     SẢN PHẨM
                   </div>
-                  <div
-                    className="dropdown-menu animate slideIn"
-                    aria-labelledby="navbarDropdown"
-                  >
-                    <a className="dropdown-item" href="/consulting-securities">
-                      Tư vấn chứng khoán phái sinh
-                    </a>
+                  <div className="dropdown-menu animate slideIn" aria-labelledby="navbarDropdown">
+                    <a className="dropdown-item" href="/consulting-securities">Tư vấn chứng khoán phái sinh</a>
                   </div>
                 </li>
-                <li
-                  className={
-                    urlPage === "/report" ? "nav-item active" : "nav-item"
-                  }
-                >
-                  <a className="nav-link" href="/report">
-                    BÁO CÁO
-                  </a>
+                <li className={urlPage === "/report" ? "nav-item active" : "nav-item"} >
+                  <a className="nav-link" href="/report">BÁO CÁO</a>
                 </li>
-                <li
-                  className={
-                    urlPage === "/news" ? "nav-item active" : "nav-item"
-                  }
-                >
-                  <a className="nav-link" href="/news">
-                    KIẾN THỨC
-                  </a>
+                <li className={urlPage === "/news" ? "nav-item active" : "nav-item"} >
+                  <a className="nav-link" href="/news">KIẾN THỨC</a>
                 </li>
-                <li
-                  className={
-                    urlPage === "/list-report" ||
-                    urlPage === "list-news" ||
-                    urlPage === "list-course" ||
-                    urlPage === "list-expert" ||
-                    urlPage === "list-user"
-                      ? "nav-item dropdown active"
-                      : "nav-item dropdown"
-                  }
-                >
-                  <div
-                    className="nav-link dropdown-toggle "
-                    id="navbarDropdown"
-                    role="button"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    DANH MỤC
-                  </div>
-                  <div
-                    className="dropdown-menu animate slideIn"
-                    aria-labelledby="navbarDropdown"
-                  >
-                    <a className="dropdown-item" href="/list-guideline">
-                      Quản lý hướng dẫn
-                    </a>
-                    <a className="dropdown-item" href="/list-report">
-                      Quản lý báo cáo
-                    </a>
-                    <a className="dropdown-item" href="/list-news">
-                      Quản lý kiến thức
-                    </a>
-                    <a className="dropdown-item" href="/list-course">
-                      Quản lý khóa học
-                    </a>
-                    <a className="dropdown-item" href="/list-expert">
-                      Quản lý chuyên gia
-                    </a>
-                    {/* <a className="dropdown-item" href="/list-user">
-                      Quản lý phân quyền
-                    </a> */}
-                    <a className="dropdown-item" href="/list-register-course">
-                      Danh sách đăng ký khóa học
-                    </a>
-                    <a
-                      className="dropdown-item"
-                      href="/list-resgiter-account-trading"
-                    >
-                      Danh sách mở tài khoản
-                    </a>
-                  </div>
-                </li>
-                <li
-                  className={
-                    urlPage === "/about-us"
-                      ? "nav-item dropdown active"
-                      : "nav-item dropdown"
-                  }
-                >
-                  <a className="nav-link" href="/about-us">
-                    VỀ CHÚNG TÔI
-                  </a>
+                {
+                  (this.props.profile.permissionId === TYPE_PERMISSION.ADMIN
+                  || this.props.profile.permissionId === TYPE_PERMISSION.CUSTOMERCARE)
+                  && <li
+                    className={
+                      urlPage === "/list-report" ||
+                      urlPage === "list-news" ||
+                      urlPage === "list-course" ||
+                      urlPage === "list-expert" ||
+                      urlPage === "list-user"
+                        ? "nav-item dropdown active"
+                        : "nav-item dropdown"
+                    } >
+                    <div className="nav-link dropdown-toggle " id="navbarDropdown" role="button" 
+                      data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                      DANH MỤC
+                    </div>
+                    <div className="dropdown-menu animate slideIn" aria-labelledby="navbarDropdown" >
+                      {
+                        this.props.profile.permissionId === TYPE_PERMISSION.ADMIN && <React.Fragment>
+                          <a className="dropdown-item" href="/list-guideline">Quản lý hướng dẫn</a>
+                          <a className="dropdown-item" href="/list-report">Quản lý báo cáo</a>
+                          <a className="dropdown-item" href="/list-news">Quản lý kiến thức</a>
+                          <a className="dropdown-item" href="/list-course">Quản lý khóa học</a>
+                          <a className="dropdown-item" href="/list-expert">Quản lý chuyên gia</a>
+                          <a className="dropdown-item" href="/list-user">Quản lý tài khoản</a>
+                        </React.Fragment>
+                      }
+                      <a className="dropdown-item" href="/list-register-course">Danh sách đăng ký khóa học</a>
+                      <a className="dropdown-item" href="/list-resgiter-account-trading" >Danh sách mở tài khoản</a>
+                    </div>
+                  </li>
+                }
+                
+                <li className={urlPage === "/about-us" ? "nav-item dropdown active" : "nav-item dropdown"} >
+                  <a className="nav-link" href="/about-us">VỀ CHÚNG TÔI</a>
                 </li>
               </ul>
               <form className="form-inline my-2 my-lg-0 formSearch">
@@ -266,3 +210,22 @@ export default class Header extends Component {
     );
   }
 }
+HeaderTop.propTypes = {
+  profile: PropTypes.object,
+  t: PropTypes.func
+};
+
+const mapStateToProps = state => {
+  return {
+    profile: state.Users.profile
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {};
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Header);

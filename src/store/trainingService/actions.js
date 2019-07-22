@@ -11,10 +11,13 @@ const actions = {
   COURSE_DETAIL: "COURSE_DETAIL",
   COURSE_UPDATE: "COURSE_UPDATE",
   COURSE_CREATE: "COURSE_CREATE",
+  COURSE_DELETE: "COURSE_DELETE",
   REGISTER_COURSE: "REGISTER_COURSE",
   REGISTER_COURSE_GET_LIST: "REGISTER_COURSE_GET_LIST",
   REGISTER_COURSE_LIST: "REGISTER_COURSE_LIST",
   REGISTER_COURSE_DETAIL: "REGISTER_COURSE_DETAIL",
+  REGISTER_COURSE_DONE: "REGISTER_COURSE_DONE",
+  REGISTER_COURSE_CANCEL: "REGISTER_COURSE_CANCEL",
   listCourse: (start, limit, courseType, category, priority) => ({
     type: actions.COURSE_GET_LIST,
     start: start,
@@ -47,6 +50,10 @@ const actions = {
     type: actions.COURSE_CREATE,
     data
   }),
+  deleteCourse: data => ({
+    type: actions.COURSE_DELETE,
+    data
+  }),
   registerCourse: data => ({
     type: actions.REGISTER_COURSE,
     data
@@ -58,6 +65,14 @@ const actions = {
   registerCourseDetail: id => ({
     type: actions.REGISTER_COURSE_DETAIL,
     id
+  }),
+  doneRegistration: data => ({
+    type: actions.REGISTER_COURSE_DONE,
+    data
+  }),
+  cancelRegistration: data => ({
+    type: actions.REGISTER_COURSE_CANCEL,
+    data
   })
 };
 export default actions;

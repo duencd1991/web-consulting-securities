@@ -9,7 +9,8 @@ const expertBox = props => {
     arrows: true,
     infinite: true,
     speed: 500,
-    slidesToShow: props.listExpert.length - 1,
+    slidesToShow: 2,
+    // slidesToShow: props.listExpert.length - 1,
     centerMode: true
   };
 

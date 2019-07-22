@@ -132,37 +132,41 @@ class Report extends Component {
           <div className="report-banner">
             <h3>BÁO CÁO PHÂN TÍCH</h3>
           </div>
-          <div className="report-content">
-            <div className="report-types">
-              {TYPE_REPORT.map((item, index) => {
-                return (
-                  <div
-                    key={index}
-                    className={
-                      selectedType === item.type
-                        ? "report-type-item selected"
-                        : "report-type-item"
-                    }
-                    onClick={() => this.onChangeType(item.type)}
-                  >
-                    {item.name}
-                  </div>
-                );
-              })}
+          {
+            this.props.profile.username ? <div className="report-content">
+              <div className="report-types">
+                {TYPE_REPORT.map((item, index) => {
+                  return (
+                    <div
+                      key={index}
+                      className={
+                        selectedType === item.type
+                          ? "report-type-item selected"
+                          : "report-type-item"
+                      }
+                      onClick={() => this.onChangeType(item.type)}
+                    >
+                      {item.name}
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="report-tables">
+                <Table
+                  title="BÁO CÁO PHÂN TÍCH CƠ BẢN PHÁI SINH"
+                  listData={props.listReport}
+                  columns={columns}
+                  pageSize={pageSize}
+                  pageNum={pageNum}
+                  total={total}
+                  onChangePageNum={this.onChangePageNum}
+                  onChangePageSize={this.onChangePageSize}
+                />
+              </div>
+            </div> : <div className="report-content">
+              <div className="request-login">Vui lòng đăng nhập để sử dụng chức năng này</div>
             </div>
-            <div className="report-tables">
-              <Table
-                title="BÁO CÁO PHÂN TÍCH CƠ BẢN PHÁI SINH"
-                listData={props.listReport}
-                columns={columns}
-                pageSize={pageSize}
-                pageNum={pageNum}
-                total={total}
-                onChangePageNum={this.onChangePageNum}
-                onChangePageSize={this.onChangePageSize}
-              />
-            </div>
-          </div>
+          }
         </div>
       </Layout>
     );
@@ -171,7 +175,8 @@ class Report extends Component {
 const mapStateToProps = state => {
   return {
     listReport: state.Reports.list,
-    total: state.Reports.total
+    total: state.Reports.total,
+    profile: state.Users.profile
   };
 };
 
@@ -189,7 +194,7 @@ Report.propTypes = {
   fetchListReport: PropTypes.func,
   updateViews: PropTypes.func,
   listReport: PropTypes.array,
-  total: PropTypes.number
+  total: PropTypes.number,
 };
 
 export default connect(

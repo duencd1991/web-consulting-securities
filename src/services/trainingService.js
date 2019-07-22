@@ -84,6 +84,14 @@ const registerCourseDetail = data => {
     params: data
   });
 };
+const courseDelete = data => {
+  const url = `/course/delete`;
+  return request({
+    url: url,
+    method: "delete",
+    params: data
+  });
+};
 export {
   listCourse,
   listCourseHot,
@@ -94,5 +102,6 @@ export {
   courseDetail,
   registerCourse,
   registerCourseList,
-  registerCourseDetail
+  registerCourseDetail,
+  courseDelete
 };

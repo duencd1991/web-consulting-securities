@@ -7,6 +7,7 @@ import icSkype from "../../assets/img/icSkype16x16.png";
 import icTele from "../../assets/img/icTele16x16.png";
 import actions from "../../store/consulting/actions";
 import notifyActions from "../../store/notification/actions";
+import { TYPE_PERMISSION } from "../../utils/constant";
 
 const listMenu = [
   "HỆ THỐNG MBS",
@@ -95,7 +96,9 @@ class ConsultingSecurities extends Component {
     if (this.props.listChat !== nextProps.listChat) {
       listChat = nextProps.listChat.reverse();
       let showDiv = document.getElementById("boxChat");
-      showDiv.scrollTop = showDiv.scrollHeight;
+      if (showDiv) {
+        showDiv.scrollTop = showDiv.scrollHeight;
+      }
     }
   }
 
@@ -149,142 +152,150 @@ class ConsultingSecurities extends Component {
           <div className="consulting-banner">
             <h3>TƯ VẤN CHỨNG KHOÁN PHÁI SINH</h3>
           </div>
-          <div className="page-content">
-            <div className="consulting-menu">
-              {listMenu.map((item, index) => {
-                return (
-                  <div
-                    key={index}
-                    onClick={() => this.onChangeMenu(index)}
-                    className={
-                      selectedMenu === index ? "menu-item active" : "menu-item"
+          {
+            this.props.profile.username ? <div className="page-content">
+              <div className="consulting-menu">
+                {listMenu.map((item, index) => {
+                  return (
+                    <div
+                      key={index}
+                      onClick={() => this.onChangeMenu(index)}
+                      className={
+                        selectedMenu === index ? "menu-item active" : "menu-item"
+                      }
+                    >
+                      {item}
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="layout-robot-consulting">
+                <div className="title">
+                  HỆ THỐNG <span>ROBOT</span> KHUYẾN NGHỊ
+                </div>
+                <hr />
+                <div className="table-responsive">
+                  <table className="table table-striped">
+                    <thead>
+                      <tr>
+                        <th scope="col">HỆ THỐNG</th>
+                        <th scope="col">LOẠI TÀI SẢN</th>
+                        <th scope="col">NHÀ PHÁT TRIỂN</th>
+                        <th scope="col">BẮT ĐẦU</th>
+                        <th scope="col">TỔNG LÃI LỖ</th>
+                        <th scope="col">TỶ LỆ THẮNG</th>
+                        <th scope="col">PROFIT FACTOR</th>
+                        <th scope="col" className="table-center-element">
+                          LÃI LỖ
+                          <br />
+                          REALTIME
+                        </th>
+                        <th scope="col" className="table-center-element">
+                          LỢI NHUẬN
+                          <br />
+                          (%) NĂM
+                        </th>
+                        <th scope="col" className="table-center-element">
+                          CLICK
+                          <br />
+                          ĐỂ ĐĂNG KÝ
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {listRobot.map((item, index) => {
+                        return (
+                          <tr key={index}>
+                            <td>{item.heThong ? item.heThong : "..."}</td>
+                            <td>{item.loaiTaiSan ? item.loaiTaiSan : "..."}</td>
+                            <td>
+                              {item.nhaPhatTrien ? item.nhaPhatTrien : "..."}
+                            </td>
+                            <td>{item.batDau ? item.batDau : "..."}</td>
+                            <td>{item.tongLoLai ? item.tongLoLai : "..."}</td>
+                            <td>{item.tyLeThang ? item.tyLeThang : "..."}</td>
+                            <td>
+                              {item.profitFactor ? item.profitFactor : "..."}
+                            </td>
+                            <td>
+                              {item.laiLoRealTime ? item.laiLoRealTime : "..."}
+                            </td>
+                            <td>{item.loiNhuan ? item.loiNhuan : "..."}</td>
+                            <td className="table-center-element">
+                              <button
+                                className={selectedRoom === item.urlRegister ? "btn-register active": "btn-register"}
+                                onClick={()=>this.handleClickRoom(item.urlRegister)}
+                              >
+                                CLICK
+                              </button>
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
+                <div className="title">LIVE TRADING</div>
+                <hr />
+                <div className="box-chat-consulting">
+                  <div className="box-chat" id="boxChat">
+                    {
+                      listChat.map((item, index) => {
+                        var date = new Date(item.createDate);
+                        var hours = date.getHours();
+                        var minutes = "0" + date.getMinutes();
+                        var seconds = "0" + date.getSeconds();
+                        var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
+                        return <p key={index}>
+                          <b>({formattedTime}) : </b>
+                          <span>{item.content}</span>
+                        </p>
+                      })
                     }
-                  >
-                    {item}
                   </div>
-                );
-              })}
-            </div>
-            <div className="layout-robot-consulting">
-              <div className="title">
-                HỆ THỐNG <span>ROBOT</span> KHUYẾN NGHỊ
-              </div>
-              <hr />
-              <div className="table-responsive">
-                <table className="table table-striped">
-                  <thead>
-                    <tr>
-                      <th scope="col">HỆ THỐNG</th>
-                      <th scope="col">LOẠI TÀI SẢN</th>
-                      <th scope="col">NHÀ PHÁT TRIỂN</th>
-                      <th scope="col">BẮT ĐẦU</th>
-                      <th scope="col">TỔNG LÃI LỖ</th>
-                      <th scope="col">TỶ LỆ THẮNG</th>
-                      <th scope="col">PROFIT FACTOR</th>
-                      <th scope="col" className="table-center-element">
-                        LÃI LỖ
-                        <br />
-                        REALTIME
-                      </th>
-                      <th scope="col" className="table-center-element">
-                        LỢI NHUẬN
-                        <br />
-                        (%) NĂM
-                      </th>
-                      <th scope="col" className="table-center-element">
-                        CLICK
-                        <br />
-                        ĐỂ ĐĂNG KÝ
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {listRobot.map((item, index) => {
-                      return (
-                        <tr key={index}>
-                          <td>{item.heThong ? item.heThong : "..."}</td>
-                          <td>{item.loaiTaiSan ? item.loaiTaiSan : "..."}</td>
-                          <td>
-                            {item.nhaPhatTrien ? item.nhaPhatTrien : "..."}
-                          </td>
-                          <td>{item.batDau ? item.batDau : "..."}</td>
-                          <td>{item.tongLoLai ? item.tongLoLai : "..."}</td>
-                          <td>{item.tyLeThang ? item.tyLeThang : "..."}</td>
-                          <td>
-                            {item.profitFactor ? item.profitFactor : "..."}
-                          </td>
-                          <td>
-                            {item.laiLoRealTime ? item.laiLoRealTime : "..."}
-                          </td>
-                          <td>{item.loiNhuan ? item.loiNhuan : "..."}</td>
-                          <td className="table-center-element">
-                            <button
-                              className={selectedRoom === item.urlRegister ? "btn-register active": "btn-register"}
-                              onClick={()=>this.handleClickRoom(item.urlRegister)}
-                            >
-                              CLICK
-                            </button>
-                          </td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
-              </div>
-              <div className="title">LIVE TRADING</div>
-              <hr />
-              <div className="box-chat-consulting">
-                <div className="box-chat" id="boxChat">
                   {
-                    listChat.map((item, index) => {
-                      var date = new Date(item.createDate);
-                      var hours = date.getHours();
-                      var minutes = "0" + date.getMinutes();
-                      var seconds = "0" + date.getSeconds();
-                      var formattedTime = hours + ':' + minutes.substr(-2) + ':' + seconds.substr(-2);
-                      return <p key={index}>
-                        <b>({formattedTime}) : </b>
-                        <span>{item.content}</span>
-                      </p>
-                    })
+                    this.props.profile.permissionId === TYPE_PERMISSION.EXPERT && <div className="box-input-chat">
+                      <input type="text" className="form-control" id="inputChat" value={contentChat}
+                        onChange={this.onChangeChat} onKeyDown={this.onEnter}/>
+                      <button onClick={this.handleChat} className="btn btn-primary">Gửi</button>
+                    </div>
                   }
+                  
                 </div>
-                <div className="box-input-chat">
-                  <input type="text" className="form-control" id="inputChat" value={contentChat}
-                    onChange={this.onChangeChat} onKeyDown={this.onEnter}/>
-                  <button onClick={this.handleChat} className="btn btn-primary">Gửi</button>
-                </div>
-              </div>
-              <div className="title">CÔNG CỤ GIAO DỊCH</div>
-              <hr />
-              <div className="layout-tool">
-                <div className="tool-trader-layout">
-                  <div className="tool-trader-item">
-                    <img src={icArrow} alt="ic-arow" />
-                    Robot cảnh báo (trade alerts miễn phí)
+                <div className="title">CÔNG CỤ GIAO DỊCH</div>
+                <hr />
+                <div className="layout-tool">
+                  <div className="tool-trader-layout">
+                    <div className="tool-trader-item">
+                      <img src={icArrow} alt="ic-arow" />
+                      Robot cảnh báo (trade alerts miễn phí)
+                    </div>
+                    <div className="tool-trader-item">
+                      <img src={icArrow} alt="ic-arow" />
+                      D24 datafeed hỗ trợ
+                    </div>
                   </div>
-                  <div className="tool-trader-item">
-                    <img src={icArrow} alt="ic-arow" />
-                    D24 datafeed hỗ trợ
-                  </div>
-                </div>
-                <div className="room-trader-layout">
-                  <div className="room-trader-item">
-                    <img src={icTele} alt="ic-tele" />
-                    Telegram
-                  </div>
-                  <div className="room-trader-item">
-                    <img src={icSkype} alt="ic-skype" />
-                    Room 1
-                  </div>
-                  <div className="room-trader-item">
-                    <img src={icSkype} alt="ic-skype" />
-                    Room 2
+                  <div className="room-trader-layout">
+                    <div className="room-trader-item">
+                      <img src={icTele} alt="ic-tele" />
+                      Telegram
+                    </div>
+                    <div className="room-trader-item">
+                      <img src={icSkype} alt="ic-skype" />
+                      Room 1
+                    </div>
+                    <div className="room-trader-item">
+                      <img src={icSkype} alt="ic-skype" />
+                      Room 2
+                    </div>
                   </div>
                 </div>
               </div>
+            </div> : <div className="page-content">
+              <div className="request-login">Vui lòng đăng nhập để sử dụng chức năng này</div>
             </div>
-          </div>
+          }
+          
         </div>
       </Layout>
     );
@@ -295,7 +306,8 @@ const mapStateToProps = state => {
     listChat: state.ChatConsulting.listChat,
     total: state.ChatConsulting.total,
     success: state.Notifys.success,
-    message: state.Notifys.message
+    message: state.Notifys.message,
+    profile: state.Users.profile
   };
 };
 

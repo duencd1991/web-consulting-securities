@@ -38,7 +38,7 @@ class FormNews extends Component {
         id: id,
         update: true
       });
-      this.props.getDetail(id);
+      this.props.getDetail({id: id});
     } else {
       this.setState({
         update: false
@@ -128,9 +128,12 @@ class FormNews extends Component {
     }
   };
   onValidateForm = () => {
-    const { title, categoryId, file, content } = this.state;
-    const check =
-      title !== "" && categoryId !== 0 && file !== "" && content !== "";
+    const { title, categoryId, file, content, update } = this.state;
+    let check =
+      title !== "" && categoryId !== 0  && content !== "";
+    if (!update) {
+      check = check && file !== "";
+    }
     this.setState({
       validate: check
     });

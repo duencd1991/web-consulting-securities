@@ -8,7 +8,8 @@ import {
   updateViews,
   newsDetail,
   updateNews,
-  createNews
+  createNews,
+  newsDelete
 } from "../../services/news";
 
 export function* getListNews() {
@@ -69,7 +70,6 @@ export function* getListNewHot() {
     }
   });
 }
-
 export function* newsUpdate() {
   yield takeEvery(actions.NEWS_UPDATE, function*(data) {
     try {
@@ -91,7 +91,7 @@ export function* newsUpdateViews() {
     try {
       yield put({ type: notifyActions.NOTIFY_LOADING });
 
-      const response = yield updateViews(data.id);
+      const response = yield updateViews(data.data);
       yield put({
         type: notifyActions.NOTIFY_SHOW,
         code: response.data.statusCode
@@ -103,7 +103,6 @@ export function* newsUpdateViews() {
     }
   });
 }
-
 export function* newsCreate() {
   yield takeEvery(actions.NEWS_CREATE, function*(data) {
     try {
@@ -120,13 +119,12 @@ export function* newsCreate() {
     }
   });
 }
-
 export function* getNewsDetail() {
   yield takeEvery(actions.NEWS_GET_DETAIL, function*(data) {
     try {
       yield put({ type: notifyActions.NOTIFY_LOADING });
 
-      const response = yield newsDetail(data.id);
+      const response = yield newsDetail(data.data);
       if (response.status === 200) {
         if (response.data.statusCode === 1) {
           yield put({ type: actions.NEWS_DETAIL, detail: response.data.data });
@@ -144,7 +142,22 @@ export function* getNewsDetail() {
     }
   });
 }
+export function* deleteNews() {
+  yield takeEvery(actions.NEWS_DELETE, function*(data) {
+    try {
+      yield put({ type: notifyActions.NOTIFY_LOADING });
 
+      const response = yield newsDelete(data.data);
+      yield put({
+        type: notifyActions.NOTIFY_SHOW,
+        code: response.data.statusCode
+      });
+      yield put({ type: notifyActions.NOTIFY_LOADING });
+    } catch (error) {
+      yield put({ type: notifyActions.NOTIFY_SHOW, code: 0 });
+    }
+  });
+}
 export default function* rootSaga() {
   yield all([
     fork(getListNews),
@@ -153,6 +166,7 @@ export default function* rootSaga() {
     fork(newsUpdateViews),
     fork(getNewsDetail),
     fork(newsUpdate),
-    fork(newsCreate)
+    fork(newsCreate),
+    fork(deleteNews)
   ]);
 }

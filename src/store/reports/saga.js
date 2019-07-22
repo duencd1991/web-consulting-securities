@@ -6,7 +6,8 @@ import {
   updateViews,
   createReport,
   updateReport,
-  reportDetail
+  reportDetail,
+  deleteReport
 } from "../../services/report";
 
 export function* reportList() {
@@ -29,7 +30,6 @@ export function* reportList() {
     }
   });
 }
-
 export function* reportUpdateView() {
   yield takeEvery(actions.REPORT_VIEW_UPDATE, function*(data) {
     try {
@@ -47,7 +47,6 @@ export function* reportUpdateView() {
     }
   });
 }
-
 export function* reportUpdate() {
   yield takeEvery(actions.REPORT_UPDATE, function*(data) {
     try {
@@ -105,6 +104,22 @@ export function* getReportDetail() {
     }
   });
 }
+export function* reportDelete() {
+  yield takeEvery(actions.REPORT_DELETE, function*(data) {
+    try {
+      yield put({ type: notifyActions.NOTIFY_LOADING });
+
+      const response = yield deleteReport(data.data);
+      yield put({
+        type: notifyActions.NOTIFY_SHOW,
+        code: response.data.statusCode
+      });
+      yield put({ type: notifyActions.NOTIFY_LOADING });
+    } catch (error) {
+      yield put({ type: notifyActions.NOTIFY_SHOW, code: 0 });
+    }
+  });
+}
 
 export default function* rootSaga() {
   yield all([
@@ -112,6 +127,7 @@ export default function* rootSaga() {
     fork(reportUpdateView),
     fork(reportUpdate),
     fork(reportCreate),
-    fork(getReportDetail)
+    fork(getReportDetail),
+    fork(reportDelete)
   ]);
 }

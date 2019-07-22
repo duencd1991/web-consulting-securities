@@ -10,6 +10,7 @@ const actions = {
   NEWS_DETAIL: "NEWS_DETAIL",
   NEWS_UPDATE: "NEWS_UPDATE",
   NEWS_CREATE: "NEWS_CREATE",
+  NEWS_DELETE: "NEWS_DELETE",
   listNews: (start, limit, category) => ({
     type: actions.NEWS_GET_LIST,
     start: start,
@@ -22,13 +23,13 @@ const actions = {
   listNewsTop: () => ({
     type: actions.NEWS_GET_LIST_TOP
   }),
-  updateViews: id => ({
+  updateViews: data => ({
     type: actions.NEWS_UPDATE_VIEWS,
-    id
+    data
   }),
-  getDetail: id => ({
+  getDetail: data => ({
     type: actions.NEWS_GET_DETAIL,
-    id
+    data
   }),
   updateNews: data => ({
     type: actions.NEWS_UPDATE,
@@ -36,6 +37,10 @@ const actions = {
   }),
   createNews: data => ({
     type: actions.NEWS_CREATE,
+    data
+  }),
+  deleteNews: data => ({
+    type: actions.NEWS_DELETE,
     data
   })
 };

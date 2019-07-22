@@ -140,10 +140,10 @@ class ListGuideline extends Component {
               className="far fa-edit mr-3"
               onClick={e => this.onEdit(props.value)}
             ></i>
-            {/* <i
+            <i
               className="far fa-trash-alt"
               onClick={e => this.onDelete(props.value)}
-            ></i> */}
+            ></i>
           </div>
         )
       }

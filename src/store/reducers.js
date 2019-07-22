@@ -1,4 +1,6 @@
 import { combineReducers } from "redux";
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
 import Header from "./header/reducer";
 import Notifys from "./notification/reducer";
@@ -10,6 +12,7 @@ import TrainingService from "./trainingService/reducers";
 import AccountTrading from "./accountTrading/reducers";
 import Expert from "./expert/reducers";
 import ChatConsulting from "./consulting/reducers";
+import Users from "./user/reducers";
 
 const reducers = combineReducers({
   Header,
@@ -21,7 +24,14 @@ const reducers = combineReducers({
   TrainingService,
   AccountTrading,
   Expert,
-  ChatConsulting
+  ChatConsulting,
+  Users
 });
 
-export default reducers;
+const persistConfig = {
+  key: 'root',
+  storage,
+  blacklist: ['Error']
+};
+const persistedReducer = persistReducer(persistConfig, reducers);
+export default persistedReducer;
