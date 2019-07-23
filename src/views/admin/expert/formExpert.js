@@ -3,11 +3,6 @@ import { connect } from "react-redux";
 import Layout from "../../layout/layout";
 import PropTypes from "prop-types";
 import { toast } from "react-toastify";
-import {
-  TYPE_COURSE,
-  CATEGORY_COURSE,
-  PRIORITY_COURSE
-} from "../../../utils/constant";
 import "../../../style/common.scss";
 import actions from "../../../store/expert/actions";
 import notifyActions from "../../../store/notification/actions";
@@ -140,7 +135,6 @@ class FormExpert extends Component {
       name,
       position,
       file,
-      image,
       description,
       url,
 

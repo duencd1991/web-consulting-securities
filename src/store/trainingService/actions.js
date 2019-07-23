@@ -16,8 +16,7 @@ const actions = {
   REGISTER_COURSE_GET_LIST: "REGISTER_COURSE_GET_LIST",
   REGISTER_COURSE_LIST: "REGISTER_COURSE_LIST",
   REGISTER_COURSE_DETAIL: "REGISTER_COURSE_DETAIL",
-  REGISTER_COURSE_DONE: "REGISTER_COURSE_DONE",
-  REGISTER_COURSE_CANCEL: "REGISTER_COURSE_CANCEL",
+  REGISTER_COURSE_CHANGE_STATUS: "REGISTER_COURSE_CHANGE_STATUS",
   listCourse: (start, limit, courseType, category, priority) => ({
     type: actions.COURSE_GET_LIST,
     start: start,
@@ -66,12 +65,8 @@ const actions = {
     type: actions.REGISTER_COURSE_DETAIL,
     id
   }),
-  doneRegistration: data => ({
-    type: actions.REGISTER_COURSE_DONE,
-    data
-  }),
-  cancelRegistration: data => ({
-    type: actions.REGISTER_COURSE_CANCEL,
+  changeStatusRegistration: data => ({
+    type: actions.REGISTER_COURSE_CHANGE_STATUS,
     data
   })
 };

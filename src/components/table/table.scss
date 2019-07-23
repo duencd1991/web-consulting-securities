@@ -45,7 +45,17 @@
             justify-content: center;
             i {
               cursor: pointer;
+              font-size: 18px;
             }
+          }
+          .color-cancel {
+            color: gray;
+          }
+          .color-done {
+            color: green;
+          }
+          .color-wait {
+            color: #125491;
           }
         }
       }

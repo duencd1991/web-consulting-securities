@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import Layout from "../../layout/layout";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { DEFAULT_TABLE } from "../../../utils/constant";
+import { toast } from "react-toastify";
+import { DEFAULT_TABLE, REGISTER_STATUS } from "../../../utils/constant";
 import actions from "../../../store/accountTrading/actions";
+import notifyActions from "../../../store/notification/actions";
 import Table from "../../../components/table/table";
 
 class ListAccountTrading extends Component {
@@ -28,10 +30,6 @@ class ListAccountTrading extends Component {
       pageNum: pageNum
     });
   };
-  onDelete = index => {
-    alert("Xóa bản tin số ", index);
-  };
-
   fetchListAccountTrading = () => {
     const state = this.state;
     const start = (state.pageNum - 1) * state.pageSize;
@@ -60,7 +58,20 @@ class ListAccountTrading extends Component {
       this.setState({
         total: nextProps.total
       });
+    } if (nextProps.message !== "" && nextProps.message !== this.props.message) {
+      toast(nextProps.message);
+      if (nextProps.success) {
+        this.fetchListAccountTrading();
+      }
+      this.props.clearNotify();
     }
+  }
+  onChangeStatus = (id, status) => {
+    const data = {
+      id: id,
+      status: status
+    }
+    this.props.changeStatusAccouttrading(data);
   }
 
   render() {
@@ -110,16 +121,29 @@ class ListAccountTrading extends Component {
         )
       },
       {
+        Header: "TRẠNG THÁI",
+        accessor: "status",
+        maxWidth: 150,
+        Cell: props => (
+          <div className="table-center-element">
+            <div className="table-center-time">Trạng thái:</div>
+            {REGISTER_STATUS.map(item => {
+              if (item.status === props.value) {
+                return <div className={item.color}>{item.name}</div>
+              }
+              return null;
+            })}
+          </div>
+        )
+      },
+      {
         Header: "",
         accessor: "id",
         maxWidth: 100,
         Cell: props => (
           <div className="table-center-element action-box">
-            {/* <i className="far fa-edit mr-3" onClick={(e) => this.onEdit(props.value)}></i> */}
-            <i
-              className="far fa-trash-alt"
-              onClick={e => this.onDelete(props.value)}
-            ></i>
+            <i className="far fa-check-circle mr-3 color-done" onClick={(e) => this.onChangeStatus(props.value, REGISTER_STATUS[1].status)}></i>
+            <i className="far fa-times-circle color-cancel" onClick={(e) => this.onChangeStatus(props.value, REGISTER_STATUS[2].status)}></i>
           </div>
         )
       }
@@ -154,7 +178,9 @@ ListAccountTrading.propTypes = {
 const mapStateToProps = state => {
   return {
     listAccountTrading: state.AccountTrading.listAccountTrading,
-    total: state.AccountTrading.total
+    total: state.AccountTrading.total,
+    success: state.Notifys.success,
+    message: state.Notifys.message
   };
 };
 
@@ -165,6 +191,12 @@ const mapDispatchToProps = dispatch => {
     },
     getDetail: id => {
       dispatch(actions.accountTradingDetail(id));
+    },
+    changeStatusAccouttrading: data => {
+      dispatch(actions.accountTradingChangeStatus(data));
+    },
+    clearNotify: () => {
+      dispatch(notifyActions.clearNotify());
     }
   };
 };

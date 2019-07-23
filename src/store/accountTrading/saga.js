@@ -4,7 +4,8 @@ import { all, fork, put, takeEvery } from "redux-saga/effects";
 import {
   createAccountTrading,
   listAccountTrading,
-  accountTradingDetail
+  accountTradingDetail,
+  accountChangeStatus
 } from "../../services/accountTrading";
 export function* accountTradingCreate() {
   yield takeEvery(actions.ACCOUNT_TRADING_CREATE, function*(data) {
@@ -72,10 +73,29 @@ export function* getAccountTradingDetail() {
     }
   });
 }
+export function* accountTradingChangeStatus() {
+  yield takeEvery(actions.ACCOUNT_TRADING_CHANGE_STATUS, function*(data) {
+    try {
+      yield put({ type: notifyActions.NOTIFY_LOADING });
+      const response = yield accountChangeStatus(data.data);
+      if (response.status === 200) {
+        yield put({
+          type: notifyActions.NOTIFY_SHOW,
+          code: response.data.statusCode
+        });
+      }
+
+      yield put({ type: notifyActions.NOTIFY_LOADING });
+    } catch (error) {
+      yield put({ type: notifyActions.NOTIFY_SHOW, code: 0 });
+    }
+  });
+}
 export default function* rootSaga() {
   yield all([
     fork(accountTradingCreate),
     fork(getListAccountTrading),
-    fork(getAccountTradingDetail)
+    fork(getAccountTradingDetail),
+    fork(accountTradingChangeStatus)
   ]);
 }

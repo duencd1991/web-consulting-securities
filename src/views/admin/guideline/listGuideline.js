@@ -6,7 +6,6 @@ import { DEFAULT_TABLE, TYPE_GUIDELINE } from "../../../utils/constant";
 import actions from "../../../store/tradingInstruction/actions";
 import Table from "../../../components/table/table";
 import { toast } from "react-toastify";
-import icNoImg from "../../../assets/img/ic_no_img2.png";
 import notifyActions from "../../../store/notification/actions";
 
 class ListGuideline extends Component {

@@ -22,6 +22,12 @@ export function* reportList() {
           list: response.data.list,
           total: response.data.total
         });
+      } else if (response.data.statusCode === 7) {
+        yield put({
+          type: actions.REPORT_LIST,
+          list: [],
+          total: response.data.total
+        });
       }
 
       yield put({ type: notifyActions.NOTIFY_LOADING });

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Layout from "../layout/layout";
-import { connect, dispatch } from "react-redux";
+import { connect } from "react-redux";
 import "./consultingSecurities.scss";
 import icArrow from "../../assets/img/icArrowNext.png";
 import icSkype from "../../assets/img/icSkype16x16.png";

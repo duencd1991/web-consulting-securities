@@ -32,7 +32,7 @@ export const ERROR_CODE = [
   },
   {
     code: 5,
-    message: "Request Body invali"
+    message: "Request Body invalid"
   },
   {
     code: 6,
@@ -144,11 +144,11 @@ export const PRIORITY_COURSE = [
 export const TYPE_COURSE = [
   {
     type: 1,
-    name: "Khóa học Offline"
+    name: " Offline"
   },
   {
     type: 2,
-    name: "Khóa học Online"
+    name: "Online"
   }
 ];
 export const CATEGORY_COURSE = [
@@ -337,14 +337,17 @@ export const TYPE_PERMISSION = {
 export const REGISTER_STATUS = [
   {
     status: 1,
-    name: "Đang chờ"
+    name: "Đang chờ",
+    color: "color-wait"
   },
   {
     status: 2,
-    name: "Đã xử lý"
+    name: "Đã xử lý",
+    color: "color-done"
   },
   {
     status: 3,
-    name: "Đã hủy"
+    name: "Đã hủy",
+    color: "color-cancel"
   }
 ];

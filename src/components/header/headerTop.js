@@ -46,7 +46,7 @@ class HeaderTop extends Component {
 }
 HeaderTop.propTypes = {
   profile: PropTypes.object,
-  logout: PropTypes.object,
+  logout: PropTypes.func,
   t: PropTypes.func
 };
 

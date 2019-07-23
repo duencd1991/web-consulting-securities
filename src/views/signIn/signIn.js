@@ -6,7 +6,6 @@ import imgBgLeft from "../../assets/img/bg_SignIn.jpg";
 import logoMbs from "../../assets/img/logo-blue.png";
 import userActions from "../../store/user/actions";
 import notifyActions from "../../store/notification/actions";
-import { toast } from "react-toastify";
 
 class SignIn extends Component {
 

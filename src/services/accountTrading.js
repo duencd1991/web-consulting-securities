@@ -23,4 +23,12 @@ const accountTradingDetail = data => {
     params: data
   });
 };
-export { createAccountTrading, listAccountTrading, accountTradingDetail };
+const accountChangeStatus = data => {
+  const url = `/accountTrading/changeStatus`;
+  return request({
+    url: url,
+    method: "put",
+    params: data
+  });
+};
+export { createAccountTrading, listAccountTrading, accountTradingDetail, accountChangeStatus };

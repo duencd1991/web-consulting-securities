@@ -1,14 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-
 import "./header2.scss";
 import "../../style/animation.scss";
 import logo from "../../assets/img/vi_mbs_logo.png";
 import icSearch from "../../assets/img/btnSearch.png";
 import HeaderTop from "./headerTop";
 import history from "../../utils/history";
-import { PERMISSION, TYPE_PERMISSION } from "../../utils/constant";
+import { TYPE_PERMISSION } from "../../utils/constant";
 
 class Header extends Component {
   constructor(props) {

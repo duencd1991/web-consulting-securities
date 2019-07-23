@@ -15,8 +15,8 @@ class FormGuideline extends Component {
     this.state = {
       id: "",
       name: "",
-      type: "",
-      file: "",
+      type: TYPE_GUIDELINE[0].type,
+      file: null,
       content: "",
       date: "",
 
@@ -110,7 +110,7 @@ class FormGuideline extends Component {
     const { name, type, file, content, update } = this.state;
     let check = name !== "" && type !== "" && content !== "";
     if (!update) {
-      check = check && file !== "";
+      check = check && file !== null;
     }
     this.setState({
       validate: check
@@ -250,7 +250,7 @@ class FormGuideline extends Component {
                 )}
                 {!validate && file === null && (
                   <div className="alert alert-warning" role="alert">
-                    Vui lòng nhập thông tin
+                    Vui lòng chọn file đính kèm
                   </div>
                 )}
               </div>

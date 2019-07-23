@@ -67,7 +67,7 @@ class ListNews extends Component {
     if (nextProps.message !== "" && nextProps.message !== this.props.message) {
       toast(nextProps.message);
       if (nextProps.success) {
-        this.props.history.push(`/list-news`);
+        this.fetchNews();
       }
       this.props.clearNotify();
     }
@@ -170,7 +170,9 @@ ListNews.propTypes = {
   history: PropTypes.func,
   fetchListNews: PropTypes.func,
   listNews: PropTypes.array,
-  total: PropTypes.number
+  total: PropTypes.number,
+  message: PropTypes.string,
+  success: PropTypes.string,
 };
 
 const mapStateToProps = state => {
@@ -178,8 +180,8 @@ const mapStateToProps = state => {
     listNews: state.News.listNews,
     total: state.News.total,
     detail: state.News.detail,
-    message: PropTypes.string,
-    success: PropTypes.string
+    success: state.Notifys.success,
+    message: state.Notifys.message
   };
 };
 
@@ -193,6 +195,9 @@ const mapDispatchToProps = dispatch => {
     },
     deleteNews: data => {
       dispatch(actions.deleteNews(data));
+    },
+    clearNotify: () => {
+      dispatch(notifyActions.clearNotify());
     }
   };
 };

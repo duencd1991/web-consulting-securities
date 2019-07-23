@@ -12,6 +12,7 @@ import {
   registerCourse,
   registerCourseList,
   registerCourseDetail,
+  registerCourseChangeStatus,
   courseDelete
 } from "../../services/trainingService";
 export function* getListCourse() {
@@ -115,7 +116,6 @@ export function* getListCourseCategory() {
     }
   });
 }
-
 export function* courseUpdate() {
   yield takeEvery(actions.COURSE_UPDATE, function*(data) {
     try {
@@ -132,7 +132,6 @@ export function* courseUpdate() {
     }
   });
 }
-
 export function* courseCreate() {
   yield takeEvery(actions.COURSE_CREATE, function*(data) {
     try {
@@ -269,7 +268,24 @@ export function* courseRegisterDetail() {
     }
   });
 }
+export function* courseRegisterChangeStatus() {
+  yield takeEvery(actions.REGISTER_COURSE_CHANGE_STATUS, function*(data) {
+    try {
+      yield put({ type: notifyActions.NOTIFY_LOADING });
 
+      const response = yield registerCourseChangeStatus(data.data);
+      if (response.status === 200) {
+        yield put({
+          type: notifyActions.NOTIFY_SHOW,
+          code: response.data.statusCode
+        });
+      }
+      yield put({ type: notifyActions.NOTIFY_LOADING });
+    } catch (error) {
+      yield put({ type: notifyActions.NOTIFY_SHOW, code: 0 });
+    }
+  });
+}
 export default function* rootSaga() {
   yield all([
     fork(getListCourse),
@@ -282,6 +298,7 @@ export default function* rootSaga() {
     fork(courseRegister),
     fork(courseRegisterList),
     fork(courseRegisterDetail),
+    fork(courseRegisterChangeStatus),
     fork(deleteCourse)
   ]);
 }

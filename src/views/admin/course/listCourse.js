@@ -153,7 +153,7 @@ class ListCourse extends Component {
       {
         Header: "GIẢNG VIÊN",
         accessor: "teacher",
-        maxWidth: 200,
+        maxWidth: 150,
         Cell: props => (
           <div className="table-center-element">
             <div className="table-center-time">Giảng viên:</div>
@@ -164,10 +164,10 @@ class ListCourse extends Component {
       {
         Header: "HÌNH THỨC",
         accessor: "type",
-        maxWidth: 50,
+        maxWidth: 100,
         Cell: props => (
           <div className="table-center-element">
-            <div className="table-center-time">Giảng viên:</div>
+            <div className="table-center-time">Hình thức:</div>
             {TYPE_COURSE.map(item => {
               if (item.type === props.value) {
                 return item.name;

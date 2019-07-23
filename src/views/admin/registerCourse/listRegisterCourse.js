@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import Layout from "../../layout/layout";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import { toast } from "react-toastify";
 import { DEFAULT_TABLE, REGISTER_STATUS } from "../../../utils/constant";
 import actions from "../../../store/trainingService/actions";
+import notifyActions from "../../../store/notification/actions";
 import Table from "../../../components/table/table";
 
 class ListRegisterCourse extends Component {
@@ -58,6 +60,20 @@ class ListRegisterCourse extends Component {
         total: nextProps.total
       });
     }
+    if (nextProps.message !== "" && nextProps.message !== this.props.message) {
+      toast(nextProps.message);
+      if (nextProps.success) {
+        this.fetchListRegisterCourse();
+      }
+      this.props.clearNotify();
+    }
+  }
+  onChangeStatus = (id, status) => {
+    const data = {
+      id: id,
+      status: status
+    }
+    this.props.changeStatusRegistration(data);
   }
 
   render() {
@@ -137,7 +153,7 @@ class ListRegisterCourse extends Component {
             <div className="table-center-time">Trạng thái:</div>
             {REGISTER_STATUS.map(item => {
               if (item.status === props.value) {
-                return item.name;
+                return <div className={item.color}>{item.name}</div>
               }
               return null;
             })}
@@ -149,11 +165,8 @@ class ListRegisterCourse extends Component {
         accessor: "id",
         Cell: props => (
           <div className="table-center-element action-box">
-            <i className="far fa-edit mr-3" onClick={(e) => this.onEdit(props.value)}></i>
-            {/* <i
-              className="far fa-trash-alt"
-              onClick={e => this.onDelete(props.value)}
-            ></i> */}
+            <i className="far fa-check-circle mr-3 color-done" onClick={(e) => this.onChangeStatus(props.value, REGISTER_STATUS[1].status)}></i>
+            <i className="far fa-times-circle color-cancel" onClick={(e) => this.onChangeStatus(props.value, REGISTER_STATUS[2].status)}></i>
           </div>
         )
       }
@@ -188,7 +201,9 @@ ListRegisterCourse.propTypes = {
 const mapStateToProps = state => {
   return {
     listRegisterCourse: state.TrainingService.listRegisterCourse,
-    total: state.TrainingService.total
+    total: state.TrainingService.total,
+    success: state.Notifys.success,
+    message: state.Notifys.message
   };
 };
 
@@ -199,6 +214,12 @@ const mapDispatchToProps = dispatch => {
     },
     getDetail: id => {
       dispatch(actions.registerCourseDetail(id));
+    },
+    changeStatusRegistration: data => {
+      dispatch(actions.changeStatusRegistration(data));
+    },
+    clearNotify: () => {
+      dispatch(notifyActions.clearNotify());
     }
   };
 };

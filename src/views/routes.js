@@ -1,6 +1,5 @@
 import React from "react";
 import { Router, Route, Switch } from "react-router-dom";
-import { RouteRequireLogin } from "./RouteRequireLogin";
 import { RouteAdmin } from "./RouteAdmin";
 import { RouteCustomerCare } from "./RouteCustomerCare";
 import { connect } from "react-redux";
