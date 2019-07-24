@@ -3,13 +3,24 @@ import Slider from "react-slick";
 import icNoImg from "../../assets/img/ic_no_img2.png";
 import "./expertBox.scss";
 
+function detectmob() {
+   if(window.innerWidth <= 800) {
+     return true;
+   } else {
+     return false;
+   }
+}
 const expertBox = props => {
+  let numberSlides = props.listExpert.length - 1;
+  if (detectmob()) {
+    numberSlides = 1;
+  }
   const settings = {
     dots: true,
     arrows: true,
     infinite: true,
     speed: 500,
-    slidesToShow: props.listExpert.length - 1
+    slidesToShow: numberSlides
   };
 
   return (

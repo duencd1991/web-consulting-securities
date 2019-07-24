@@ -111,8 +111,8 @@ class FormExpert extends Component {
       } else {
         const data = new FormData();
         data.append("name", encodeURI(state.name));
-        data.append("position", state.position);
-        data.append("description", state.description);
+        data.append("position", encodeURI(state.position));
+        data.append("description", encodeURI(state.description));
         data.append("file", state.file);
         this.props.createExpert(data);
       }

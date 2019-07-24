@@ -10,10 +10,11 @@ export function* listHomeGuidelines() {
 
       const response = yield listGuidelines();
       if (response.data.statusCode === 1) {
-        yield put({
-          type: actions.GUIDELINE_HOME_LIST,
-          list: response.data.list
-        });
+        if (response.data.list) {
+          yield put({ type: actions.GUIDELINE_HOME_LIST, list: response.data.list });
+        } else {
+          yield put({ type: actions.GUIDELINE_HOME_LIST, list: [] });
+        }
       }
 
       yield put({ type: notifyActions.NOTIFY_LOADING });
@@ -29,7 +30,11 @@ export function* listHomeNews() {
 
       const response = yield listNews();
       if (response.data.statusCode === 1) {
-        yield put({ type: actions.NEWS_HOME_LIST, list: response.data.list });
+        if (response.data.list) {
+          yield put({ type: actions.NEWS_HOME_LIST, list: response.data.list });
+        } else {
+          yield put({ type: actions.NEWS_HOME_LIST, list: [] });
+        }
       }
 
       yield put({ type: notifyActions.NOTIFY_LOADING });
@@ -45,7 +50,11 @@ export function* listHomeReports() {
 
       const response = yield listReports();
       if (response.data.statusCode === 1) {
-        yield put({ type: actions.REPORT_HOME_LIST, list: response.data.list });
+        if (response.data.list) {
+          yield put({ type: actions.REPORT_HOME_LIST, list: response.data.list });
+        } else {
+          yield put({ type: actions.REPORT_HOME_LIST, list: [] });
+        }
       }
 
       yield put({ type: notifyActions.NOTIFY_LOADING });

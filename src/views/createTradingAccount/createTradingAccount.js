@@ -129,8 +129,8 @@ class CreateTradingAccount extends Component {
       permanentAddress !== "" &&
       currentAddress !== "" &&
       phoneNumber !== "" &&
-      email !== "" &&
-      accountNumber !== "";
+      email !== ""
+      //&& accountNumber !== "";
     this.setState({
       validate: check
     });
@@ -582,12 +582,12 @@ class CreateTradingAccount extends Component {
                     </div>
                     <div className="form-wrapper vldSTK">
                       <span htmlFor="validationSTK">
-                        Số tài khoản tại MBS ( <i className="txtRed">*</i> ):{" "}
+                        Số tài khoản tại MBS
                       </span>
                       <input
                         type="text"
                         className="form-control is-invalid"
-                        placeholder="Số tài khoản tại MBS ..."
+                        placeholder="Số tài khoản tại MBS"
                         id="validationSTK"
                         required
                         name="accountNumber"

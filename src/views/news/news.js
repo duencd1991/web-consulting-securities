@@ -21,7 +21,6 @@ class News extends Component {
       selectedMenu: 1,
       pageNum: 1,
       pageSize: 6,
-      total: 0,
       detail: false
     };
   }
@@ -98,11 +97,7 @@ class News extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.total !== this.props.total && nextProps.total > 0) {
-      this.setState({
-        total: nextProps.total
-      });
-    }
+   
   }
 
   goToDetail = id => {
@@ -111,7 +106,9 @@ class News extends Component {
   };
 
   render() {
-    const { selectedMenu, pageNum, pageSize, total, detail } = this.state;
+    var createDate = new Date(this.props.detail.createDate);
+    const convertedDate = `${createDate.getDate()} - ${createDate.getMonth()+1} - ${createDate.getFullYear()}`
+    const { selectedMenu, pageNum, pageSize, detail } = this.state;
     return (
       <Layout>
         <div className="news-page">
@@ -127,6 +124,7 @@ class News extends Component {
                   <span className="current-menu-news">
                     {TYPE_NEWS[selectedMenu - 1].name}
                   </span>
+                  <img alt="img-news" className="img-news" src={this.props.detail.imgUrl}/>
                   <div className="news-detail-title">
                     {this.props.detail.title}
                   </div>
@@ -137,7 +135,9 @@ class News extends Component {
                         : "Admin"}
                     </span>
                     <i className="far fa-calendar-alt"></i>
-                    <span>{this.props.detail.createDate}</span>
+                    <span>{
+                      convertedDate
+                      }</span>
                     <i className="far fa-eye"></i>
                     <span>
                       {this.props.detail.views ? this.props.detail.views : 0}
@@ -216,7 +216,7 @@ class News extends Component {
                       }
                       activePage={pageNum}
                       itemsCountPerPage={pageSize}
-                      totalItemsCount={total}
+                      totalItemsCount={this.props.total}
                       pageRangeDisplayed={5}
                       onChange={this.onChangePageNum}
                     />

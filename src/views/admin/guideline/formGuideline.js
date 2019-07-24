@@ -100,7 +100,7 @@ class FormGuideline extends Component {
         const data = new FormData();
         data.append("name", encodeURI(state.name));
         data.append("type", state.type);
-        data.append("content", state.content);
+        data.append("content", encodeURI(state.content));
         data.append("file", state.file);
         this.props.create(data);
       }

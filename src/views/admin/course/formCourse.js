@@ -136,14 +136,14 @@ class FormCourse extends Component {
       } else {
         const data = new FormData();
         data.append("name", encodeURI(state.name));
-        data.append("teacher", state.teacher);
+        data.append("teacher", encodeURI(state.teacher));
         data.append("type", state.type);
         data.append("file", state.file);
         data.append("startDate", state.startDate);
         data.append("endDate", state.endDate);
-        data.append("schedule", state.schedule);
-        data.append("address", state.address);
-        data.append("description", state.description);
+        data.append("schedule", encodeURI(state.schedule));
+        data.append("address", encodeURI(state.address));
+        data.append("description", encodeURI(state.description));
         data.append("fee", state.fee);
         data.append("category", state.category);
         data.append("priority", state.priority);

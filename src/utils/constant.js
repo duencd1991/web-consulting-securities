@@ -28,55 +28,59 @@ export const ERROR_CODE = [
   },
   {
     code: 4,
-    message: "Cảnh báo"
+    message: "Không tìm thấy bản ghi"
   },
   {
     code: 5,
-    message: "Request Body invalid"
+    message: "Nội dung không hợp lệ"
   },
   {
     code: 6,
-    message: "Request Body invalid"
+    message: "Tham số không hợp lệ"
   },
   {
     code: 7,
     message: "Không có dữ liệu"
   },
   {
+    code: 10,
+    message: "Hệ thống đang bận"
+  },
+  {
     code: 11,
-    message: "Application is Start"
+    message: "Hệ thống đang bận"
   },
   {
     code: 12,
-    message: "Application is Stop"
+    message: "Hệ thống đang bận"
   },
   {
     code: 13,
-    message: "Application is ReStart"
+    message: "Hệ thống đang bận"
   },
   {
     code: 14,
-    message: "Application is Runnin"
+    message: "Hệ thống đang bận"
   },
   {
     code: 15,
-    message: "File upload invalid"
+    message: "Định dạng file không hợp lệ"
   },
   {
     code: 16,
-    message: "File size over limit"
+    message: "Dung lượng file vượt quá giới hạn"
   },
   {
     code: 21,
-    message: "email is exists"
+    message: "Email đã tồn tại"
   },
   {
     code: 22,
-    message: "phone is exists"
+    message: "Số điện thoại đã tồn tại"
   },
   {
     code: 23,
-    message: "password is wrong"
+    message: "Tên đăng nhập hoặc mật khẩu không đúng"
   },
   {
     code: 24,

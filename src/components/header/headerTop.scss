@@ -101,59 +101,29 @@
     }
   }
 }
-@media (max-width: 793px) {
-  .header-top {
-    display: inline-table;
-  }
-}
-
-// @media (max-width: 1160px) {
-//   #guide-register-text {
-//     display: none;
-//   }
-// }
-// @media (max-width: 767px) {
-//   .header-top {
-//     display: block;
-//     .menu-top {
-//       padding-left: 20px;
-//       flex-direction: column;
-//       .menu-top-left {
-//         display: none;
-//       }
-//       .col-separator {
-//         display: none;
-//       }
-//       a {
-//         padding: 0;
-//         line-height: 30px;
-//       }
-//     }
-//     .register-top {
-//       .register-top-limit {
-//         max-width: 100%;
-//         justify-content: center;
-//       }
-//     }
-//   }
-// }
 @media screen and (max-width: 991px) {
   .header-top {
-    justify-content: center;
+    display: inline-table;
     .menu-top-limit {
       display: none;
     }
     .register-top-limit {
       justify-content: center;
     }
+    .user-info {
+      text-align: right;
+    }
   }
 }
 @media screen and (max-width: 575px) {
   .header-top {
-    justify-content: center;
+    // justify-content: center;
     min-height: auto;
     .menu-top-limit {
       display: none;
+    }
+    .user-info {
+      text-align: right;
     }
     .register-top-limit {
       height: auto;

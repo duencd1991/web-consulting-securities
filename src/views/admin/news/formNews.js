@@ -11,6 +11,13 @@ import notifyActions from "../../../store/notification/actions";
 
 import CKEditor from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
+import CKFinder from '@ckeditor/ckeditor5-ckfinder/src/ckfinder';
+
+function MyUploadAdapterPlugin( editor ) {
+    editor.plugins.get( 'FileRepository' ).createUploadAdapter = function( loader ) {
+        console.log("FileRepository loader: ", loader);
+    };
+}
 
 class FormNews extends Component {
   constructor(props) {
@@ -113,14 +120,14 @@ class FormNews extends Component {
           title: state.title,
           content: state.content,
           categoryId: state.categoryId,
-          file: state.imgUrl
+          imgUrl: state.imgUrl
         };
         this.props.updateNews(data);
       } else {
         const data = new FormData();
-        data.append("views", encodeURI(state.name));
-        data.append("title", state.title);
-        data.append("content", state.content);
+        data.append("views", state.views);
+        data.append("title", encodeURI(state.title));
+        data.append("content", encodeURI(state.content));
         data.append("categoryId", state.categoryId);
         data.append("file", state.file);
         this.props.createNews(data);
@@ -152,12 +159,28 @@ class FormNews extends Component {
       validateUploadImage
     } = this.state;
 
-    // var cb = function() { return (new Date()).getTime() }
-    // ClassicEditor.create(document.querySelector( '#editor' ), {
-    //   simpleUpload: {
-    //       uploadUrl: {url:'http://127.0.0.1/my-upload-endpoint', headers:{ 'x-header':'myhead', 'x-header-cb': cb } }
-    //   }
-    // })
+    ClassicEditor.create( document.querySelector( '#editor' ), {
+        // plugins: [ CKFinder ],
+        toolbar: [ 'bold', 'italic', 'link' ],
+        // toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote' ],
+        // heading: {
+        //     options: [
+        //         { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
+        //         { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
+        //         { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' }
+        //     ]
+        // },
+        // ckfinder: {
+        //   uploadUrl: 'http://test-advisor.mbs.com.vn/api/v1/ApiRobotCore/advisor/news/upload',
+        //   options: {
+        //       resourceType: 'Images'
+        //   }
+        // }
+        extraPlugins: [ MyUploadAdapterPlugin ]
+    })
+    .catch( error => {
+        console.log( error );
+    });
     return (
       <Layout>
         <div className="admin-form">

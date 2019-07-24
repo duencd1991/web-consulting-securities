@@ -74,7 +74,7 @@ class Home extends Component {
     });
   };
 
-  componentDidMount() {
+  componentWillMount() {
     this.props.fetchNews();
     this.props.fetchGuideLines();
     this.props.fetchReports();

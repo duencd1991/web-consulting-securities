@@ -14,8 +14,7 @@ class ListUsers extends Component {
 
     this.state = {
       pageNum: DEFAULT_TABLE.pageNum,
-      pageSize: DEFAULT_TABLE.pageSize,
-      total: 0
+      pageSize: DEFAULT_TABLE.pageSize
     };
   }
 
@@ -64,11 +63,6 @@ class ListUsers extends Component {
     }
   }
   componentWillReceiveProps(nextProps) {
-    if (nextProps.total !== this.props.total && nextProps.total > 0) {
-      this.setState({
-        total: nextProps.total
-      });
-    }
     if (nextProps.message !== "" && nextProps.message !== this.props.message) {
       toast(nextProps.message);
       if (nextProps.success) {
@@ -79,7 +73,7 @@ class ListUsers extends Component {
   }
 
   render() {
-    const { pageNum, pageSize, total } = this.state;
+    const { pageNum, pageSize } = this.state;
     const columns = [
       {
         Header: "HỌ TÊN",
@@ -200,7 +194,7 @@ class ListUsers extends Component {
               columns={columns}
               pageSize={pageSize}
               pageNum={pageNum}
-              total={total}
+              total={this.props.total}
               onChangePageNum={this.onChangePageNum}
               onChangePageSize={this.onChangePageSize}
             />

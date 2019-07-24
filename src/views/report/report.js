@@ -15,8 +15,7 @@ class Report extends Component {
     this.state = {
       selectedType: 1,
       pageNum: DEFAULT_TABLE.pageNum,
-      pageSize: DEFAULT_TABLE.pageSize,
-      total: 0
+      pageSize: DEFAULT_TABLE.pageSize
     };
   }
 
@@ -46,11 +45,7 @@ class Report extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    if (nextProps.total !== this.props.total && nextProps.total > 0) {
-      this.setState({
-        total: nextProps.total
-      });
-    }
+
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -63,7 +58,7 @@ class Report extends Component {
   }
 
   render() {
-    const { selectedType, pageSize, pageNum, total } = this.state;
+    const { selectedType, pageSize, pageNum } = this.state;
     const columns = [
       {
         Header: <div className="table-center-element">TT</div>,
@@ -158,7 +153,7 @@ class Report extends Component {
                   columns={columns}
                   pageSize={pageSize}
                   pageNum={pageNum}
-                  total={total}
+                  total={this.props.total}
                   onChangePageNum={this.onChangePageNum}
                   onChangePageSize={this.onChangePageSize}
                 />
