@@ -120,19 +120,19 @@ export const TYPE_NEWS = [
 export const TYPE_REPORT = [
   {
     type: 1,
-    name: "Bản tin phái sinh"
+    name: "Notes tư vấn CK Phái Sinh (giữa ngày)"
   },
   {
     type: 2,
-    name: "Báo cáo Phân tích cơ bản Phái sinh"
+    name: "Bản tin Phái Sinh (VIP)"
   },
   {
     type: 3,
-    name: "Báo cáo phân tích kỹ thuật Phái sinh"
+    name: "Bản tin CKPS- TTNC"
   },
   {
     type: 4,
-    name: "Báo cáo phân tích CW"
+    name: "Bản tin CW-TTNC"
   }
 ];
 export const PRIORITY_COURSE = [
@@ -355,3 +355,21 @@ export const REGISTER_STATUS = [
     color: "color-cancel"
   }
 ];
+export const MENU_ROBO = [
+  {
+    index: 1,
+    name: "HỆ THỐNG MBS"
+  },
+  {
+    index: 2,
+    name: "HỆ THỐNG BÊN THỨ BA PHÁT TRIỂN"
+  },
+  {
+    index: 3,
+    name: "TOP 10 HỆ THỐNG"
+  },
+  {
+    index: 4,
+    name: "KHÁM PHÁ HỆ THỐNG"
+  }
+]

@@ -2,6 +2,8 @@ import React from "react";
 import { Router, Route, Switch } from "react-router-dom";
 import { RouteAdmin } from "./RouteAdmin";
 import { RouteCustomerCare } from "./RouteCustomerCare";
+import { RouteExpert } from "./RouteExpert";
+import { RouteRequireLogin } from "./RouteRequireLogin";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
@@ -44,9 +46,10 @@ const AppRouter = () => {
     <Router history={history}>
       <RootContainer>
         <Switch>
+          
           <Route exact path="/" component={Home} />
           <Route exact path="/consulting" component={ConsultingService} />
-          <Route exact path="/trading-instruction" component={TradingInstrucion} />
+          <Route exact path="/guideline" component={TradingInstrucion} />
           <Route exact path="/training-service" component={TrainingService} />
           <Route exact path="/report" component={Report} />
           <Route exact path="/about-us" component={AboutUs} />
@@ -60,18 +63,19 @@ const AppRouter = () => {
           <Route exact path="/get-pass-word" component={GetPassWord} />
           <Route exact path="/terms-of-use" component={TermsOfUse} />
 
-          <RouteAdmin exact path="/list-news" component={ListNews} />
-          <RouteAdmin exact path="/create-news" component={FormNews} />
-          <RouteAdmin exact path="/list-report" component={ListReport} />
           <RouteAdmin exact path="/list-course" component={ListCourse} />
           <RouteAdmin exact path="/create-course" component={FormCourse} />
-          <RouteAdmin exact path="/create-report" component={FormReport} />
-          <RouteAdmin exact path="/create-expert" component={FormExpert} />
-          <RouteAdmin exact path="/list-expert" component={listExpert} />
-          <RouteAdmin exact path="/list-guideline" component={ListGuideline} />
-          <RouteAdmin exact path="/create-guideline" component={FormGuideline} />
           <RouteAdmin exact path="/list-user" component={ListUsers} />
           <RouteAdmin exact path="/create-user" component={FormUser} />
+          <RouteAdmin exact path="/create-expert" component={FormExpert} />
+          <RouteAdmin exact path="/list-expert" component={listExpert} />
+
+          <RouteExpert exact path="/list-news" component={ListNews} />
+          <RouteExpert exact path="/create-news" component={FormNews} />
+          <RouteExpert exact path="/list-report" component={ListReport} />
+          <RouteExpert exact path="/create-report" component={FormReport} />
+          <RouteExpert exact path="/list-guideline" component={ListGuideline} />
+          <RouteExpert exact path="/create-guideline" component={FormGuideline} />
 
           <RouteCustomerCare exact path="/list-register-course" component={ListRegisterCourse} />
           <RouteCustomerCare exact path="/list-resgiter-account-trading" component={ListAccountTrading} />

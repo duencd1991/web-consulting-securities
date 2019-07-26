@@ -12,7 +12,8 @@ class TradingInstrucion extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedMenu: 1
+      selectedMenu: 1,
+      detail: false
     };
   }
 
@@ -37,10 +38,45 @@ class TradingInstrucion extends Component {
     }
     this.props.fetchListType(dataTop4);
     this.props.fetchGuideLineList(dataTop10);
+
+    const url = new URL(window.location);
+    const id = url.searchParams.get("id");
+    if (id) {
+      this.setState({
+        detail: true
+      });
+      this.props.getDetail({id: id});
+    } else {
+      this.setState({
+        detail: false
+      });
+    }
   }
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.location.search !== this.props.location.search) {
+      const url = new URL(window.location);
+      const id = url.searchParams.get("id");
+      if (id) {
+        this.setState({
+          detail: true
+        });
+        this.props.getDetail({id: id});
+      } else {
+        this.setState({
+          detail: false
+        });
+      }
+    }
+  }
+  goToDetail = id => {
+    this.props.updateViews({id: id});
+    this.props.history.push(`/guideline?id=${id}`);
+  };
 
   render() {
-    const { selectedMenu } = this.state;
+    var createDate = new Date(this.props.detail.createDate);
+    const convertedDate = `${createDate.getDate()} - ${createDate.getMonth()+1} - ${createDate.getFullYear()}`
+    const { selectedMenu, detail } = this.state;
     return (
       <Layout title="">
         <div className="trading-instruction-page">
@@ -53,71 +89,121 @@ class TradingInstrucion extends Component {
             <div className="guide-menu">
               <div className="title">HƯỚNG DẪN GIAO DỊCH</div>
               <hr />
-              <div className="list-menu-box">
-                {TYPE_GUIDELINE.map((typeItem, index) => {
-                  return (
-                    <ul
-                      key={index}
-                      className={
-                        selectedMenu === typeItem.type
-                          ? "menu-item-box active"
-                          : "menu-item-box"
+              {
+                detail ?
+                  <div className="guideline-detail-page">
+                    <span className="current-menu-guideline">
+                      {
+                        TYPE_GUIDELINE.map(item => {
+                          if (item.type === selectedMenu) {
+                            return item.title;
+                          } else {
+                            return null;
+                          }
+                        })
                       }
-                    >
-                      {selectedMenu === typeItem.type ? (
-                        <i className="fas fa-angle-up arrow" />
-                      ) : (
-                        <i className="fas fa-angle-down arrow" />
-                      )}
-                      <li
-                        className={
-                          selectedMenu === typeItem.type
-                            ? "menu-catalog active"
-                            : "menu-catalog"
-                        }
-                        onClick={() => this.selectMenu(typeItem.type)}
-                      >
-                        {typeItem.title}
-                      </li>
-                      {typeItem.type === 1 &&
-                        this.props.listType1 &&
-                        this.props.listType1.map((item, type1Index) => {
-                          return (
-                            <li key={type1Index}>
-                              <i className="fas fa-angle-double-right"></i>
-                              {item.name}
-                            </li>
-                          );
-                        })}
-                      {typeItem.type === 2 &&
-                        this.props.listType2 &&
-                        this.props.listType2.map((item, type2Index) => {
-                          return (
-                            <li key={type2Index}>
-                              <i className="fas fa-angle-double-right"></i>
-                              {item.name}
-                            </li>
-                          );
-                        })}
-                      {typeItem.type === 3 &&
-                        this.props.listType3 &&
-                        this.props.listType3.map((item, type3Index) => {
-                          return (
-                            <li key={type3Index}>
-                              <i className="fas fa-angle-double-right"></i>
-                              {item.name}
-                            </li>
-                          );
-                        })}
-                    </ul>
-                  );
-                })}
-              </div>
-              <div className="contact-box-layout">
-                <div className="title">LIÊN HỆ NHÂN VIÊN HỖ TRỢ</div>
-                <hr />
-                <ContactBox />
-              </div>
+                    </span>
+                    <div className="guideline-detail-title">
+                      {this.props.detail.name}
+                    </div>
+                    <div className="guideline-footer">
+                      <span>
+                        {this.props.detail.author
+                          ? this.props.detail.author
+                          : "Admin"}
+                      </span>
+                      <i className="far fa-calendar-alt"></i>
+                      <span>{
+                        convertedDate
+                        }</span>
+                      <i className="far fa-eye"></i>
+                      <span>
+                        {this.props.detail.views ? this.props.detail.views : 0}
+                      </span>
+                    </div>
+                    <div className="guideline-file">
+                      <a
+                        href={this.props.detail.url}
+                        target="_blank"
+                        rel="noopener noreferrer">
+                        Tài liệu tham khảo đính kèm
+                      </a>
+                    </div>
+                    <div
+                      className="content"
+                      dangerouslySetInnerHTML={{
+                        __html: this.props.detail.content
+                      }}
+                    ></div>
+                  </div> : <React.Fragment>
+                  <div className="list-menu-box">
+                    {TYPE_GUIDELINE.map((typeItem, index) => {
+                      return (
+                        <ul
+                          key={index}
+                          className={
+                            selectedMenu === typeItem.type
+                              ? "menu-item-box active"
+                              : "menu-item-box"
+                          }
+                        >
+                          {selectedMenu === typeItem.type ? (
+                            <i className="fas fa-angle-up arrow" />
+                          ) : (
+                            <i className="fas fa-angle-down arrow" />
+                          )}
+                          <li
+                            className={
+                              selectedMenu === typeItem.type
+                                ? "menu-catalog active"
+                                : "menu-catalog"
+                            }
+                            onClick={() => this.selectMenu(typeItem.type)}
+                          >
+                            {typeItem.title}
+                          </li>
+                          {typeItem.type === 1 &&
+                            this.props.listType1 &&
+                            this.props.listType1.map((item, type1Index) => {
+                              return (
+                                <li key={type1Index} onClick={() => this.goToDetail(item.id)}>
+                                  <i className="fas fa-angle-double-right"></i>
+                                  {item.name}
+                                </li>
+                              );
+                            })}
+                          {typeItem.type === 2 &&
+                            this.props.listType2 &&
+                            this.props.listType2.map((item, type2Index) => {
+                              return (
+                                <li key={type2Index} onClick={() => this.goToDetail(item.id)}>
+                                  <i className="fas fa-angle-double-right"></i>
+                                  {item.name}
+                                </li>
+                              );
+                            })}
+                          {typeItem.type === 3 &&
+                            this.props.listType3 &&
+                            this.props.listType3.map((item, type3Index) => {
+                              return (
+                                <li key={type3Index} onClick={() => this.goToDetail(item.id)}>
+                                  <i className="fas fa-angle-double-right"></i>
+                                  {item.name}
+                                </li>
+                              );
+                            })}
+                        </ul>
+                      );
+                    })}
+                  </div>
+                  <div className="contact-box-layout">
+                    <div className="title">LIÊN HỆ NHÂN VIÊN HỖ TRỢ</div>
+                    <hr />
+                    <ContactBox />
+                  </div>
+                </React.Fragment>
+              }
+              
             </div>
             <div className="top-guide">
               <div className="title">HƯỚNG DẪN ĐƯỢC XEM NHIỀU NHẤT</div>
@@ -125,15 +211,11 @@ class TradingInstrucion extends Component {
                 {this.props.listTop.map((item, index) => {
                   return (
                     <li key={index}>
-                      <a
-                        href={item.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        onClick={() => this.props.updateViews({id: item.id})}
-                      >
+                      <span href=""
+                        onClick={() => this.goToDetail(item.id)}>
                         <i className="fas fa-angle-double-right"></i>
                         {item.name}
-                      </a>
+                      </span>
                     </li>
                   );
                 })}
@@ -145,10 +227,10 @@ class TradingInstrucion extends Component {
                 <p className="register-text">
                   giao dịch <span>CHỨNG KHOÁN</span> chưa?
                 </p>
-                <button className="btn btn-register">
+                <a className="btn btn-register" href="/create-trading-account">
                   <i className="far fa-user"></i>
                   MỞ TÀI KHOẢN
-                </button>
+                </a>
               </div>
             </div>
           </div>
@@ -163,7 +245,8 @@ const mapStateToProps = state => {
     listType1: state.GuideLines.listType1,
     listType2: state.GuideLines.listType2,
     listType3: state.GuideLines.listType3,
-    listTop: state.GuideLines.listTop
+    listTop: state.GuideLines.listTop,
+    detail: state.GuideLines.detail
   };
 };
 
@@ -177,6 +260,9 @@ const mapDispatchToProps = dispatch => {
     },
     updateViews: data => {
       dispatch(actions.updateViews(data));
+    },
+    getDetail: data => {
+      dispatch(actions.getDetail(data));
     }
   };
 };
@@ -187,7 +273,9 @@ TradingInstrucion.propTypes = {
   listType1: PropTypes.array,
   listType2: PropTypes.array,
   listType3: PropTypes.array,
-  listTop: PropTypes.array
+  listTop: PropTypes.array,
+  detail: PropTypes.object,
+  history: PropTypes.func
 };
 export default connect(
   mapStateToProps,

@@ -9,6 +9,37 @@ import actions from "../../../store/tradingInstruction/actions";
 import notifyActions from "../../../store/notification/actions";
 import icDownload from "../../../assets/img/ic-download.png";
 
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+
+const editorModules = {
+  toolbar: {
+    container: [
+      [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+      ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+      ['blockquote', 'code-block'],
+
+      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+      [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+      [{ 'direction': 'rtl' }],                         // text direction
+
+      [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+      [{ 'font': [] }],
+      ['link'],
+
+      ['clean']         
+    ]
+  },
+  clipboard: {
+    matchVisual: false
+  }
+};
+const editorFormats = [
+  'header', 'font', 'size',
+  'bold', 'italic', 'underline', 'strike', 'blockquote',
+  'list', 'bullet', 'indent',
+  'link', 'image', 'color', 'background'
+];
 class FormGuideline extends Component {
   constructor(props) {
     super(props);
@@ -63,6 +94,11 @@ class FormGuideline extends Component {
       this.props.clearNotify();
     }
   }
+  onChangeEditor = data => {
+    this.setState({
+      content: data
+    });   
+  };
   onChange = e => {
     this.setState({
       [e.target.name]: e.target.value
@@ -191,25 +227,6 @@ class FormGuideline extends Component {
               </select>
             </div>
           </div>
-          <div className="form-group row">
-            <label className="col-sm-3 padding0">Hướng dẫn chi tiết</label>
-            <div className="col-sm-9 padding0">
-              <textarea
-                rows="4"
-                type="text"
-                className="form-control"
-                id="content"
-                name="content"
-                value={content}
-                onChange={this.onChange}
-              />
-              {!validate && content === "" && (
-                <div className="alert alert-warning" role="alert">
-                  Vui lòng nhập thông tin
-                </div>
-              )}
-            </div>
-          </div>
           {update ? (
             <div className="form-group row">
               <label className="col-sm-3 padding0">File đính kèm</label>
@@ -256,6 +273,24 @@ class FormGuideline extends Component {
               </div>
             </div>
           )}
+          <div className="form-group row">
+            <label className="col-sm-3 padding0">Hướng dẫn chi tiết</label>
+            <div className="col-sm-9 padding0">
+              <ReactQuill 
+                onChange={this.onChangeEditor}
+                value={content}
+                modules={editorModules}
+                formats={editorFormats}
+                bounds={'.app'}
+                placeholder={"Nhập nội dung hướng dẫn"}
+              />
+              {!validate && content === "" && (
+                <div className="alert alert-warning" role="alert">
+                  Vui lòng nhập thông tin
+                </div>
+              )}
+            </div>
+          </div>
           <div className="form-group row">
             <div className="col-sm-3 padding0"></div>
             <div className="col-sm-9 padding0">

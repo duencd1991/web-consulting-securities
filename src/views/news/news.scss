@@ -28,7 +28,7 @@
       text-align: left;
     }
     .new-footer {
-      margin-top: 11px;
+      margin: 11px;
       color: #666666;
       font-size: 0.875rem;
       i {
@@ -60,6 +60,11 @@
         line-height: 33px;
         font-family: Arial;
         margin: 16px 0 10px 0;
+      }
+      .content {
+        img {
+          width: 100%;
+        }
       }
     }
     .list-news {
@@ -171,7 +176,6 @@
           margin-bottom: 20px;
           img {
             width: 80px;
-            height: 80px;
             object-fit: cover;
           }
           .new-info {

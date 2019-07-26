@@ -260,7 +260,7 @@ class FormCourse extends Component {
                   return (
                     <option
                       key={index}
-                      selected={item.type === type ? "selected" : ""}
+                      defaultValue={item.type === type ? "selected" : ""}
                     >
                       {item.name}
                     </option>
@@ -286,7 +286,7 @@ class FormCourse extends Component {
                   return (
                     <option
                       key={index}
-                      selected={item.cat === category ? "selected" : ""}
+                      defaultValue={item.cat === category ? "selected" : ""}
                     >
                       {item.name}
                     </option>
@@ -312,7 +312,7 @@ class FormCourse extends Component {
                   return (
                     <option
                       key={index}
-                      selected={item.index === priority ? "selected" : ""}
+                      defaultValue={item.index === priority ? "selected" : ""}
                     >
                       {item.name}
                     </option>
@@ -356,7 +356,7 @@ class FormCourse extends Component {
                 id="startDate"
                 name="startDate"
                 value={startDate}
-                autocomplete="off"
+                autoComplete="off"
                 onBlur={this.onChangeDate}
               />
               {!validate && startDate === "" && (
@@ -377,7 +377,7 @@ class FormCourse extends Component {
                 id="endDate"
                 name="endDate"
                 value={endDate}
-                autocomplete="off"
+                autoComplete="off"
                 onBlur={this.onChangeDate}
               />
               {!validate && endDate === "" && (
@@ -545,7 +545,7 @@ const mapDispatchToProps = dispatch => {
 
 FormCourse.propTypes = {
   getDetail: PropTypes.func,
-  history: PropTypes.func,
+  history: PropTypes.object,
   clearNotify: PropTypes.func,
   updateCourse: PropTypes.func,
   createCourse: PropTypes.func,

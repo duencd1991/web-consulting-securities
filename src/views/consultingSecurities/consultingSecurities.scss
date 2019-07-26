@@ -11,7 +11,7 @@
     }
   }
   .page-content {
-    max-width: 1170px;
+    max-width: 1200px;
     margin: auto;
     padding: 30px 0;
     .consulting-menu {
@@ -70,7 +70,9 @@
           border: 1px solid #ccc;
           background-color: transparent;
           color: #333333;
-          width: 70px;
+          line-height: 0px;
+          max-width: 70px;
+          padding: 10px;
           height: 25px;
           border-radius: 12px;
           &.active {
@@ -99,23 +101,78 @@
           font-size: 14px;
           color: #111111;
           font-family: Arial;
-        }
-      }
-      .box-chat-consulting {
-        .box-chat {
-          max-height: 400px;
-          overflow-y: auto;
-          padding-bottom: 40px;
-        }
-        .box-input-chat {
-          display: flex;
-          .btn-primary {
-            border-radius: 0;
-            background-color: #005197;
-            color: #ffffff;
+          line-height: 30px;
+          white-space: nowrap;
+          .form-control {
+            height: 30px;
+            width: 60px;
+            &.input-currency {
+              width: 100px;
+            }
+            &.datepicker-here {
+              width: 110px;
+            }
+          }
+          .react-datepicker-wrapper {
+            input {
+              height: 30px;
+              width: 100px;
+              padding: 5px;
+              font-size: 1rem;
+              font-weight: 400;
+              line-height: 1.5;
+              color: #495057;
+              background-color: #fff;
+              background-clip: padding-box;
+              border: 1px solid #ced4da;
+              transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+            }
           }
         }
       }
+      .paging-box {
+        display: flex;
+        flex-direction: row-reverse;
+      }
+      .notice-msg {
+        font-size: 14px;
+        color: #736d6d;
+        font-style: italic;
+        padding: 5px 10px;
+      }
+      .box-chat-and-robo {
+        display: flex;
+        justify-content: space-between;
+        .box-chat-consulting {
+          width: 50%;
+          .box-chat {
+            max-height: 400px;
+            overflow-y: auto;
+            padding-bottom: 40px;
+            .chat-datetime {
+              color: #736d6d;
+              font-size: 14px;
+            }
+            .chat-content {
+              font-size: 18px;
+              font-family: Arial;
+            }
+          }
+          .box-input-chat {
+            display: flex;
+            .btn-primary {
+              border-radius: 0;
+              background-color: #005197;
+              color: #ffffff;
+            }
+          }
+        }
+        .box-robo-signal {
+          width: 45%;
+          background-color: blanchedalmond;
+        }
+      }
+
       .layout-tool {
         display: flex;
         .tool-trader-layout {
@@ -142,6 +199,7 @@
           .room-trader-item {
             display: flex;
             margin-top: 5px;
+            margin-right: 20px;
             img {
               width: 16px;
               height: 16px;
@@ -162,6 +220,22 @@
   .consulting-page {
     .page-content {
       padding: 20px;
+    }
+  }
+}
+@media screen and (max-width: 991px) {
+  .consulting-page {
+    .page-content {
+      padding: 20px;
+      .box-chat-and-robo {
+        display: block !important;
+        .box-chat-consulting {
+          width: 100% !important;
+        }
+        .box-robo-signal {
+          width: 100% !important;
+        }
+      }
     }
   }
 }

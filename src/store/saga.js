@@ -8,6 +8,7 @@ import accountTradingSaga from "./accountTrading/saga";
 import expertSaga from "./expert/saga";
 import chatConsultingSaga from "./consulting/saga";
 import userSaga from "./user/saga";
+import roboSaga from "./roboTrading/saga";
 
 export default function* rootSaga() {
   yield all([
@@ -19,6 +20,7 @@ export default function* rootSaga() {
     accountTradingSaga(),
     expertSaga(),
     chatConsultingSaga(),
-    userSaga()
+    userSaga(),
+    roboSaga()
   ]);
 }

@@ -26,6 +26,9 @@ class News extends Component {
   }
 
   onSelectMenu = index => {
+    if (this.state.detail) {
+      this.props.history.push(`/news?menu=${index}`);
+    }
     this.setState({
       selectedMenu: index
     });
@@ -64,6 +67,13 @@ class News extends Component {
       this.setState({
         detail: false
       });
+    }
+
+    const menu = url.searchParams.get("menu");
+    if (menu) {
+      this.setState({
+        selectedMenu: menu
+      })
     }
   }
 

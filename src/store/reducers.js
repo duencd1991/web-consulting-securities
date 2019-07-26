@@ -13,6 +13,7 @@ import AccountTrading from "./accountTrading/reducers";
 import Expert from "./expert/reducers";
 import ChatConsulting from "./consulting/reducers";
 import Users from "./user/reducers";
+import Robos from "./roboTrading/reducers";
 
 const reducers = combineReducers({
   Header,
@@ -25,7 +26,8 @@ const reducers = combineReducers({
   AccountTrading,
   Expert,
   ChatConsulting,
-  Users
+  Users,
+  Robos
 });
 
 const persistConfig = {

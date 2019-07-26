@@ -31,6 +31,7 @@
   }
   .content-box {
     max-width: 1170px;
+    padding-bottom: 30px;
     margin: auto;
     display: flex;
     flex-flow: row wrap;
@@ -120,6 +121,55 @@
           }
         }
       }
+      .guideline-footer {
+        margin: 11px;
+        color: #666666;
+        font-size: 0.875rem;
+        i {
+          padding: 0 5px 0 5px;
+          border-left: 1px solid #abaeaf;
+        }
+        span {
+          margin-right: 5px;
+        }
+      }
+      .guideline-detail-page {
+        .current-menu-guideline {
+          height: 32px;
+          background-color: #ecf0f3;
+          padding: 8px 14px;
+          color: #125491;
+          font-size: 14px;
+          font-family: Arial;
+          line-height: 32px;
+        }
+        .img-news {
+          width: 100%;
+          padding: 30px;
+        }
+        .guideline-detail-title {
+          font-size: 30px;
+          color: #333333;
+          min-height: 33px;
+          line-height: 33px;
+          font-family: Arial;
+          margin: 16px 0 10px 0;
+        }
+        .guideline-file {
+          margin: 10px;
+          a {
+            text-decoration: underline;
+            margin: 20px;
+            font-size: 18px;
+            font-weight: 500;
+          }
+        }
+        .content {
+          img {
+            width: 100%;
+          }
+        }
+      }
     }
     .top-guide {
       // position: relative;
@@ -153,7 +203,7 @@
             text-decoration: underline;
             cursor: pointer;
           }
-          a {
+          span {
             color: #125491;
           }
         }

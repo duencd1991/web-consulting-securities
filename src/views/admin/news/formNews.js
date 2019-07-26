@@ -8,17 +8,65 @@ import "../../../style/common.scss";
 import "./formNews.scss";
 import actions from "../../../store/news/actions";
 import notifyActions from "../../../store/notification/actions";
+import uploadActions from "../../../store/uploadFile/actions";
 
-import CKEditor from "@ckeditor/ckeditor5-react";
-import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
-import CKFinder from '@ckeditor/ckeditor5-ckfinder/src/ckfinder';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+import "react-quill/dist/quill.core.css"
+import axios from "axios";
 
-function MyUploadAdapterPlugin( editor ) {
-    editor.plugins.get( 'FileRepository' ).createUploadAdapter = function( loader ) {
-        console.log("FileRepository loader: ", loader);
-    };
-}
+const editorModules = {
+  toolbar: {
+    container: [
+      [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+      ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+      ['blockquote', 'code-block'],
 
+      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+      [{ 'indent': '-1'}, { 'indent': '+1' }],          // outdent/indent
+      [{ 'direction': 'rtl' }],                         // text direction
+
+      [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+      [{ 'font': [] }],
+      ['link', 'image'],
+
+      ['clean']         
+    ],
+    handlers: { image: //this.imageHandler
+      function() {
+        const input = document.createElement('input');
+        input.setAttribute('type', 'file');
+        input.setAttribute('accept', 'image/*');
+        input.click();
+        input.onchange = async function() {
+          const file = input.files[0];
+          console.log('User trying to uplaod this:', file);
+
+          const formData = new FormData();
+
+          formData.append('file', file);
+          // Save current cursor state
+          const range = this.quill.getSelection(true);
+
+          // this.props.uploadFile(formData);
+          const data = await axios.post('http://test-advisor.mbs.com.vn/api/v1/ApiRobotCore/advisor/news/upload',formData);
+
+          // Insert uploaded image
+          this.quill.insertEmbed(range.index, 'image', data.data.data); 
+        }.bind(this);
+      }
+    }
+  },
+  clipboard: {
+    matchVisual: false
+  }
+};
+const editorFormats = [
+  'header', 'font', 'size',
+  'bold', 'italic', 'underline', 'strike', 'blockquote',
+  'list', 'bullet', 'indent',
+  'link', 'image', 'color', 'background'
+];
 class FormNews extends Component {
   constructor(props) {
     super(props);
@@ -108,8 +156,39 @@ class FormNews extends Component {
   onChangeEditor = data => {
     this.setState({
       content: data
-    });
+    });   
   };
+  imageHandler = () => {
+    const input = document.createElement('input');
+    input.setAttribute('type', 'file');
+    input.setAttribute('accept', 'image/*');
+    input.click();
+    input.onchange = function() {
+      const file = input.files[0];
+      console.log('User trying to uplaod this:', file);
+
+      const formData = new FormData();
+
+      formData.append('file', file);
+      // Save current cursor state
+      const range = this.quill.getSelection(true);
+
+      // Insert temporary loading placeholder image
+      this.quill.insertEmbed(range.index, 'image', `${ window.location.origin }/img/loading.gif`); 
+
+      // Move cursor to right side of image (easier to continue typing)
+      this.quill.setSelection(range.index + 1);
+
+      this.props.uploadFile(formData);
+      const link = `http://test-advisor.mbs.com.vn/download/img_news/profile.jpg`;
+
+      // Remove placeholder image
+      this.quill.deleteText(range.index, 1);
+      // Insert uploaded image
+      this.quill.insertEmbed(range.index, 'image', link); 
+    }.bind(this);
+  }
+
   onSubmit = () => {
     if (this.onValidateForm()) {
       const state = this.state;
@@ -159,28 +238,6 @@ class FormNews extends Component {
       validateUploadImage
     } = this.state;
 
-    ClassicEditor.create( document.querySelector( '#editor' ), {
-        // plugins: [ CKFinder ],
-        toolbar: [ 'bold', 'italic', 'link' ],
-        // toolbar: [ 'heading', '|', 'bold', 'italic', 'link', 'bulletedList', 'numberedList', 'blockQuote' ],
-        // heading: {
-        //     options: [
-        //         { model: 'paragraph', title: 'Paragraph', class: 'ck-heading_paragraph' },
-        //         { model: 'heading1', view: 'h1', title: 'Heading 1', class: 'ck-heading_heading1' },
-        //         { model: 'heading2', view: 'h2', title: 'Heading 2', class: 'ck-heading_heading2' }
-        //     ]
-        // },
-        // ckfinder: {
-        //   uploadUrl: 'http://test-advisor.mbs.com.vn/api/v1/ApiRobotCore/advisor/news/upload',
-        //   options: {
-        //       resourceType: 'Images'
-        //   }
-        // }
-        extraPlugins: [ MyUploadAdapterPlugin ]
-    })
-    .catch( error => {
-        console.log( error );
-    });
     return (
       <Layout>
         <div className="admin-form">
@@ -233,7 +290,7 @@ class FormNews extends Component {
                   return (
                     <option
                       key={index}
-                      selected={item.type === categoryId ? "selected" : ""}
+                      defaultValue={item.type === categoryId ? "selected" : ""}
                     >
                       {item.name}
                     </option>
@@ -271,14 +328,13 @@ class FormNews extends Component {
           <div className="form-group row">
             <label className="col-sm-3 padding0">Nội dung</label>
             <div className="col-sm-9 padding0">
-              <CKEditor
-                name="content"
-                data={content ? content : ""}
-                editor={ClassicEditor}
-                onChange={(event, editor) => {
-                  const data = editor.getData();
-                  this.onChangeEditor(data);
-                }}
+              <ReactQuill 
+                onChange={this.onChangeEditor}
+                value={content}
+                modules={editorModules}
+                formats={editorFormats}
+                bounds={'.app'}
+                placeholder={"Nhập nội dung tin tức"}
               />
               {!validate && content === "" && (
                 <div className="alert alert-warning" role="alert">
@@ -322,6 +378,9 @@ const mapDispatchToProps = dispatch => {
     },
     clearNotify: () => {
       dispatch(notifyActions.clearNotify());
+    },
+    uploadFile: data => {
+      dispatch(uploadActions.uploadFile(data));
     }
   };
 };
@@ -329,11 +388,11 @@ FormNews.propTypes = {
   createNews: PropTypes.func,
   updateNews: PropTypes.func,
   clearNotify: PropTypes.func,
-  history: PropTypes.func,
+  history: PropTypes.object,
   getDetail: PropTypes.func,
   detail: PropTypes.object,
   message: PropTypes.string,
-  success: PropTypes.string
+  success: PropTypes.bool
 };
 
 export default connect(

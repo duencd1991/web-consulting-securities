@@ -36,19 +36,34 @@ class Footer extends Component {
             <div className="footer-item">
               <div className="item-header">FORUM TRADER</div>
               <hr />
-              <a href="/mbs-co-phieu" className="item-content icSky">
+              <a href="https://join.skype.com/Smf6v0D1obRf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="item-content icSky">
                 Room 1
               </a>
-              <a href="/mbs-phai-sinh" className="item-content icSky">
+              <a href="https://join.skype.com/Q8qIbqdn58fA"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="item-content icSky">
                 Room 2
               </a>
-              <a href="/mbs-chung-quyen" className="item-content icTele">
+              <a href="https://t.me/joinchat/HRNtrlXoPjDH5NBTJGwTwg"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="item-content icTele">
                 Telegram
               </a>
             </div>
             <div className="footer-item">
               <div className="item-header">HỖ TRỢ</div>
               <hr />
+              <a href="https://join.skype.com/Q8qIbqdn58fA"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="item-content icSky">
+                CSKH
+              </a>
               <a href="/faqs" className="item-content">
                 FAQs
               </a>

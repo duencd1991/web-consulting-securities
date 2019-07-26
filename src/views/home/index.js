@@ -34,7 +34,7 @@ const listBanner = [
 ];
 const listMenu = [
   {
-    link: "/trading-instruction",
+    link: "/guideline",
     name: "HƯỚNG DẪN TỰ GIAO DỊCH"
   },
   {
@@ -173,7 +173,7 @@ class Home extends Component {
                         <img
                           className="new-content-img"
                           alt={`news-${item.id}`}
-                          src={item.img ? item.img : noImg}
+                          src={item.imgUrl ? item.imgUrl : noImg}
                         />
                         <a
                           href={`/news?id=${newsIndex}`}
@@ -198,7 +198,9 @@ class Home extends Component {
                       <div className="file-contents" key={reportIndex}>
                         <img alt={`report-${reportIndex}`} src={icFile} />
                         <a
-                          href={`/report-${reportIndex}`}
+                          href={item.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
                           className="file-content-text"
                         >
                           {item.name}
@@ -220,7 +222,7 @@ class Home extends Component {
                       <div className="file-contents" key={guideIndex}>
                         <img alt={`file-${guideIndex}`} src={icFile} />
                         <a
-                          href={`/file-${guideIndex}`}
+                          href={`/guideline?id=${item.id}`}
                           className="file-content-text"
                         >
                           {item.name}

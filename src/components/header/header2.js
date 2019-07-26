@@ -74,7 +74,7 @@ class Header extends Component {
                 <li
                   className={
                     urlPage === "/register-account" ||
-                    urlPage === "/trading-instruction" ||
+                    urlPage === "/guideline" ||
                     urlPage === "/training-service" ||
                     urlPage === "/consulting"
                       ? "nav-item dropdown active"
@@ -96,7 +96,7 @@ class Header extends Component {
                     aria-labelledby="navbarDropdown"
                   >
                     <a className="dropdown-item" href="/create-trading-account">Mở tài khoản</a>
-                    <a className="dropdown-item" href="/trading-instruction">Hướng dẫn giao dịch</a>
+                    <a className="dropdown-item" href="/guideline">Hướng dẫn giao dịch</a>
                     <a className="dropdown-item" href="/training-service">Dịch vụ đào tạo</a>
                     <a className="dropdown-item" href="/consulting">Dịch vụ tư vấn</a>
                   </div>
@@ -131,7 +131,8 @@ class Header extends Component {
                 </li>
                 {
                   (this.props.profile.permissionId === TYPE_PERMISSION.ADMIN
-                  || this.props.profile.permissionId === TYPE_PERMISSION.CUSTOMERCARE)
+                  || this.props.profile.permissionId === TYPE_PERMISSION.CUSTOMERCARE
+                  || this.props.profile.permissionId === TYPE_PERMISSION.EXPERT)
                   && <li
                     className={
                       urlPage === "/list-report" ||
@@ -155,10 +156,23 @@ class Header extends Component {
                           <a className="dropdown-item" href="/list-course">Quản lý khóa học</a>
                           <a className="dropdown-item" href="/list-expert">Quản lý chuyên gia</a>
                           <a className="dropdown-item" href="/list-user">Quản lý tài khoản</a>
+                          <a className="dropdown-item" href="/list-register-course">Danh sách đăng ký khóa học</a>
+                          <a className="dropdown-item" href="/list-resgiter-account-trading" >Danh sách mở tài khoản</a>
                         </React.Fragment>
                       }
-                      <a className="dropdown-item" href="/list-register-course">Danh sách đăng ký khóa học</a>
-                      <a className="dropdown-item" href="/list-resgiter-account-trading" >Danh sách mở tài khoản</a>
+                      {
+                        this.props.profile.permissionId === TYPE_PERMISSION.EXPERT && <React.Fragment>
+                          <a className="dropdown-item" href="/list-guideline">Quản lý hướng dẫn</a>
+                          <a className="dropdown-item" href="/list-report">Quản lý báo cáo</a>
+                          <a className="dropdown-item" href="/list-news">Quản lý kiến thức</a>
+                        </React.Fragment>
+                      }
+                      {
+                        this.props.profile.permissionId === TYPE_PERMISSION.CUSTOMERCARE && <React.Fragment>
+                          <a className="dropdown-item" href="/list-register-course">Danh sách đăng ký khóa học</a>
+                          <a className="dropdown-item" href="/list-resgiter-account-trading" >Danh sách mở tài khoản</a>
+                        </React.Fragment>
+                      }
                     </div>
                   </li>
                 }
