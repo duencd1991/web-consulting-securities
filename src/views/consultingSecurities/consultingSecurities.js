@@ -1,7 +1,26 @@
 import React, { Component } from "react";
-import Layout from "../layout/layout";
+
+//lib
 import { connect } from "react-redux";
+import Pagination from "react-js-pagination";
+import { toast } from "react-toastify";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+import SockJS from "sockjs-client";
+import Stomp from "stompjs";
+
+//css
 import "./consultingSecurities.scss";
+
+//component
+import Layout from "../layout/layout";
+import actions from "../../store/consulting/actions";
+import roboActions from "../../store/roboTrading/actions";
+import notifyActions from "../../store/notification/actions";
+import { TYPE_PERMISSION, DEFAULT_TABLE, STATUS, MENU_ROBO, socketURL, socketTopic } from "../../utils/constant";
+import { currency } from "../../utils/currency";
+
+//resource
 import icArrow from "../../assets/img/icArrowNext.png";
 import icSkype from "../../assets/img/icSkype16x16.png";
 import icTele from "../../assets/img/icTele16x16.png";
@@ -9,18 +28,11 @@ import icArrowPrev from "../../assets/img/icArrowPrev.png";
 import icArrowNext from "../../assets/img/icArrowNext.png";
 import icArrowStart from "../../assets/img/icArrowStart.png";
 import icArrowEnd from "../../assets/img/icArrowEnd.png";
-import actions from "../../store/consulting/actions";
-import roboActions from "../../store/roboTrading/actions";
-import notifyActions from "../../store/notification/actions";
-import Pagination from "react-js-pagination";
-import { toast } from "react-toastify";
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import moment from "moment";
-import { TYPE_PERMISSION, DEFAULT_TABLE, STATUS, MENU_ROBO } from "../../utils/constant";
-import { currency } from "../../utils/currency";
 
 let listChat = [];
+let socket = new SockJS(socketURL);;
+let stompClient = Stomp.over(socket);
+let msgSocket = [];
 
 class ConsultingSecurities extends Component {
   constructor(props) {
@@ -31,7 +43,9 @@ class ConsultingSecurities extends Component {
       pageSize: DEFAULT_TABLE.pageSize,
       intervalId: null,
       selectedMenu: MENU_ROBO[0].index,
-      selectedRoom: 1,
+      selectedRoom: [],
+      selectAllRoom: false,
+      listSignalRobo: [],
       contentChat: "",
       updateInfo: false,
       idUpdate: -1,
@@ -47,10 +61,13 @@ class ConsultingSecurities extends Component {
     };
   }
 
-  fetchListChat = () => {
-    const data = {
+  fetchListChat = (id) => {
+    let data = {
       roomId: 0
-    };
+    }
+    if (id) {
+      data.roomId = id;
+    }
     this.props.fetchListChat(data);
   };
   fetchListRobo = () => {
@@ -65,9 +82,42 @@ class ConsultingSecurities extends Component {
     this.props.getListRobo(data);
   }
 
+  connectAndReconnect = (successCallback) => {
+    socket = new SockJS(socketURL);
+    stompClient = Stomp.over(socket);
+    stompClient.connect({}, () => {
+      successCallback();
+    }, () => {
+      setTimeout(() => {
+        this.connectAndReconnect(successCallback);
+      }, 5000);
+    });
+  }
+
+  connectSocket = () => {
+    const state = this.state;
+    socket = new SockJS(socketURL);;
+    stompClient = Stomp.over(socket);
+    
+    stompClient.connect({}, () => {
+      stompClient.subscribe(socketTopic, temperature => {
+        const data = JSON.parse(temperature.body);
+        if (state.selectedRoom.includes(data.algorithm)) {
+          msgSocket.push({robo: data.algorithm, msg: data.messenger});
+        }
+      })
+    }, () => {
+      setTimeout(() => {
+        this.connectSocket();
+      }, 60000);
+    });
+  }
+
   componentWillMount() {
     this.fetchListChat();
     this.fetchListRobo();
+
+    this.connectSocket();
   }
   componentDidMount() {
     var intervalId = setInterval(this.fetchListChat, 10000);
@@ -77,6 +127,9 @@ class ConsultingSecurities extends Component {
   }
   componentWillUnmount() {
     clearInterval(this.state.intervalId);
+    stompClient.disconnect(()=>{
+      console.log("Socket disconnected!");
+    })
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.message !== "" && nextProps.message !== this.props.message) {
@@ -96,11 +149,11 @@ class ConsultingSecurities extends Component {
     }
   }
   componentDidUpdate(prevProps, prevState) {
-    if(prevState.selectedRoom !== this.state.selectedRoom) {
-      this.fetchListChat();
-    }
-    if ( prevState.pageNum !== this.state.pageNum ||prevState.pageSize !== this.state.pageSize ) {
+    if ( prevState.pageNum !== this.state.pageNum || prevState.pageSize !== this.state.pageSize ) {
       this.fetchListRobo();
+    }
+    if (prevState.selectedRoom !== this.state.selectedRoom) {
+      this.connectSocket();
     }
   }
 
@@ -121,17 +174,32 @@ class ConsultingSecurities extends Component {
       state.updateInfo = status;
       state.idUpdate = -1;
       this.setState(state);
-      const data = {
-        id: state.statisticId,
-        roomId: state.roomId,
-        summary: state.summary,
-        winRate: state.winRate,
-        profitFactor: state.profitFactor,
-        rateWeek: state.rateWeek,
-        rateYear: state.rateYear,
-        endDate: state.endDate
+      if (state.statisticId) {
+        //update
+        const data = {
+          id: state.statisticId,
+          roomId: state.roomId,
+          summary: state.summary,
+          winRate: state.winRate,
+          profitFactor: state.profitFactor,
+          rateWeek: state.rateWeek,
+          rateYear: state.rateYear,
+          endDate: state.endDate
+        }
+        this.props.updateRobo(data);
+      } else {
+        const data = {
+          roomId: state.roomId,
+          summary: state.summary,
+          winRate: state.winRate,
+          profitFactor: state.profitFactor,
+          rateWeek: state.rateWeek,
+          rateYear: state.rateYear,
+          endDate: state.endDate
+        }
+        this.props.createRobo(data);
       }
-      this.props.updateRobo(data);
+      
     } else {
       this.setState({
         roomId: item.id,
@@ -152,10 +220,42 @@ class ConsultingSecurities extends Component {
       selectedMenu: index
     });
   };
-  handleClickRoom = index => {
+  handleClickRoom = (index) => {
+    const state = this.state;
+    const props = this.props;
+    let listSelectRoom = [];
+    let selectAll = false;
+    if (state.selectedRoom.includes(index)) {
+      listSelectRoom = state.selectedRoom.filter(item => {return item !== index});
+      selectAll = false;
+    } else {
+      listSelectRoom = [...state.selectedRoom, index];
+      if (listSelectRoom.length === props.listRobo.length) {
+        selectAll = true;
+      }
+    }
+
     this.setState({
-      selectedRoom: index
+      selectedRoom: listSelectRoom,
+      selectAllRoom: selectAll
     })
+  }
+  handleSelectAllRoom = (status) => {
+    let listSelectRoom = [];
+    if(status) {
+      listSelectRoom = this.props.listRobo.map(item=> { return item.codeRobo });
+    }
+    this.setState({
+      selectAllRoom: status,
+      selectedRoom: listSelectRoom
+    })
+  }
+  checkSelectedRoom = (index) => {
+    if(this.state.selectedRoom.includes(index)) {
+      return true;
+    } else {
+      return false;
+    }
   }
   onChangePageSize = size => {
     this.setState({
@@ -196,6 +296,8 @@ class ConsultingSecurities extends Component {
     const { 
       selectedMenu,
       selectedRoom,
+      selectAllRoom,
+      listSignalRobo,
       contentChat,
       updateInfo,
       idUpdate,
@@ -267,7 +369,7 @@ class ConsultingSecurities extends Component {
                             FACTOR
                           </th>
                           <th scope="col" className="table-center-element">
-                            LÃI LỖ (VNĐ)
+                            LÃI LỖ (x1000 VNĐ)
                             <br/>THÁNG HIỆN TẠI
                           </th>
                           <th scope="col" className="table-center-element">
@@ -367,19 +469,19 @@ class ConsultingSecurities extends Component {
                                           onClick={()=>this.onUpdate(!updateInfo, item)} >
                                           SỬA
                                         </button>
-                                        <button className={selectedRoom === item.id ? "btn-register active": "btn-register"}
-                                          onClick={()=>this.handleClickRoom(item.id)} >
+                                        <button className={this.checkSelectedRoom(item.codeRobo) ? "btn-register active": "btn-register"}
+                                          onClick={()=>this.handleClickRoom(item.codeRobo)} >
                                           XEM
                                         </button>
                                       </React.Fragment>
                                     }
                                   </React.Fragment>
                                   : <React.Fragment>
-                                    <button className={selectedRoom === item.urlRegister ? "btn-register active": "btn-register"}
-                                      onClick={()=>this.handleClickRoom(item.urlRegister)} >
+                                    <button className={this.checkSelectedRoom(item.codeRobo) ? "btn-register active": "btn-register"}
+                                      onClick={()=>this.handleClickRoom(item.codeRobo)} >
                                       XEM
                                     </button>
-                                    <a href={item.linkTelegram} target="_blank" rel="noopener noreferrer" >
+                                    <a className="ic-robo-tele" href={item.linkTelegram} target="_blank" rel="noopener noreferrer" >
                                       <img alt="ic-tele" src={icTele}/>  
                                     </a>
                                   </React.Fragment>
@@ -388,6 +490,21 @@ class ConsultingSecurities extends Component {
                             </tr>
                           );
                         })}
+                        <tr>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td colSpan="2">
+                            <button className={selectAllRoom ? "btn btn-register btn-all active" : "btn btn-register btn-all"}
+                              onClick={()=>this.handleSelectAllRoom(!selectAllRoom)}>XEM TẤT CẢ</button>
+                          </td>
+                        </tr>
                       </tbody>
                     </table>
                     {this.props.listRobo && this.props.listRobo.length > 0 && (
@@ -431,10 +548,10 @@ class ConsultingSecurities extends Component {
                   </div>
                   <div className="notice-msg">*Giả định vốn đầu tư ban đầu là 20 triệu VND.</div>
                   <div className="notice-msg">**Kết quả backtest là trước thuế phí.</div>
-                  <div className="title">LIVE TRADING</div>
-                  <hr />
                   <div className="box-chat-and-robo">
                     <div className="box-chat-consulting">
+                      <div className="title">LIVE TRADING</div>
+                      <hr />
                       <div className="box-chat" id="boxChat">
                         {
                           listChat.map((item, index) => {
@@ -447,7 +564,7 @@ class ConsultingSecurities extends Component {
                             var seconds = "0" + currentDate.getSeconds();
                             var formattedTime = `${date}/${month}/${year} - ${hours}:${minutes.substr(-2)}:${seconds.substr(-2)}`;
                             return <p key={index}>
-                                <span className="chat-datetime">{formattedTime} : </span>
+                                <span className="chat-title">{formattedTime} : </span>
                                 <span className="chat-content">{item.content}</span>
                               </p>
                           })
@@ -462,7 +579,18 @@ class ConsultingSecurities extends Component {
                       }
                     </div>
                     <div className="box-robo-signal">
-                      Tín hiệu robo
+                      <div className="title">ROBO TRADING</div>
+                      <hr />
+                      <div className="box-chat">
+                        {
+                          msgSocket.map((item, index) => {
+                            return <p key={index}>
+                              <span className="chat-title">{item.robo} : </span>
+                              <span className="chat-content">{item.msg}</span>
+                            </p>
+                          })
+                        }
+                      </div>
                     </div>
                   </div>
                   

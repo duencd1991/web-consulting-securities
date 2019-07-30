@@ -6,9 +6,9 @@ import { compose } from "redux";
 import "./home.scss";
 import Layout from "../layout/layout";
 import Carousel from "react-bootstrap/Carousel";
-import banner1 from "../../assets/img/banner1.jpg";
-import banner2 from "../../assets/img/banner2.jpg";
-import banner3 from "../../assets/img/banner3.jpg";
+import banner1 from "../../assets/img/banner1.png";
+import banner2 from "../../assets/img/banner2.png";
+import banner3 from "../../assets/img/banner3.png";
 import noImg from "../../assets/img/imgThum.png";
 import icFile from "../../assets/img/icPdf.png";
 import actions from "../../store/home/actions";
@@ -18,18 +18,15 @@ import { toast } from "react-toastify";
 const listBanner = [
   {
     img: banner1,
-    title: "HƯỚNG DẪN ĐẦU TƯ PHÁI SINH",
-    url: "#"
+    url: "/consulting-securities"
   },
   {
     img: banner2,
-    title: "HƯỚNG DẪN GIAO DỊCH TỰ ĐỘNG",
-    url: "#"
+    url: "/training-service"
   },
   {
     img: banner3,
-    title: "ĐĂNG KÝ NGAY",
-    url: "#"
+    url: "/consulting"
   }
 ];
 const listMenu = [
@@ -102,13 +99,15 @@ class Home extends Component {
                 {listBanner.map((item, bannerIndex) => {
                   return (
                     <Carousel.Item key={bannerIndex}>
-                      <img
-                        className="d-block w-100"
-                        src={item.img}
-                        alt="banner"
-                      />
-                      <Carousel.Caption>
-                        <div className="banner-title">{item.title}</div>
+                      <a href={item.url}>
+                        <img
+                          className="d-block w-100"
+                          src={item.img}
+                          alt="banner"
+                        />
+                      </a>
+                      {/* <Carousel.Caption> */}
+                        {/* <div className="banner-title">{item.title}</div>
                         <ul>
                           <li>Buổi 1: Giới thiệu về CKPS ...</li>
                           <li>Buổi 2: Các chiến lược giao dịch ...</li>
@@ -117,8 +116,8 @@ class Home extends Component {
                         </ul>
                         <button className="btn banner-detail">
                           XEM CHI TIẾT
-                        </button>
-                      </Carousel.Caption>
+                        </button> */}
+                      {/* </Carousel.Caption> */}
                     </Carousel.Item>
                   );
                 })}

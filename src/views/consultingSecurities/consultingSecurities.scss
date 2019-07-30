@@ -71,7 +71,7 @@
           background-color: transparent;
           color: #333333;
           line-height: 0px;
-          max-width: 70px;
+          min-width: 50px;
           padding: 10px;
           height: 25px;
           border-radius: 12px;
@@ -88,6 +88,13 @@
           &:focus {
             outline: 0;
           }
+        }
+        .btn-all {
+          line-height: 5px;
+          width: 100%;
+        }
+        .ic-robo-tele {
+          margin-left: 10px;
         }
         thead tr th {
           font-size: 14px;
@@ -108,9 +115,6 @@
             width: 60px;
             &.input-currency {
               width: 100px;
-            }
-            &.datepicker-here {
-              width: 110px;
             }
           }
           .react-datepicker-wrapper {
@@ -145,19 +149,6 @@
         justify-content: space-between;
         .box-chat-consulting {
           width: 50%;
-          .box-chat {
-            max-height: 400px;
-            overflow-y: auto;
-            padding-bottom: 40px;
-            .chat-datetime {
-              color: #736d6d;
-              font-size: 14px;
-            }
-            .chat-content {
-              font-size: 18px;
-              font-family: Arial;
-            }
-          }
           .box-input-chat {
             display: flex;
             .btn-primary {
@@ -169,7 +160,19 @@
         }
         .box-robo-signal {
           width: 45%;
-          background-color: blanchedalmond;
+        }
+        .box-chat {
+          max-height: 400px;
+          overflow-y: auto;
+          padding-bottom: 40px;
+          .chat-title {
+            color: #736d6d;
+            font-size: 14px;
+          }
+          .chat-content {
+            font-size: 18px;
+            font-family: Arial;
+          }
         }
       }
 

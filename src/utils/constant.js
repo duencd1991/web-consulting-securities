@@ -372,4 +372,6 @@ export const MENU_ROBO = [
     index: 4,
     name: "KHÁM PHÁ HỆ THỐNG"
   }
-]
+];
+export const socketURL = "http://10.61.1.36:5656/live-web-advisor";
+export const socketTopic = "/topic//web-advisor";

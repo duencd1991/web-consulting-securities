@@ -1,34 +1,34 @@
+.banner-guideline {
+  position: relative;
+  margin-bottom: 30px;
+  img {
+    width: 100%;
+    height: 100px;
+  }
+  .title {
+    font-family: "OpenSans";
+    font-size: 30px;
+    color: #ffffff;
+    text-align: center;
+    line-height: 25px;
+    position: absolute;
+    top: 25px;
+    width: 100%;
+  }
+  .sub-title {
+    font-family: "OpenSans";
+    font-size: 20px;
+    text-align: center;
+    line-height: 64px;
+    color: #59e6ff;
+    position: absolute;
+    top: 40px;
+    width: 100%;
+  }
+}
 .trading-instruction-page {
   max-width: 1170px;
   margin: auto;
-  .banner {
-    position: relative;
-    margin-bottom: 30px;
-    img {
-      width: 100%;
-    }
-    .title {
-      font-family: "OpenSans-Bold";
-      font-size: 45px;
-      color: #ffffff;
-      text-align: center;
-      line-height: 64px;
-      position: absolute;
-      top: 60px;
-      width: 100%;
-    }
-    .sub-title {
-      font-family: "OpenSans";
-      font-size: 40px;
-      color: #ffffff;
-      text-align: center;
-      line-height: 64px;
-      color: #59e6ff;
-      position: absolute;
-      top: 130px;
-      width: 100%;
-    }
-  }
   .content-box {
     max-width: 1170px;
     padding-bottom: 30px;
@@ -308,20 +308,34 @@
   }
 }
 @media (max-width: 1165px) {
-  .content-box {
-    padding: 20px;
-    .guide-menu {
-      max-width: 100% !important;
-      .list-menu-box {
+  .banner-guideline {
+    img {
+      width: 100%;
+      height: 100px;
+      object-fit: cover;
+    }
+    .title {
+      font-size: 20px !important;
+    }
+    .sub-title {
+      font-size: 18px !important;
+      top: 35px !important;
+    }
+  }
+  .trading-instruction-page {
+    .content-box {
+      padding: 20px;
+      .guide-menu {
+        max-width: 100% !important;
+        .list-menu-box {
+          max-width: 100% !important;
+        }
+      }
+      .top-guide {
         max-width: 100% !important;
       }
     }
-    .top-guide {
-      max-width: 100% !important;
-    }
   }
-}
-@media (min-width: 1170px) {
 }
 @media (max-width: 1040px) and (min-width: 992px) {
   .trading-instruction-page {
@@ -345,31 +359,23 @@
   }
 }
 @media (max-width: 767px) {
-  .banner {
-    .title {
-      font-size: 30px !important;
-      top: 20px !important;
-    }
-    .sub-title {
-      font-size: 26px !important;
-      top: 55px !important;
-    }
-  }
-  .contact-content-box {
-    display: block !important;
-    position: relative;
-    padding-bottom: 20px !important;
-    .info-box {
-      max-width: 100% !important;
-      text-align: center;
-    }
-    .msg-box {
-      max-width: 100% !important;
-      .btn-send-msg {
-        position: absolute;
-        bottom: 0;
-        transform: translateX(-50%);
-        left: 50%;
+  .trading-instruction-page {
+    .contact-content-box {
+      display: block !important;
+      position: relative;
+      padding-bottom: 20px !important;
+      .info-box {
+        max-width: 100% !important;
+        text-align: center;
+      }
+      .msg-box {
+        max-width: 100% !important;
+        .btn-send-msg {
+          position: absolute;
+          bottom: 0;
+          transform: translateX(-50%);
+          left: 50%;
+        }
       }
     }
   }

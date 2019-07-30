@@ -12,6 +12,7 @@ import "../../../style/common.scss";
 import actions from "../../../store/trainingService/actions";
 import notifyActions from "../../../store/notification/actions";
 import icDownload from "../../../assets/img/ic-download.png";
+import DatePicker from "react-datepicker";
 
 class FormCourse extends Component {
   constructor(props) {
@@ -92,12 +93,17 @@ class FormCourse extends Component {
       file: null
     });
   };
-  onChangeDate = e => {
-    if (e.target.value) {
-      this.setState({
-        [e.target.name]: e.target.value
-      });
-    }
+  onChangeStartDate = date => {
+    const dateStr = new Date(date).toLocaleDateString('en-GB');
+    this.setState({
+      startDate: dateStr
+    });
+  };
+  onChangeEndDate = date => {
+    const dateStr = new Date(date).toLocaleDateString('en-GB');
+    this.setState({
+      endDate: dateStr
+    });
   };
   onSelectCategory = e => {
     this.setState({
@@ -207,6 +213,14 @@ class FormCourse extends Component {
       update,
       validate
     } = this.state;
+    let convertStartDate = "";
+    let convertEndDate = "";
+    if (startDate) {
+      convertStartDate = new Date(startDate.replace( /(\d{2})\/(\d{2})\/(\d{4})/, "$2/$1/$3"));
+    }
+    if (endDate) {
+      convertEndDate = new Date(endDate.replace( /(\d{2})\/(\d{2})\/(\d{4})/, "$2/$1/$3"));
+    }
 
     return (
       <Layout>
@@ -348,7 +362,7 @@ class FormCourse extends Component {
           <div className="form-group row">
             <label className="col-sm-3 padding0">Ngày khai giảng</label>
             <div className="col-sm-9 padding0">
-              <input
+              {/* <input
                 type="text"
                 className="form-control datepicker-here"
                 data-language="en"
@@ -358,6 +372,11 @@ class FormCourse extends Component {
                 value={startDate}
                 autoComplete="off"
                 onBlur={this.onChangeDate}
+              /> */}
+              <DatePicker
+                dateFormat="dd/MM/yyyy"
+                selected={convertStartDate}
+                onChange={this.onChangeStartDate}
               />
               {!validate && startDate === "" && (
                 <div className="alert alert-warning" role="alert">
@@ -369,7 +388,7 @@ class FormCourse extends Component {
           <div className="form-group row">
             <label className="col-sm-3 padding0">Ngày kết thúc</label>
             <div className="col-sm-9 padding0">
-              <input
+              {/* <input
                 type="text"
                 className="form-control datepicker-here"
                 data-language="en"
@@ -379,6 +398,11 @@ class FormCourse extends Component {
                 value={endDate}
                 autoComplete="off"
                 onBlur={this.onChangeDate}
+              /> */}
+              <DatePicker
+                dateFormat="dd/MM/yyyy"
+                selected={convertEndDate}
+                onChange={this.onChangeEndDate}
               />
               {!validate && endDate === "" && (
                 <div className="alert alert-warning" role="alert">

@@ -79,12 +79,12 @@ class TradingInstrucion extends Component {
     const { selectedMenu, detail } = this.state;
     return (
       <Layout title="">
+        <div className="banner-guideline">
+          <img alt="img" src={bgHDGD} />
+          <div className="title">HƯỚNG DẪN GIAO DỊCH</div>
+          <div className="sub-title">CHỨNG KHOÁN PHÁI SINH</div>
+        </div>
         <div className="trading-instruction-page">
-          <div className="banner">
-            <img alt="img" src={bgHDGD} />
-            <div className="title">HƯỚNG DẪN GIAO DỊCH</div>
-            <div className="sub-title">CHỨNG KHOÁN PHÁI SINH</div>
-          </div>
           <div className="content-box">
             <div className="guide-menu">
               <div className="title">HƯỚNG DẪN GIAO DỊCH</div>
