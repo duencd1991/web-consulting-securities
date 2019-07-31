@@ -56,7 +56,45 @@ export function* getListChat() {
           total: response.data.total
         });
       }
-
+      yield put({ type: notifyActions.NOTIFY_LOADING });
+    } catch (error) {
+      yield put({ type: notifyActions.NOTIFY_SHOW, code: 0 });
+    }
+  });
+}
+export function* getHistoryRobo() {
+  yield takeEvery(actions.CHAT_GET_HISTORY_ROBO, function*(data) {
+    try {
+      yield put({ type: notifyActions.NOTIFY_LOADING });
+      if (data.data.roomId.length > 0) {
+        let listHistory = [];
+        let index = 0;
+        const requestData = data;
+        for(let i = 0; i < requestData.data.roomId.length; i ++) {
+          const temp = requestData.data.roomId[i];
+          const data = {
+            roomId: temp
+          }
+          let response = yield listChat(data);
+          if (response.data.list.length > 0) {
+            listHistory = listHistory.concat(response.data.list);
+            index ++;
+          }
+        }
+        if (index === data.data.roomId.length) {
+          yield put({
+            type: actions.CHAT_HISTORY_ROBO,
+            list: listHistory,
+            total: listHistory.length
+          });
+        }
+      } else {
+        yield put({
+          type: actions.CHAT_HISTORY_ROBO,
+          list: [],
+          total: 0
+        });
+      }
       yield put({ type: notifyActions.NOTIFY_LOADING });
     } catch (error) {
       yield put({ type: notifyActions.NOTIFY_SHOW, code: 0 });
@@ -68,5 +106,6 @@ export default function* rootSaga() {
     fork(chatCreate),
     fork(chatUpdate),
     fork(getListChat),
+    fork(getHistoryRobo)
   ]);
 }

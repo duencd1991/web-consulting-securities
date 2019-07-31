@@ -40,7 +40,7 @@ class Consulting extends Component {
             <hr />
             <div className="slogan-detail">
               <p>
-                <b>Đi theo nguyen tắc thị trường luôn luôn đúng</b>, phương pháp
+                <b>Đi theo nguyên tắc thị trường luôn luôn đúng</b>, phương pháp
                 luận của chúng tôi mô tả vận động của dòng tiền thông minh bằng
                 các công cụ công nghệ tài chính. Dựa trên đó chúng tôi phát
                 triển dịch vụ tư vấn đầu tư giúp nhà đầu tư có được danh mục tối
@@ -49,11 +49,11 @@ class Consulting extends Component {
               </p>
               <p>
                 Nhà đầu tư có thể lựa chọn các sản phẩm tư vấn phù hợp với nhu
-                cầu để <b>tạo lập danh mục đàu tư cá nhân hiệu quả</b> theo
-                phòng cách riêng.
+                cầu để <b>tạo lập danh mục đầu tư cá nhân hiệu quả</b> theo
+                phong cách riêng.
               </p>
               <p>
-                Dịch vụ tư vấn đầu tư chứng khoán của HSC được vận hành và trải
+                Dịch vụ tư vấn đầu tư chứng khoán của MBS được vận hành và trải
                 nghiệm bởi <b>đội ngũ chuyên gia phân tích hàng đầu</b> với
                 nghiệp vụ và kinh nghiệm tư vấn dày dặn, chúng tôi phục vụ nhà
                 đầu tư giải pháp chúng tôi tự tin sử dụng.

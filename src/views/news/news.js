@@ -265,7 +265,7 @@ class News extends Component {
                       <div className="new-info">
                         <a
                           className="new-hot-title"
-                          href={`/news?id=${item.id}`}
+                          onClick={() => this.goToDetail(item.id)}
                         >
                           {item.title}
                         </a>
@@ -294,7 +294,7 @@ class News extends Component {
                       <div className="new-info">
                         <a
                           className="new-hot-title"
-                          href={`/news?id=${item.id}`}
+                          onClick={() => this.goToDetail(item.id)}
                         >
                           {item.title}
                         </a>

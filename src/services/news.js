@@ -31,7 +31,7 @@ const updateViews = data => {
   return request({
     url: url,
     method: "put",
-    data: data
+    params: data
   });
 };
 const updateNews = data => {

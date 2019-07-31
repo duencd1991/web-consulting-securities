@@ -33,6 +33,7 @@ let listChat = [];
 let socket = new SockJS(socketURL);;
 let stompClient = Stomp.over(socket);
 let msgSocket = [];
+let preMsgSocket = [];
 
 class ConsultingSecurities extends Component {
   constructor(props) {
@@ -44,6 +45,7 @@ class ConsultingSecurities extends Component {
       intervalId: null,
       selectedMenu: MENU_ROBO[0].index,
       selectedRoom: [],
+      selectedRoomId: [],
       selectAllRoom: false,
       listSignalRobo: [],
       contentChat: "",
@@ -61,14 +63,17 @@ class ConsultingSecurities extends Component {
     };
   }
 
-  fetchListChat = (id) => {
-    let data = {
+  fetchListChat = () => {
+    const data = {
       roomId: 0
     }
-    if (id) {
-      data.roomId = id;
-    }
     this.props.fetchListChat(data);
+  };
+  fetchHistoryRobo = () => {
+    const data = {
+      roomId: this.state.selectedRoomId
+    }
+    this.props.fetchHistoryRobo(data);
   };
   fetchListRobo = () => {
     const state = this.state;
@@ -103,6 +108,7 @@ class ConsultingSecurities extends Component {
       stompClient.subscribe(socketTopic, temperature => {
         const data = JSON.parse(temperature.body);
         if (state.selectedRoom.includes(data.algorithm)) {
+          preMsgSocket = msgSocket.slice();
           msgSocket.push({robo: data.algorithm, msg: data.messenger});
         }
       })
@@ -147,6 +153,13 @@ class ConsultingSecurities extends Component {
         showDiv.scrollTop = showDiv.scrollHeight;
       }
     }
+    if (nextProps.historyRobo.length > 0 && this.props.historyRobo !== nextProps.historyRobo) {
+      const props = nextProps;
+      preMsgSocket = msgSocket.slice();
+      for(let i = 0; i < props.historyRobo.length; i ++) {
+        msgSocket.push({robo: "ROBO", msg: props.historyRobo[i].content});
+      }
+    }
   }
   componentDidUpdate(prevProps, prevState) {
     if ( prevState.pageNum !== this.state.pageNum || prevState.pageSize !== this.state.pageSize ) {
@@ -154,6 +167,16 @@ class ConsultingSecurities extends Component {
     }
     if (prevState.selectedRoom !== this.state.selectedRoom) {
       this.connectSocket();
+    }
+    if (this.state.selectedRoomId.length > 0 && this.state.selectedRoomId !== prevState.selectedRoomId) {
+      this.fetchHistoryRobo();
+    }
+    if (msgSocket !== preMsgSocket) {
+      let showDiv = document.getElementById("boxRobo");
+      if (showDiv) {
+        showDiv.scrollTop = showDiv.scrollHeight;
+      }
+      preMsgSocket = msgSocket.slice();
     }
   }
 
@@ -220,16 +243,19 @@ class ConsultingSecurities extends Component {
       selectedMenu: index
     });
   };
-  handleClickRoom = (index) => {
+  handleClickRoom = (room) => {
     const state = this.state;
     const props = this.props;
     let listSelectRoom = [];
+    let listSelectRoomId = [];
     let selectAll = false;
-    if (state.selectedRoom.includes(index)) {
-      listSelectRoom = state.selectedRoom.filter(item => {return item !== index});
+    if (state.selectedRoom.includes(room.codeRobo)) {
+      listSelectRoom = state.selectedRoom.filter(item => {return item !== room.codeRobo});
+      listSelectRoomId = state.selectedRoomId.filter(item => {return item !== room.id});
       selectAll = false;
     } else {
-      listSelectRoom = [...state.selectedRoom, index];
+      listSelectRoom = [...state.selectedRoom, room.codeRobo];
+      listSelectRoomId = [...state.selectedRoomId, room.id];
       if (listSelectRoom.length === props.listRobo.length) {
         selectAll = true;
       }
@@ -237,17 +263,21 @@ class ConsultingSecurities extends Component {
 
     this.setState({
       selectedRoom: listSelectRoom,
+      selectedRoomId: listSelectRoomId,
       selectAllRoom: selectAll
     })
   }
   handleSelectAllRoom = (status) => {
     let listSelectRoom = [];
+    let listSelectRoomId = [];
     if(status) {
       listSelectRoom = this.props.listRobo.map(item=> { return item.codeRobo });
+      listSelectRoomId = this.props.listRobo.map(item=> { return item.id });
     }
     this.setState({
       selectAllRoom: status,
-      selectedRoom: listSelectRoom
+      selectedRoom: listSelectRoom,
+      selectedRoomId: listSelectRoomId
     })
   }
   checkSelectedRoom = (index) => {
@@ -470,7 +500,7 @@ class ConsultingSecurities extends Component {
                                           SỬA
                                         </button>
                                         <button className={this.checkSelectedRoom(item.codeRobo) ? "btn-register active": "btn-register"}
-                                          onClick={()=>this.handleClickRoom(item.codeRobo)} >
+                                          onClick={()=>this.handleClickRoom(item)} >
                                           XEM
                                         </button>
                                       </React.Fragment>
@@ -478,7 +508,7 @@ class ConsultingSecurities extends Component {
                                   </React.Fragment>
                                   : <React.Fragment>
                                     <button className={this.checkSelectedRoom(item.codeRobo) ? "btn-register active": "btn-register"}
-                                      onClick={()=>this.handleClickRoom(item.codeRobo)} >
+                                      onClick={()=>this.handleClickRoom(item)} >
                                       XEM
                                     </button>
                                     <a className="ic-robo-tele" href={item.linkTelegram} target="_blank" rel="noopener noreferrer" >
@@ -581,7 +611,7 @@ class ConsultingSecurities extends Component {
                     <div className="box-robo-signal">
                       <div className="title">ROBO TRADING</div>
                       <hr />
-                      <div className="box-chat">
+                      <div className="box-chat" id="boxRobo">
                         {
                           msgSocket.map((item, index) => {
                             return <p key={index}>
@@ -644,7 +674,8 @@ class ConsultingSecurities extends Component {
 const mapStateToProps = state => {
   return {
     listChat: state.ChatConsulting.listChat,
-    listRobo: state.Robos.listRobo,    
+    historyRobo: state.ChatConsulting.historyRobo,
+    listRobo: state.Robos.listRobo,
     total: state.Robos.total,
     success: state.Notifys.success,
     message: state.Notifys.message,
@@ -656,6 +687,9 @@ const mapDispatchToProps = dispatch => {
   return {
     fetchListChat: data => {
       dispatch(actions.listChat(data));
+    },
+    fetchHistoryRobo: data => {
+      dispatch(actions.historyRobo(data));
     },
     createChat: data => {
       dispatch(actions.createChat(data));
