@@ -3,11 +3,12 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import Layout from "../layout/layout";
 import "./createTradingAccount.scss";
-import icCapcha from "../../assets/img/Capcha.jpg";
 import { NATIONALITY, TYPE_AUTHEN } from "../../utils/constant";
+import { PROVINCES, DISTRICTS } from "../../utils/provinces";
 import { toast } from "react-toastify";
 import actions from "../../store/accountTrading/actions";
 import notifyActions from "../../store/notification/actions";
+import { loadReCaptcha, ReCaptcha } from "react-recaptcha-google";
 
 class CreateTradingAccount extends Component {
   constructor(props) {
@@ -27,18 +28,43 @@ class CreateTradingAccount extends Component {
       dateRange: "", //ngày cấp
       issueBy: "", //nơi cấp
       permanentAddress: "",
-      permanentCity: "",
+      permanentCity: "HANOI",
       permanentDistrict: "",
       currentAddress: "",
-      currentCity: "",
+      currentCity: "HANOI",
       currentDistrict: "",
       accountType: 3,
 
       accountType1: false,
       accountType2: false,
       agreement: false,
-      validate: true
+      validate: true,
+      reCaptcha: false
     };
+  }
+
+  componentDidMount() {
+    loadReCaptcha();
+    if (this.captchaDemo) {
+      this.captchaDemo.reset();
+      this.setState({
+        reCaptcha: false
+      })
+    }
+  }
+
+  onLoadRecaptcha = () => {
+    if (this.captchaDemo) {
+      this.captchaDemo.reset();
+      this.setState({
+        reCaptcha: false
+      })
+    }
+  }
+  verifyCallback = (recaptchaToken) => {
+    this.setState({
+      reCaptcha: true
+    })
   }
 
   componentWillUpdate(nextProps, nextState) {
@@ -102,6 +128,27 @@ class CreateTradingAccount extends Component {
       [e.target.name]: NATIONALITY[e.target.selectedIndex].id
     });
   };
+  onSelectPermanentProvince = e => {
+    this.setState({
+      permanentCity: PROVINCES[e.target.selectedIndex].code
+    });
+  }
+  onSelectPermanentDictrict = e => {
+    this.setState({
+      permanentDistrict: DISTRICTS[this.state.permanentCity][e.target.selectedIndex].code
+    });
+  }
+
+  onSelectCurrentProvince = e => {
+    this.setState({
+      currentCity: PROVINCES[e.target.selectedIndex].code
+    });
+  }
+  onSelectCurrentDictrict = e => {
+    this.setState({
+      currentDistrict: DISTRICTS[this.state.currentCity][e.target.selectedIndex].code
+    });
+  }
 
   validateForm = () => {
     const {
@@ -111,11 +158,11 @@ class CreateTradingAccount extends Component {
       dateRange,
       issueBy,
       permanentAddress,
-      // permanentCity,
-      // permanentDistrict,
+      permanentCity,
+      permanentDistrict,
       currentAddress,
-      // currentCity,
-      // currentDistrict,
+      currentCity,
+      currentDistrict,
       phoneNumber,
       email,
       accountNumber
@@ -127,7 +174,9 @@ class CreateTradingAccount extends Component {
       dateRange !== "" &&
       issueBy !== "" &&
       permanentAddress !== "" &&
+      permanentDistrict !== "" &&
       currentAddress !== "" &&
+      currentDistrict !== "" &&
       phoneNumber !== "" &&
       email !== ""
       //&& accountNumber !== "";
@@ -170,8 +219,8 @@ class CreateTradingAccount extends Component {
       phoneNumber,
       email,
       accountNumber,
-      // nationality,
-      // nationalityOther,
+      nationality,
+      nationalityOther,
       sex,
       // dateBirth,
       typeAuthen,
@@ -179,16 +228,17 @@ class CreateTradingAccount extends Component {
       // dateRange,
       issueBy,
       permanentAddress,
-      // permanentCity,
-      // permanentDistrict,
+      permanentCity,
+      permanentDistrict,
       currentAddress,
-      // currentCity,
-      // currentDistrict,
+      currentCity,
+      currentDistrict,
       // accountType,
       // accountType1,
       // accountType2,
       agreement,
-      validate
+      validate,
+      reCaptcha
     } = this.state;
     return (
       <Layout>
@@ -364,7 +414,7 @@ class CreateTradingAccount extends Component {
                       />
                     </div>
                     <div className="form-wrapper">
-                      <span htmlFor="">Ngày cấp : </span>
+                      <span htmlFor="">Ngày cấp ( <i className="txtRed">*</i> ) :{" "} </span>
                       <div className="lnr lnr-calendar-full"></div>
                       <input
                         type="text"
@@ -417,11 +467,11 @@ class CreateTradingAccount extends Component {
                         name="permanentCity"
                         id="permanentCity"
                         className="form-control"
-                        onChange={this.onSelectNational}
+                        onChange={this.onSelectPermanentProvince}
                       >
-                        {NATIONALITY.map((item, index) => {
+                        {PROVINCES.map((item, index) => {
                           return (
-                            <option key={index} value={item.id}>
+                            <option key={index} value={item.code}>
                               {item.name}
                             </option>
                           );
@@ -430,48 +480,35 @@ class CreateTradingAccount extends Component {
                     </div>
                     <div className="form-wrapper">
                       <span htmlFor="">Quận / Huyện</span>
-                      <select
-                        name="permanentDistrict"
-                        id="permanentDistrict"
-                        className="form-control"
-                        onChange={this.onSelectNational}
-                      >
-                        {NATIONALITY.map((item, index) => {
-                          return (
-                            <option key={index} value={item.id}>
-                              {item.name}
-                            </option>
-                          );
-                        })}
+                      <select name="permanentDistrict" id="permanentDistrict"
+                        className="form-control" onChange={this.onSelectPermanentDictrict} >
+                        {
+                          permanentCity !== "" && DISTRICTS[permanentCity].map((item, index) => {
+                            return (
+                              <option key={index} value={item}>
+                                {item}
+                              </option>
+                            );
+                          })
+                        }
                       </select>
                     </div>
                   </div>
                   <div className="form-row">
                     <div className="form-wrapper">
                       <span htmlFor="">
-                        Địa chỉ hiện tại/ Liên lạc ( <i className="txtRed">*</i>{" "}
-                        ) :{" "}
+                        Địa chỉ hiện tại/ Liên lạc ( <i className="txtRed">*</i>{" "}) :{" "}
                       </span>
-                      <input
-                        type="text"
-                        className="form-control"
-                        placeholder="Địa chỉ hiện tại/ Liên lạc"
-                        value={currentAddress}
-                        name="currentAddress"
-                        onChange={this.onChange}
-                      />
+                      <input type="text" className="form-control" placeholder="Địa chỉ hiện tại/ Liên lạc"
+                        value={currentAddress} name="currentAddress" onChange={this.onChange} />
                     </div>
                     <div className="form-wrapper">
                       <span htmlFor="">Tỉnh / Thành phố</span>
-                      <select
-                        name="currentCity"
-                        id="currentCity"
-                        className="form-control"
-                        onChange={this.onSelectNational}
-                      >
-                        {NATIONALITY.map((item, index) => {
+                      <select name="currentCity" id="currentCity"
+                        className="form-control" onChange={this.onSelectCurrentProvince} >
+                        {PROVINCES.map((item, index) => {
                           return (
-                            <option key={index} value={item.id}>
+                            <option key={index} value={item.code}>
                               {item.name}
                             </option>
                           );
@@ -480,19 +517,17 @@ class CreateTradingAccount extends Component {
                     </div>
                     <div className="form-wrapper">
                       <span htmlFor="">Quận / Huyện</span>
-                      <select
-                        name="currentDistrict"
-                        id="currentDistrict"
-                        className="form-control"
-                        onChange={this.onSelectNational}
-                      >
-                        {NATIONALITY.map((item, index) => {
-                          return (
-                            <option key={index} value={item.id}>
-                              {item.name}
-                            </option>
-                          );
-                        })}
+                      <select name="currentDistrict" id="currentDistrict"
+                        className="form-control" onChange={this.onSelectCurrentDictrict} >
+                        {
+                          currentCity !== "" && DISTRICTS[currentCity].map((item, index) => {
+                            return (
+                              <option key={index} value={item}>
+                                {item}
+                              </option>
+                            );
+                          })
+                        }
                       </select>
                     </div>
                   </div>
@@ -501,27 +536,15 @@ class CreateTradingAccount extends Component {
                       <span htmlFor="">
                         Điện thoại di động ( <i className="txtRed">*</i> ) :{" "}
                       </span>
-                      <input
-                        type="text"
-                        className="form-control"
-                        placeholder="Điện thoại di động"
-                        name="phoneNumber"
-                        value={phoneNumber}
-                        onChange={this.onChange}
-                      />
+                      <input type="text" className="form-control" placeholder="Điện thoại di động"
+                        name="phoneNumber" value={phoneNumber} onChange={this.onChange} />
                     </div>
                     <div className="form-wrapper">
                       <span htmlFor="">
                         Email ( <i className="txtRed">*</i> ):{" "}
                       </span>
-                      <input
-                        type="text"
-                        className="form-control"
-                        placeholder="Email"
-                        name="email"
-                        value={email}
-                        onChange={this.onChange}
-                      />
+                      <input type="text" className="form-control" placeholder="Email" name="email"
+                        value={email} onChange={this.onChange} />
                     </div>
                   </div>
                 </div>
@@ -625,7 +648,16 @@ class CreateTradingAccount extends Component {
                         </div>
                       </div>
                       <div>
-                        <img alt="img-capcha" src={icCapcha}></img>
+                        {/* <img alt="img-capcha" src={icCapcha}></img> */}
+                        <ReCaptcha
+                          ref={(el) => {this.captchaDemo = el;}}
+                          size="normal"
+                          data-theme="dark"            
+                          render="explicit"
+                          sitekey="6LewobgUAAAAAKNw16-4dgJELQrmwA66mht9RngO"
+                          onloadCallback={this.onLoadRecaptcha}
+                          verifyCallback={this.verifyCallback}
+                      />
                       </div>
                       {!validate && (
                         <div className="txtRed">
@@ -633,7 +665,7 @@ class CreateTradingAccount extends Component {
                         </div>
                       )}
                       <button
-                        disabled={!agreement}
+                        disabled={!agreement || !reCaptcha}
                         className="btn btn_continue mt15"
                         onClick={this.handleSubmit}
                       >

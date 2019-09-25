@@ -175,7 +175,7 @@ class Home extends Component {
                           src={item.imgUrl ? item.imgUrl : noImg}
                         />
                         <a
-                          href={`/news?id=${newsIndex}`}
+                          href={`/news?id=${item.id}`}
                           className="new-content-text"
                         >
                           {item.title}

@@ -28,7 +28,7 @@ const login = data => {
   return request({
     url: url,
     method: "post",
-    params: data
+    data: data
   });
 };
 const listUser = data => {
@@ -47,5 +47,21 @@ const detailUser = data => {
     params: data
   });
 };
+const changePass = data => {
+  const url = `/account/changePass`;
+  return request({
+    url: url,
+    method: "post",
+    data: data
+  });
+};
+const resetPass = data => {
+  const url = `/account/resetPass`;
+  return request({
+    url: url,
+    method: "get",
+    params: data
+  });
+};
 
-export { createUser, updateUser, deleteUser, listUser, detailUser, login };
+export { createUser, updateUser, deleteUser, listUser, detailUser, login, changePass, resetPass };

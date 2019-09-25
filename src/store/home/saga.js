@@ -51,7 +51,7 @@ export function* listHomeReports() {
       const response = yield listReports();
       if (response.data.statusCode === 1) {
         if (response.data.list) {
-          yield put({ type: actions.REPORT_HOME_LIST, list: response.data.list });
+          yield put({ type: actions.REPORT_HOME_LIST, list: response.data.list.reverse() });
         } else {
           yield put({ type: actions.REPORT_HOME_LIST, list: [] });
         }

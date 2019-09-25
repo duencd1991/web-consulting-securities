@@ -62,30 +62,69 @@ export function* getListChat() {
     }
   });
 }
+// export function* getHistoryRobo() {
+//   yield takeEvery(actions.CHAT_GET_HISTORY_ROBO, function*(data) {
+//     try {
+//       yield put({ type: notifyActions.NOTIFY_LOADING });
+//       if (data.data.roomId.length > 0) {
+//         let listHistory = [];
+//         let index = 0;
+//         const requestData = data;
+//         for(let i = 0; i < requestData.data.roomId.length; i ++) {
+//           const temp = requestData.data.roomId[i];
+//           const data = {
+//             roomId: temp
+//           }
+//           let response = yield listChat(data);
+//           if (response.data.statusCode === 1) {
+//             const temp = response.data.list.reverse();
+//             listHistory = listHistory.concat(temp);
+//             index ++;
+//           } else if (response.data.statusCode === 7) {
+//             index ++;
+//           }
+//         }
+//         if (index === data.data.roomId.length) {
+//           yield put({
+//             type: actions.CHAT_HISTORY_ROBO,
+//             list: listHistory,
+//             total: listHistory.length
+//           });
+//         }
+//       } else {
+//         yield put({
+//           type: actions.CHAT_HISTORY_ROBO,
+//           list: [],
+//           total: 0
+//         });
+//       }
+//       yield put({ type: notifyActions.NOTIFY_LOADING });
+//     } catch (error) {
+//       yield put({ type: notifyActions.NOTIFY_SHOW, code: 0 });
+//     }
+//   });
+// }
 export function* getHistoryRobo() {
   yield takeEvery(actions.CHAT_GET_HISTORY_ROBO, function*(data) {
     try {
       yield put({ type: notifyActions.NOTIFY_LOADING });
       if (data.data.roomId.length > 0) {
-        let listHistory = [];
-        let index = 0;
-        const requestData = data;
-        for(let i = 0; i < requestData.data.roomId.length; i ++) {
-          const temp = requestData.data.roomId[i];
-          const data = {
-            roomId: temp
-          }
-          let response = yield listChat(data);
-          if (response.data.list.length > 0) {
-            listHistory = listHistory.concat(response.data.list);
-            index ++;
-          }
+        const request = {
+          roomId: data.data.roomId.toString()
         }
-        if (index === data.data.roomId.length) {
+        let response = yield listChat(request);
+        if (response.data.statusCode === 1) {
+          const listReverse = response.data.list.reverse();
           yield put({
             type: actions.CHAT_HISTORY_ROBO,
-            list: listHistory,
-            total: listHistory.length
+            list: listReverse,
+            total: response.data.total
+          });
+        } else if (response.data.statusCode === 7) {
+          yield put({
+            type: actions.CHAT_HISTORY_ROBO,
+            list: [],
+            total: 0
           });
         }
       } else {

@@ -28,17 +28,6 @@ export function* getUploadFile() {
 
 export default function* rootSaga() {
   yield all([
-    fork(getListCourse),
-    fork(getListCourseCategory),
-    fork(getListCourseHot),
-    fork(getListCourseTop),
-    fork(getCourseDetail),
-    fork(courseUpdate),
-    fork(courseCreate),
-    fork(courseRegister),
-    fork(courseRegisterList),
-    fork(courseRegisterDetail),
-    fork(courseRegisterChangeStatus),
-    fork(deleteCourse)
+    fork(getUploadFile)
   ]);
 }

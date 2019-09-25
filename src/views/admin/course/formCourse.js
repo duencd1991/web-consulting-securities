@@ -136,7 +136,8 @@ class FormCourse extends Component {
           description: state.description,
           fee: state.fee,
           category: state.category,
-          priority: state.priority
+          priority: state.priority,
+          url: state.url
         };
         this.props.updateCourse(data);
       } else {

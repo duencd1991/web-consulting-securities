@@ -9,6 +9,8 @@ const actions = {
   USER_LOGIN: "USER_LOGIN",
   USER_LOGOUT: "USER_LOGOUT",
   PROFILE : "PROFILE",
+  CHANGE_PASS: "CHANGE_PASS",
+  RESET_PASS: "RESET_PASS",
   listUser: data => ({
     type: actions.USER_GET_LIST,
     data
@@ -35,6 +37,14 @@ const actions = {
   }),
   logout: () => ({
     type: actions.USER_LOGOUT
+  }),
+  changePass: data => ({
+    type: actions.CHANGE_PASS,
+    data
+  }),
+  resetPass: data => ({
+    type: actions.RESET_PASS,
+    data
   })
 };
 export default actions;

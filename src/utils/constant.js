@@ -177,26 +177,6 @@ export const NATIONALITY = [
   {
     id: "Viet Nam",
     name: "Việt Nam"
-  },
-  {
-    id: "Han Quoc",
-    name: "Hàn Quốc"
-  },
-  {
-    id: "Nhat Ban",
-    name: "Nhật Bản"
-  },
-  {
-    id: "Trung Quoc",
-    name: "Trung Quốc"
-  },
-  {
-    id: "Phillipin",
-    name: "Phillipin"
-  },
-  {
-    id: "Singapore",
-    name: "Singapore"
   }
 ];
 export const TYPE_AUTHEN = [
@@ -216,70 +196,56 @@ export const TYPE_AUTHEN = [
 export const listInvestor = [
   {
     img: "/img/ic_investor1.png",
-    title: "THAM GIA GROUP TƯ VẤN PHÁI SINH REAL TIME",
+    title: "TƯ VẤN CHUYÊN GIA TRONG PHIÊN GIAO DỊCH",
     detail:
-      "Tùy theo như cầu, NĐT được lựa chọn tham gia vào group tư vấn đầu tư Cổ phiếu/ HĐTL/ ETF/ Chứng quyền có đảm bảo hoặc tất cả."
+      "Đội ngũ chuyên gia tư vấn với tổng cộng hơn 30 năm kinh nghiệm đầu tư của MBS liên tục cập nhật diễn biến và chiến lược giao dịch trong phiên."
   },
   {
     img: "/img/ic_investor2.png",
-    title: "THAM GIA ROOM ROBO TƯ VẤN VỚI HIỆU QUẢ LÊN TỚI 100%/THÁNG",
+    title: "ROBO ADVISOR VỚI HIỆU QUẢ TƯ VẤN CHÍNH XÁC VÀ MINH BẠCH",
     detail:
-      "Tùy theo như cầu, NĐT được lựa chọn tham gia vào group tư vấn đầu tư Cổ phiếu/ HĐTL/ ETF/ Chứng quyền có đảm bảo hoặc tất cả."
-  },
-  {
-    img: "/img/ic_investor3.png",
-    title: "THAM GIA GROUP TƯ VẤN KÍN TRÊN FACEBOOK",
-    detail:
-      "Tùy theo như cầu, NĐT được lựa chọn tham gia vào group tư vấn đầu tư Cổ phiếu/ HĐTL/ ETF/ Chứng quyền có đảm bảo hoặc tất cả."
+      "Robo advisor khuyến nghị điểm mua & bán dựa trên các chiến lược quốc tế & được kiểm nghiệm trên thị trường Việt Nam.  Khuyến nghị đa khung thời gian cập nhật liên tục từng phút với kết quả giao dịch minh bạch tới mỗi khuyến nghị."
   },
   {
     img: "/img/ic_investor4.png",
-    title: "NHÂN BÁO CÁO VIP VỀ XU THẾ THỊ TRƯỜNG VÀ CƠ HỘI ĐẦU TƯ",
+    title: "HỆ THỐNG BÁO CÁO CẬP NHẬT",
     detail:
-      "Tùy theo như cầu, NĐT được lựa chọn tham gia vào group tư vấn đầu tư Cổ phiếu/ HĐTL/ ETF/ Chứng quyền có đảm bảo hoặc tất cả."
+      "Hệ thống báo cáo đa kênh hỗ trợ giao dịch liên tục được cập nhật trước, giữa và sau phiên giao dịch."
+  },
+  {
+    img: "/img/ic_investor3.png",
+    title: "CHIA SẺ THÔNG TIN TRÊN ROOM KHÁCH HÀNG VIP",
+    detail:
+      "Room trao đổi chia sẻ thông tin với khách hàng VIP đang cùng giao dịch sản phẩm đầu tư."
   },
   {
     img: "/img/ic_investor5.png",
-    title: "THAM GIA CÁC LỚP ĐÀO TẠO VỀ KỸ THUẬT, TÂM LÝ GIAO DỊCH VÀ SẢN PHẨM",
+    title: "THAM GIA CÁC LỚP ĐÀO TẠO THEO TỪNG CẤP ĐỘ",
     detail:
-      "Tùy theo như cầu, NĐT được lựa chọn tham gia vào group tư vấn đầu tư Cổ phiếu/ HĐTL/ ETF/ Chứng quyền có đảm bảo hoặc tất cả."
+      "Khách hàng lựa chọn lớp đào tạo về chiến lược giao dịch, sản phẩm và tâm lý đầu tư theo nhu cầu và điều kiện cá nhân."
   }
 ];
 export const listReview = [
   {
-    name: "NGUYỄN VĂN DƯƠNG",
-    title: "CEO STOCKPLUS",
+    name: "NGUYỄN VĂN A",
+    title: "KHÁCH HÀNG",
     img: "",
     review:
-      "Một phương pháp tiếp cận mới, đột phá, hiệu quả, an toàn. Chiến lược đầu tư SmartMoney rất phù hợp cho nhà đầu tư cá nhân."
+      "Một phương pháp tiếp cận tư vấn đột phá tại Việt Nam và rất phù hợp với các nhà đầu tư giao dịch phái sinh."
   },
   {
-    name: "NGUYỄN VĂN DƯƠNG",
-    title: "CEO STOCKPLUS",
+    name: "TRẦN VĂN B",
+    title: "MÔI GIỚI",
     img: "",
     review:
-      "Một phương pháp tiếp cận mới, đột phá, hiệu quả, an toàn. Chiến lược đầu tư SmartMoney rất phù hợp cho nhà đầu tư cá nhân."
+      "Các khuyến nghị đầu tư rất minh bạch và dễ sử dụng."
   },
   {
-    name: "NGUYỄN VĂN DƯƠNG",
-    title: "CEO STOCKPLUS",
+    name: "LÊ THỊ C",
+    title: "CHUYÊN GIA PHÂN TÍCH",
     img: "",
     review:
-      "Một phương pháp tiếp cận mới, đột phá, hiệu quả, an toàn. Chiến lược đầu tư SmartMoney rất phù hợp cho nhà đầu tư cá nhân."
-  },
-  {
-    name: "NGUYỄN VĂN DƯƠNG",
-    title: "CEO STOCKPLUS",
-    img: "",
-    review:
-      "Một phương pháp tiếp cận mới, đột phá, hiệu quả, an toàn. Chiến lược đầu tư SmartMoney rất phù hợp cho nhà đầu tư cá nhân."
-  },
-  {
-    name: "NGUYỄN VĂN DƯƠNG",
-    title: "CEO STOCKPLUS",
-    img: "",
-    review:
-      "Một phương pháp tiếp cận mới, đột phá, hiệu quả, an toàn. Chiến lược đầu tư SmartMoney rất phù hợp cho nhà đầu tư cá nhân."
+      "Việc sử dụng robo advisor sẽ bổ trợ cho tư vấn chuyên gia giúp nhà đầu tư đưa ra các quyết định khách quan và hiệu quả."
   }
 ];
 export const TYPE_GUIDELINE = [
@@ -374,5 +340,5 @@ export const MENU_ROBO = [
   }
 ];
 // export const socketURL = "http://10.61.1.36:5656/live-web-advisor";
-export const socketURL = "http://10.91.1.135:5656/live-web-advisor";
+export const socketURL = "https://test-advisor.mbs.com.vn/live-web-advisor";
 export const socketTopic = "/topic//web-advisor";

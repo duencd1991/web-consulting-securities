@@ -2,21 +2,16 @@ import React, { Component } from "react";
 import Layout from "../../layout/layout";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import {
-  DEFAULT_TABLE,
-  CATEGORY_COURSE,
-  TYPE_COURSE
-} from "../../../utils/constant";
-import actions from "../../../store/trainingService/actions";
+import { DEFAULT_TABLE } from "../../../utils/constant";
+import actions from "../../../store/algorithm/actions";
 import Table from "../../../components/table/table";
 import "../report/listReport.scss";
 import { toast } from "react-toastify";
 import notifyActions from "../../../store/notification/actions";
 
-class ListCourse extends Component {
+class ListAlgorithm extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       pageNum: DEFAULT_TABLE.pageNum,
       pageSize: DEFAULT_TABLE.pageSize
@@ -41,15 +36,19 @@ class ListCourse extends Component {
     this.props.history.push(`/create-course?id=${index}`);
   };
 
-  fetchListCourse = () => {
+  fetchListAlgorithm = () => {
     const state = this.state;
     const start = (state.pageNum - 1) * state.pageSize;
     const limit = state.pageSize + start;
-    this.props.fetchListCourse(start, limit, null, null, null);
+    const data = {
+      start: start,
+      limit: limit
+    }
+    this.props.fetchListAlgorithm(data);
   };
 
   componentDidMount() {
-    this.fetchListCourse();
+    this.fetchListAlgorithm();
   }
 
   componentDidUpdate(prevProps, prevState) {
@@ -57,14 +56,14 @@ class ListCourse extends Component {
       prevState.pageNum !== this.state.pageNum ||
       prevState.pageSize !== this.state.pageSize
     ) {
-      this.fetchListCourse();
+      this.fetchListAlgorithm();
     }
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.message !== "" && nextProps.message !== this.props.message) {
       toast(nextProps.message);
       if (nextProps.success) {
-        this.fetchListCourse();
+        this.fetchListAlgorithm();
       }
       this.props.clearNotify();
     }
@@ -74,28 +73,45 @@ class ListCourse extends Component {
     const { pageNum, pageSize } = this.state;
     const columns = [
       {
-        Header: "DANH MỤC",
-        accessor: "category",
-        maxWidth: 100,
+        Header: "TÊN",
+        accessor: "name",
+        maxWidth: 200,
         Cell: props => (
           <div className="table-center-element">
-            <div className="table-center-time">Danh mục:</div>
-            {CATEGORY_COURSE.map(item => {
-              if (item.cat === props.value) {
-                return item.name;
-              }
-              return null;
-            })}
+            <div className="table-center-time">Tên:</div>
+            {props.value}
           </div>
         )
       },
       {
-        Header: "TIÊU ĐỀ",
-        accessor: "name",
-        maxWidth: 100,
+        Header: "NHÀ PHÁT TRIỂN",
+        accessor: "author",
+        maxWidth: 150,
         Cell: props => (
           <div className="table-center-element">
-            <div className="table-center-time">Tiêu đề:</div>
+            <div className="table-center-time">Nhà phát triển:</div>
+            {props.value}
+          </div>
+        )
+      },
+      {
+        Header: "BỘ TÍN HIỆU",
+        accessor: "signal",
+        maxWidth: 150,
+        Cell: props => (
+          <div className="table-center-element">
+            <div className="table-center-time">Bộ tín hiệu:</div>
+            {props.value}
+          </div>
+        )
+      },
+      {
+        Header: "ÁP DỤNG",
+        accessor: "apply",
+        maxWidth: 250,
+        Cell: props => (
+          <div className="table-center-element">
+            <div className="table-center-time">Áp dụng:</div>
             {props.value}
           </div>
         )
@@ -105,69 +121,9 @@ class ListCourse extends Component {
         accessor: "description",
         maxWidth: 500,
         Cell: props => (
-          <div className="table-left-element">
+          <div className="table-center-element">
             <div className="table-center-time">Chi tiết:</div>
             {props.value}
-          </div>
-        )
-      },
-      {
-        Header: "LỊCH HỌC",
-        accessor: "schedule",
-        maxWidth: 100,
-        Cell: props => (
-          <div className="table-center-element">
-            <div className="table-center-time">Lịch học:</div>
-            {props.value}
-          </div>
-        )
-      },
-      {
-        Header: "KHAI GIẢNG",
-        accessor: "startDate",
-        maxWidth: 100,
-        Cell: props => (
-          <div className="table-center-element">
-            <div className="table-center-time">Khai giảng:</div>
-            {props.value}
-          </div>
-        )
-      },
-      {
-        Header: "HỌC PHÍ",
-        accessor: "fee",
-        maxWidth: 100,
-        Cell: props => (
-          <div className="table-center-element">
-            <div className="table-center-time">Học phí:</div>
-            {props.value}
-          </div>
-        )
-      },
-      {
-        Header: "GIẢNG VIÊN",
-        accessor: "teacher",
-        maxWidth: 150,
-        Cell: props => (
-          <div className="table-center-element">
-            <div className="table-center-time">Giảng viên:</div>
-            {props.value}
-          </div>
-        )
-      },
-      {
-        Header: "HÌNH THỨC",
-        accessor: "type",
-        maxWidth: 100,
-        Cell: props => (
-          <div className="table-center-element">
-            <div className="table-center-time">Hình thức:</div>
-            {TYPE_COURSE.map(item => {
-              if (item.type === props.value) {
-                return item.name;
-              }
-              return null;
-            })}
           </div>
         )
       },
@@ -193,13 +149,13 @@ class ListCourse extends Component {
           <div className="table-content">
             <button
               className="btn btn-create-new"
-              onClick={() => this.props.history.push(`/create-course`)}
+              onClick={() => this.props.history.push(`/create-algorithm`)}
             >
-              Tạo mới khóa học
+              Tạo mới thuật toán
             </button>
             <Table
-              title="Quản lý khóa học"
-              listData={props.listCourse}
+              title="Quản lý thuật toán"
+              listData={props.listAlgorithm}
               columns={columns}
               pageSize={pageSize}
               pageNum={pageNum}
@@ -225,14 +181,14 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchListCourse: (start, limit, type, category, priority) => {
-      dispatch(actions.listCourse(start, limit, type, category, priority));
+    fetchListAlgorithm: data => {
+      dispatch(actions.listAlgorithm(data));
     },
-    getDetail: id => {
-      dispatch(actions.getDetail(id));
+    getDetail: data => {
+      dispatch(actions.algorithmDetail(data));
     },
-    deleteCourse: data => {
-      dispatch(actions.deleteCourse(data));
+    deleteAlgorithm: data => {
+      dispatch(actions.algorithmDelete(data));
     },
     clearNotify: () => {
       dispatch(notifyActions.clearNotify());
@@ -240,14 +196,14 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-ListCourse.propTypes = {
+ListAlgorithm.propTypes = {
   history: PropTypes.object,
-  fetchListCourse: PropTypes.func,
-  listCourse: PropTypes.array,
+  fetchListAlgorithm: PropTypes.func,
+  listAlgorithm: PropTypes.array,
   total: PropTypes.number
 };
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(ListCourse);
+)(ListAlgorithm);

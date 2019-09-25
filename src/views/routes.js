@@ -40,6 +40,8 @@ import GetPassWord from "./forgotPassWord/getPassWord";
 import TermsOfUse from "./termsOfUse/termsOfUse";
 import ListGuideline from "./admin/guideline/listGuideline";
 import FormGuideline from "./admin/guideline/formGuideline";
+import FormAlgorithm from "./admin/algorithms/formAlgorithm";
+import ListAlgorithm from "./admin/algorithms/listAlgorithm";
 
 const AppRouter = () => {
   return (
@@ -76,6 +78,8 @@ const AppRouter = () => {
           <RouteExpert exact path="/create-report" component={FormReport} />
           <RouteExpert exact path="/list-guideline" component={ListGuideline} />
           <RouteExpert exact path="/create-guideline" component={FormGuideline} />
+          <RouteExpert exact path="/create-algorithm" component={FormAlgorithm} />
+          <RouteExpert exact path="/list-algorithm" component={ListAlgorithm} />
 
           <RouteCustomerCare exact path="/list-register-course" component={ListRegisterCourse} />
           <RouteCustomerCare exact path="/list-resgiter-account-trading" component={ListAccountTrading} />

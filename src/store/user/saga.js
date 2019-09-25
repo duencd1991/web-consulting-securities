@@ -3,7 +3,7 @@ import notifyActions from "../notification/actions";
 import { all, fork, put, takeEvery } from "redux-saga/effects";
 import history from "../../utils/history";
 import {
-  createUser, updateUser, deleteUser, listUser, detailUser, login
+  createUser, updateUser, deleteUser, listUser, detailUser, login, changePass, resetPass
 } from "../../services/user";
 export function* userCreate() {
   yield takeEvery(actions.USER_CREATE, function*(data) {
@@ -133,6 +133,59 @@ export function* userLogin() {
     }
   });
 }
+export function* userChangePass() {
+  yield takeEvery(actions.CHANGE_PASS, function*(data) {
+    try {
+      yield put({ type: notifyActions.NOTIFY_LOADING });
+
+      const response = yield changePass(data.data);
+      if (response.status === 200) {
+        if (response.data.statusCode === 1) {
+          yield history.push({ pathname: '/sign-in' });
+          yield put({
+            type: notifyActions.NOTIFY_SHOW,
+            code: response.data.statusCode
+          });
+        } else {
+          yield put({
+            type: notifyActions.NOTIFY_SHOW,
+            code: response.data.statusCode
+          });
+        }
+      }
+
+      yield put({ type: notifyActions.NOTIFY_LOADING });
+    } catch (error) {
+      yield put({ type: notifyActions.NOTIFY_SHOW, code: 0 });
+    }
+  });
+}
+export function* userResetPass() {
+  yield takeEvery(actions.RESET_PASS, function*(data) {
+    try {
+      yield put({ type: notifyActions.NOTIFY_LOADING });
+
+      const response = yield resetPass(data.data);
+      if (response.status === 200) {
+        if (response.data.statusCode === 1) {
+          yield put({
+            type: notifyActions.NOTIFY_SHOW,
+            code: response.data.statusCode
+          });
+        } else {
+          yield put({
+            type: notifyActions.NOTIFY_SHOW,
+            code: response.data.statusCode
+          });
+        }
+      }
+
+      yield put({ type: notifyActions.NOTIFY_LOADING });
+    } catch (error) {
+      yield put({ type: notifyActions.NOTIFY_SHOW, code: 0 });
+    }
+  });
+}
 
 export default function* rootSaga() {
   yield all([
@@ -141,6 +194,8 @@ export default function* rootSaga() {
     fork(userDelete),
     fork(userLogin),
     fork(getListUser),
-    fork(getUserDetail)
+    fork(getUserDetail),
+    fork(userChangePass),
+    fork(userResetPass)
   ]);
 }

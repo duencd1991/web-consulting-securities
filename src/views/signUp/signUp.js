@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import notifyActions from "../../store/notification/actions";
 import { TYPE_ACCOUNT, PERMISSION } from "../../utils/constant";
 import validator from "validator";
+import sha256 from "sha256";
 
 class SignUp extends Component {
 
@@ -84,12 +85,13 @@ class SignUp extends Component {
   onSubmit = () => {
     const state = this.state;
     if (state.agreement && this.validateForm()) {
+      const passSHA256 = sha256(state.password);
       const data = {
         username: state.username,
         email: state.email,
         phoneNumber: state.phoneNumber,
         address: state.address,
-        password: state.password,
+        password: passSHA256,
         fullName: state.fullName,
         type: state.type,
         permissionId: state.permissionId

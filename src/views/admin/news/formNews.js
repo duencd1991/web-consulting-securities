@@ -32,7 +32,7 @@ const editorModules = {
 
       ['clean']         
     ],
-    handlers: { image: //this.imageHandler
+    handlers: { image:
       function() {
         const input = document.createElement('input');
         input.setAttribute('type', 'file');
@@ -158,36 +158,6 @@ class FormNews extends Component {
       content: data
     });   
   };
-  imageHandler = () => {
-    const input = document.createElement('input');
-    input.setAttribute('type', 'file');
-    input.setAttribute('accept', 'image/*');
-    input.click();
-    input.onchange = function() {
-      const file = input.files[0];
-      console.log('User trying to uplaod this:', file);
-
-      const formData = new FormData();
-
-      formData.append('file', file);
-      // Save current cursor state
-      const range = this.quill.getSelection(true);
-
-      // Insert temporary loading placeholder image
-      this.quill.insertEmbed(range.index, 'image', `${ window.location.origin }/img/loading.gif`); 
-
-      // Move cursor to right side of image (easier to continue typing)
-      this.quill.setSelection(range.index + 1);
-
-      this.props.uploadFile(formData);
-      const link = `http://test-advisor.mbs.com.vn/download/img_news/profile.jpg`;
-
-      // Remove placeholder image
-      this.quill.deleteText(range.index, 1);
-      // Insert uploaded image
-      this.quill.insertEmbed(range.index, 'image', link); 
-    }.bind(this);
-  }
 
   onSubmit = () => {
     if (this.onValidateForm()) {

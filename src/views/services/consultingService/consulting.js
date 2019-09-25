@@ -36,27 +36,20 @@ class Consulting extends Component {
             </a>
           </div>
           <div className="slogan-layout" id="slogan-layout">
-            <div className="title">TRIẾT LÝ TƯ VẤN CKPS KẾT HỢP ROBO</div>
+            <div className="title">TRIẾT LÝ TƯ VẤN CHỨNG KHOÁN PHÁI SINH</div>
             <hr />
             <div className="slogan-detail">
               <p>
-                <b>Đi theo nguyên tắc thị trường luôn luôn đúng</b>, phương pháp
-                luận của chúng tôi mô tả vận động của dòng tiền thông minh bằng
-                các công cụ công nghệ tài chính. Dựa trên đó chúng tôi phát
-                triển dịch vụ tư vấn đầu tư giúp nhà đầu tư có được danh mục tối
-                ưu tại bất kỳ thời điểm nào, vừa có khả năng sinh lời cao đi kèm
-                với rủi ro được quản trị ngay từ khi bắt đầu tham gia đầu tư.
+                Phương pháp tư vấn kết hợp giữa chuyên gia tư vấn trong phiên và robo advisor: Chúng tôi kết hợp giữa nền tảng kinh nghiệm giao dịch thực tế của đội ngũ chuyên gia và sự khách quan & khả năng bám sát diễn biến thị trường của robo advisor.
               </p>
               <p>
-                Nhà đầu tư có thể lựa chọn các sản phẩm tư vấn phù hợp với nhu
-                cầu để <b>tạo lập danh mục đầu tư cá nhân hiệu quả</b> theo
-                phong cách riêng.
+                Đội ngũ tư vấn là những chuyên gia nhiều kinh nghiệm giao dịch trên thị trường cơ sở và phái sinh với nền tảng kiến thức và hiểu biết sâu sắc về sản phẩm, phân tích cơ bản và phân tích kỹ thuật. Hình thức tư vấn chuyên gia sẽ giúp nhà đầu tư nhận biết sớm các điểm đảo chiều và xu thế chính của thị trường.
               </p>
               <p>
-                Dịch vụ tư vấn đầu tư chứng khoán của MBS được vận hành và trải
-                nghiệm bởi <b>đội ngũ chuyên gia phân tích hàng đầu</b> với
-                nghiệp vụ và kinh nghiệm tư vấn dày dặn, chúng tôi phục vụ nhà
-                đầu tư giải pháp chúng tôi tự tin sử dụng.
+                Robo advisor: Robo đưa ra các khuyến nghị khách quan và cụ thể về các điểm mua & điểm bán đối với chỉ số và mã cổ phiếu theo dõi.
+                Các chiến lược của robo advisor:
+                <li>Được đội ngũ chuyên gia lựa chọn cẩn trọng từ các chiến lược thành công đang được nhà đầu tư quốc tế sử dụng.</li>
+                <li>Được kiểm nghiệm (backtest) trên dữ liệu thực tế thị trường Việt Nam. Robo advisor giúp nhà đầu tư đưa ra các quyết định khách quan về điểm mua & điểm bán dựa trên ưu thế về thống kê xác suất và giúp nhà đầu tư rèn luyện kỷ luật giao dịch, một nhân tố quan trọng để thành công trong giao dịch chứng khoán.</li>
               </p>
             </div>
           </div>

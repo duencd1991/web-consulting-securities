@@ -28,17 +28,53 @@ import icArrowPrev from "../../assets/img/icArrowPrev.png";
 import icArrowNext from "../../assets/img/icArrowNext.png";
 import icArrowStart from "../../assets/img/icArrowStart.png";
 import icArrowEnd from "../../assets/img/icArrowEnd.png";
+import noImg from "../../assets/img/imgThum.png";
 
 let listChat = [];
-let socket = new SockJS(socketURL);;
-let stompClient = Stomp.over(socket);
+let socket = null;
+let stompClient = null;
 let msgSocket = [];
 let preMsgSocket = [];
+let _selectedRoom = [];
+
+let _algorithms = [
+  {
+    img: "",
+    name: "Daily Breakout",
+    author: "MBS",
+    apply: "LONG/SHORT, tín hiệu báo đảo chiều, giao dịch theo ngày, đồ thị kết hợp đa khung thời gian",
+    desc: "Daily Breakout chờ thị trường rơi vào vùng quá mua/quá bán (T0) sau đó sẽ vào lệnh khi thị trường đảo chiều vào ngày T+1. Chiến lược dựa trên cơ sở quy tắc giao dịch 3 ngày của Taylor với ngày mua (Long), ngày chốt (Sell) & ngày bán (Sell Short). Dữ liệu áp dụng: 1 ngày, 1 giờ và 15 phút.",
+    signals: "RSI(3)"
+  },
+  {
+    img: "",
+    name: "MACD REVERSAL",
+    author: "MBS",
+    apply: "LONG/SHORT, tín hiệu báo đảo chiều giao dịch trong ngày, đồ thị 5 phút",
+    desc: "Robo MACD reversal là robo cảnh báo sớm thông báo tín hiệu thị trường đảo chiều dựa trên nguyên lý đường chỉ báo (indicators) như MACD sẽ đảo chiều trước chỉ số. Robo sẽ đưa tín hiệu Short khi MACD tạo phân kỳ âm với đường giá (đỉnh MACD 2 thấp hơn đỉnh của MACD1 trong khi giá tại thời điểm 2 cao hơn thời điểm 1). Ngược lại, Robo sẽ đưa ra tín hiệu Long khi MACD tạo phân kỳ dương với đường giá. Chú ý: Do tính chất dò đỉnh như trên nên robo MACD reversal có thể đưa ra các tín hiệu nhiễu khi thị trường bắt đầu vào xu hướng mới.",
+    signals: "MACD (12,26,9)"
+  },
+  {
+    img: "",
+    name: "SHORT TRIAL",
+    author: "MBS",
+    apply: "SHORT, tín hiệu báo đảo chiều, giao dịch theo trend ngắn hạn, đồ thị 5-15 phút",
+    desc: "Robo sẽ báo tín hiệu dựa trên cơ sở thị trường phái sinh sẽ cần quãng thời gian tích lũy trước khi chuyển từ trạng thái tăng giá sang giảm giá.  Robo sẽ tìm kiếm những điểm vào lệnh Short an toàn để bám theo xu thế giảm giá (nếu có) với một điểm cắt lỗ ngắn để bảo toàn vốn. Dữ liệu áp dụng: 5 phút, 15 phút.",
+    signals: "ADX(14), Bollinger Bands(20)"
+  },
+  {
+    img: "",
+    name: "TREND TRACK",
+    author: "MBS",
+    apply: "LONG/SHORT, tín hiệu bắt xu thế, giao dịch trong ngày, đồ thị 5-15 phút",
+    desc: "Trend track kết hợp sự vận động của ADX và DI+ / DI- của các timeframe ngắn để vào lệnh khi nhận định thị trường bắt đầu có xu thế. Robo sẽ đưa ra tín hiệu cắt lỗ sớm để thoát khỏi các vị thế nhiễu (whipsaw) và đưa ra các tín hiệu chốt lời chậm dựa trên bộ 15 phút để tối đa hóa lợi nhuận trong trường hợp dự báo xu thế chính xác. Dữ liệu áp dụng: 5 phút, 15 phút",
+    signals: "ADX (14), PSAR (0.02,0.2)"
+  },
+]
 
 class ConsultingSecurities extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       pageNum: DEFAULT_TABLE.pageNum,
       pageSize: DEFAULT_TABLE.pageSize,
@@ -51,6 +87,7 @@ class ConsultingSecurities extends Component {
       contentChat: "",
       updateInfo: false,
       idUpdate: -1,
+      showDetail: -1,
 
       roomId: "",
       statisticId: "",
@@ -86,37 +123,25 @@ class ConsultingSecurities extends Component {
     };
     this.props.getListRobo(data);
   }
-
-  connectAndReconnect = (successCallback) => {
-    socket = new SockJS(socketURL);
-    stompClient = Stomp.over(socket);
-    stompClient.connect({}, () => {
-      successCallback();
-    }, () => {
-      setTimeout(() => {
-        this.connectAndReconnect(successCallback);
-      }, 5000);
-    });
-  }
-
   connectSocket = () => {
-    const state = this.state;
-    socket = new SockJS(socketURL);;
-    stompClient = Stomp.over(socket);
-    
-    stompClient.connect({}, () => {
-      stompClient.subscribe(socketTopic, temperature => {
-        const data = JSON.parse(temperature.body);
-        if (state.selectedRoom.includes(data.algorithm)) {
-          preMsgSocket = msgSocket.slice();
-          msgSocket.push({robo: data.algorithm, msg: data.messenger});
-        }
-      })
-    }, () => {
-      setTimeout(() => {
-        this.connectSocket();
-      }, 60000);
-    });
+    if (stompClient === null || !stompClient.connected) {
+      const state = this.state;
+      socket = new SockJS(socketURL);;
+      stompClient = Stomp.over(socket);
+      stompClient.connect({}, () => {
+        stompClient.subscribe(socketTopic, temperature => {
+          const data = JSON.parse(temperature.body);
+          if (_selectedRoom.includes(data.algorithm)) {
+            preMsgSocket = msgSocket.slice();
+            msgSocket.push({robo: data.algorithm, msg: data.messenger});
+          }
+        })
+      }, () => {
+        setTimeout(() => {
+          this.connectSocket();
+        }, 60000);
+      });
+    }
   }
 
   componentWillMount() {
@@ -153,13 +178,13 @@ class ConsultingSecurities extends Component {
         showDiv.scrollTop = showDiv.scrollHeight;
       }
     }
-    if (nextProps.historyRobo.length > 0 && this.props.historyRobo !== nextProps.historyRobo) {
-      const props = nextProps;
-      preMsgSocket = msgSocket.slice();
-      for(let i = 0; i < props.historyRobo.length; i ++) {
-        msgSocket.push({robo: "ROBO", msg: props.historyRobo[i].content});
-      }
-    }
+    // if (nextProps.historyRobo.length > 0 && this.props.historyRobo !== nextProps.historyRobo) {
+    //   const props = nextProps;
+    //   preMsgSocket = msgSocket.slice();
+    //   for(let i = 0; i < props.historyRobo.length; i ++) {
+    //     msgSocket.push({robo: "ROBO", msg: props.historyRobo[i].content});
+    //   }
+    // }
   }
   componentDidUpdate(prevProps, prevState) {
     if ( prevState.pageNum !== this.state.pageNum || prevState.pageSize !== this.state.pageSize ) {
@@ -168,7 +193,7 @@ class ConsultingSecurities extends Component {
     if (prevState.selectedRoom !== this.state.selectedRoom) {
       this.connectSocket();
     }
-    if (this.state.selectedRoomId.length > 0 && this.state.selectedRoomId !== prevState.selectedRoomId) {
+    if (this.state.selectedRoomId !== prevState.selectedRoomId) {
       this.fetchHistoryRobo();
     }
     if (msgSocket !== preMsgSocket) {
@@ -180,6 +205,12 @@ class ConsultingSecurities extends Component {
     }
   }
 
+  onShowDetail = index => {
+    let status = index === this.state.showDetail ? -1 : index
+    this.setState({
+      showDetail: status
+    })
+  }
   onChange = e => {
     this.setState({
       [e.target.name]: e.target.value
@@ -260,7 +291,7 @@ class ConsultingSecurities extends Component {
         selectAll = true;
       }
     }
-
+    _selectedRoom = listSelectRoom.slice();
     this.setState({
       selectedRoom: listSelectRoom,
       selectedRoomId: listSelectRoomId,
@@ -274,6 +305,7 @@ class ConsultingSecurities extends Component {
       listSelectRoom = this.props.listRobo.map(item=> { return item.codeRobo });
       listSelectRoomId = this.props.listRobo.map(item=> { return item.id });
     }
+    _selectedRoom = listSelectRoom.slice();
     this.setState({
       selectAllRoom: status,
       selectedRoom: listSelectRoom,
@@ -333,6 +365,7 @@ class ConsultingSecurities extends Component {
       idUpdate,
       pageNum,
       pageSize,
+      showDetail,
 
       summary,
       winRate,
@@ -365,7 +398,7 @@ class ConsultingSecurities extends Component {
                 })}
               </div>
               {
-                selectedMenu === MENU_ROBO[0].index || selectedMenu === MENU_ROBO[2].index ?
+                (selectedMenu === MENU_ROBO[0].index || selectedMenu === MENU_ROBO[2].index) && 
                 <div className="layout-robot-consulting">
                   <div className="title">
                     HỆ THỐNG <span>ROBOT</span> KHUYẾN NGHỊ
@@ -588,7 +621,7 @@ class ConsultingSecurities extends Component {
                             var currentDate = new Date(item.createDate);
                             const date = currentDate.getDate();
                             const month = currentDate.getMonth() + 1;
-                            const year = currentDate.getYear();
+                            const year = currentDate.getFullYear();
                             var hours = currentDate.getHours();
                             var minutes = "0" + currentDate.getMinutes();
                             var seconds = "0" + currentDate.getSeconds();
@@ -612,6 +645,14 @@ class ConsultingSecurities extends Component {
                       <div className="title">ROBO TRADING</div>
                       <hr />
                       <div className="box-chat" id="boxRobo">
+                        {
+                          this.props.historyRobo && this.props.historyRobo.map((item, index) => {
+                            return <p key={index}>
+                              <span className="chat-title">ROBO : </span>
+                              <span className="chat-content">{item.content}</span>
+                            </p>
+                          })
+                        }
                         {
                           msgSocket.map((item, index) => {
                             return <p key={index}>
@@ -658,7 +699,32 @@ class ConsultingSecurities extends Component {
                     </div>
                   </div>
                 </div>
-              : <div className="request-login">Comming soon</div>
+              }
+              {
+                selectedMenu === MENU_ROBO[3].index && <div className="layout-discovery-system">
+                  {
+                    _algorithms.length > 0 ? <div className="box-algorithms">
+                    {
+                      _algorithms.map((item, index) => {
+                        return <div className="item-algorithm" onClick={() => this.onShowDetail(index)}>
+                          <img src={item.img !== "" ? item.img : noImg}/>
+                          <div className="name">{item.name}</div>
+                          <div className="author"><b>Nhà phát triển:</b> {item.author}</div>
+                          <div className="signals"><b>Bộ tín hiệu:</b> {item.signals}</div>
+                          <div className={ showDetail === index ? "box-detail show" : "box-detail"}>
+                            <div className="apply"><b>Áp dụng:</b> {item.apply}</div>
+                            <div className="desc">{item.desc}</div>
+                          </div>
+                        </div>
+                      })
+                    }
+                    </div>
+                    : <div className="request-login">Chưa có dữ liệu về thuật toán</div>
+                  }
+                </div>
+              }
+              {
+                selectedMenu === MENU_ROBO[1].index && <div className="request-login">Comming soon</div>
               }
               
             </div> : <div className="page-content">

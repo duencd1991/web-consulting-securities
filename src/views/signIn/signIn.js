@@ -6,6 +6,8 @@ import imgBgLeft from "../../assets/img/bg_SignIn.jpg";
 import logoMbs from "../../assets/img/logo-blue.png";
 import userActions from "../../store/user/actions";
 import notifyActions from "../../store/notification/actions";
+import { toast } from "react-toastify";
+import sha256 from "sha256";
 
 class SignIn extends Component {
 
@@ -14,9 +16,27 @@ class SignIn extends Component {
     this.state = {
       user: "",
       pass: "",
+      newPass: "",
+      changePass: false,
 
       validate: true
     }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.message !== "" && nextProps.message !== this.props.message) {
+      if (nextProps.success) {
+        this.setState({
+          changePass: false
+        })
+      }
+      toast(nextProps.message);
+      this.props.clearNotify();
+    }
+  }
+
+  componentWillMount() {
+    console.log("componentWillMount");
   }
 
   onChange = e => {
@@ -24,32 +44,48 @@ class SignIn extends Component {
       [e.target.name]: e.target.value
     })
   }
-
   onValidateForm = () => {
     const {
       user,
-      pass
+      pass,
+      newPass,
+      changePass
     } = this.state;
     let check = user !== "" && pass !== "";
+    if (changePass) {
+      check = check && newPass !== ""
+    }
     this.setState({
       validate: check
     })
     return check;
   }
-
   onSubmit = () => {
     const state = this.state;
     if (this.onValidateForm()) {
-      if (state.user !== "" && state.pass !== "") {
-        const data = {
-          user: state.user,
-          pass: state.pass
+      if (state.changePass) {
+        if (state.user !== "" && state.pass !== "" && state.newPass !== "") {
+          const passSHA256 = sha256(state.pass);
+          const newPassSHA256 = sha256(state.newPass);
+          const data = {
+            username: state.user,
+            password: passSHA256,
+            newPass: newPassSHA256
+          }
+          this.props.changePass(data);
         }
-        this.props.login(data);
+      } else {
+        if (state.user !== "" && state.pass !== "") {
+          const passSHA256 = sha256(state.pass);
+          const data = {
+            username: state.user,
+            password: passSHA256
+          }
+          this.props.login(data);
+        }
       }
     }
   }
-
   onEnter = e => {
     const key = e.which || e.keyCode;
     const state = this.state;
@@ -57,13 +93,20 @@ class SignIn extends Component {
       this.onSubmit();
     }
   };
-
+  onClickChangePass = (status) => {
+    this.setState({
+      changePass: status
+    })
+  }
   render() {
     const {
       user,
       pass,
+      newPass,
+      changePass,
       validate
     } = this.state;
+    const props = this.props;
 
     return (
       <div className="signin_page">
@@ -112,10 +155,43 @@ class SignIn extends Component {
                   </div>
                 )}
               </div>
+              {
+                changePass && <div className="form-row">
+                  <label htmlFor="pass">Mật khẩu mới</label>
+                  <input
+                    type="password"
+                    name="newPass"
+                    id="newPass"
+                    className="input-text"
+                    onChange={this.onChange}
+                    onKeyDown={this.onEnter}
+                  />
+                  {!validate && newPass !== pass && (
+                    <div className="alert alert-warning" role="alert">
+                      Vui lòng nhập thông tin
+                    </div>
+                  )}
+                </div>
+              }
               <div className="form-row-check txtRight">
+                {
+                  changePass ? <div className="checkTKCK">
+                    <label>
+                      <a className="txt14" href="#" onClick={() => this.onClickChangePass(false)}>
+                        Đăng nhập
+                      </a>
+                    </label>
+                  </div> : <div className="checkTKCK">
+                    <label>
+                      <a className="txt14" href="#" onClick={() => this.onClickChangePass(true)}>
+                        Đổi mật khẩu
+                      </a>
+                    </label>
+                  </div>
+                }
                 <div className="checkTKCK">
                   <label>
-                    <a className="txt14" href="./forgot-pass-word">
+                    <a className="txt14" href="/forgot-pass-word">
                       Bạn quên mật khẩu?
                     </a>
                   </label>
@@ -123,7 +199,9 @@ class SignIn extends Component {
               </div>
               <div className="form-row-last">
                 <button className="register" onClick={this.onSubmit}>
-                  <span>Đăng Nhập</span>
+                  {
+                    changePass ? <span>Xác nhận</span> : <span>Đăng Nhập</span>
+                  }
                 </button>
                 <p>
                   Bạn chưa có tài khoản? <a href="./sign-up">Đăng ký</a>
@@ -145,6 +223,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    changePass: data => {
+      dispatch(userActions.changePass(data));
+    },
     login: data => {
       dispatch(userActions.login(data));
     },
